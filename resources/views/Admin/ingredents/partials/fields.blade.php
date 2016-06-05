@@ -1,5 +1,5 @@
 						<div class="form-group">
-							{!! Form::label('licor', 'Nombre del ingrediente') !!}
+							{!! Form::label('licor', 'Nombre del Licor') !!}
                             
 								{!! Form::text('licor', null, ['class' => 'form-control', 'placeholder' => 'Ej: Santateresa, Carta Roja', 'title' => 'Ingrese su nombre']) !!}
 						</div>

@@ -15,19 +15,15 @@ Route::get('/', function()
 	return View::make('welcome');
 });
 
-Route::get('tablero', function(){
 
-		return view('layout.tablero');
-});
+/*
+* 		RUTAS GENERALES
+*/
 
-Route::get('clientes', function(){
+Route::group(['prefix' => 'admin'], function(){ 
 
-		return view('clientes.clientes');
-});
+	Route::resource('usuarios', 'UsersController');
 
-Route::get('asistencia', function(){
-
-		return view('nomina.assis_emp');
 });
 
 Route::get('login', function(){
@@ -35,12 +31,48 @@ Route::get('login', function(){
 	return view('login.login');
 });
 
+Route::get('tablero', function(){
+
+		return view('layout.tablero');
+});
+
+
+/*
+*		RUTAS JESUS
+*/
+
+Route::group(['prefix' => 'admin'], function(){ 
+
+	Route::resource('employees', 'EmployeesController');
+	
+});
+
+Route::get('asistencia', function(){
+
+		return view('nomina.assis_emp');
+});
+
+Route::get('clientes', function(){
+
+		return view('clientes.clientes');
+});
+
    
+/*
+* 		RUTAS OLIVER
+*/
+
 Route::group(['prefix' => 'admin'], function(){ 
 
 	Route::resource('proveedores', 'ProvidersController');
-
+	
 });
+
+
+/*
+* 		RUTAS SAUL 
+*/
+
 
 Route::group(['prefix' => 'admin'], function(){ 
 
@@ -51,20 +83,11 @@ Route::group(['prefix' => 'admin'], function(){
 Route::group(['prefix' => 'admin'], function(){ 
 
 	Route::resource('ingredientes', 'IngredentsController');
-
 	
 });
 
-Route::group(['prefix' => 'admin'], function(){ 
 
 
-	Route::resource('employees', 'EmployeesController');
-	
-});
 
-Route::group(['prefix' => 'admin'], function(){ 
 
-	Route::resource('usuarios', 'UsersController');
-
-});
 

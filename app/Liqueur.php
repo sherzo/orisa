@@ -12,7 +12,7 @@ class Liqueur extends Model
      * @var array
      */
     protected $fillable = [
-        'id_user', 'rif', 'business_name', 'addres_pro', 'phone_pro', 'email_pro', 
+        'id_user', 'liqueur_name', 'id_type', 'id_unit', 
     ];
 
     /**
@@ -24,6 +24,5 @@ class Liqueur extends Model
         'id_user',
     ];
 
-
-    protected $table = 'providers';
+    protected $table = 'liqueurs';
 }

@@ -1,7 +1,7 @@
 @extends('layout.layout')
 
 @section('reg_emp')
-<div id="page-wrapper">
+
  	<!-- ./row -->
 <div class="row"><br>
 	<div class="col-lg-12">

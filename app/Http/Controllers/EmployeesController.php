@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Employee;
+use App\Data_employee;
 use App\Http\Requests;
 
 class EmployeesController extends Controller
@@ -26,7 +27,7 @@ class EmployeesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
+    {    
         return view('admin.employees.create');
     }
 
@@ -38,10 +39,9 @@ class EmployeesController extends Controller
      */
     public function store(Request $request)
     {
-        $employee = Employee::create($request->all());
-        $employee->save();
-
-        return redirect('admin/employees');
+        $employee = $request->all();
+        
+        dd($employee);
     }
 
     /**

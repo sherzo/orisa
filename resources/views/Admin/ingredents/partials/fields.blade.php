@@ -17,4 +17,5 @@
 
 							{!! Form::select('type', array('admin' => 'Alimentos Polar', 'root' => 'Juana', 'mersonero' => 'Pepsico', 'cocinero' => 'Jacks', 'cocinero' => 'Santa Teresa'), null, ['class' => 'form-control']);
 							!!}
+
 						</div>

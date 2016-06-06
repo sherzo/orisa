@@ -44,7 +44,7 @@ class ProvidersController extends Controller
 
         $provider->save();
 
-        Flash::success('Se ha registrado exitosamente');
+        Flash::success('<strong>Existo! </strong> Se ha registrado '. $provider->business_name. ' correctamente');
 
         return redirect('admin/proveedores');
     }

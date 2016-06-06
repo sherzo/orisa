@@ -5,7 +5,7 @@
 
  	<!-- ./row -->
 	<div class="row">
-		<div class="col-lg-12"><br>
+		<div class="col-lg-12">
              <ol class="breadcrumb">
                 <li><a href="#">Inicio</a></li>
                   <li><a href="{{ route('admin.usuarios.index') }}">Porveedores</a></li>

@@ -278,18 +278,13 @@ glyphicon glyphicon-shopping-cart"></i> Compra<span class="fa arrow"></span></a>
       </div>
     </footer>
 -->
-  <div id="page-wrapper">
+
+<div id="page-wrapper"><br>
+
 
 
 @yield('contenido')
 
-@include('flash::message')
-
-@yield('most_emp')
-
-@yield('reg_emp')
-
-@yield('assis_emp')
     <!-- /#wrapper -->
 
 

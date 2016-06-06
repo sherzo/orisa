@@ -10,6 +10,8 @@ use App\Unit;
 use App\Liqueurs_type;
 use App\Http\Requests;
 use App\Http\Requests\LiqueurRequest;
+use Laracasts\Flash\Flash;
+
 
 
 class LiqueursController extends Controller
@@ -20,9 +22,10 @@ class LiqueursController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
+    {   
+        $liqueurs = Liqueur::paginate();
 
-        return view('admin.liqueurs.index');
+        return view('admin.liqueurs.index', compact('liqueurs'));
     }
 
     /**
@@ -55,16 +58,18 @@ class LiqueursController extends Controller
     {
   
     $liqueur = Liqueur::create($request->all());
-    $licor = $liqueur->id;
 
        foreach($request->id_providers as $id_provider) 
         {
             $liqueurs_provider = new Liqueurs_provider;
 
-            $liqueurs_provider->id_liqueur = $licor;
+            $liqueurs_provider->id_liqueur = $liqueur->id;
             $liqueurs_provider->id_provider = $id_provider;
             $liqueurs_provider->save();
         }   
+
+        Flash::success('<strong>Exito!</strong> Se registro '.
+         $liqueur->liqueur_name .' correctamente!');
 
         return redirect('admin/licores');
     }

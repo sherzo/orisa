@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use App\Provider;
+use App\Unit;
+use App\Ingredient;
 
 class IngredentsController extends Controller
 {
@@ -15,7 +18,9 @@ class IngredentsController extends Controller
      */
     public function index()
     {
-        return view('admin.ingredents.index');
+        $ingredents = Ingredient::paginate();
+
+        return view('admin.ingredents.index', compact('ingredents'));
     }
 
     /**
@@ -24,8 +29,16 @@ class IngredentsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        return view('admin.ingredents.create');
+    {   
+        //Proveedores
+        $providers = Provider::lists('business_name', 'id');
+
+        //Unidades de medida
+        $units = Unit::lists( 'units_name', 'id');
+
+        // Compacto todas la variables a la vista del registro
+        return view('admin.ingredents.create', 
+                    compact('units', 'providers'));
     }
 
     /**
@@ -34,9 +47,12 @@ class IngredentsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
     public function store(Request $request)
     {
-        //
+        $ingredient = new Ingredient::($request->all());
+
+            dd('$ingredient');
     }
 
     /**

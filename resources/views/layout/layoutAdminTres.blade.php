@@ -279,14 +279,11 @@ glyphicon glyphicon-shopping-cart"></i> Compra<span class="fa arrow"></span></a>
     </footer>
 -->
 
+<div id="page-wrapper"><br>
+
 
 @yield('contenido')
 
-@yield('most_emp')
-
-@yield('reg_emp')
-
-@yield('assis_emp')
     <!-- /#wrapper -->
 
 

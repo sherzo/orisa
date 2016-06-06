@@ -4,7 +4,7 @@
 
  	<!-- ./row -->
 	<div class="row">
-		<div class="col-lg-12"><br>
+		<div class="col-lg-12">
              <ol class="breadcrumb">
                 <li><a href="#">Inicio</a></li>
                   <li><a href="{{ route('admin.usuarios.index') }}">Licores</a></li>
@@ -57,7 +57,7 @@
 						<div class="form-group">
 							{!! Form::label('id_providers', 'Seleciones los proveedores del licor') !!}
 						
-					<br>
+						<br>
 							@foreach ($providers as $id => $provider)
 								
   									<label class="checkbox-inline">

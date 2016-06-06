@@ -3,14 +3,15 @@
 @section('contenido')
 
 
-    <div class="container-fluid">
+
         <div class="row">
-           <div class="col-lg-12"><br>
+           <div class="col-lg-12">
              <ol class="breadcrumb">
                 <li><a href="#">Inicio</a></li>
                   <li class="active">Licores</li>
 
             </ol>
+            @include('flash::message')
                   
                 <h4 class="page-header">Lista de Licores</h4>
 
@@ -24,10 +25,16 @@
           <!--  CIERRE DEL ROW -->
 
                 <div class="row"><br>
+                    <div class="col-lg-12">
+                        <div class="table-responsive">
+                            <p>Existen {{ $liqueurs->total() }} licores registrados</p>
+                        
+                            @include('admin.liqueurs.partials.table')
 
-                    </div>
-               </div>
-    </div>
-  </div>
-
+                            {!! $liqueurs->render() !!}
+                        </div>
+                    </div>   
+                </div>
+           </div>
+          <!-- CIERRA WRAPER -->
   @endsection

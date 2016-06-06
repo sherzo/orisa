@@ -280,10 +280,7 @@
 -->
   <div id="page-wrapper">
 
-
 @yield('contenido')
-
-@include('flash::message')
 
 @yield('most_emp')
 

@@ -3,14 +3,14 @@
 @section('contenido')
 
  <!-- Page Content -->
-    <div class="container-fluid">
+
         <div class="row">
-           <div class="col-lg-12"><br>
+           <div class="col-lg-12">
              <ol class="breadcrumb">
                 <li><a href="#">Inicio</a></li>
                   <li class="active">Provedores</li>
             </ol>
-                  
+              @include('flash::message')
                 <h4 class="page-header">Lista de Proveedores</h4>
 
           </div>
@@ -35,6 +35,6 @@
                     </div>
                </div>
     </div>
-  </div>
+
 
   @endsection

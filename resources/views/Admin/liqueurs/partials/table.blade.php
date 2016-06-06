@@ -2,25 +2,21 @@
                                 <thead>
                                     <tr>
                                       <th>#</th>
-                                      <th>Nombre</th>
-                                      <th>Usuario</th>
-                                      <th>Correo</th>
+                                      <th>Licor</th>
                                       <th>Acciones</th>
                                      </tr>
                                 </thead>
                                 <tbody>
                                 
-                                @foreach($users as $user)
+                                @foreach($liqueurs as $liqueur)
                                   <tr>
-                                   <td>{{ $user->id }}</td>
-                                   <td>{{ $user->name }}</td>
-                                   <td>{{ $user->user }}</td>
-                                   <td>{{ $user->email }}</td>
+                                   <td>{{ $liqueur->id }}</td>
+                                   <td>{{ $liqueur->liqueur_name }}</td>
                                    <td class="text-center">
                                      <a class="btn btn-default btn-xs">
                                         <span class="fa fa-eye fa-2x"></span>
                                      </a>
-                                     <a class="btn btn-default btn-xs" href="{{ route('admin.usuarios.edit', $user) }}">
+                                     <a class="btn btn-default btn-xs" href="{{ route('admin.usuarios.edit', $liqueur) }}">
                                         <span class="fa fa-pencil fa-2x"></span>
                                      </a>
                                      <a class="btn btn-default btn-xs">

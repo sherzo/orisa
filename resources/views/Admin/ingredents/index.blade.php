@@ -4,11 +4,12 @@
 
  <!-- Page Content -->
 
-    <div class="container-fluid">
+
         <div class="row">
-           <div class="col-lg-12"><br>
+           <div class="col-lg-12">
              @include('admin.partial.breadcumb')
-                  
+            
+           @include('flash::message')
                 <h4 class="page-header">Lista de Ingredientes</h4>
 
           </div>
@@ -28,6 +29,6 @@
                     </div>
                </div>
     </div>
-  </div>
+
 
   @endsection

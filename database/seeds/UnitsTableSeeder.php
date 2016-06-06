@@ -32,3 +32,4 @@ class UnitsTableSeeder extends Seeder
         ));
     }
 }
+

@@ -3,8 +3,6 @@
 @section('contenido')
 
  <!-- Page Content -->
-
-    <div class="container-fluid">
         <div class="row">
            <div class="col-lg-12">
              <ol class="breadcrumb">

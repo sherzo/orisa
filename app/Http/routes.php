@@ -82,7 +82,7 @@ Route::group(['prefix' => 'admin'], function(){
 
 Route::group(['prefix' => 'admin'], function(){ 
 
-	Route::resource('ingredientes', 'IngredentsController');
+	Route::resource('ingredientes', 'IngredientsController');
 	
 });
 

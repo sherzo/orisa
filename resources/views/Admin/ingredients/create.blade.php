@@ -19,12 +19,25 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">Registro de Ingrediente</div>
 					<div class="panel-body">
+
+					<!--  PANEL DE ERRORES -->
+						@if (count($errors) > 0)
+    						<div class="alert alert-danger">
+        						<ul>
+           							@foreach ($errors->all() as $error)
+                						<li>{{ $error }}</li>
+            						@endforeach
+        						</ul>
+    						</div>
+						@endif
+
+
 						{!! Form::open(['route' => 'admin.ingredientes.store', 'method' => 'POST']) !!}
 						
 						<div class="form-group">
-							{!! Form::label('ingredent_name', 'Nombre del ingrediente') !!}
+							{!! Form::label('ingredient_name', 'Nombre del ingrediente') !!}
                             
-								{!! Form::text('ingredent_name', null, ['class' => 'form-control', 'placeholder' => 'Ej: Arroz blanco', 'title' => 'Ingrese el ingrediente']) !!}
+								{!! Form::text('ingredient_name', null, ['class' => 'form-control', 'placeholder' => 'Ej: Arroz blanco', 'title' => 'Ingrese el ingrediente']) !!}
 						</div>
 						
 						<div class="form-group">

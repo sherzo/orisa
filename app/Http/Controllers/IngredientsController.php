@@ -3,13 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
-use App\Http\Requests;
 use App\Provider;
 use App\Unit;
 use App\Ingredient;
+use App\Ingredients_provider;
+use App\Http\Requests;
+use App\Http\Requests\IngredientRequest;
+use Laracasts\Flash\Flash;
 
-class IngredentsController extends Controller
+
+class IngredientsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,9 +21,10 @@ class IngredentsController extends Controller
      */
     public function index()
     {
-        $ingredents = Ingredient::paginate();
+        $ingredients = Ingredient::paginate();
 
-        return view('admin.ingredents.index', compact('ingredents'));
+        return view('admin.ingredients.index', compact('ingredients'));
+
     }
 
     /**
@@ -29,7 +33,7 @@ class IngredentsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {   
+    {
         //Proveedores
         $providers = Provider::lists('business_name', 'id');
 
@@ -37,8 +41,7 @@ class IngredentsController extends Controller
         $units = Unit::lists( 'units_name', 'id');
 
         // Compacto todas la variables a la vista del registro
-        return view('admin.ingredents.create', 
-                    compact('units', 'providers'));
+        return view('admin.ingredients.create', compact('units', 'providers'));
     }
 
     /**
@@ -47,12 +50,24 @@ class IngredentsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-
-    public function store(Request $request)
+    public function store(IngredientRequest $request)
     {
-        $ingredient = new Ingredient::($request->all());
+        
+        $ingredient = Ingredient::create($request->all());
 
-            dd('$ingredient');
+        foreach($request->id_providers as $id_provider) 
+        {
+            $ingredients_provider = new Ingredients_provider;
+
+            $ingredients_provider->id_ingredient = $ingredient->id;
+            $ingredients_provider->id_provider = $id_provider;
+            $ingredients_provider->save();
+        }   
+
+        Flash::success('<strong>Exito!</strong> Se registro el ingrediente '.
+         $ingredient->ingredient_name .' correctamente!');
+
+        return redirect('admin/ingredientes');
     }
 
     /**

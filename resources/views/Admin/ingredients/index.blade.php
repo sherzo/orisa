@@ -24,7 +24,11 @@
                 <div class="row"><br>
                     <div class="col-lg-12">
                         <div class="table-responsive">
+                        <p>Existen {{ $ingredients->total() }} ingredientes registrados</p>
+                        
+                            @include('admin.ingredients.partials.table')
 
+                            {!! $ingredients->render() !!}
                         </div>
                     </div>
                </div>

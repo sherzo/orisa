@@ -279,14 +279,10 @@
     </footer>
 -->
   <div id="page-wrapper">
+@include('flash::message')
 
 @yield('contenido')
 
-@yield('most_emp')
-
-@yield('reg_emp')
-
-@yield('assis_emp')
     <!-- /#wrapper -->
 
 

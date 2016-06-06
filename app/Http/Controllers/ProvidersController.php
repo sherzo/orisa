@@ -80,13 +80,16 @@ class ProvidersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ProviderRequest $request, $id)
     {
                 
-        $provider = User::findOrFail($id);
+        $provider = Provider::findOrFail($id);
        
         $provider->fill($request->all());
         $provider->save();
+
+        Flash::success('<strong>Existo! </strong> '. $provider->business_name. ' se modifico correctamente');
+
 
         return redirect()->back();
     }

@@ -1,6 +1,6 @@
 @extends('layout.layoutAdminDos')
 
-@section('reg_emp')
+@section('employee_content')
 
     <!-- ./row -->
 <div class="row">

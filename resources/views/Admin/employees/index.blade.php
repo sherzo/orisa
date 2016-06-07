@@ -1,6 +1,6 @@
 @extends('layout.layoutAdmin')
 
-@section('most_emp')
+@section('employee_content')
 
         <div class="container-fluid">
         <div class="row">

@@ -15,9 +15,9 @@ class CreateLiqueursProvidersTable extends Migration
         Schema::create('liqueurs_providers', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('id_liqueur') ->unsigned();
-            $table->foreign('id_liqueur') ->references('id')->on('liqueurs');
+            $table->foreign('id_liqueur') ->references('id')->on('liqueurs')->onDelete('cascade');
             $table->integer('id_provider') ->unsigned();
-            $table->foreign('id_provider') ->references('id')->on('providers');
+            $table->foreign('id_provider') ->references('id')->on('providers')->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -50,14 +50,7 @@ class EmployeesController extends Controller
         $data = new Data_employee;
 
         $data->id_employee = $employee->id;
-        $data->code_em = $code_em;
-        $data->date_of_admission = $date_of_admission;
-        $data->account_em = $account_em;
-        $data->contract = $contract;
-        $data->contract_status = $contract_status;
-        $data->cestaticket = $cestaticket;
-        $data->roster_em = $roster_em;
-        $data->duration_em = $duration_em;
+       
         $data->save();
 
         return redirect('admin/employees');

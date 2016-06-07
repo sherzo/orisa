@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Employee;
 use App\Data_employee;
+use App\Employee;
+use App\Position;
 use App\Http\Requests;
 
 class EmployeesController extends Controller
@@ -27,8 +28,12 @@ class EmployeesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {    
-        return view('admin.employees.create');
+    {   
+        // Cargos
+        $positions = Position::lists('name_position', 'id');
+
+        return view('admin.employees.create', compact('positions'));
+
     }
 
     /**
@@ -39,9 +44,23 @@ class EmployeesController extends Controller
      */
     public function store(Request $request)
     {
-        $employee = $request->all();
-        
-        dd($employee);
+        //dd($request->all());
+        $employee = Employee::create($request->all());
+        $data_employee_id = $employee->id;
+
+        $data = new Data_employee;
+        $data->id_employee = $data_employee_id;
+        $data->code_em = $code_em;
+        $data->date_of_admission = $date_of_admission;
+        $data->account_em = $account_em;
+        $data->salary_em = $salary_em;
+        $data->contract = $contract;
+        $data->cestaticket = $cestaticket;
+        $data->roster_em = $roster_em;
+        $data->duration_em = $duration_em;
+        $data->save();
+
+        return redirect('admin/employees');
     }
 
     /**
@@ -63,7 +82,9 @@ class EmployeesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $employee = Employee::findOrFail($id);
+
+        return view('admin.employees.edit', compact('employee'));
     }
 
     /**
@@ -75,7 +96,12 @@ class EmployeesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $employee = Employee::findOrFail($id);
+       
+        $employee->fill($request->all());
+        $employee->save();
+
+        return redirect()->back();
     }
 
     /**

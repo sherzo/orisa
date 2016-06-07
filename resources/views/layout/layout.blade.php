@@ -200,15 +200,14 @@
                             <ul class="nav nav-second-level">
                              <li>
                                     <a href="{{ url('admin/employees') }}">
-
                                     <i class="glyphicon glyphicon-briefcase"></i> Empleados</a>
                                 </li>
                                 <li>
-                                    <a href="{{ url('asistencia') }}">
+                                    <a href="#">
                                     <i class="fa  fa-calendar fa-fw"></i> Asistencias</a>
                                 </li>
                                 <li>
-                                    <a href="platos.html">
+                                    <a href="#">
                                     <i class="fa fa-money fa-fw"></i> Contrato</a>
                                 </li>  
                                                      

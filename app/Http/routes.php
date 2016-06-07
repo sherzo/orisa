@@ -47,16 +47,6 @@ Route::group(['prefix' => 'admin'], function(){
 	
 });
 
-Route::get('asistencia', function(){
-
-		return view('nomina.assis_emp');
-});
-
-Route::get('clientes', function(){
-
-		return view('clientes.clientes');
-});
-
    
 /*
 * 		RUTAS OLIVER

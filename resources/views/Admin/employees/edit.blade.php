@@ -1,25 +1,15 @@
-@extends('layout.layoutAdminDos')
+@extends('layout.layoutAdminTres')
 
 @section('reg_emp')
 
     <!-- ./row -->
-<div class="row">
+<div class="row"><br>
     <div class="col-lg-12">
         <div class="panel panel-default">
             <div class="panel-heading"> Datos personales </div>
                 <div class="panel-body">
                     <div class="row">
-                        @if (count($errors) > 0)
-                            <div class="alert alert-danger">
-                                <ul>
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        @endif
-                        
-                        {{ Form::open(['route' => 'admin.employees.store', 'method' => 'POST']) }}
+                        {{ Form::model($employee, array('route' => array('admin.employees.update', $employee->id), 'method' => 'PUT')) }}
                             @include('admin.employees.partials.fields')
                     </div> 
                 </div>
@@ -31,10 +21,7 @@
                                 {!! Form::label('code_em', 'Código', ['class' => 'control-label']) !!}
                                 {!! Form::text('code_em', null, ['class' => 'form-control', 'placeholder' => 'EM-0004256']) !!}
                             </div>
-                            <div class="form-group">
-                                {!! Form::label('id_position', 'Cargo') !!}
-                                {!! Form::select('id_position', $positions, null, ['class' => 'form-control']) !!}
-                            </div>
+                            
                             <div class="form-group">
                                 {!! Form::label('date_of_admission', 'Fecha de ingreso') !!}
                                 {!! Form::date('date_of_admission', null, ['class' => 'form-control']) !!}

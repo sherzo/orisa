@@ -89,7 +89,16 @@ class IngredientsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $ingredient = Ingredient::findOrFail($id);
+
+        //Proveedores
+        $providers = Provider::lists('business_name', 'id');
+
+        //Unidades de medida
+        $units = Unit::lists( 'units_name', 'id');
+
+
+        return view('admin.ingredients.edit', compact('ingredient', 'providers', 'units'));
     }
 
     /**
@@ -99,9 +108,17 @@ class IngredientsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(IngredientRequest $request, $id)
     {
-        //
+        $ingredient = Ingredient::findOrFail($id);
+       
+        $ingredient->fill($request->all());
+        $ingredient->save();
+
+        Flash::success('<strong>Existo! </strong> '. $ingredient->ingredient_name. ' se modifico correctamente');
+
+
+        return redirect()->back();
     }
 
     /**

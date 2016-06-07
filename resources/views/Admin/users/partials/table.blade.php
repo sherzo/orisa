@@ -20,10 +20,10 @@
                                      <a class="btn btn-default btn-xs">
                                         <span class="fa fa-eye fa-2x"></span>
                                      </a>
-                                     <a class="btn btn-default btn-xs" href="{{ route('admin.usuarios.edit', $user) }}">
+                                     <a class="btn btn-default btn-xs" href="{{ route('admin.usuarios.edit', $user->id) }}">
                                         <span class="fa fa-pencil fa-2x"></span>
                                      </a>
-                                     <a class="btn btn-default btn-xs">
+                                     <a href="{{ route('admin.usuarios.destroy', $user->id) }}" class="btn btn-default btn-xs">
                                         <span class="fa fa-trash-o fa-2x"></span>
                                      </a>
                                    </td>

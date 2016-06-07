@@ -102,6 +102,9 @@ class ProvidersController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $provider = Provider::find($id);
+        $provider->delete();
+
+        Flash::success('Exito el usuario '. $Provider->business_name .' eliminado correctamente');
     }
 }

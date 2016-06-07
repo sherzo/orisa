@@ -15,9 +15,9 @@ class CreateIngredientsProvidersTable extends Migration
         Schema::create('ingredients_providers', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('id_ingredient') ->unsigned();
-            $table->foreign('id_ingredient') ->references('id')->on('ingredients');
+            $table->foreign('id_ingredient') ->references('id')->on('ingredients')->onDelete('cascade');
             $table->integer('id_provider') ->unsigned();
-            $table->foreign('id_provider') ->references('id')->on('providers');
+            $table->foreign('id_provider') ->references('id')->on('providers')->onDelete('cascade');
             $table->timestamps();
         });
     }

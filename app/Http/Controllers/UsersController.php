@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Http\Requests;
+use Laracasts\Flash\Flash;
 
 class UsersController extends Controller
 {
@@ -96,6 +97,9 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::find($id);
+        $user->delete();
+
+        Flash::success('Exito el usuario '. $user->name .' eliminado correctamente');
     }
 }

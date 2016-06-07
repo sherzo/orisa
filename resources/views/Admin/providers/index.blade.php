@@ -10,7 +10,6 @@
                 <li><a href="#">Inicio</a></li>
                   <li class="active">Provedores</li>
             </ol>
-              @include('flash::message')
                 <h4 class="page-header">Lista de Proveedores</h4>
 
           </div>
@@ -25,7 +24,7 @@
                 <div class="row"><br>
                     <div class="col-lg-12">
                       <div class="table-responsive">
-                        <p>Existen {{ $providers->total() }} usuarios registrados</p>
+                        <p>Existen {{ $providers->total() }} proveedores registrados</p>
                         
                           @include('admin.providers.partials.table')
 

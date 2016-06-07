@@ -51,7 +51,7 @@
                             </div>
                             <div class="form-group">
                                 {!! Form::label('contract', 'Contrato') !!}
-                                {!! Form::select('contract', array('a' => 'Determinado', 'b' => 'Indeterminado'), null, ['class' => 'form-control']) !!}
+                                {!! Form::select('contract', array('Determinado' => 'Determinado', 'Indeterminado' => 'Indeterminado'), null, ['class' => 'form-control']) !!}
                             </div>
                         </div>
                         <div class="col-xs-4">

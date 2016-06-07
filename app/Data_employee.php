@@ -15,7 +15,7 @@ class Data_employee extends Model
      */
 
     protected $fillable = [
-        'id_employee', 'code_em', 'date_of_admission', 'account_em' , 'salary_em', 'contract', 'cestaticket', 'contract_status', 'roster_em', 'duration_em',
+        'id_employee', 'code_em', 'date_of_admission', 'account_em', 'contract', 'cestaticket', 'contract_status', 'roster_em', 'duration_em',
     ];
 
     /**

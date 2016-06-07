@@ -105,6 +105,8 @@ class ProvidersController extends Controller
         $provider = Provider::find($id);
         $provider->delete();
 
-        Flash::success('Exito el usuario '. $Provider->business_name .' eliminado correctamente');
+        Flash::success('Exito el proveedor '. $provider->business_name .' se eliminó correctamente');
+
+        return redirect('admin/proveedores');
     }
 }

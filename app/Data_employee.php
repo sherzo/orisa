@@ -15,8 +15,13 @@ class Data_employee extends Model
      */
 
     protected $fillable = [
-        'id_employee', 'code_em', 'date_of_admission', 'account_em', 'contract', 'cestaticket', 'contract_status', 'roster_em', 'duration_em',
+        'id_employee', 'code_em', 'date_of_admission', 'account_em', 'contract', 'cestaticket', 'contract_status', 'duration_em',
     ];
+
+    public function data_employee() 
+    {
+        return $this->belongsTo('App\Data_employee', 'id_employee');
+    } 
 
     /**
      * The attributes that should be hidden for arrays.

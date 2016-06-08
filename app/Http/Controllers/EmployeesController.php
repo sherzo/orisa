@@ -7,6 +7,8 @@ use App\Data_employee;
 use App\Employee;
 use App\Position;
 use App\Http\Requests;
+use App\Http\Requests\EmployeeRequest;
+use Laracasts\Flash\Flash;
 
 class EmployeesController extends Controller
 {
@@ -42,16 +44,22 @@ class EmployeesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(EmployeeRequest $request)
     {
         //dd($request->all());
         $employee = Employee::create($request->all());
-
         $data = new Data_employee;
 
         $data->id_employee = $employee->id;
-       
+        $data->code_em = $request->code_em;
+        $data->date_of_admission = $request->date_of_admission;
+        $data->account_em = $request->account_em;
+        $data->contract = $request->contract;
+        $data->cestaticket = $request->cestaticket;
+        $data->duration_em = $request->duration_em;
         $data->save();
+
+        Flash::success('<strong>Exito!</strong> Registro de '.$employee->names_em.' se realizó correctamente!');
 
         return redirect('admin/employees');
     }
@@ -78,6 +86,7 @@ class EmployeesController extends Controller
         $employee = Employee::findOrFail($id);
 
         return view('admin.employees.edit', compact('employee'));
+
     }
 
     /**
@@ -90,9 +99,12 @@ class EmployeesController extends Controller
     public function update(Request $request, $id)
     {
         $employee = Employee::findOrFail($id);
-       
         $employee->fill($request->all());
         $employee->save();
+
+        $data = Data_employee::findOrFail($id);
+        $data->fill($request->all());
+        $data->save();
 
         return redirect()->back();
     }

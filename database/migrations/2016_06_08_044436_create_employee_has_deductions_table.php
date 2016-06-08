@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDataEmployeesTable extends Migration
+class CreateEmployeeHasDeductionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,16 +12,12 @@ class CreateDataEmployeesTable extends Migration
      */
     public function up()
     {
-        Schema::create('data_employees', function (Blueprint $table) {
+        Schema::create('employee_has_deductions', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('id_employee') ->unsigned();
             $table->foreign('id_employee') ->references('id')->on('employees');
-            $table->string('code_em', 45);
-            $table->date('date_of_admission');
-            $table->bigInteger('account_em');
-            $table->string('contract', 45);
-            $table->string('cestaticket', 15);
-            $table->integer('duration_em');
+            $table->integer('id_f_payroll_deduction') ->unsigned();
+            $table->foreign('id_f_payroll_deduction') ->references('id')->on('payrolls_d_has_deductions')->onDelete('Cascade');
             $table->timestamps();
         });
     }
@@ -33,6 +29,6 @@ class CreateDataEmployeesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('data_employees');
+        Schema::drop('employee_has_deductions');
     }
 }

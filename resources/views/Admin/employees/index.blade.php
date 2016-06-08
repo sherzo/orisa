@@ -9,7 +9,7 @@
                  <li><a href="#">Inicio</a></li>
                  <li class="active">Empleados </li>
             </ol>
-               <h3 class="page-header">LISTA DE EMPLEADOS</h3>
+               <h4 class="page-header">LISTA DE EMPLEADOS</h4>
         </div>
                 <!-- /.col-lg-12 -->
         <div class="col-lg-4">

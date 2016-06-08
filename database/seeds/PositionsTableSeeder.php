@@ -12,13 +12,13 @@ class PositionsTableSeeder extends Seeder
     public function run()
     {
         \DB::table('positions')->insert(array (
-            'name_position' => 'chef',
+            'name_position' => 'Chef',
             'salary_month' => '15000',
         	'time_ordinary' => '15'
         ));
 
 		 \DB::table('positions')->insert(array (
-            'name_position' => 'mesero',
+            'name_position' => 'Mesonero',
             'salary_month' => '12000',
         	'time_ordinary' => '15'
         ));

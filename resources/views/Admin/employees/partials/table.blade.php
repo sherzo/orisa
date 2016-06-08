@@ -1,11 +1,11 @@
 <table class="table table-bordered table-hover table-striped">
   <thead>
     <tr>
-      <th> Nombres</th>
-      <th> Apellidos</th>
+      <th> Nombres </th>
+      <th> Apellidos </th>
       <th> Telefono </th>
       <th> Género </th>
-      <th> Acciones</th>
+      <th> Acciones </th>
     </tr>
   </thead>
 <tbody>

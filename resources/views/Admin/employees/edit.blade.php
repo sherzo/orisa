@@ -21,7 +21,6 @@
                                 {!! Form::label('code_em', 'Código', ['class' => 'control-label']) !!}
                                 {!! Form::text('code_em', null, ['class' => 'form-control', 'placeholder' => 'EM-0004256']) !!}
                             </div>
-                            
                             <div class="form-group">
                                 {!! Form::label('date_of_admission', 'Fecha de ingreso') !!}
                                 {!! Form::date('date_of_admission', null, ['class' => 'form-control']) !!}
@@ -33,12 +32,8 @@
                                 {!! Form::text('account_em', null, ['class' => 'form-control', 'placeholder' => '2034 4505 73 1000034682']) !!}
                             </div>
                             <div class="form-group">
-                                {!! Form::label('salary_em', 'Salario') !!}
-                                {!! Form::text('salary_em', null, ['class' => 'form-control', 'disabled' => 'true']) !!}
-                            </div>
-                            <div class="form-group">
                                 {!! Form::label('contract', 'Contrato') !!}
-                                {!! Form::select('contract', array('a' => 'Determinado', 'b' => 'Indeterminado'), null, ['class' => 'form-control']) !!}
+                                {!! Form::select('contract', array('Determinado' => 'Determinado', 'Indeterminado' => 'Indeterminado'), null, ['class' => 'form-control']) !!}
                             </div>
                         </div>
                         <div class="col-xs-4">
@@ -46,10 +41,6 @@
                                 {!! Form::label('cestaticket', 'Cestaticket', ['class' => 'control-label']) !!}
                                  {!! Form::select('cestaticket', array('Sí' => 'Si', 'No' => 'No'), null, ['class' => 'form-control']) !!}
                             </div> 
-                            <div class="form-group">
-                                {!! Form::label('roster_em', 'Nómina') !!}
-                                {!! Form::text('roster_em', null, ['class' => 'form-control', 'placeholder' => '15 Días']) !!}
-                            </div>
                             <div class="form-group">
                                 {!! Form::label('duration_em', 'Duración') !!}
                                 {!! Form::text('duration_em', null, ['class' => 'form-control', 'placeholder' => '60 Días']) !!}

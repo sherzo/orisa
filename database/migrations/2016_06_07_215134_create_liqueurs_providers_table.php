@@ -32,4 +32,3 @@ class CreateLiqueursProvidersTable extends Migration
         Schema::drop('liqueurs_providers');
     }
 }
-

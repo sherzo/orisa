@@ -76,13 +76,25 @@ Route::group(['prefix' => 'admin'], function(){
 Route::group(['prefix' => 'admin'], function(){ 
 
 	Route::resource('licores', 'LiqueursController');
-
+	Route::get('licores/{id}/destroy', [
+		'uses' => 'LiqueursController@destroy',
+		'as' => 'admin.licores.destroy'
+		]);	
 });
 
 Route::group(['prefix' => 'admin'], function(){ 
 
 	Route::resource('ingredientes', 'IngredientsController');
-	
+	Route::get('ingredientes/{id}/destroy', [
+		'uses' => 'IngredientsController@destroy',
+		'as' => 'admin.ingredientes.destroy'
+		]);	
+});
+
+Route::group(['prefix' => 'admin'], function(){
+
+	Route::resource('platos', 'PlatesController');
+
 });
 
 

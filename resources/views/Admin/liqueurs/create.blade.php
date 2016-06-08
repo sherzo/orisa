@@ -7,7 +7,8 @@
 		<div class="col-lg-12">
              <ol class="breadcrumb">
                 <li><a href="#">Inicio</a></li>
-                  <li><a href="{{ route('admin.usuarios.index') }}">Licores</a></li>
+          
+		        <li><a href="{{ route('admin.usuarios.index') }}">Licores</a></li>
                     <li class="active">Nuevo</li>
             </ol>
     	</div>
@@ -19,8 +20,7 @@
 				<div class="panel-heading">Registro de Licores</div>
 					<div class="panel-body">		
 					
-
-					<!-- PANEL DE ERRORESS -->
+			<!-- PANEL DE ERRORESS -->
 
 					 	@if (count($errors) > 0)
     						<div class="alert alert-danger">

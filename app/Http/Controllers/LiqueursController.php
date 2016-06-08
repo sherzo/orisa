@@ -93,7 +93,20 @@ class LiqueursController extends Controller
      */
     public function edit($id)
     {
-        //
+        $liqueur = Liqueur::findOrFail($id);
+
+        //Proveedores
+        $providers = Provider::lists('business_name', 'id');
+
+        //Tipos de licores
+        $liqueurs_types = Liqueurs_type::lists('type_name', 'id');
+
+
+        //Unidades de medida
+        $units = Unit::lists( 'units_name', 'id');
+
+
+        return view('admin.liqueurs.edit', compact('liqueur', 'providers', 'liqueurs_types', 'units'));
     }
 
     /**
@@ -103,9 +116,16 @@ class LiqueursController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(LiqueurRequest $request, $id)
     {
-        //
+        $liqueur = Liqueur::findOrFail($id);
+       
+        $liqueur->fill($request->all());
+        $liqueur->save();
+
+        Flash::success('<strong>Existo. El licor </strong> '. $liqueur->liqueur_name. ' se modifico correctamente');
+
+        return redirect()->back();
     }
 
     /**
@@ -116,6 +136,11 @@ class LiqueursController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $liqueur = Liqueur::find($id);
+        $liqueur->delete();
+
+        Flash::success('Exito el ingrediente '. $liqueur->liqueur_name .' se eliminó correctamente');
+
+        return redirect('admin/licores');
     }
 }

@@ -10,9 +10,7 @@
                 <li><a href="#">Inicio</a></li>
                   <li class="active">Licores</li>
 
-            </ol>
-            @include('flash::message')
-                  
+            </ol>                  
                 <h4 class="page-header">Lista de Licores</h4>
 
           </div>

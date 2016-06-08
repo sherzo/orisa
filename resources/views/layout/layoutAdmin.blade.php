@@ -164,7 +164,7 @@
                                     <i class="fa fa-users fa-fw"></i> Clientes</a>
                                 </li>
                                 <li>
-                                    <a href="platos.html">
+                                    <a href="{{ url('admin/platos') }}">
                                     <i class="fa fa-cutlery fa-fw"></i>
                                     Platos</a>
                                 </li>

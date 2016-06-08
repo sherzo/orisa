@@ -19,7 +19,7 @@
                                      <a class="btn btn-default btn-xs" href="{{ route('admin.ingredientes.edit', $ingredient) }}">
                                         <span class="fa fa-pencil fa-2x"></span>
                                      </a>
-                                     <a class="btn btn-default btn-xs">
+                                     <a href="{{ route('admin.ingredientes.destroy', $ingredient->id) }}" class="btn btn-default btn-xs">
                                         <span class="fa fa-trash-o fa-2x"></span>
                                      </a>
                                    </td>

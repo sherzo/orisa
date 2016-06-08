@@ -129,6 +129,12 @@ class IngredientsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        
+        $ingredient = Ingredient::find($id);
+        $ingredient->delete();
+
+        Flash::success('Exito el ingrediente '. $ingredient->ingredient_name .' se eliminó correctamente');
+
+        return redirect('admin/ingredientes');
     }
 }

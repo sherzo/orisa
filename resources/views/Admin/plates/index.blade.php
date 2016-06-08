@@ -8,8 +8,6 @@
         <div class="row">
            <div class="col-lg-12">
              @include('admin.partial.breadcumb', array('value1' => 'Platos', 'value2' => 'Nuevo'))
-
-             return View::make('bread', array('valu1' => 'Platos', 'value2' => 'Nuevo'));
             
                 <h4 class="page-header">Lista de Platos</h4>
 

@@ -17,12 +17,10 @@ class CreateEmployeeHasDeductionsTable extends Migration
             $table->integer('id_employee') ->unsigned();
             $table->foreign('id_employee') ->references('id')->on('employees');
             $table->integer('id_f_payroll_deduction') ->unsigned();
-            $table->foreign('id_f_payroll_deduction') ->references('id')->on('payrolls_d_has_deductions')->onDelete('Cascade');
+            $table->foreign('id_f_payroll_deduction') ->references('id')->on('payroll_d_has_deductions')->onDelete('Cascade');
             $table->timestamps();
         });
-    }
-
-    /**
+    }    /**
      * Reverse the migrations.
      *
      * @return void

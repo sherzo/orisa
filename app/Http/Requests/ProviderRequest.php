@@ -24,7 +24,7 @@ class ProviderRequest extends Request
     public function rules()
     {
         return [
-            'id_user' => 'required',
+            'id_user' => 'required|',
             'rif' => 'Numeric|required',
             'business_name' => 'max:25|required',
             'addres_pro' => 'required',

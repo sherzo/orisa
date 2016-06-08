@@ -34,7 +34,7 @@ for ($i=0; $i < 17; $i++) {
       <div class="caption">
         <h5>Arroz con pollo</h5>
         <!-- <hr>-->
-        <p><a href="#" class="btn btn-default btn-sm" role="button"><span class="fa fa-pencil fa-2x"></span></a> <a href="#" class="btn btn-default btn-sm" role="button"><span class="fa fa-trash-o fa-2x"></span></a></p>
+        <p><a href="#" class="btn btn-default btn-lg" role="button"><span class="fa fa-pencil fa-fw"></span></a> <a href="#" class="btn btn-danger btn-lg" role="button"><span class="fa fa-trash-o fa-fw"></span></a></p>
       </div>
     </div>
   </div>

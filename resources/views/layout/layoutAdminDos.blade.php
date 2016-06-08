@@ -281,7 +281,7 @@ glyphicon glyphicon-shopping-cart"></i> Compra<span class="fa arrow"></span></a>
 
 <div id="page-wrapper"><br>
 
-@include('flash::message')
+<!--@include('flash::message')-->
 
 @yield('contenido')
 @yield('employee_content')

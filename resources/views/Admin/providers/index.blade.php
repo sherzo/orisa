@@ -22,7 +22,10 @@
           <!--  CIERRE DEL ROW -->
 
                 <div class="row"><br>
+
+
                     <div class="col-lg-12">
+                <!--    @include('flash::message') -->
                       <div class="table-responsive">
                         <p>Existen {{ $providers->total() }} proveedores registrados</p>
                         

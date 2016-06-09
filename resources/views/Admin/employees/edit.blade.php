@@ -16,20 +16,21 @@
             <div class="panel-heading"> Datos laborables </div>
                 <div class="panel-body">
                     <div class="row">
+
                         <div class="col-xs-4">
                             <div class="form-group">                        
                                 {!! Form::label('code_em', 'Código', ['class' => 'control-label']) !!}
-                                {!! Form::text('code_em', null, ['class' => 'form-control', 'placeholder' => 'EM-0004256']) !!}
+                                {!! Form::text('code_em', $data_employee->code_em, ['class' => 'form-control', 'placeholder' => 'EM-0004256']) !!}
                             </div>
                             <div class="form-group">
                                 {!! Form::label('date_of_admission', 'Fecha de ingreso') !!}
-                                {!! Form::date('date_of_admission', null, ['class' => 'form-control']) !!}
+                                {!! Form::date('date_of_admission', $data_employee->date_of_admission, ['class' => 'form-control']) !!}
                             </div>
                         </div>
                         <div class="col-xs-4">
                             <div class="form-group">
                                 {!! Form::label('account_em', 'Nro. Cuenta', ['class' => 'control-label']) !!}
-                                {!! Form::text('account_em', null, ['class' => 'form-control', 'placeholder' => '2034 4505 73 1000034682']) !!}
+                                {!! Form::text('account_em', $data_employee->account_em, ['class' => 'form-control', 'placeholder' => '2034 4505 73 1000034682']) !!}
                             </div>
                             <div class="form-group">
                                 {!! Form::label('contract', 'Contrato') !!}
@@ -43,7 +44,7 @@
                             </div> 
                             <div class="form-group">
                                 {!! Form::label('duration_em', 'Duración') !!}
-                                {!! Form::text('duration_em', null, ['class' => 'form-control', 'placeholder' => '60 Días']) !!}
+                                {!! Form::text('duration_em', $data_employee->duration_em, ['class' => 'form-control', 'placeholder' => '60 Días']) !!}
                             </div>
                         </div>   
                     </div>

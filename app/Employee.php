@@ -17,9 +17,9 @@ class Employee extends Model
         'document_em', 'birthdate_em', 'country_em', 'addres_em', 'names_em', 'civil_status_em', 'state_em', 'phone_em', 'surnames_em', 'gender_em', 'city_em', 'email_em', 'id_position',
     ];
 
-    public function employee() 
+    public function Data_employee() 
     {
-        return $this->hasOne('App\Employee');
+        return $this->hasOne('App\Data_employee', 'id');
     } 
 
     /**

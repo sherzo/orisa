@@ -18,9 +18,9 @@ class Data_employee extends Model
         'id_employee', 'code_em', 'date_of_admission', 'account_em', 'contract', 'cestaticket', 'contract_status', 'duration_em',
     ];
 
-    public function data_employee() 
+    public function Employee() 
     {
-        return $this->belongsTo('App\Data_employee', 'id_employee');
+        return $this->belongsTo('App\Employee', 'id_employee');
     } 
 
     /**

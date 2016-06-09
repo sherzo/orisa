@@ -83,9 +83,9 @@ class EmployeesController extends Controller
      */
     public function edit($id)
     {
-        $employee = Employee::findOrFail($id);
-
-        return view('admin.employees.edit', compact('employee'));
+        $employee = Employee::find($id);
+        $data_employee = $employee->Data_employee;
+        return view('admin.employees.edit', compact('employee', 'data_employee'));
 
     }
 
@@ -98,14 +98,10 @@ class EmployeesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $employee = Employee::findOrFail($id);
+        $employee = Employee::find($id);
         $employee->fill($request->all());
         $employee->save();
-
-        $data = Data_employee::findOrFail($id);
-        $data->fill($request->all());
-        $data->save();
-
+        
         return redirect()->back();
     }
 

@@ -10,17 +10,19 @@
 						<div class="form-group">
 							{!! Form::label('rif', 'Rif') !!}
                             <div class="input-group">
-                            <span class="input-group-addon" id="sizing-addon1">J -</span>
+                            <span class="input-group-addon" id="sizing-addon">J -</span>
 								{!! Form::text('rif', null, ['class' => 'form-control', 'title' => 'Ingrese su nombre']) !!}
+							
 							</div>
 						</div>
+   
 						<div class="form-group">
 							{!! Form::label('business_name', 'Razón social') !!} 
 
 							{!! Form::text('business_name', null, ['class' => 'form-control', 'placeholder' =>
 							'Ej: Sefardi C.A', 'title' => 'Ingrese la razon social']) !!}
 						</div>
-          <input type="hidden" name="id_user" value="1">
+          		<input type="hidden" name="id_user" value="1">
 						<div class="form-group">
 							{!! Form::label('addres_pro', 'Dirección fiscal') !!} 
 							

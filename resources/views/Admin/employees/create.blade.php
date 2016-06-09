@@ -63,10 +63,14 @@
                     </div>
                 </div>     
                 <div class="form-group">
-                <br/>
+                        <br/>
                 <center>
-                    {{ Form::reset('Borrar', ['class' => 'btn btn-default']) }}
-                    {{ Form::submit('Guardar', ['class' => 'btn btn-primary']) }}
+                    <button class="btn btn-primary btn-sm">
+                        <span class="fa fa-refresh fa-2x"></span>
+                    </button>
+                    <button class="btn btn-success btn-sm">
+                        <span class="fa fa-save fa-2x"></span>
+                    </button>
                 </center>
                 </div> 
                         {{ Form::close() }}                     

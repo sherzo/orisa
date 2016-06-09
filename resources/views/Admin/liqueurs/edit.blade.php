@@ -7,7 +7,7 @@
  	<div class="row">
 		<div class="col-lg-12">
              <ol class="breadcrumb">
-                <li><a href="#">Inicio</a></li>
+                <li><a href="{{ url('tablero') }}"><span class="glyphicon glyphicon-home"></span></a></li>
                   <li><a href="#">Usuarios</a></li>
                     <li class="active">Editar</li>
             </ol>
@@ -69,8 +69,17 @@
 						
 						</div>
 
-						<button class="btn btn-primary">Actualzar</button>
-
+<div class="form-group">
+                		<br/>
+                <center>
+					<button class="btn btn-primary btn-sm">
+						<span class="fa fa-refresh fa-2x"></span>
+					</button>
+					<button class="btn btn-success btn-sm">
+						<span class="fa fa-save fa-2x"></span>
+					</button>
+                </center>
+                </div> 
 						{!! Form::close() !!}
 
 

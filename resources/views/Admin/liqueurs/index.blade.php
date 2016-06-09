@@ -7,7 +7,7 @@
         <div class="row">
            <div class="col-lg-12">
              <ol class="breadcrumb">
-                <li><a href="#">Inicio</a></li>
+                <li><a href="{{ url('tablero') }}"><span class="glyphicon glyphicon-home"></span></a></li>
                   <li class="active">Licores</li>
 
             </ol>                  

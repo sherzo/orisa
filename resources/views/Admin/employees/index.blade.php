@@ -2,11 +2,11 @@
 
 @section('employee_content')
 
-        <div class="container-fluid">
+        
         <div class="row">
         <div class="col-lg-12">
             <ol class="breadcrumb">
-                 <li><a href="#">Inicio</a></li>
+                 <li><a href="{{ url('tablero') }}"><span class="glyphicon glyphicon-home"></span></a></li>
                  <li class="active">Empleados </li>
             </ol>
                <h4 class="page-header">LISTA DE EMPLEADOS</h4>
@@ -22,12 +22,7 @@
               <div class="row"><br>
                
                 <div class="col-lg-12">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            Datos de Empleados
-                        </div>
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
+                   
                             <div class="dataTable_wrapper">
                                   @include('admin.employees.partials.table')
                                   {{ $employees->render() }}
@@ -37,9 +32,6 @@
                         <!-- /.panel-body -->
                     </div>
                     <!-- /.panel -->
-                </div>
-                <!-- /.col-lg-12 -->
-            </div>
-            </div>
-            </div>
+           
+            
 @endsection

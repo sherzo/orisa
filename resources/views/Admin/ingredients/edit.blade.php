@@ -68,8 +68,17 @@
 						   @endforeach
 						
 						</div>
-						<button class="btn btn-primary">Actualzar</button>
-
+<div class="form-group">
+                		<br/>
+                <center>
+					<button class="btn btn-primary btn-sm">
+						<span class="fa fa-refresh fa-2x"></span>
+					</button>
+					<button class="btn btn-success btn-sm">
+						<span class="fa fa-save fa-2x"></span>
+					</button>
+                </center>
+                </div> 
 						{!! Form::close() !!}
 
 

@@ -6,7 +6,7 @@
 	<div class="row">
 		<div class="col-lg-12">
              <ol class="breadcrumb">
-                <li><a href="#">Inicio</a></li>
+                <li><a href="#"><span class="glyphicon glyphicon-home"></span></a></li>
           
 		        <li><a href="{{ route('admin.usuarios.index') }}">Licores</a></li>
                     <li class="active">Nuevo</li>
@@ -69,7 +69,17 @@
 						
 						</div>
 
-						<button class="btn btn-default"><span class="fa fa-save fa-2x"></span></button>
+						<div class="form-group">
+                		<br/>
+                <center>
+					<button class="btn btn-primary btn-sm">
+						<span class="fa fa-refresh fa-2x"></span>
+					</button>
+					<button class="btn btn-success btn-sm">
+						<span class="fa fa-save fa-2x"></span>
+					</button>
+                </center>
+                </div> 
 
 						{!! Form::close() !!}
 					</div>

@@ -7,6 +7,8 @@ use App\Http\Requests;
 use App\Provider;
 use Laracasts\Flash\Flash;
 use App\Http\Requests\ProviderRequest;
+use App\Http\Requests\EditProviderRequest;
+
 
 class ProvidersController extends Controller
 {
@@ -44,7 +46,7 @@ class ProvidersController extends Controller
 
         $provider->save();
 
-        Flash::success('<strong>Existo! </strong> Se ha registrado '. $provider->business_name. ' correctamente');
+        Flash::success('<strong>Exito! </strong> Se ha registrado '. $provider->razon_social. ' correctamente');
 
         return redirect('admin/proveedores');
     }
@@ -80,7 +82,7 @@ class ProvidersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(ProviderRequest $request, $id)
+    public function update(EditProviderRequest $request, $id)
     {
                 
         $provider = Provider::findOrFail($id);
@@ -88,7 +90,7 @@ class ProvidersController extends Controller
         $provider->fill($request->all());
         $provider->save();
 
-        Flash::success('<strong>Existo! </strong> '. $provider->business_name. ' se modifico correctamente');
+        Flash::success('<strong>Existo! </strong> '. $provider->razon_social. ' se modifico correctamente');
 
 
         return redirect()->back();
@@ -105,7 +107,7 @@ class ProvidersController extends Controller
         $provider = Provider::find($id);
         $provider->delete();
 
-        Flash::success('Exito el proveedor '. $provider->business_name .' se eliminó correctamente');
+        Flash::success('<strong>Exito el proveedor</strong> '. $provider->razon_social .' se eliminó correctamente');
 
         return redirect('admin/proveedores');
     }

@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
 
-class ProviderRequest extends Request
+class EditProviderRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +13,7 @@ class ProviderRequest extends Request
      */
     public function authorize()
     {
-        return true;
+        return false;
     }
 
     /**
@@ -24,12 +24,10 @@ class ProviderRequest extends Request
     public function rules()
     {
         return [
-            'rif' => 'Numeric|required',
             'razon_social' => 'max:25|required',
             'direccion' => 'required',
             'telefono' => 'max:11|required',
             'correo' => 'max:22|required',
         ];
     }
-
 }

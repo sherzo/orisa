@@ -9,26 +9,26 @@
 						</div>
    
 						<div class="form-group">
-							{!! Form::label('business_name', 'Razón social') !!} 
+							{!! Form::label('razon_social', 'Razón social') !!} 
 
-							{!! Form::text('business_name', null, ['class' => 'form-control', 'placeholder' =>
+							{!! Form::text('razon_social', null, ['class' => 'form-control', 'placeholder' =>
 							'Ej: Sefardi C.A', 'title' => 'Ingrese la razon social']) !!}
 						</div>
 						
 						<div class="form-group">
-							{!! Form::label('addres_pro', 'Dirección fiscal') !!} 
+							{!! Form::label('direccion', 'Dirección fiscal') !!} 
 							
-							<textarea name="addres_pro" class="form-control" placeholder="Ej: Calle 5 de marzo 30-11"></textarea>
+							<textarea name="direccion" class="form-control" placeholder="Ej: Calle 5 de marzo 30-11"></textarea>
 						</div>
 						<div class="form-group">
-							{!! Form::label('phone_pro', 'Numero de telefono') !!}
+							{!! Form::label('telefono', 'Numero de telefono') !!}
 							
-							{!! Form::text('phone_pro', null, ['class' => 'form-control awesome', 'placeholder' => 'Ej: 04145897451', 'title' => 'Ingrese su contraseña']) !!}
+							{!! Form::text('telefono', null, ['class' => 'form-control awesome', 'placeholder' => 'Ej: 04145897451', 'title' => 'Ingrese su contraseña']) !!}
 							
 						</div>
 						<div class="form-group"> 
-							{!! Form::label('email_pro', 'Correo Electronico') !!}
+							{!! Form::label('correo', 'Correo Electronico') !!}
 							
-							{!! Form::text('email_pro', null, ['class' => 'form-control', 'placeholder' => 'ejemplo@gmail.com']) !!}
+							{!! Form::text('correo', null, ['class' => 'form-control', 'placeholder' => 'ejemplo@gmail.com']) !!}
 						</div>
 					

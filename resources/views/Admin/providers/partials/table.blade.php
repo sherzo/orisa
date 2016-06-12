@@ -4,6 +4,7 @@
                                       <th>#</th>
                                       <th>Rif</th>
                                       <th>Razon Social</th>
+                                      <th>Telefono</th>
                                       <th>Correo</th>
                                       <th>Acciones</th>
                                      </tr>
@@ -14,8 +15,9 @@
                                   <tr>
                                    <td>{{ $provider->id }}</td>
                                    <td>{{ $provider->rif }}</td>
-                                   <td>{{ $provider->business_name }}</td>
-                                   <td>{{ $provider->email_pro }}</td>
+                                   <td>{{ $provider->razon_social }}</td>
+                                   <td>{{ $provider->telefono }}</td>
+                                   <td>{{ $provider->correo }}</td>
                                    <td class="text-center">
                                      <a class="btn btn-default btn-xs">
                                         <span class="fa fa-eye fa-2x"></span>

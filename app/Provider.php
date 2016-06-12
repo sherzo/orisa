@@ -12,7 +12,7 @@ class Provider extends Model
      * @var array
      */
     protected $fillable = [
-        'id_user', 'rif', 'business_name', 'addres_pro', 'phone_pro', 'email_pro', 
+     'rif', 'razon_social', 'direccion', 'telefono', 'correo', 
     ];
 
     /**
@@ -20,9 +20,7 @@ class Provider extends Model
      *
      * @var array
      */
-    protected $hidden = [
-        'id_user',
-    ];
+
 
 
     protected $table = 'providers';

@@ -1,12 +1,4 @@
-@if (count($errors) > 0)
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
+
 						<div class="form-group">
 							{!! Form::label('rif', 'Rif') !!}
                             <div class="input-group">
@@ -22,7 +14,7 @@
 							{!! Form::text('business_name', null, ['class' => 'form-control', 'placeholder' =>
 							'Ej: Sefardi C.A', 'title' => 'Ingrese la razon social']) !!}
 						</div>
-          		<input type="hidden" name="id_user" value="1">
+						
 						<div class="form-group">
 							{!! Form::label('addres_pro', 'Dirección fiscal') !!} 
 							

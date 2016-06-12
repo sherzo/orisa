@@ -14,9 +14,7 @@ class CreateLiqueursTable extends Migration
     {
         Schema::create('liqueurs', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('id_user') ->unsigned();
-            $table->foreign('id_user') ->references('id')->on('users');
-            $table->string('liqueur_name');
+            $table->string('nombre_licor');
             $table->integer('id_type') ->unsigned();
             $table->foreign('id_type') ->references('id')->on('liqueurs_types');
             $table->integer('id_unit') ->unsigned();

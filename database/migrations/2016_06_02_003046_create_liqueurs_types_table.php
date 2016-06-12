@@ -14,9 +14,7 @@ class CreateLiqueursTypesTable extends Migration
     {
         Schema::create('liqueurs_types', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('id_user') ->unsigned();
-            $table->foreign('id_user') ->references('id')->on('users');
-            $table->string('type_name', 15);
+            $table->string('tipo_licor', 15);
             $table->timestamps();
         });
     }

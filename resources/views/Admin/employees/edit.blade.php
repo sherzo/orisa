@@ -9,6 +9,10 @@
             <div class="panel-heading"> Datos personales </div>
                 <div class="panel-body">
                     <div class="row">
+                    
+                        @include('admin.partial.errors')
+
+
                         {{ Form::model($employee, array('route' => array('admin.employees.update', $employee->id), 'method' => 'PUT')) }}
                             @include('admin.employees.partials.fields')
                     </div> 

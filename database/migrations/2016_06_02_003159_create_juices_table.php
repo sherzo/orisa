@@ -14,8 +14,6 @@ class CreateJuicesTable extends Migration
     {
         Schema::create('juices', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('id_user') ->unsigned();
-            $table->foreign('id_user') ->references('id')->on('users');
             $table->string('juices_name', 15);
             $table->text('description_juices');
             $table->double('juices_price', 10,2);

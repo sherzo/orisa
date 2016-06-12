@@ -14,13 +14,11 @@ class CreateProvidersTable extends Migration
     {
         Schema::create('providers', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('id_user') ->unsigned();
-            $table->foreign('id_user') ->references('id')->on('users');
             $table->string('rif', 15);
-            $table->string('business_name', 20);
-            $table->text('addres_pro');
-            $table->text('phone_pro');
-            $table->string('email_pro', 15);
+            $table->string('razon_social', 20);
+            $table->text('direccion');
+            $table->text('telefono');
+            $table->string('correo', 15);
             $table->timestamps();
         });
     }

@@ -14,8 +14,6 @@ class CreateReceiptsTable extends Migration
     {
         Schema::create('receipts', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('id_user') ->unsigned();
-            $table->foreign('id_user') ->references('id')->on('users');
             $table->double('subtotal', 10,2);
             $table->double('total', 10,2);
             $table->timestamps();

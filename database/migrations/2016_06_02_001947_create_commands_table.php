@@ -14,8 +14,6 @@ class CreateCommandsTable extends Migration
     {
         Schema::create('commands', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('id_user') ->unsigned();
-            $table->foreign('id_user') ->references('id')->on('users');
             $table->string('estatus', 10);
             $table->integer('id_table') ->unsigned();
             $table->foreign('id_table') ->references('id')->on('tables');

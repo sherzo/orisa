@@ -21,15 +21,7 @@
 					<div class="panel-body">
 
 					<!--  PANEL DE ERRORES -->
-						@if (count($errors) > 0)
-    						<div class="alert alert-danger">
-        						<ul>
-           							@foreach ($errors->all() as $error)
-                						<li>{{ $error }}</li>
-            						@endforeach
-        						</ul>
-    						</div>
-						@endif
+						@include('admin.partial.errors')
 
 
 						{!! Form::open(['route' => 'admin.ingredientes.store', 'method' => 'POST']) !!}

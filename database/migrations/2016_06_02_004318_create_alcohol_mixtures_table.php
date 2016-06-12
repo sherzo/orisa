@@ -14,8 +14,6 @@ class CreateAlcoholMixturesTable extends Migration
     {
         Schema::create('alcohol_mixtures', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('id_user') ->unsigned();
-            $table->foreign('id_user') ->references('id')->on('users');
             $table->string('mixture_name', 15);
             $table->text('mixture_description');
             $table->double('mixture_price');

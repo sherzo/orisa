@@ -19,6 +19,10 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">Registro de proveedores</div>
 					<div class="panel-body">
+
+						@include('admin.partial.errors')
+
+
 						{!! Form::open(['route' => 'admin.proveedores.store', 'method' => 'POST']) !!}
 						
 						@include('admin.providers.partials.fields')

@@ -20,6 +20,10 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">Editar Provedor: <span class="muted">{{ $provider->bussines_name }}</span></div>
 					<div class="panel-body">
+
+						@include('admin.partial.errors')
+
+
 					    {{ Form::model($provider, array('route' => array('admin.proveedores.update', $provider->id), 'method' => 'PUT')) }}
 						
 						

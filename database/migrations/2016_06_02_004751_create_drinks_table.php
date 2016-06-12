@@ -14,8 +14,6 @@ class CreateDrinksTable extends Migration
     {
         Schema::create('drinks', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('id_user') ->unsigned();
-            $table->foreign('id_user') ->references('id')->on('users');
             $table->string('drink_name');
             $table->double('drink_price', 15,2);
             $table->integer('id_unit') ->unsigned();

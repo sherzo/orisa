@@ -14,8 +14,6 @@ class CreatePercentagesTable extends Migration
     {
         Schema::create('percentages', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('id_user') ->unsigned();
-            $table->foreign('id_user') ->references('id')->on('users');
             $table->double('vat', 5,2);
             $table->timestamps();
         });

@@ -12,28 +12,23 @@ class LiqueursTypeTableSeeder extends Seeder
     public function run()
     {
 		\DB::table('liqueurs_types')->insert(array (
-            'id_user' => '1',
-        	'type_name' => 'Ron'
+        	'tipo_licor' => 'Ron'
         ));
 
            \DB::table('liqueurs_types')->insert(array (
-            'id_user' => '1',
-        	'type_name' => 'Vino'
+        	'tipo_licor' => 'Vino'
         ));
 
        	\DB::table('liqueurs_types')->insert(array (
-            'id_user' => '1',
-        	'type_name' => 'Vodka'
+        	'tipo_licor' => 'Vodka'
         ));
 
         \DB::table('liqueurs_types')->insert(array (
-            'id_user' => '1',
-        	'type_name' => 'Whiskey'
+        	'tipo_licor' => 'Whiskey'
         ));
 
         \DB::table('liqueurs_types')->insert(array (
-            'id_user' => '1',
-        	'type_name' => 'Brandi'
+        	'tipo_licor' => 'Brandi'
         ));
 
     }

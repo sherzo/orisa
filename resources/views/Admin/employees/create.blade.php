@@ -9,16 +9,9 @@
             <div class="panel-heading"> Datos personales </div>
                 <div class="panel-body">
                     <div class="row">
-                        @if (count($errors) > 0)
-                            <div class="alert alert-danger">
-                                <ul>
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        @endif
-                        
+
+                        @include('admin.partial.errors')
+                      
                         {{ Form::open(['route' => 'admin.employees.store', 'method' => 'POST']) }}
                             @include('admin.employees.partials.fields')
                     </div> 

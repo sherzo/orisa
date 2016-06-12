@@ -20,17 +20,7 @@
 				<div class="panel-heading">Registro de Licores</div>
 					<div class="panel-body">		
 					
-			<!-- PANEL DE ERRORESS -->
-
-					 	@if (count($errors) > 0)
-    						<div class="alert alert-danger">
-        						<ul>
-           							@foreach ($errors->all() as $error)
-                						<li>{{ $error }}</li>
-            						@endforeach
-        						</ul>
-    						</div>
-						@endif
+						@include('admin.partial.errors')
 
 						{!! Form::open(['route' => 'admin.licores.store', 'method' => 'POST']) !!}
 						

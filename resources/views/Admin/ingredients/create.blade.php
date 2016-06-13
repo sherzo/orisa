@@ -27,9 +27,16 @@
 						{!! Form::open(['route' => 'admin.ingredientes.store', 'method' => 'POST']) !!}
 						
 						<div class="form-group">
-							{!! Form::label('ingredient_name', 'Nombre del ingrediente') !!}
+							{!! Form::label('nombre_ingrediente', 'Nombre del ingrediente') !!}
                             
-								{!! Form::text('ingredient_name', null, ['class' => 'form-control', 'placeholder' => 'Ej: Arroz blanco', 'title' => 'Ingrese el ingrediente']) !!}
+								{!! Form::text('nombre_ingrediente', null, ['class' => 'form-control', 'placeholder' => 'Ej: Harina pan', 'title' => 'Ingrese el ingrediente']) !!}
+						</div>
+
+						<div class="form-group">
+						    {!! Form::label('id_type', 'Tipo de ingrediente') !!}
+
+							{!! Form::select('id_type', $ingredients_types, null, ['class' => 'form-control']);
+							!!}
 						</div>
 						
 						<div class="form-group">
@@ -39,7 +46,11 @@
 							!!}
 						</div>
 						
-						<input type="hidden" name="id_user" value="1">
+						<div class="form-group">
+							{!! Form::label('caracteristica', 'Caracteristica del ingrediente') !!}
+                            
+								{!! Form::text('caracteristica', null, ['class' => 'form-control', 'placeholder' => 'Ej: precocida', 'title' => 'Ingrese alguna caracteristica del alimento']) !!}
+						</div>
 
 						<div class="form-group">
 							{!! Form::label('id_providers', 'Seleciones los proveedores del ingrediente') !!}

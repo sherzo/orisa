@@ -23,12 +23,12 @@
 						@include('admin.partial.errors')
 
 
-						{!! Form::open(['route' => 'admin.proveedores.store', 'method' => 'POST']) !!}
+						{!! Form::open(['route' => 'admin.proveedores.store', 'method' => 'POST', 'class' => 'form-inline']) !!}
 						
 						@include('admin.providers.partials.fields')
 
 						<div class="form-group">
-                		<br/>
+                		<br>
                 <center>
 					<button class="btn btn-primary btn-sm">
 						<span class="fa fa-refresh fa-2x"></span>

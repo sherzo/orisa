@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Ingredient extends Model
+class Ingredients_type extends Model
 {
     /**
      * The attributes that are mass assignable.
@@ -12,7 +12,7 @@ class Ingredient extends Model
      * @var array
      */
     protected $fillable = [
-        'nombre_ingrediente', 'id_type', 'caracteristica', 'id_unit',
+        'tipo_ingrediente', 
     ];
 
     /**
@@ -20,7 +20,7 @@ class Ingredient extends Model
      *
      * @var array
      */
+    
 
-
-    protected $table = 'ingredients';
+    protected $table = 'ingredients_types';
 }

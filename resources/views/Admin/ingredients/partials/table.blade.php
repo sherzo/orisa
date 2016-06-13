@@ -2,7 +2,10 @@
                                 <thead>
                                     <tr>
                                       <th>#</th>
-                                      <th>Licor</th>
+                                      <th>Ingrediente</th>
+                                      <th>Tipo</th>
+                                      <th>Caracteristica</th>
+                                      <th>Unidad</th>
                                       <th>Acciones</th>
                                      </tr>
                                 </thead>
@@ -11,7 +14,10 @@
                                 @foreach($ingredients as $ingredient)
                                   <tr>
                                    <td>{{ $ingredient->id }}</td>
-                                   <td>{{ $ingredient->ingredient_name }}</td>
+                                   <td>{{ $ingredient->nombre_ingrediente }}</td>
+                                   <td>{{ $ingredient->id_type }}</td>
+                                    <td>{{ $ingredient->caracteristica }}</td>
+                                   <td>{{ $ingredient->id_unit }}</td>                                    
                                    <td class="text-center">
                                      <a class="btn btn-default btn-xs">
                                         <span class="fa fa-eye fa-2x"></span>

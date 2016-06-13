@@ -24,7 +24,9 @@ class IngredientRequest extends Request
     public function rules()
     {
         return [
-            'ingredient_name' => 'required',
+            'nombre_ingrediente' => 'required',
+            'id_type' => 'required',
+            'caracteristica' => 'required',
             'id_providers' => 'required',
         ];
     }

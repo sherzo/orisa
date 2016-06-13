@@ -42,6 +42,7 @@ class ProvidersController extends Controller
      */
     public function store(ProviderRequest $request)
     {
+
         $provider = new Provider($request->all());
 
         $provider->save();

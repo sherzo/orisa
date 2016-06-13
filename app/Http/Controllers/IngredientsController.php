@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Provider;
 use App\Unit;
+use App\Ingredients_type;
 use App\Ingredient;
 use App\Ingredients_provider;
 use App\Http\Requests;
@@ -35,13 +36,17 @@ class IngredientsController extends Controller
     public function create()
     {
         //Proveedores
-        $providers = Provider::lists('business_name', 'id');
+        $providers = Provider::lists('razon_social', 'id');
 
         //Unidades de medida
-        $units = Unit::lists( 'units_name', 'id');
+        $units = Unit::lists( 'unidad', 'id');
+
+        //Tipos de ingredientes
+        $ingredients_types = Ingredients_type::lists( 'tipo_ingrediente', 'id');
+
 
         // Compacto todas la variables a la vista del registro
-        return view('admin.ingredients.create', compact('units', 'providers'));
+        return view('admin.ingredients.create', compact('units', 'providers', 'ingredients_types'));
     }
 
     /**
@@ -90,15 +95,17 @@ class IngredientsController extends Controller
     public function edit($id)
     {
         $ingredient = Ingredient::findOrFail($id);
-
+        
         //Proveedores
-        $providers = Provider::lists('business_name', 'id');
+        $providers = Provider::lists('razon_social', 'id');
+
+        //Tipos de ingredientes
+        $ingredients_types = Ingredients_type::lists( 'tipo_ingrediente', 'id');
 
         //Unidades de medida
-        $units = Unit::lists( 'units_name', 'id');
+        $units = Unit::lists( 'unidad', 'id');
 
-
-        return view('admin.ingredients.edit', compact('ingredient', 'providers', 'units'));
+          return view('admin.ingredients.edit', compact('ingredient', 'ingredients_types', 'providers', 'units'));
     }
 
     /**

@@ -15,8 +15,11 @@ class CreateIngredientsTable extends Migration
         Schema::create('ingredients', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nombre_ingrediente', 15);
+            $table->integer('id_type') ->unsigned();
+            $table->foreign('id_type') ->references('id')->on('ingredients_types')->onDelete('cascade');
+            $table->string('caracteristica', 40);
             $table->integer('id_unit') ->unsigned();
-            $table->foreign('id_unit') ->references('id')->on('units');
+            $table->foreign('id_unit') ->references('id')->on('units')->onDelete('cascade');
             $table->timestamps();
         });
     }

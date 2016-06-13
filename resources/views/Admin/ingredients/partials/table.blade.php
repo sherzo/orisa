@@ -19,13 +19,13 @@
                                     <td>{{ $ingredient->caracteristica }}</td>
                                    <td>{{ $ingredient->id_unit }}</td>                                    
                                    <td class="text-center">
-                                     <a class="btn btn-default btn-xs">
+                                     <a class="btn btn-default btn-xs" title="Ver">
                                         <span class="fa fa-eye fa-2x"></span>
                                      </a>
-                                     <a class="btn btn-default btn-xs" href="{{ route('admin.ingredientes.edit', $ingredient) }}">
+                                     <a class="btn btn-default btn-xs" href="{{ route('admin.ingredientes.edit', $ingredient) }}" title="Editar">
                                         <span class="fa fa-pencil fa-2x"></span>
                                      </a>
-                                     <a href="{{ route('admin.ingredientes.destroy', $ingredient->id) }}" class="btn btn-default btn-xs">
+                                     <a href="{{ route('admin.ingredientes.destroy', $ingredient->id) }}" class="btn btn-default btn-xs" title="Eliminar">
                                         <span class="fa fa-trash-o fa-2x"></span>
                                      </a>
                                    </td>

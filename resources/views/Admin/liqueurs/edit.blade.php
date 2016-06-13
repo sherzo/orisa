@@ -18,7 +18,7 @@
 
 		<div class="col-lg-10 ">
 			<div class="panel panel-default">
-				<div class="panel-heading">Editar usuario: <span class="muted">{{ $liqueur->liqueur_name }}</span></div>
+				<div class="panel-heading">Editar licor: <strong>{{ $liqueur->nombre_licor }}</strong></div>
 					<div class="panel-body">				
 					<!-- PANEL DE ERRORES -->
 						
@@ -28,9 +28,9 @@
 						 {{ Form::model($liqueur, array('route' => array('admin.licores.update', $liqueur->id), 'method' => 'PUT')) }}
 						
 						<div class="form-group">
-							{!! Form::label('liqueur_name', 'Nombre del Licor') !!}
+							{!! Form::label('nombre_licor', 'Nombre del Licor') !!}
                             
-								{!! Form::text('liqueur_name', null, ['class' => 'form-control', 'placeholder' => 'Ej: Santateresa, Carta Roja', 'title' => 'Ingrese su nombre']) !!}
+								{!! Form::text('nombre_licor', null, ['class' => 'form-control', 'placeholder' => 'Ej: Santateresa, Carta Roja', 'title' => 'Ingrese su nombre']) !!}
 						</div>
 						
 						<div class="form-group">
@@ -41,34 +41,26 @@
 						</div>
 
 						<div class="form-group">
+							{!! Form::label('caracteristica', 'Caracteristica del licor') !!}
+                            
+								{!! Form::text('caracteristica', null, ['class' => 'form-control', 'placeholder' => 'Ej: añejo', 'title' => 'Ingrese su nombre']) !!}
+						</div>
+
+						<div class="form-group">
 						    {!! Form::label('id_unit', 'Unidad de medida') !!}
 
 							{!! Form::select('id_unit', $units, null, ['class' => 'form-control']);
 							!!}
 						</div>
-						<input type="hidden" name="id_user" value="1">
-						<div class="form-group">
-							{!! Form::label('id_providers', 'Seleciones los proveedores del licor') !!}
 						
-						<br>
-							@foreach ($providers as $id => $provider)
-								
-  									<label class="checkbox-inline">
-    									<input type="checkbox" name="id_providers[]" value="{{ $id }}">
-                               				{{ $provider }}
- 							 		 </label>
-								
-						   @endforeach
-						
-						</div>
 
 <div class="form-group">
                 		<br/>
                 <center>
-					<button class="btn btn-primary btn-sm">
+					<button type="reset" class="btn btn-primary btn-sm" title="Restrablecer">
 						<span class="fa fa-refresh fa-2x"></span>
 					</button>
-					<button class="btn btn-success btn-sm">
+					<button class="btn btn-success btn-sm" title="Guardar">
 						<span class="fa fa-save fa-2x"></span>
 					</button>
                 </center>

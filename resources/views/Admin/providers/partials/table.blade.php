@@ -19,13 +19,13 @@
                                    <td>{{ $provider->telefono }}</td>
                                    <td>{{ $provider->correo }}</td>
                                    <td class="text-center">
-                                     <a class="btn btn-default btn-xs">
+                                     <a class="btn btn-default btn-xs" title="Ver">
                                         <span class="fa fa-eye fa-2x"></span>
                                      </a>
-                                     <a class="btn btn-default btn-xs" href="{{ route('admin.proveedores.edit', $provider) }}">
+                                     <a class="btn btn-default btn-xs" href="{{ route('admin.proveedores.edit', $provider) }}" title="Editar">
                                         <span class="fa fa-pencil fa-2x"></span>
                                      </a>
-                                     <a href="{{ route('admin.proveedores.destroy', $provider->id) }}" class="btn btn-default btn-xs">
+                                     <a href="{{ route('admin.proveedores.destroy', $provider->id) }}" class="btn btn-default btn-xs" title="Eliminar">
                                         <span class="fa fa-trash-o fa-2x"></span>
                                      </a>
                                    </td>

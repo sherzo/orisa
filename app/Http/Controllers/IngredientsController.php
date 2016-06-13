@@ -96,10 +96,7 @@ class IngredientsController extends Controller
     {
         $ingredient = Ingredient::findOrFail($id);
         
-        //Proveedores
-        $providers = Provider::lists('razon_social', 'id');
-
-        //Tipos de ingredientes
+         //Tipos de ingredientes
         $ingredients_types = Ingredients_type::lists( 'tipo_ingrediente', 'id');
 
         //Unidades de medida
@@ -122,7 +119,7 @@ class IngredientsController extends Controller
         $ingredient->fill($request->all());
         $ingredient->save();
 
-        Flash::success('<strong>Existo! </strong> '. $ingredient->ingredient_name. ' se modifico correctamente');
+        Flash::success('<strong>Existo! </strong> '. $ingredient->nombre_ingrediente. ' se modifico correctamente');
 
 
         return redirect()->back();
@@ -140,7 +137,7 @@ class IngredientsController extends Controller
         $ingredient = Ingredient::find($id);
         $ingredient->delete();
 
-        Flash::success('Exito el ingrediente '. $ingredient->ingredient_name .' se eliminó correctamente');
+        Flash::success('<strong>Exito! </strong> el ingrediente '. $ingredient->nombre_ingrediente .' se eliminó correctamente');
 
         return redirect('admin/ingredientes');
     }

@@ -12,7 +12,7 @@ class Unit extends Model
      * @var array
      */
     protected $fillable = [
-        'id_user', 'unist_name', 
+        'unist_name', 
     ];
 
     /**
@@ -20,9 +20,7 @@ class Unit extends Model
      *
      * @var array
      */
-    protected $hidden = [
-        'id_user',
-    ];
+
 
 
     protected $table = 'units';

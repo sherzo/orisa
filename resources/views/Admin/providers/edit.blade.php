@@ -64,16 +64,16 @@
 
 
 						<div class="form-group">
-                		<br/>
-             			 <center>
-							<button type="reset" class="btn btn-primary btn-sm" title="Restablecer">
-								<span class="fa fa-refresh fa-2x"></span>
-							</button>
-							<button class="btn btn-success btn-sm" title="Guardar">
-								<span class="fa fa-save fa-2x"></span>
-							</button>
-                </center>
-                </div> 
+                			<br/>
+             			 	<center>
+								<button type="reset" class="btn btn-primary btn-sm" title="Restablecer">
+									<span class="fa fa-refresh fa-2x"></span>
+								</button>
+								<button class="btn btn-success btn-sm" title="Guardar">
+									<span class="fa fa-save fa-2x"></span>
+								</button>
+                			</center>
+                		</div> 
 						{!! Form::close() !!}
 
 

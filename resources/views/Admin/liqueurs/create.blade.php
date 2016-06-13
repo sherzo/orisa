@@ -25,9 +25,9 @@
 						{!! Form::open(['route' => 'admin.licores.store', 'method' => 'POST']) !!}
 						
 						<div class="form-group">
-							{!! Form::label('liqueur_name', 'Nombre del Licor') !!}
+							{!! Form::label('nombre_licor', 'Nombre del Licor') !!}
                             
-								{!! Form::text('liqueur_name', null, ['class' => 'form-control', 'placeholder' => 'Ej: Santateresa, Carta Roja', 'title' => 'Ingrese su nombre']) !!}
+								{!! Form::text('nombre licor', null, ['class' => 'form-control', 'placeholder' => 'Ej: Santateresa, Carta Roja', 'title' => 'Ingrese su nombre']) !!}
 						</div>
 						
 						<div class="form-group">
@@ -38,38 +38,44 @@
 						</div>
 
 						<div class="form-group">
+							{!! Form::label('caracteristica', 'Caracteristica del licor') !!}
+                            
+								{!! Form::text('caracteristica', null, ['class' => 'form-control', 'placeholder' => 'Ej: añejo', 'title' => 'Ingrese su nombre']) !!}
+						</div>
+
+						<div class="form-group">
 						    {!! Form::label('id_unit', 'Unidad de medida') !!}
 
 							{!! Form::select('id_unit', $units, null, ['class' => 'form-control']);
 							!!}
 						</div>
-						<input type="hidden" name="id_user" value="1">
+
 						<div class="form-group">
 							{!! Form::label('id_providers', 'Seleciones los proveedores del licor') !!}
 						
 						<br>
 							@foreach ($providers as $id => $provider)
-								
-  									<label class="checkbox-inline">
+								<div class="checkbox">
+  									<label>
     									<input type="checkbox" name="id_providers[]" value="{{ $id }}">
                                				{{ $provider }}
  							 		 </label>
-								
+								</div>
 						   @endforeach
 						
 						</div>
 
 						<div class="form-group">
-                		<br/>
-                <center>
-					<button class="btn btn-primary btn-sm">
-						<span class="fa fa-refresh fa-2x"></span>
-					</button>
-					<button class="btn btn-success btn-sm">
-						<span class="fa fa-save fa-2x"></span>
-					</button>
-                </center>
-                </div> 
+                			<br/>
+                			<center>
+								<button type="reset" class="btn btn-primary btn-sm" title="Restrablecer">
+									<span class="fa fa-refresh fa-2x"></span>
+								</button>
+								<button class="btn btn-success btn-sm" title="Guardar">
+									<span class="fa fa-save fa-2x"></span>
+								</button>
+                			</center>
+                		</div> 
 
 						{!! Form::close() !!}
 					</div>

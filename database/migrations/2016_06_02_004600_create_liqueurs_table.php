@@ -17,6 +17,7 @@ class CreateLiqueursTable extends Migration
             $table->string('nombre_licor');
             $table->integer('id_type') ->unsigned();
             $table->foreign('id_type') ->references('id')->on('liqueurs_types');
+            $table->string('caracteristica', 30);
             $table->integer('id_unit') ->unsigned();
             $table->foreign('id_unit') ->references('id')->on('units');
             $table->timestamps();

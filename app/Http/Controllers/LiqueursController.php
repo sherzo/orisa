@@ -36,13 +36,13 @@ class LiqueursController extends Controller
     public function create()
     {   
         //Proveedores
-        $providers = Provider::lists('business_name', 'id');
+        $providers = Provider::lists('razon_social', 'id');
 
         //Tipos de licores
-        $liqueurs_types = Liqueurs_type::lists('type_name', 'id');
+        $liqueurs_types = Liqueurs_type::lists('tipo_licor', 'id');
 
         //Unidades de medida
-        $units = Unit::lists( 'units_name', 'id');
+        $units = Unit::lists( 'unidad', 'id');
 
         // Compacto todas la variables a la vista del registro
         return view('admin.liqueurs.create', compact('units', 'liqueurs_types', 'providers'));
@@ -95,15 +95,12 @@ class LiqueursController extends Controller
     {
         $liqueur = Liqueur::findOrFail($id);
 
-        //Proveedores
-        $providers = Provider::lists('business_name', 'id');
-
         //Tipos de licores
-        $liqueurs_types = Liqueurs_type::lists('type_name', 'id');
+        $liqueurs_types = Liqueurs_type::lists('tipo_licor', 'id');
 
 
         //Unidades de medida
-        $units = Unit::lists( 'units_name', 'id');
+        $units = Unit::lists( 'unidad', 'id');
 
 
         return view('admin.liqueurs.edit', compact('liqueur', 'providers', 'liqueurs_types', 'units'));

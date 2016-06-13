@@ -18,7 +18,7 @@
 
 		<div class="col-lg-10 ">
 			<div class="panel panel-default">
-				<div class="panel-heading">Editar ingrediente: <strong>{{ $ingredient->ingredient_name }}</strong>
+				<div class="panel-heading">Editar ingrediente: <strong>{{ $ingredient->nombre_ingrediente }}</strong>
 				</div>
 					<div class="panel-body">
 					    {{ Form::model($ingredient, array('route' => array('admin.ingredientes.update', $ingredient->id), 'method' => 'PUT')) }}
@@ -56,28 +56,13 @@
 								{!! Form::text('caracteristica', null, ['class' => 'form-control', 'placeholder' => 'Ej: precocida', 'title' => 'Ingrese alguna caracteristica del alimento']) !!}
 						</div>
 
-						<div class="form-group">
-							{!! Form::label('id_providers', 'Seleciones los proveedores del ingrediente') !!}
-						
-						<br>
-							@foreach ($providers as $id => $provider)
-								<div class="checkbox">
-  									<label>
-    									<input type="checkbox" name="id_providers[]" value="{{ $id }}"
-    									>
-                               				{{ $provider }}
- 							 		 </label>
-								</div>
-						   @endforeach
-						
-						</div>
 				<div class="form-group">
                 		<br/>
                 <center>
-					<button class="btn btn-primary btn-sm">
+					<button type="reset" class="btn btn-primary btn-sm" title="Restrablecer">
 						<span class="fa fa-refresh fa-2x"></span>
 					</button>
-					<button class="btn btn-success btn-sm">
+					<button class="btn btn-success btn-sm" title="Guardar">
 						<span class="fa fa-save fa-2x"></span>
 					</button>
                 </center>

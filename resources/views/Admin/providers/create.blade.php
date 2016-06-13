@@ -30,10 +30,10 @@
 						<div class="form-group">
                 		<br>
                 <center>
-					<button class="btn btn-primary btn-sm">
+					<button type="reset" class="btn btn-primary btn-sm" title="Restrablecer">
 						<span class="fa fa-refresh fa-2x"></span>
 					</button>
-					<button class="btn btn-success btn-sm">
+					<button class="btn btn-success btn-sm" title="Guardar">
 						<span class="fa fa-save fa-2x"></span>
 					</button>
                 </center>

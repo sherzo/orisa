@@ -285,12 +285,19 @@ glyphicon glyphicon-shopping-cart"></i> Compra<span class="fa arrow"></span></a>
 
 @yield('contenido')
 @yield('employee_content')
+
     <!-- /#wrapper -->
 
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
 
-     <!-- jQuery -->
-    <script src="../../bower_components/jquery/dist/jquery.min.js"></script>
+    <!-- JAVASCRIPT PROPIOS --> 
 
+    <script src="../../dist/js/busqueda_proveedor.js"></script>
+    
+    <!-- FIN JAVASCRIPT P¨ROPIOS -->
+
+     
     <!-- Bootstrap Core JavaScript -->
     <script src="../../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 

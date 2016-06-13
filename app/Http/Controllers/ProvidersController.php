@@ -42,14 +42,19 @@ class ProvidersController extends Controller
      */
     public function store(ProviderRequest $request)
     {
+         $provider = new Provider($request->all());
 
-        $provider = new Provider($request->all());
-
+        $provider->rif = $request->literal.'-'.$request->rif;
+        $provider->razon_social = $request->razon_social;
+        $provider->telefono = $request->codigo.''.$request->telefono;
+        $provider->direccion = $request->direccion;
+        $provider->correo = $request->correo;
         $provider->save();
 
-        Flash::success('<strong>Exito! </strong> Se ha registrado '. $provider->razon_social. ' correctamente');
+        Flash::success('<strong>Exito! </strong> Se ha registrado el proveedor '. $provider->razon_social. ' correctamente');
 
         return redirect('admin/proveedores');
+
     }
 
     /**
@@ -112,4 +117,30 @@ class ProvidersController extends Controller
 
         return redirect('admin/proveedores');
     }
+
+    public function start()
+    {
+        dd('gola');
+    }
+
+
+//----------------------- METODO CREADO PARA VERIFICAR QUE NO EXISTE EL PROVEEDOR
+    public function search(Request $request)
+    {
+        $valor = $request->literal.'-'.$request->rif;
+        $provider = Provider::rif($valor)->first();
+
+        if($provider)
+        {
+            Flash::warning('<strong>Alerta </strong> Proveedor'. $provider->rif. ' ya esta registrado');
+
+
+        return redirect()->back();
+        }else
+        {   
+            $providers = Provider::paginate();
+            return view('admin.providers.index', compact('providers'));
+        }
+    }
+        
 }

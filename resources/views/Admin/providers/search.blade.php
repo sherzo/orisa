@@ -23,9 +23,9 @@
 						@include('admin.partial.errors')
 
 
-						{!! Form::open(['route' => 'admin.proveedores.store', 'method' => 'POST']) !!}
+						{!! Form::open(['route' => 'admin.proveedores.search', 'method' => 'POST', 'class' => 'form-inline', 'id' => 'form-proveedor']) !!}
 					 	
-						@include('admin.providers.partials.fields')
+						@include('admin.providers.partials.form-search')
 
 						<!--<div class="form-group">
                 		<br>

@@ -285,7 +285,12 @@
 
     <!-- /#wrapper -->
 
+    <!-- JAVASCRIPT PROPIOS --> 
 
+    <script src="dist/js/busqueda_proveedor.js"></script>
+    
+    <!-- FIN JAVASCRIPT P¨ROPIOS -->
+    
      <!-- jQuery -->
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
 

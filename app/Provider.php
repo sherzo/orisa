@@ -24,4 +24,11 @@ class Provider extends Model
 
 
     protected $table = 'providers';
+
+
+    public function scopeRif($query, $rif)
+    {
+       $query->where('rif', $rif);
+
+    }
 }

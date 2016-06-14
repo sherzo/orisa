@@ -23,7 +23,7 @@
 						@include('admin.partial.errors')
 
 
-						{!! Form::open(['route' => 'admin.proveedores.store', 'method' => 'POST']) !!}
+						{!! Form::open(['route' => 'admin.proveedores.search', 'method' => 'POST', 'class' => 'form-inline']) !!}
 					 	
 						@include('admin.providers.partials.fields')
 

@@ -23,11 +23,11 @@
 						@include('admin.partial.errors')
 
 
-						{!! Form::open(['route' => 'admin.proveedores.search', 'method' => 'POST', 'class' => 'form-inline', 'id' => 'form-proveedor']) !!}
+						{!! Form::open(['route' => 'admin.proveedores.store', 'method' => 'POST']) !!}
 					 	
-						@include('admin.providers.partials.form-search')
+						@include('admin.providers.partials.fields1')
 
-						<!--<div class="form-group">
+				<div class="form-group">
                 		<br>
                 <center>
 					<button type="reset" class="btn btn-primary btn-sm" title="Restrablecer">
@@ -37,7 +37,7 @@
 						<span class="fa fa-save fa-2x"></span>
 					</button>
                 </center>
-                </div> -->
+                </div> 
 
 						{!! Form::close() !!}
 

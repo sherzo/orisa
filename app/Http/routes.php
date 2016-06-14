@@ -67,11 +67,6 @@ Route::group(['prefix' => 'admin'], function(){
 		'uses' => 'ProvidersController@search',
 		'as' => 'admin.proveedores.search'
 		]);
-	Route::get('proveedores/start', [
-		'uses' => 'ProvidersController@start',
-		'as' => 'admin.proveedores.start'
-		]);
-	
 });
 
 

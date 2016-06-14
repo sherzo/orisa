@@ -1,13 +1,12 @@
-
+@include('flash::message')
 						<div class="form-group">
-							{!! Form::label('rif', 'Rif') !!}
-                            <div class="input-group">
-                            <span class="input-group-addon" id="sizing-addon">J -</span>
-								{!! Form::text('rif', null, ['class' => 'form-control', 'title' => 'Ingrese su nombre']) !!}
+							{!! Form::label('muestra', 'Rif') !!}
+                          
+								{!! Form::text('muestra', $valor, ['class' => 'form-control', 'title' => 'Ingrese su nombre', 'disabled']) !!}
 							
-							</div>
+						
 						</div>
-   						
+   						<input type="hidden" name="rif" value="{{ $valor }}">
 
 						<div class="form-group">
 							{!! Form::label('razon_social', 'Razón social') !!} 

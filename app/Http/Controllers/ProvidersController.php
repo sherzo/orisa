@@ -29,11 +29,6 @@ class ProvidersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        return view('admin.providers.create');
-    }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -42,13 +37,8 @@ class ProvidersController extends Controller
      */
     public function store(ProviderRequest $request)
     {
-         $provider = new Provider($request->all());
+        $provider = new Provider($request->all());
 
-        $provider->rif = $request->literal.'-'.$request->rif;
-        $provider->razon_social = $request->razon_social;
-        $provider->telefono = $request->codigo.''.$request->telefono;
-        $provider->direccion = $request->direccion;
-        $provider->correo = $request->correo;
         $provider->save();
 
         Flash::success('<strong>Exito! </strong> Se ha registrado el proveedor '. $provider->razon_social. ' correctamente');
@@ -120,11 +110,12 @@ class ProvidersController extends Controller
 
     public function start()
     {
-        dd('gola');
+        dd('hola');
     }
 
 
-//----------------------- METODO CREADO PARA VERIFICAR QUE NO EXISTE EL PROVEEDOR
+//---------------- METODO CREADO PARA VERIFICAR QUE NO EXISTE EL PROVEEDOR
+    
     public function search(Request $request)
     {
         $valor = $request->literal.'-'.$request->rif;
@@ -132,14 +123,14 @@ class ProvidersController extends Controller
 
         if($provider)
         {
-            Flash::warning('<strong>Alerta </strong> Proveedor'. $provider->rif. ' ya esta registrado');
-
-
+            Flash::warning('<strong>Alerta </strong> Proveedor de rif: <strong>'. $provider->rif. '</strong> ya esta registrado');
         return redirect()->back();
         }else
         {   
-            $providers = Provider::paginate();
-            return view('admin.providers.index', compact('providers'));
+
+        Flash::info('<strong>Perfecto </strong> proceseda a registrar el proveedor');
+
+          return view('admin.providers.search', compact('valor'));
         }
     }
         

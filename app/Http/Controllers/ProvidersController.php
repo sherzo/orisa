@@ -29,6 +29,11 @@ class ProvidersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function create()
+    {
+        return view('admin.providers.create');
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -108,14 +113,7 @@ class ProvidersController extends Controller
         return redirect('admin/proveedores');
     }
 
-    public function start()
-    {
-        dd('hola');
-    }
-
-
 //---------------- METODO CREADO PARA VERIFICAR QUE NO EXISTE EL PROVEEDOR
-    
     public function search(Request $request)
     {
         $valor = $request->literal.'-'.$request->rif;

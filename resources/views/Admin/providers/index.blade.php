@@ -17,7 +17,9 @@
                        <a  href="{{ url('admin/proveedores/create') }}" class="btn btn-primary">
                         <span class="fa fa-plus"></span> Nuevo
                         </a>
-                </div>  
+                </div> 
+
+          
           </div>
           <!--  CIERRE DEL ROW -->
 

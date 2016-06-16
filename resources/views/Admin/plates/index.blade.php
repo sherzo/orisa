@@ -13,7 +13,7 @@
 
           </div>
                 <div class="col-lg-4">
-                       <a  href="{{ url('admin/ingredientes/create') }}" class="btn btn-primary">
+                       <a  href="{{ url('admin/platos/create') }}" class="btn btn-primary">
                         <span class="fa fa-plus"></span> Nuevo
                         </a>
                 </div>  

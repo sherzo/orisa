@@ -23,4 +23,9 @@ class Ingredient extends Model
 
 
     protected $table = 'ingredients';
+
+    public function scopeAgregar($query, $nombre)
+    {
+       $query->where('nombre_ingrediente', $nombre);
+    }
 }

@@ -14,9 +14,9 @@ class CreatePlatesTable extends Migration
     {
         Schema::create('plates', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('plate_name', 15);
-            $table->text('plate_description');
-            $table->double('plate_price', 15,2);
+            $table->string('nombre_plato', 15);
+            $table->text('descripcion');
+            $table->double('precio', 15,2);
             $table->timestamps();
         });
     }

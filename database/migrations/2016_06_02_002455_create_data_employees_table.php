@@ -18,10 +18,12 @@ class CreateDataEmployeesTable extends Migration
             $table->foreign('id_employee') ->references('id')->on('employees');
             $table->string('code_em', 45);
             $table->date('date_of_admission');
-            $table->bigInteger('account_em');
-            $table->string('contract', 45);
+            $table->string('contract_status', 45);
             $table->string('cestaticket', 15);
             $table->integer('duration_em');
+            $table->string('bank', 35);
+            $table->string('type_account', 20);
+            $table->text('account_em');
             $table->timestamps();
         });
     }

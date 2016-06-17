@@ -48,7 +48,11 @@ Route::get('tablero', function(){
 Route::group(['prefix' => 'admin'], function(){ 
 
 	Route::resource('employees', 'EmployeesController');
-	
+
+	Route::post('employees/search', [
+		'uses' => 'EmployeesController@search',
+		'as' => 'admin.employees.search'
+		]);
 });
 
    

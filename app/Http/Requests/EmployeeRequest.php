@@ -24,7 +24,16 @@ class EmployeeRequest extends Request
     public function rules()
     {
         return [
-            //
+            
+            'birthdate_em' => 'required',
+            'country_em' => 'required',
+            'addres_em' => 'required',
+            'names_em' => 'required',
+            'state_em' => 'required',
+            'phone_em' => 'required',
+            'surnames_em' => 'required',
+            'city_em' => 'required',
+            'email_em' => 'required',
         ];
     }
 }

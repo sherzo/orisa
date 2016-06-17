@@ -14,8 +14,7 @@ class CreateEmployeesTable extends Migration
     {
         Schema::create('employees', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nationality_em', 15);
-            $table->bigInteger('document_em');
+            $table->string('document_em', 25);
             $table->date('birthdate_em');
             $table->string('country_em', 45);
             $table->text('addres_em');
@@ -27,8 +26,6 @@ class CreateEmployeesTable extends Migration
             $table->string('gender_em', 45);
             $table->string('city_em', 45);
             $table->string('email_em', 45);
-            $table->integer('id_position') ->unsigned();
-            $table->foreign('id_position') ->references('id')->on('positions');
             $table->timestamps();
         });
     }

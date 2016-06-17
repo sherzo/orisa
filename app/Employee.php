@@ -14,13 +14,24 @@ class Employee extends Model
     protected $table = 'employees';
 
     protected $fillable = [
-        'document_em', 'birthdate_em', 'country_em', 'addres_em', 'names_em', 'civil_status_em', 'state_em', 'phone_em', 'surnames_em', 'gender_em', 'city_em', 'email_em', 'id_position',
+        'document_em', 'birthdate_em', 'country_em', 'addres_em', 'names_em', 'civil_status_em', 'state_em', 'phone_em', 'surnames_em', 'gender_em', 'city_em', 'email_em',
     ];
+
+    public function scopeDocument($query, $document)
+    {
+       $query->where('document_em', $document);
+
+    }
 
     public function Data_employee() 
     {
-        return $this->hasOne('App\Data_employee', 'id');
+        return $this->hasOne('App\Data_employee', 'id_employee');
     } 
+
+    public function Employee_has_position()
+    {
+        return $this->hasOne('App\Employee_has_position', 'id_employee');
+    }
 
     /**
     * The attributes that should be hidden for arrays.

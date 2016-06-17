@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Data_employee;
 use App\Employee;
+use App\Employee_has_position;
 use App\Position;
 use App\Http\Requests;
 use App\Http\Requests\EmployeeRequest;
@@ -46,18 +47,24 @@ class EmployeesController extends Controller
      */
     public function store(EmployeeRequest $request)
     {
-        //dd($request->all());
         $employee = Employee::create($request->all());
-        $data = new Data_employee;
-
-        $data->id_employee = $employee->id;
-        $data->code_em = $request->code_em;
-        $data->date_of_admission = $request->date_of_admission;
-        $data->account_em = $request->account_em;
-        $data->contract = $request->contract;
-        $data->cestaticket = $request->cestaticket;
-        $data->duration_em = $request->duration_em;
-        $data->save();
+        
+        $data_employees = new Data_employee();
+        $data_employees->id_employee = $employee->id;
+        $data_employees->code_em = $request->code_em;
+        $data_employees->date_of_admission = $request->date_of_admission;
+        $data_employees->contract_status = $request->contract_status;
+        $data_employees->cestaticket = $request->cestaticket;
+        $data_employees->duration_em = $request->duration_em;
+        $data_employees->bank = $request->bank;
+        $data_employees->type_account = $request->type_account;
+        $data_employees->account_em = $request->account_em;
+        $data_employees->save();
+        
+        $employee_has_positions = new Employee_has_position;
+        $employee_has_positions->id_employee = $employee->id;
+        $employee_has_positions->id_position = $request->id_position;
+        $employee_has_positions->save();
 
         Flash::success('<strong>Exito!</strong> Registro de '.$employee->names_em.' se realizó correctamente!');
 
@@ -84,8 +91,9 @@ class EmployeesController extends Controller
     public function edit($id)
     {
         $employee = Employee::find($id);
-        $data_employee = $employee->Data_employee;
-        return view('admin.employees.edit', compact('employee', 'data_employee'));
+        $data = $employee->Data_employee;
+
+        return view('admin.employees.edit', compact('employee', 'data'));
 
     }
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Ingredient;
+use App\Unit;
 use Laracasts\Flash\Flash;
 
 use App\Http\Requests;
@@ -27,29 +28,36 @@ class PlatesController extends Controller
      */
     public function create(Request $request)
     {
+        
         $name_ingredient = $request->get('ingrediente_nombre');
         
-
         if (isset($name_ingredient))
-         {
-
+        {
+            // Si existe busca en BD
             $ingredient = Ingredient::agregar($name_ingredient)->first();
             
             if($ingredient)
             {
-            return view('admin.plates.create', compact('ingredient')); 
+                // Si encuentra: *Retorna a la vista el ingrediente y las unidades        
+                $units = Unit::lists( 'unidad', 'id');
+
+                return view('admin.plates.create', compact('ingredient', 'units')); 
  
-            }else {
-                    $ingredient = null;
+            }else 
+                {
+                    // Destruyo la variable
+                    unset($ingredient);
+
+                    // Mensaje de no encontrado
                     Flash::warning('<strong>Alerta</strong> ingrediente no encontrado');
                     return view('admin.plates.create', compact('ingredient'));    
+                }
+
+        }else 
+            {
+                // Si no entra como una busqueda, retorna la vista
+                return view('admin.plates.create');    
             }
-
-        }else {
-
-        return view('admin.plates.create');    
-         
-         }
         
         
     }

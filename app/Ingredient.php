@@ -26,6 +26,9 @@ class Ingredient extends Model
 
     public function scopeAgregar($query, $nombre)
     {
-       $query->where('nombre_ingrediente', $nombre);
+        if($nombre != "")
+        {
+            $query->where('nombre_ingrediente', $nombre);
+        }
     }
 }

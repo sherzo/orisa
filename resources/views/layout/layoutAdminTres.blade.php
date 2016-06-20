@@ -296,6 +296,8 @@ glyphicon glyphicon-shopping-cart"></i> Compra<span class="fa arrow"></span></a>
      <!-- jQuery -->
     <script src="../../../bower_components/jquery/dist/jquery.min.js"></script>
 
+    <script src="../../../dist/js/agregar_ingrediente.js"></script>
+
     <!-- Bootstrap Core JavaScript -->
     <script src="../../../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 

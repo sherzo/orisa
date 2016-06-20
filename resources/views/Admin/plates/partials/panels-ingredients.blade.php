@@ -9,7 +9,7 @@
 			<div class="row">
 				<div class="col-md-10">
 				@include('flash::message')
-					<p>Busque y agregue los ingrediente del plato</p>
+					<p class="text-muted">Busque y agregue los ingrediente del plato</p>
 				</div>
 			</div>
 			
@@ -23,7 +23,7 @@
 						{!! Form::text('ingrediente_nombre', null, ['class' => 'form-control', 'placeholder' => 'Ingrediente', 'title' => 'Busque ingrediente']) !!}
 							
 						<span class="input-group-btn">
-        					<button class="btn btn-default" type="submit">
+        					<button class="btn btn-default" type="submit" title="Buscar">
 								<span class="glyphicon glyphicon-search"></span>
         					</button>
       					</span>
@@ -35,7 +35,7 @@
 
 			<br>
 			<div class="row">
-				<div class="col-md-10">
+				<div class="col-md-6">
 					<table class="table">
 						<thead>
 							<th>#</th>
@@ -44,34 +44,35 @@
 							<th>Unidad</th>
 							<th>Agregar</th>
 						</thead>
-						
+
+						@if(isset($ingredient))
 						<tbody>
-						@if (isset($ingredient))
 							<tr>
 								<td>
-								
-										{{ $ingredient->id }}
-								
+									{{ $ingredient->id }}
+									<input type="hidden" id="id" name="id_ingredient" value="{{ $ingredient->id }}">
 								</td>
+
 								<td>
-									
-										{{ $ingredient->nombre_ingrediente }}
-							
+									{{ $ingredient->nombre_ingrediente }}
 								</td>
+
 								<td>
-									{!! Form::text('cantidad', null, ['class' => 'form-control', 'placeholder' => 'Cantidad', 'title' => 'ingrese la cantidad', 'size' => '1']) !!}
+									{!! Form::text('cantidad', null, ['class' => 'form-control', 'placeholder' => 'Cantidad', 'title' => 'ingrese la cantidad', 'size' => '1', 'id' => 'cantidad']) !!}
 								</td>
+
 								<td>
-									
+									{!! Form::select('id_unit', $units, null, ['class' => 'form-control', 'id' => 'unidad']); !!}
 								</td>
+
 								<td>
-									<a href="#" class="btn btn-success btn-sm">
+									<a href="#" class="btn btn-success btn-sm btn-agregar" title="Agregar a la lista">
 										<span class="fa fa-plus"></span>
 									</a>
 								</td>
-							</tr>
-						@endif
+							</tr>	
 						</tbody>
+						@endif
 					</table>
 					<hr>
 				</div>
@@ -90,7 +91,8 @@
 							<th>Descartar</th>
 						</thead>
 					
-						<tbody>
+						<tbody id="lista_agregados">
+						
 						</tbody>
 					</table>
 				</div>

@@ -216,8 +216,11 @@
                             </li>
 
                           <li>
-                            <a href="#" ><i class="
-glyphicon glyphicon-shopping-cart"></i> Compra<span class="fa arrow"></span></a>
+                            <a href="#" >
+                                <i class="glyphicon glyphicon-shopping-cart"></i>
+                                 Compra
+                                <span class="fa arrow"></span>
+                            </a>
                             <ul class="nav nav-second-level">
                              <li>
                                     <a href="#">
@@ -284,6 +287,7 @@ glyphicon glyphicon-shopping-cart"></i> Compra<span class="fa arrow"></span></a>
 <!--@include('flash::message')-->
 
 @yield('contenido')
+
 @yield('employee_content')
 
     <!-- /#wrapper -->
@@ -293,7 +297,7 @@ glyphicon glyphicon-shopping-cart"></i> Compra<span class="fa arrow"></span></a>
 
     <!-- JAVASCRIPT PROPIOS --> 
 
-    <script src="../../dist/js/busqueda_proveedor.js"></script>
+    <script src="../../dist/js/agregar_ingrediente.js"></script>
     
     <!-- FIN JAVASCRIPT P¨ROPIOS -->
 

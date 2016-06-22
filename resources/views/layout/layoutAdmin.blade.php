@@ -170,7 +170,15 @@
                                 </li>
                                 <li>
                                     <a href="platos.html">
-                                    <i class="fa fa-glass fa-fw"></i> Bebidas</a>
+                                    <i class="fa fa-glass fa-fw"></i> Tragos</a>
+                                </li>
+                                <li>
+                                    <a href="platos.html">
+                                    <i class="fa fa-file-text-o fa-fw"></i> Comanda</a>
+                                </li>
+                                <li>
+                                    <a href="platos.html">
+                                    <i class="fa fa-barcode fa-fw"></i> Comprobante de comandas</a>
                                 </li>
                                 </ul>
                                 </li>
@@ -200,7 +208,7 @@
                             <ul class="nav nav-second-level">
                              <li>
                                     <a href="#">
-                                    <i class="glyphicon glyphicon-list"></i> Orden de Compra</a>
+                                    <i class="fa fa-clipboard fa-fw"></i> Orden de Compra</a>
                                 </li>
                                 <li>
                                     <a href="{{ url('admin/proveedores')}}">

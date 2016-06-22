@@ -48,7 +48,6 @@ class EmployeesController extends Controller
     public function store(EmployeeRequest $request)
     {
         $employee = Employee::create($request->all());
-        
         $data_employees = new Data_employee();
         $data_employees->id_employee = $employee->id;
         $data_employees->code_em = $request->code_em;
@@ -92,7 +91,7 @@ class EmployeesController extends Controller
     {
         $employee = Employee::find($id);
         $data = $employee->Data_employee;
-
+        dd($data);
         return view('admin.employees.edit', compact('employee', 'data'));
 
     }

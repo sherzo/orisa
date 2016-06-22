@@ -28,6 +28,6 @@ class CreateEmployeeHasPositionsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('complete_payrolls');
+        Schema::drop('employee_has_positions');
     }
 }

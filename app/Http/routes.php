@@ -101,6 +101,16 @@ Route::group(['prefix' => 'admin'], function(){
 Route::group(['prefix' => 'admin'], function(){
 
 	Route::resource('platos', 'PlatesController');
+	Route::post('platos/addIngredient', [
+		'uses' => 'PlatesController@addIngredient',
+		'as' => 'admin.plates.addIngredient'
+		]);
+	
+	Route::get('platos/listIngredient', function(){
+
+		return view('admin.plates.partials.list_ingredient');
+	
+	}); 
 
 });
 

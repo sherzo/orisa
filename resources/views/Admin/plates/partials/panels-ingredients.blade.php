@@ -1,5 +1,5 @@
-<br>
-	
+
+	<br>
 <div class="panel panel-default">
 	<div class="panel-heading">Ingredientes del plato</div>
 
@@ -9,6 +9,9 @@
 			<div class="row">
 				<div class="col-md-10">
 				@include('flash::message')
+				<div class="alert alert-danger hide" role="alert">
+					<strong>Error!</strong> ingrese la cantidad
+				</div>
 					<p class="text-muted">Busque y agregue los ingrediente del plato</p>
 				</div>
 			</div>
@@ -45,34 +48,36 @@
 							<th>Agregar</th>
 						</thead>
 
-						@if(isset($ingredient))
-						<tbody>
-							<tr>
-								<td>
-									{{ $ingredient->id }}
-									<input type="hidden" id="id" name="id_ingredient" value="{{ $ingredient->id }}">
-								</td>
+@if(isset($ingredient))
+<tbody>
+	<tr id="fila">
+		<td>
+			{{ $ingredient->id }}
+			<input type="hidden" id="id_ingrediente" name="id_ingr" value="{{ $ingredient->id }}">
+		</td>
 
-								<td>
-									{{ $ingredient->nombre_ingrediente }}
-								</td>
+		<td>
+			{{ $ingredient->nombre_ingrediente }}
+		</td>
 
-								<td>
-									{!! Form::text('cantidad', null, ['class' => 'form-control', 'placeholder' => 'Cantidad', 'title' => 'ingrese la cantidad', 'size' => '1', 'id' => 'cantidad']) !!}
-								</td>
+		<td>
+			<div class="form-group msj">
+				{!! Form::text('cantidad', null, ['class' => 'form-control', 'placeholder' => 'Cantidad', 'title' => 'ingrese la cantidad', 'id' => 'cantidad', 'size' => '1']) !!}
+			</div>
+		</td>
 
-								<td>
-									{!! Form::select('id_unit', $units, null, ['class' => 'form-control', 'id' => 'unidad']); !!}
-								</td>
+		<td>
+			{!! Form::select('id_unit', $units, null, ['class' => 'form-control', 'id' => 'unidad']); !!}
+		</td>
 
-								<td>
-									<a href="#" class="btn btn-success btn-sm btn-agregar" title="Agregar a la lista">
-										<span class="fa fa-plus"></span>
-									</a>
-								</td>
-							</tr>	
-						</tbody>
-						@endif
+		<td>
+			<a href="" class="btn btn-success btn-sm btn-agregar" title="Agregar a la lista">
+				<span class="fa fa-plus"></span>
+			</a>
+		</td>
+	</tr>	
+</tbody>
+@endif
 					</table>
 					<hr>
 				</div>
@@ -91,8 +96,8 @@
 							<th>Descartar</th>
 						</thead>
 					
-						<tbody id="lista_agregados">
-						
+						<tbody id="list_ingredient">
+							
 						</tbody>
 					</table>
 				</div>

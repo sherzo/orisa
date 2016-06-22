@@ -175,28 +175,14 @@
                                 </ul>
                                 </li>
 
-                         <li>
-                            <a href="#"  ><i class="glyphicon glyphicon-user">
-                            </i> Usuarios<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                             <li>
-                                    <a href="{{ url('admin/usuarios') }}">
-                                    <i class="fa fa-plus fa-fw"></i>
-                                    Registro</a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                    <i class="fa fa-unlock-alt fa-fw"></i>
-                                Privilegios</a>
-                                </li>
+                         
                              
                                                      
 
-                            </ul>
-                            </li>
+                            
 
                          <li>
-                            <a href="#"  ><i class="glyphicon glyphicon-list-alt "></i> Nómina<span class="fa arrow"></span></a>
+                            <a href="#"  ><i class="glyphicon glyphicon-list-alt "></i> Personal <span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                              <li>
                                     <a href="{{ url('admin/employees') }}">
@@ -217,7 +203,7 @@
 
                           <li>
                             <a href="#" ><i class="
-glyphicon glyphicon-shopping-cart"></i> Compra<span class="fa arrow"></span></a>
+                        glyphicon glyphicon-shopping-cart"></i> Compra<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                              <li>
                                     <a href="#">
@@ -238,11 +224,17 @@ glyphicon glyphicon-shopping-cart"></i> Compra<span class="fa arrow"></span></a>
                             </ul>
                             </li>
 
-                              <li>
+                              <<li>
                             <a href="#">
                             <i class="glyphicon glyphicon-wrench"></i> Mantenimiento
                             <span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
+                                 <li>
+                                    <a href="{{ url('admin/usuarios') }}">
+                                    <i class="glyphicon glyphicon-user">
+                            </i>
+                                    Usuarios</a>
+                                </li>
                                 <li>
                                     <a href="#">
                                     <i class="fa fa-database fa-fw"></i>
@@ -258,6 +250,7 @@ glyphicon glyphicon-shopping-cart"></i> Compra<span class="fa arrow"></span></a>
                                 </li>
                                 </ul>
                                 </li>
+
 
 
                         </li>

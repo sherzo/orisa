@@ -9,6 +9,7 @@ use Laracasts\Flash\Flash;
 
 use App\Http\Requests;
 
+session_start();
 class PlatesController extends Controller
 {
     /**
@@ -49,7 +50,7 @@ class PlatesController extends Controller
                     unset($ingredient);
 
                     // Mensaje de no encontrado
-                    Flash::warning('<strong>Alerta</strong> ingrediente no encontrado');
+                    Flash::warning('<strong>Alerta</strong> ingrediente '. $name_ingredient .' no encontrado');
                     return view('admin.plates.create', compact('ingredient'));    
                 }
 
@@ -61,6 +62,30 @@ class PlatesController extends Controller
         
         
     }
+
+
+    public function addIngredient(Request $request) {
+
+       if(isset($request->id_ingrediente)){
+        
+        $_SESSION['ingredientes'][$request->id_ingrediente] = array('id' => $request->id_ingrediente,
+                            'ingrediente' => 'arroz',
+                            'cantidad' => $request->cantidad,
+                             'unidad' => $request->unidad
+                             );
+
+
+        $json = array('id' => $request->id_ingrediente, 
+                     'cantidad' => $request->cantidad,
+                     'unidad' => $request->unidad,
+                     'success' => true);
+
+        echo json_encode($json);
+        
+       }
+
+    }
+
 
     /**
      * Store a newly created resource in storage.

@@ -17,7 +17,7 @@
 <ul class="nav nav-tabs nav-justified" role="tablist">
     <li role="presentation" class="active"><a href="#ingredientes" aria-controls="home" role="tab" data-toggle="tab">Ingrediente</a></li>
     <li role="presentation"><a href="#licores" aria-controls="profile" role="tab" data-toggle="tab">Licores</a></li>
-    <li role="presentation"><a href="#plato" aria-controls="messages" role="tab" data-toggle="tab">Plato</a></li>
+    <li role="presentation"><a href="#plato" aria-controls="messages" role="tab" data-toggle="tab">Publicación de plato</a></li>
   </ul>
 
 <div class="tab-content">

@@ -30,10 +30,7 @@ Route::group(['prefix' => 'admin'], function(){
 
 });
 
-Route::get('login', function(){
 
-	return view('login.login');
-});
 
 Route::get('tablero', function(){
 
@@ -119,3 +116,7 @@ Route::group(['prefix' => 'admin'], function(){
 
 
 
+
+Route::auth();
+
+Route::get('/home', 'HomeController@index');

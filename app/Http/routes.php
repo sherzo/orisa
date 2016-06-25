@@ -32,9 +32,9 @@ Route::group(['prefix' => 'admin'], function(){
 
 
 
-Route::get('tablero', function(){
+Route::get('admin', function(){
 
-		return view('layout.tablero');
+		return view('admin.index');
 });
 
 
@@ -78,7 +78,13 @@ Route::group(['prefix' => 'admin'], function(){
 		]);
 });
 
+Route::get('compra', function(){
 
+$providers = \DB::table('providers')->lists('razon_social', 'id');
+
+	return view('admin.compra.index', compact('providers'));
+
+});
 
 /*
 * 		RUTAS SAUL 

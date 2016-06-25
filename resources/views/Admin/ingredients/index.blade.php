@@ -1,11 +1,8 @@
 @extends('layout.layoutAdmin')
 
 @section('contenido')
-
- <!-- Page Content -->
-
-
-        <div class="row">
+ 
+<div class="row">
            <div class="col-lg-12">
              @include('admin.partial.breadcumb')
             
@@ -30,8 +27,8 @@
                             {!! $ingredients->render() !!}
                         </div>
                     </div>
-               </div>
-    </div>
+         </div>
+</div>
 
 
   @endsection

@@ -32,7 +32,7 @@ return [
     'date'                 => 'The :attribute is not a valid date.',
     'date_format'          => 'The :attribute does not match the format :format.',
     'different'            => 'The :attribute and :other must be different.',
-    'digits'               => 'El campo :attribute debe tener :digits digitos.',
+    'digits'               => 'El campo :attribute debe tener minímo :digits digitos.',
     'digits_between'       => 'The :attribute must be between :min and :max digits.',
     'distinct'             => 'The :attribute field has a duplicate value.',
     'email'                => 'The :attribute must be a valid email address.',
@@ -52,9 +52,9 @@ return [
     ],
     'mimes'                => 'The :attribute must be a file of type: :values.',
     'min'                  => [
-        'numeric' => 'The :attribute must be at least :min.',
+        'numeric' => 'El campo :attribute como mínimo :min digitos.',
         'file'    => 'The :attribute must be at least :min kilobytes.',
-        'string'  => 'The :attribute must be at least :min characters.',
+        'string'  => 'El campo :attribute debe tener como mínimo :min caracteres.',
         'array'   => 'The :attribute must have at least :min items.',
     ],
     'not_in'               => 'The selected :attribute is invalid.',
@@ -70,14 +70,14 @@ return [
     'required_without_all' => 'The :attribute field is required when none of :values are present.',
     'same'                 => 'The :attribute and :other must match.',
     'size'                 => [
-        'numeric' => 'El campo :attribute must be :size.',
+        'numeric' => 'El campo :attribute debe tener como minimo :size digitos.',
         'file'    => 'The :attribute must be :size kilobytes.',
-        'string'  => 'The :attribute must be :size characters.',
+        'string'  => 'El campo :attribute debe tener como mínimo :size caracteres.',
         'array'   => 'The :attribute must contain :size items.',
     ],
     'string'               => 'The :attribute must be a string.',
     'timezone'             => 'The :attribute must be a valid zone.',
-    'unique'               => 'El campo :attribute ya esta siendo utilizado.',
+    'unique'               => 'El :attribute ya esta siendo utilizado otro.',
     'url'                  => 'The :attribute format is invalid.',
 
     /*

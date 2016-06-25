@@ -67,7 +67,20 @@
                 <a href="" class="navbar-brand">Orisa</a>
             </div>
             <!-- /.navbar-header -->
+            @if (Auth::guest())
+                        <li><a href="{{ url('/login') }}">Login</a></li>
+                        <li><a href="{{ url('/register') }}">Register</a></li>
+                    @else
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                {{ Auth::user()->name }} <span class="caret"></span>
+                            </a>
 
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
+                            </ul>
+                        </li>
+                    @endif
             <ul class="nav navbar-top-links navbar-right">
           
                 <!-- /.dropdown -->
@@ -124,7 +137,7 @@
                 <!-- /.dropdown -->
                 <li class="dropdown">
                     <a class="dropdown-toggle color" data-toggle="dropdown" href="#">
-                       Usuario <i class="fa fa-user fa-fw"></i><i class="fa fa-caret-down"></i>
+                      {{ Auth::user()->name }}<i class="fa fa-user fa-fw"></i><i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
                         <li><a href="#"><i class="fa fa-user fa-fw"></i> Perfil</a>
@@ -132,7 +145,8 @@
                         <li><a href="#"><i class="fa fa-gear fa-fw"></i> Opciones</a>
                         </li>
                         <li class="divider"></li>
-                        <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Cerrar sesión</a>
+                        <li>
+                            <a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Salir</a>
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->
@@ -140,29 +154,31 @@
                 <!-- /.dropdown -->
 
                  <li>
-                    <a >
+                    <a href="{{ url('/logout') }}">
                         <i class="glyphicon glyphicon-off"></i> 
                     </a>
                     </li>
             </ul>
             <!-- /.navbar-top-links -->
 
-            <div class="navbar-default sidebar" role="navigation">
+                  <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                      
                         <li>
-                            <a href="{{ url('tablero') }}"><i class="fa fa-dashboard fa-fw"></i> Tablero</a>
+                            <a href="{{ url('admin') }}"><i class="fa fa-dashboard fa-fw"></i> Tablero</a>
                         </li>
                        
 
                         <li>
                             <a href="#"><i class="fa fa-delicious fa-fw"></i> Servicios<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
-                            <li>
+             @if((Auth::user()->type)=='1' || (Auth::user()->type)=='2' || (Auth::user()->type)=='2' || (Auth::user()->type)=='4' || (Auth::user()->type)=='5')                  
+                                <li>
                                     <a href="{{ url('clientes') }}">
                                     <i class="fa fa-users fa-fw"></i> Clientes</a>
                                 </li>
+            @endif                  
                                 <li>
                                     <a href="{{ url('admin/platos') }}">
                                     <i class="fa fa-cutlery fa-fw"></i>
@@ -174,23 +190,24 @@
                                 </li>
                                 <li>
                                     <a href="platos.html">
-                                    <i class="fa fa-file-text-o fa-fw"></i> Comanda</a>
+                                    <i class="fa fa-file-text-o fa-fw"></i> Comandas</a>
                                 </li>
+            @if((Auth::user()->type)=='1' || (Auth::user()->type)=='2' || (Auth::user()->type)=='2' || (Auth::user()->type)=='4' || (Auth::user()->type)=='5')
                                 <li>
                                     <a href="platos.html">
-                                    <i class="fa fa-barcode fa-fw"></i> Comprobante de comandas</a>
+                                    <i class="glyphicon glyphicon-barcode"></i> Comprobante de comandas</a>
                                 </li>
+            @endif
+                                <li>
+                                    <a href="{{ url('clientes') }}">
+                                    <i class="fa fa-clock-o fa-fw"></i> Reservaciones</a>
+                                </li>
+                               
                                 </ul>
                                 </li>
-
-                         
-                             
-                                                     
-
-                            
-
+            @if((Auth::user()->type)=='1' || (Auth::user()->type)=='2' || (Auth::user()->type)=='3' )
                          <li>
-                            <a href="#"  ><i class="glyphicon glyphicon-list-alt "></i> Personal <span class="fa arrow"></span></a>
+                            <a href="#"  ><i class="fa fa-male fa-fw "></i> Personal <span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                              <li>
                                     <a href="{{ url('admin/employees') }}">
@@ -201,21 +218,28 @@
                                     <i class="fa  fa-calendar fa-fw"></i> Asistencias</a>
                                 </li>
                                 <li>
-                                    <a href=#>
+                                    <a href="#">
                                     <i class="fa fa-money fa-fw"></i> Contrato</a>
                                 </li>  
                                                      
 
                             </ul>
                             </li>
+  @endif
 
+  @if((Auth::user()->type)=='1' || (Auth::user()->type)=='2' || (Auth::user()->type)=='3' )
                           <li>
-                            <a href="#" ><i class="
-                        glyphicon glyphicon-shopping-cart"></i> Compra<span class="fa arrow"></span></a>
+
+                            <a href="{{ url('compra') }}" ><i class="
+                            glyphicon glyphicon-shopping-cart"></i> Compra<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
-                             <li>
+                                <li>
                                     <a href="#">
                                     <i class="fa fa-clipboard fa-fw"></i> Orden de Compra</a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                    <i class="fa fa-cube fa-fw"></i> Inventario</a>
                                 </li>
                                 <li>
                                     <a href="{{ url('admin/proveedores')}}">
@@ -227,12 +251,13 @@
                                 </li>                     
                                 <li>
                                     <a href="{{ url('admin/licores') }}">
-                                    <i class="fa fa-glass fa-fw"></i> Licores</a>
+                                    <i class="fa  fa-beer fa-fw"></i> Licores</a>
                                 </li>
                             </ul>
                             </li>
-
-                              <<li>
+@endif
+                @if((Auth::user()->type)=='1' || (Auth::user()->type)=='2')
+                              <li>
                             <a href="#">
                             <i class="glyphicon glyphicon-wrench"></i> Mantenimiento
                             <span class="fa arrow"></span></a>
@@ -258,7 +283,7 @@
                                 </li>
                                 </ul>
                                 </li>
-
+                @endif
 
 
                         </li>

@@ -20,7 +20,7 @@ class Data_employee extends Model
 
     public function Employee() 
     {
-        return $this->belongsTo('App\Employee', 'id');
+        return $this->belongsTo('App\Employee', 'id', 'id_employee');
     } 
 
     /**

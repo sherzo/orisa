@@ -32,11 +32,7 @@ class EmployeesController extends Controller
      */
     public function create()
     {   
-        // Cargos
-        $positions = Position::lists('name_position', 'id');
-
-        return view('admin.employees.create', compact('positions'));
-
+        //
     }
 
     /**
@@ -65,7 +61,7 @@ class EmployeesController extends Controller
         $employee_has_positions->id_position = $request->id_position;
         $employee_has_positions->save();
 
-        Flash::success('<strong>Exito!</strong> Registro de '.$employee->names_em.' se realizó correctamente!');
+        Flash::success('<strong> Exito </strong> Registro de '.$employee->names_em.' se realizó correctamente.');
 
         return redirect('admin/employees');
     }
@@ -76,9 +72,9 @@ class EmployeesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
-        //
+        return view('admin.employees.search');
     }
 
     /**
@@ -90,9 +86,9 @@ class EmployeesController extends Controller
     public function edit($id)
     {
         $employee = Employee::find($id);
-        $data = $employee->Data_employee;
-        dd($data);
-        return view('admin.employees.edit', compact('employee', 'data'));
+        $employee->Data_employee()->where('id_employee', $id)->get();
+        
+        return view('admin.employees.edit', compact('employee'));
 
     }
 
@@ -120,6 +116,30 @@ class EmployeesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $employee = Employee::find($id);
+        $employee->delete();
+
+        Flash::success('<strong> Exito </strong> el empleado '. $employee->names_em .' se eliminó correctamente');
+
+        return redirect('admin/employees');
+    }
+
+    public function search(Request $request)
+    {
+        $all = $request->nationality.'-'.$request->document_em;
+        $exists = Employee::where('document_em', $all)->exists()?1:0;
+
+        if ($exists == true) {
+            Flash::warning('<strong> Alerta </strong> busqueda con número de cédula <strong>'. $all .'</strong> se encuentra en la base de datos.');
+            return redirect()->back();
+        }
+        else
+        {
+            Flash::info('<strong> Alerta </strong> busqueda con número de cédula '. $all .' no se encuentra en la base de datos, proceda a registrar.');
+
+            $positions = Position::lists('name_position', 'id');
+
+            return view('admin.employees.create', compact('all','positions'));
+        }
     }
 }

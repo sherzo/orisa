@@ -45,12 +45,20 @@ Route::get('tablero', function(){
 Route::group(['prefix' => 'admin'], function(){ 
 
 	Route::resource('employees', 'EmployeesController');
-
+	Route::get('employees/{all}/create', [
+		'uses' => 'EmployeesController@create',
+		'as' => 'admin.employees.create'
+		]);
+	Route::get('employees/{id}/destroy', [
+		'uses' => 'EmployeesController@destroy',
+		'as' => 'admin.employees.destroy'
+		]);
 	Route::post('employees/search', [
 		'uses' => 'EmployeesController@search',
 		'as' => 'admin.employees.search'
 		]);
 });
+
 
    
 /*
@@ -110,11 +118,6 @@ Route::group(['prefix' => 'admin'], function(){
 	}); 
 
 });
-
-
-
-
-
 
 
 Route::auth();

@@ -15,7 +15,7 @@ class CreateDataEmployeesTable extends Migration
         Schema::create('data_employees', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('id_employee') ->unsigned();
-            $table->foreign('id_employee') ->references('id')->on('employees');
+            $table->foreign('id_employee') ->references('id')->on('employees')->onDelete('cascade');
             $table->string('code_em', 45);
             $table->date('date_of_admission');
             $table->string('contract_status', 45);

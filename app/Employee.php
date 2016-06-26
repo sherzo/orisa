@@ -17,20 +17,14 @@ class Employee extends Model
         'document_em', 'birthdate_em', 'country_em', 'addres_em', 'names_em', 'civil_status_em', 'state_em', 'phone_em', 'surnames_em', 'gender_em', 'city_em', 'email_em',
     ];
 
-    public function scopeDocument($query, $document)
-    {
-       $query->where('document_em', $document);
-
-    }
-
     public function Data_employee() 
     {
-        return $this->hasOne('App\Data_employee', 'id_employee');
+        return $this->hasOne('App\Data_employee', 'id_employee', 'id');
     } 
 
     public function Employee_has_position()
     {
-        return $this->hasOne('App\Employee_has_position', 'id_employee');
+        return $this->hasOne('App\Employee_has_position', 'id_employee', 'id');
     }
 
     /**

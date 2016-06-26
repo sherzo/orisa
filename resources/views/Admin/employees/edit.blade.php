@@ -31,7 +31,7 @@
 <div class="col-xs-4">
     <div class="form-group">
         {!! Form::label('document_em', 'Cédula') !!}
-        {!! Form::text('document_em', null, ['class' => 'form-control', 'placeholder' => 'V-10054256']) !!}
+        {!! Form::text('document_em', null, ['class' => 'form-control', 'disabled']) !!}
     </div>
     <div class="form-group">
         {!! Form::label('birthdate_em', 'Fecha de nacimiento') !!}
@@ -90,14 +90,14 @@
 <div class="col-xs-4">
     <div class="form-group">                        
         {!! Form::label('code_em', 'Código', ['class' => 'control-label']) !!}
-        {!! Form::text('code_em', $data->code_em, ['class' => 'form-control', 'placeholder' => 'EM-0004256']) !!}
+        {!! Form::text('code_em', null, ['class' => 'form-control', 'placeholder' => 'EM-0004256']) !!}
     </div>
     
 </div>
 <div class="col-xs-4">
      <div class="form-group">
         {!! Form::label('date_of_admission', 'Fecha de ingreso') !!}
-        {!! Form::date('date_of_admission', $data->date_of_admission, ['class' => 'form-control']) !!}
+        {!! Form::date('date_of_admission', null, ['class' => 'form-control']) !!}
     </div>
     <div class="form-group">
         {!! Form::label('contract_status', 'Contrato') !!}
@@ -111,7 +111,7 @@
     </div> 
     <div class="form-group">
         {!! Form::label('duration_em', 'Duración') !!}
-        {!! Form::text('duration_em', $data->duration_em, ['class' => 'form-control', 'placeholder' => '60']) !!}
+        {!! Form::text('duration_em', null, ['class' => 'form-control', 'placeholder' => '60']) !!}
     </div>
 </div>
 </div> 
@@ -121,7 +121,7 @@
 <div class="col-xs-4">
     <div class="form-group">
         {!! Form::label('bank', 'Banco') !!}
-        {!! Form::text('bank', $data->bank, ['class' => 'form-control', 'placeholder' => 'BBVA Provincial']) !!}
+        {!! Form::text('bank', null, ['class' => 'form-control', 'placeholder' => 'BBVA Provincial']) !!}
     </div>
 </div>
 <div class="col-xs-4">
@@ -133,7 +133,7 @@
 <div class="col-xs-4">
      <div class="form-group">
         {!! Form::label('account_em', 'Nro. Cuenta', ['class' => 'control-label']) !!}
-        {!! Form::text('account_em', $data->account_em, ['class' => 'form-control', 'placeholder' => '2034 4505 73 1000034682']) !!}
+        {!! Form::text('account_em', null, ['class' => 'form-control', 'placeholder' => '2034 4505 73 1000034682']) !!}
     </div>
 </div>
 </div>

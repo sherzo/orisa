@@ -21,6 +21,7 @@ class ProvidersController extends Controller
     {
         $providers = Provider::paginate();
 
+
         return view('admin.providers.index', compact('providers'));
     }
 

@@ -1,4 +1,5 @@
 	$(document).ready(function(){
+
 	$('.btn-agregar').click(function(e){
 
 		e.preventDefault();
@@ -8,8 +9,6 @@
 		var unidad = $("#unidad").val();
 
 		
- 		
-
 		if(cantidad != ''){
 			$("div.alert").attr('class', 'hide');
 			$.ajax({	

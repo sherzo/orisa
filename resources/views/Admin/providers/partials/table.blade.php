@@ -19,6 +19,9 @@
                                    <td>{{ $provider->telefono }}</td>
                                    <td>{{ $provider->correo }}</td>
                                    <td class="text-center">
+                                    <a class="btn btn-default btn-xs" title="Ornde de compra">
+                                        <span class="fa fa-shopping-cart fa-2x"></span>
+                                     </a>
                                      <a class="btn btn-default btn-xs" title="Ver">
                                         <span class="fa fa-eye fa-2x"></span>
                                      </a>

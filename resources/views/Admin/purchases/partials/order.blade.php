@@ -3,7 +3,7 @@
 <div class="form-group">
 	{!! Form::label('proveedor', 'Seleccione el proveedor')!!}
 
-{!! Form::select('proveedor', $providers, null, ['class' => 'form-control']); !!}
+{!! Form::select('proveedor', $providers, null, ['class' => 'form-control', 'onchange' => 'productos()']); !!}
 </div>
 <div class="col-md-3"></div>
 <div class="col-md-6 center-block">
@@ -53,7 +53,7 @@
 		<tfoot>
 			<tr>
 				<td colspan="2">
-					<button class="btn btn-success btn-block"><span class="fa fa-plus fa-fw"></span>Agregar a la compra</button>
+					<button type="button" class="btn btn-success btn-block" data-toggle="tooltip" data-placement="top" title="Agregar a la compra">Agregar a la compra</button>
 				</td>
 			</tr>
 		</tfoot>

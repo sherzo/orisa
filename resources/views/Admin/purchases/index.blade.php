@@ -1,4 +1,4 @@
-@extends('layout.layout')
+@extends('layout.layoutAdmin')
 
 @section('contenido')
 
@@ -24,14 +24,14 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">Datos de la compra
 				
-				<button class="btn btn-sm btn-primary pull-right" title="1) Seleccione el proveedor 2) Selecciones y agregue productos 3) Coloque cantidad, unidad y precio 4) Acepte y guarde la orden"><span class="fa fa-info-circle "></span></button>
+				
 				</div>
 					<div class="panel-body">
 {!! Form::open(['method' => 'POST']) !!}
 
   
   
-@include('admin.compra.partials.orden')
+@include('admin.purchases.partials.order')
 
 {!! Form::close() !!}
 					</div>

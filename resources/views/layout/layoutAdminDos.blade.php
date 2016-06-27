@@ -217,11 +217,11 @@
   @if((Auth::user()->type)=='1' || (Auth::user()->type)=='2' || (Auth::user()->type)=='3' )
                           <li>
 
-                            <a href="{{ url('compra') }}" ><i class="
+                            <a href="" ><i class="
                             glyphicon glyphicon-shopping-cart"></i> Compra<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="#">
+                                    <a href="{{ url('admin/compra') }}">
                                     <i class="fa fa-clipboard fa-fw"></i> Orden de Compra</a>
                                 </li>
                                 <li>

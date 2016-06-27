@@ -21,6 +21,10 @@ class Ingredient extends Model
      * @var array
      */
 
+    public function providers()
+    {
+        return $this->belongsToMany('App\Provider');
+    }
 
     protected $table = 'ingredients';
 

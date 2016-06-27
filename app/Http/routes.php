@@ -72,20 +72,23 @@ Route::group(['prefix' => 'admin'], function(){
 		'uses' => 'ProvidersController@destroy',
 		'as' => 'admin.proveedores.destroy'
 		]);
+
 	Route::post('proveedores/search', [
 		'uses' => 'ProvidersController@search',
 		'as' => 'admin.proveedores.search'
 		]);
+
+});
+
+Route::group(['prefix' => 'admin'], function(){
+
+	Route::resource('compra', 'PurchasesController');
 });
 
 Route::get('compra', function(){
-
-$providers = \DB::table('providers')->lists('razon_social', 'id');
-
-	return view('admin.compra.index', compact('providers'));
-
+		$providers = \DB::table('providers')->lists('razon_social', 'id');
+        return view('admin.purchases.index', compact('providers'));
 });
-
 /*
 * 		RUTAS SAUL 
 */

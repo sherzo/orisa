@@ -215,11 +215,11 @@
   @if((Auth::user()->type)=='1' || (Auth::user()->type)=='2' || (Auth::user()->type)=='3' )
                           <li>
 
-                            <a href="{{ url('compra') }}" ><i class="
+                            <a href="#" ><i class="
                             glyphicon glyphicon-shopping-cart"></i> Compra<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="#">
+                                    <a href="{{ url('admin/compra') }}">
                                     <i class="fa fa-clipboard fa-fw"></i> Orden de Compra</a>
                                 </li>
                                 <li>
@@ -311,10 +311,11 @@
 
     <!-- Metis Menu Plugin JavaScript -->
     <script src="bower_components/metisMenu/dist/metisMenu.min.js"></script>
-
+    
     <!-- Custom Theme JavaScript -->
     <script src="dist/js/sb-admin-2.js"></script>
     <!-- DataTables JavaScript -->
+    <script src="dis/js/ajax.js"></script>
     <script src="bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
     <script src="bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js"></script>
     <!-- Page-Level Demo Scripts - Tables - Use for reference -->

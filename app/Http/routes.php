@@ -59,7 +59,6 @@ Route::group(['prefix' => 'admin'], function(){
 		]);
 });
 
-
    
 /*
 * 		RUTAS OLIVER
@@ -128,6 +127,11 @@ Route::group(['prefix' => 'admin'], function(){
 
 });
 
+Route::get('lista_ingredientes', function(){
+	
+	return view('admin.plates.partials.list_ingredient'); 
+
+});
 
 Route::auth();
 

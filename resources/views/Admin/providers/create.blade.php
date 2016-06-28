@@ -20,12 +20,12 @@
 				<div class="panel-heading">Registro de proveedores</div>
 					<div class="panel-body">
 
-						@include('admin.partial.errors')
+				@include('admin.partial.errors')
 
 
-						{!! Form::open(['route' => 'admin.proveedores.search', 'method' => 'POST', 'class' => 'form-inline']) !!}
+				{!! Form::open(['route' => 'admin.proveedores.search', 'method' => 'POST', 'class' => 'form-inline']) !!}
 					 	
-						@include('admin.providers.partials.fields')
+				@include('admin.providers.partials.fields')
 
 						<!--<div class="form-group">
                 		<br>

@@ -24,7 +24,7 @@
 						var html = '<tr><td>'+data.id+'</td><td>'+data.cantidad+'</td><td>'+data.unidad+'</td></tr>';
 
 						$("#fila").html('');
-						$("#list_ingredient").html(html);
+						$("#list_ingredient").load('http:/localhost/orisa/public/lista_ingredientes');
 						
 					}else{
 			

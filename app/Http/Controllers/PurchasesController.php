@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Provider;
+use App\Ingredient;
 
 use App\Http\Requests;
 
@@ -14,11 +15,27 @@ class PurchasesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $providers = Provider::lists('razon_social', 'id');
+
+    
+        $request->proveedor ? $ingredients = Provider::find($request->proveedor)->Ingredientes()->get() : $ingredients = false;
+
+        if(isset($request->add_ingrediets)){
         
-        return view('admin.purchases.index', compact('providers'));
+        foreach ($request->add_ingrediets as $key => $value) {
+            $data_ingredient[$key] = Ingredient::find($value); 
+        }
+        
+        return view('admin.purchases.index', compact('providers', 'ingredients', 'data_ingredient'));
+
+        
+        }else {
+            $data_ingredient = false;
+        }
+
+        return view('admin.purchases.index', compact('providers', 'ingredients', 'data_ingredient'));
 
     }
 
@@ -87,4 +104,5 @@ class PurchasesController extends Controller
     {
         //
     }
+
 }

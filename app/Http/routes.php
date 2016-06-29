@@ -82,12 +82,14 @@ Route::group(['prefix' => 'admin'], function(){
 Route::group(['prefix' => 'admin'], function(){
 
 	Route::resource('compra', 'PurchasesController');
+
+	Route::post('compra/search', [
+		'uses' => 'PurchasesController@search',
+		'as' => 'admin.compra.search'
+		]);
 });
 
-Route::get('compra', function(){
-		$providers = \DB::table('providers')->lists('razon_social', 'id');
-        return view('admin.purchases.index', compact('providers'));
-});
+
 /*
 * 		RUTAS SAUL 
 */

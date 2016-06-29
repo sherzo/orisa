@@ -21,7 +21,7 @@
     </div>
 
       <!-- BOTON BUSCAR -->
-    <span class="input-group-btn">
+      <span class="input-group-btn">
           <button type="submit" class="btn btn-default" type="button" id="buscar" title="Buscar proveedor">
           <span class="glyphicon glyphicon-search"></span>
           </button>

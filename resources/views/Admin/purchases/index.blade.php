@@ -27,13 +27,10 @@
 				
 				</div>
 					<div class="panel-body">
-{!! Form::open(['method' => 'POST']) !!}
 
-  
-  
-@include('admin.purchases.partials.order')
+  @include('admin.purchases.partials.order')
 
-{!! Form::close() !!}
+
 					</div>
 			</div>
 		</div>

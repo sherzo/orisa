@@ -61,7 +61,7 @@ class ProvidersController extends Controller
      */
     public function show($id)
     {
-        //
+        
     }
 
     /**
@@ -115,9 +115,13 @@ class ProvidersController extends Controller
     }
 
 //---------------- METODO CREADO PARA VERIFICAR QUE NO EXISTE EL PROVEEDOR
+
     public function search(Request $request)
     {
-        $valor = $request->literal.'-'.$request->rif;
+        if(isset($request->literal)){
+
+            $valor = $request->literal.'-'.$request->rif;
+        
         $provider = Provider::rif($valor)->first();
 
         if($provider)
@@ -131,6 +135,9 @@ class ProvidersController extends Controller
 
           return view('admin.providers.search', compact('valor'));
         }
+    
     }
-        
+
+    }
+
 }

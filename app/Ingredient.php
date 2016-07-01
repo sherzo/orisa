@@ -26,6 +26,12 @@ class Ingredient extends Model
         return $this->belongsToMany('App\Provider');
     }
 
+     public function unit()
+    {
+        return $this->belongsTo('App\Unit', 'id_unit', 'id');
+    }
+
+
     protected $table = 'ingredients';
 
     public function scopeAgregar($query, $nombre)

@@ -12,7 +12,7 @@ class Liqueurs_type extends Model
      * @var array
      */
     protected $fillable = [
-        'id_user', 'type_name',
+        'tipo_licor',
     ];
 
     /**

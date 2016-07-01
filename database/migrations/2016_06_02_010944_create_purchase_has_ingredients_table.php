@@ -15,9 +15,10 @@ class CreatePurchaseHasIngredientsTable extends Migration
         Schema::create('purchase_has_ingredients', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('id_ingredient') ->unsigned();
-            $table->foreign('id_ingredient') ->references('id')->on('ingredients');
+            $table->foreign('id_ingredient') ->references('id')->on('ingredients')->onDelete('cascade');
             $table->integer('id_purchase') ->unsigned();
-            $table->foreign('id_purchase') ->references('id')->on('purchases');
+            $table->foreign('id_purchase') ->references('id')->on('purchases')->onDelete('cascade');
+            $table->integer('cantidad');
             $table->timestamps();
         });
     }

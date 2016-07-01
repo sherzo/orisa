@@ -15,9 +15,10 @@ class CreatePurchaseHasLiqueursTable extends Migration
         Schema::create('purchase_has_liqueurs', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('id_liqueur') ->unsigned();
-            $table->foreign('id_liqueur') ->references('id')->on('liqueurs');
+            $table->foreign('id_liqueur') ->references('id')->on('liqueurs')->onDelete('cascade');
             $table->integer('id_purchase') ->unsigned();
-            $table->foreign('id_purchase') ->references('id')->on('purchases');
+            $table->foreign('id_purchase') ->references('id')->on('purchases')->onDelete('cascade');
+            $table->integer('cantidad');
             $table->timestamps();
         });
     }

@@ -24,6 +24,10 @@ class LiqueursController extends Controller
     public function index()
     {   
         $liqueurs = Liqueur::paginate();
+        $liqueurs->each(function($liqueurs){
+            $liqueurs->tipo;
+        });
+
 
         return view('admin.liqueurs.index', compact('liqueurs'));
     }
@@ -69,7 +73,7 @@ class LiqueursController extends Controller
         }   
 
         Flash::success('<strong>Exito!</strong> Se registro '.
-         $liqueur->liqueur_name .' correctamente!');
+         $liqueur->nombre_licor .' correctamente!');
 
         return redirect('admin/licores');
     }

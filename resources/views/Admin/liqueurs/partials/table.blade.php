@@ -1,3 +1,4 @@
+@include('flash::message')
  <table class="table table-bordered table-hover table-striped">
                                 <thead>
                                     <tr>
@@ -14,7 +15,7 @@
                                   <tr>
                                    <td>{{ $liqueur->id }}</td>
                                    <td>{{ $liqueur->nombre_licor }}</td>
-                                   <td>{{ $liqueur->id_type }}</td>
+                                   <td>{{ $liqueur->tipo[0]->tipo_licor }}</td>
                                    <td>{{ $liqueur->caracteristica }}</td>
 
                                    <td class="text-center">

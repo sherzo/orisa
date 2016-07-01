@@ -306,7 +306,7 @@
 -->
 
 <div id="page-wrapper"><br>
-@include('flash::message')
+
 
 @yield('contenido')
 @yield('employee_content')

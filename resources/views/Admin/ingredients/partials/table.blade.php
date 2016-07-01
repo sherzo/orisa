@@ -1,3 +1,4 @@
+@include('flash::message')
  <table class="table table-bordered table-hover table-striped">
                                 <thead>
                                     <tr>

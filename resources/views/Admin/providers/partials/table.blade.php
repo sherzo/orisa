@@ -1,3 +1,4 @@
+@include('flash::message')
  <table class="table table-bordered table-hover table-striped">
                                 <thead>
                                     <tr>
@@ -19,7 +20,7 @@
                                    <td>{{ $provider->telefono }}</td>
                                    <td>{{ $provider->correo }}</td>
                                    <td class="text-center">
-                                    <a class="btn btn-default btn-xs" title="Ornde de compra">
+                                    <a class="btn btn-default btn-xs" href="{{ route('admin.compra.index', ['proveedor' => $provider->id]) }}" title="Ornde de compra">
                                         <span class="fa fa-shopping-cart fa-2x"></span>
                                      </a>
                                      <a class="btn btn-default btn-xs" title="Ver">

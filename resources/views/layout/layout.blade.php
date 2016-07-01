@@ -290,7 +290,7 @@
     </footer>
 -->
   <div id="page-wrapper">
-@include('flash::message')
+
 
 @yield('contenido')
 @yield('employee_content')

@@ -29,4 +29,10 @@ class Data_employee extends Model
      * @var array
      */
 
+    public function unit()
+    {
+        return $this->belongsTo('App\purchase', 'id_purchase', 'id');
+    }
+
+
 }

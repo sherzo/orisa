@@ -1,6 +1,6 @@
 <div class="col-md-6 center-block">
-<p class="center-block">Lista de productos</p>
-
+<h4>Lista de productos del proveedor</h4>
+<p class="text-muted">Selecciones y agregue</p>
 	<table class="table table-bordered">
 	{!! Form::open(['route' => 'admin.compra.index', 'method' => 'GET']) !!}
 		<thead><tr>
@@ -22,7 +22,7 @@
 		<tfoot>
 			<tr>
 				<td colspan="2">
-					<button class="btn btn-success btn-block"  title="Agregar a la compra">Agregar a la compra</button>
+					<button class="btn btn-success btn-block"  title="Agregar a la compra"><span class="fa fa-plus "></span> Agregar a la compra</button>
 				</td>
 			</tr>
 		</tfoot>

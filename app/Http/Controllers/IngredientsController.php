@@ -70,7 +70,7 @@ class IngredientsController extends Controller
         }   
 
         Flash::success('<strong>Exito!</strong> Se registro el ingrediente '.
-         $ingredient->ingredient_name .' correctamente!');
+         $ingredient->nombre_ingrediente .' correctamente!');
 
         return redirect('admin/ingredientes');
     }

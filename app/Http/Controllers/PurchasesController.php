@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Provider;
 use App\Ingredient;
+use App\Purchase;
+use App\Purchase_has_ingredient;
+use App\Unit;
+use Laracasts\Flash\Flash;
 
 use App\Http\Requests;
 
@@ -22,13 +26,17 @@ class PurchasesController extends Controller
     
         $request->proveedor ? $ingredients = Provider::find($request->proveedor)->Ingredientes()->get() : $ingredients = false;
 
+    
         if(isset($request->add_ingrediets)){
         
         foreach ($request->add_ingrediets as $key => $value) {
-            $data_ingredient[$key] = Ingredient::find($value); 
+            $data_ingredient[$key] = Ingredient::find($value);
+            $units[] = Ingredient::find($value)->unit()->get();
         }
-        
-        return view('admin.purchases.index', compact('providers', 'ingredients', 'data_ingredient'));
+  
+
+
+        return view('admin.purchases.index', compact('providers', 'ingredients', 'data_ingredient', 'units'));
 
         
         }else {
@@ -46,7 +54,7 @@ class PurchasesController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -57,9 +65,24 @@ class PurchasesController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
 
+        $purchase = new Purchase;
+        $purchase->status = '0';
+        $purchase->save();
+          
+        foreach ($request->ingredients as $key => $value) {
+            $purchase_ingredient = new Purchase_has_ingredient;
+            $purchase_ingredient->id_ingredient = $value;
+            $purchase_ingredient->id_purchase = $purchase->id;
+            $purchase_ingredient->cantidad = $request->cantidad[$key];
+            $purchase_ingredient->save();
+        }
+    
+    Flash::success('<strong>Exito!</strong> Se proceso la orden correctamente!');
+
+     return redirect('admin/compra');
+
+    }
     /**
      * Display the specified resource.
      *
@@ -68,7 +91,7 @@ class PurchasesController extends Controller
      */
     public function show($id)
     {
-        //
+        
     }
 
     /**

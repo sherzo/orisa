@@ -15,6 +15,10 @@ class UnitsTableSeeder extends Seeder
         	'unidad' => 'kg'
         ));
 
+        \DB::table('units')->insert(array (
+            'unidad' => 'g'
+        ));
+
            \DB::table('units')->insert(array (
         	'unidad' => 'mg'
         ));

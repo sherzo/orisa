@@ -14,9 +14,7 @@ class CreatePurchasesTable extends Migration
     {
         Schema::create('purchases', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('amount_of_ingredient');
-            $table->integer('id_provider') ->unsigned();
-            $table->foreign('id_provider') ->references('id')->on('providers');
+            $table->integer('status');
             $table->timestamps();
         });
     }

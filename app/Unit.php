@@ -12,7 +12,7 @@ class Unit extends Model
      * @var array
      */
     protected $fillable = [
-        'unist_name', 
+        'unidad', 
     ];
 
     /**
@@ -24,4 +24,10 @@ class Unit extends Model
 
 
     protected $table = 'units';
+
+
+    public function ingredients()
+    {
+        return $this->hasMany('App\Ingredient', 'id_unit', 'id');
+    }
 }

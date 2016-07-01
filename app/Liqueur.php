@@ -23,4 +23,9 @@ class Liqueur extends Model
 
 
     protected $table = 'liqueurs';
+
+    public function tipo()
+    {
+        return $this->belongsToMany('App\Liqueurs_type', 'liqueurs', 'id', 'id_type');
+    }
 }

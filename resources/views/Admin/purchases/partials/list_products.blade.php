@@ -5,7 +5,7 @@
 	{!! Form::open(['route' => 'admin.compra.index', 'method' => 'GET']) !!}
 		<thead><tr>
 			<th>Agregar</th>
-			<th>Producto</th>
+			<th>Ingrediente</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -13,9 +13,27 @@
 			@foreach($ingredients as $ingredient)
 			<tr>
 				<td>
-					{!! Form::checkbox('add_ingrediets[]', $ingredient->id) !!}
+					{!! Form::checkbox('add_ingredients[]', $ingredient->id) !!}
 				</td>
 				<td>{{ $ingredient->nombre_ingrediente }}</td>
+			</tr>		
+			@endforeach
+
+			@if(!empty($liqueurs))
+		
+			<tr>
+				<td><strong>Agregar</strong></td>
+				<td><strong>Licor</strong></td>
+			
+			</tr>
+			@endif
+
+			@foreach($liqueurs as $liqueur)
+			<tr>
+				<td>
+					{!! Form::checkbox('add_liqueurs[]', $liqueur->id) !!}
+				</td>
+				<td>{{ $liqueur->nombre_licor }}</td>
 			</tr>
 			@endforeach			
 		</tbody>

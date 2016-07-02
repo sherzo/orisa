@@ -7,8 +7,10 @@ use App\Provider;
 use App\Ingredient;
 use App\Purchase;
 use App\Purchase_has_ingredient;
+use App\Purchase_has_liqueurs;
 use App\Unit;
 use Laracasts\Flash\Flash;
+use App\Liqueur;
 
 use App\Http\Requests;
 
@@ -24,26 +26,55 @@ class PurchasesController extends Controller
         $providers = Provider::lists('razon_social', 'id');
 
     
-        $request->proveedor ? $ingredients = Provider::find($request->proveedor)->Ingredientes()->get() : $ingredients = false;
+        $request->proveedor ? $ingredients = Provider::find($request->proveedor)->ingredients()->get() : $ingredients = false;
+
+        $request->proveedor ? $liqueurs = Provider::find($request->proveedor)->liqueurs()->get() : $liqueurs = false;
+
 
     
-        if(isset($request->add_ingrediets)){
+        if(isset($request->add_ingredients) || isset($request->add_liqueurs)){
         
-        foreach ($request->add_ingrediets as $key => $value) {
+        if(isset($request->add_ingredients)){ 
+
+        foreach ($request->add_ingredients as $key => $value) {
+            
             $data_ingredient[$key] = Ingredient::find($value);
-            $units[] = Ingredient::find($value)->unit()->get();
-        }
-  
+            $units_i[] = Ingredient::find($value)->unit()->get();
 
+            }
 
-        return view('admin.purchases.index', compact('providers', 'ingredients', 'data_ingredient', 'units'));
-
-        
         }else {
             $data_ingredient = false;
         }
 
-        return view('admin.purchases.index', compact('providers', 'ingredients', 'data_ingredient'));
+        if(isset($request->add_liqueurs)){
+
+        foreach ($request->add_liqueurs as $key => $value) {   
+            
+            $data_liqueur[$key] = Liqueur::find($value);
+            $units_l[] = Liqueur::find($value)->unit()->get();
+            
+            }
+
+        }else {
+
+            $data_liqueur = false;
+            $hola = true;
+        }
+
+
+        return view('admin.purchases.index', compact('providers', 'ingredients', 'liqueurs', 'data_ingredient', 'data_liqueur', 'units_i', 'units_l', 'hola'));
+
+        
+        }else {
+
+            $data_ingredient = false;
+            $data_liqueur = false;
+            $hola=true;
+        
+        }
+
+        return view('admin.purchases.index', compact('providers', 'ingredients', 'liqueurs', 'data_ingredient', 'data_liqueur'));
 
     }
 
@@ -66,21 +97,38 @@ class PurchasesController extends Controller
     public function store(Request $request)
     {
 
+      
         $purchase = new Purchase;
         $purchase->status = '0';
         $purchase->save();
-          
-        foreach ($request->ingredients as $key => $value) {
-            $purchase_ingredient = new Purchase_has_ingredient;
-            $purchase_ingredient->id_ingredient = $value;
-            $purchase_ingredient->id_purchase = $purchase->id;
-            $purchase_ingredient->cantidad = $request->cantidad[$key];
-            $purchase_ingredient->save();
+        $compra = $purchase->id;
+
+        if(isset($request->ingredients)){ 
+        
+            foreach ($request->ingredients as $key => $value) {
+                
+                $purchase_ingredient = new Purchase_has_ingredient;
+                $purchase_ingredient->id_ingredient = $value;
+                $purchase_ingredient->id_purchase = $compra;
+                $purchase_ingredient->cantidad = $request->cantidad_ingredient[$key];
+                $purchase_ingredient->save(); 
+            }
         }
-    
+
+        if(isset($request->liqueurs)){
+            foreach ($request->liqueurs as $key => $value2) {
+
+                $purchase_liqueur = new Purchase_has_liqueurs;
+                $purchase_liqueur->id_liqueur = $value;
+                $purchase_liqueur->id_purchase = $compra;
+                $purchase_liqueur->cantidad = $request->cantidad_liqueur[$key];
+                $purchase_liqueur->save();
+              
+            }
+        }
     Flash::success('<strong>Exito!</strong> Se proceso la orden correctamente!');
 
-     return redirect('admin/compra');
+    return redirect('admin/compra');
 
     }
     /**

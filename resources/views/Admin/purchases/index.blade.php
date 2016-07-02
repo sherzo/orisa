@@ -2,23 +2,23 @@
 
 @section('contenido')
 
-<div class="row"><br>
+<div class="row">
   <div class="col-lg-12">
       <ol class="breadcrumb">
       <li><a href="{{ url('admin') }}"><span class="glyphicon glyphicon-home"></span></a></li>
       <li class="active">Compra </li>
       </ol>
-      <h4 class="page-header">NUEVA ORDEN DE COMPRA</h4>
+      <h4 class="page-header">Nueva orden de compra</h4>
   </div>
-
-  <!--<div class="col-lg-3 pull-right">
+              
+  <div class="col-lg-4">
       <a href="{{ url('admin/employees/create') }}">
       <button type="button" class="btn btn-primary">
-      <span class="fa fa-list"></span> Lista de ordenes </button></a>
+      <span class="fa fa-list"></span> Lista</button></a>
   </div>
--->
-</div>
 
+</div>
+<br>
 <div class="row">	
 		<div class="col-lg-10 ">
 			<div class="panel panel-default">

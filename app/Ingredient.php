@@ -26,6 +26,11 @@ class Ingredient extends Model
         return $this->belongsToMany('App\Provider');
     }
 
+    public function tipo()
+    {
+        return $this->belongsToMany('App\Ingredients_type', 'Ingredients', 'id', 'id_type');
+    }
+
      public function unit()
     {
         return $this->belongsTo('App\Unit', 'id_unit', 'id');

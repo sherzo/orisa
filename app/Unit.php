@@ -30,4 +30,9 @@ class Unit extends Model
     {
         return $this->hasMany('App\Ingredient', 'id_unit', 'id');
     }
+
+    public function liqueurs()
+    {
+        return $this->hasMany('App\Liqueur', 'id_unit', 'id');
+    }
 }

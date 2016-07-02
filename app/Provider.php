@@ -21,14 +21,14 @@ class Provider extends Model
      * @var array
      */
 
-    public function Ingredientes()
+    public function ingredients()
     {
         return $this->belongsToMany('App\Ingredient', 'ingredients_providers', 'id_provider', 'id_ingredient');
     }
 
-    public function Licores()
+    public function liqueurs()
     {
-        return $this->belongsToMany('App\Liqueurs');
+        return $this->belongsToMany('App\Liqueur', 'liqueurs_providers', 'id_provider', 'id_liqueur');
     }
 
     protected $table = 'providers';

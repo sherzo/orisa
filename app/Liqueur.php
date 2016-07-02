@@ -28,4 +28,9 @@ class Liqueur extends Model
     {
         return $this->belongsToMany('App\Liqueurs_type', 'liqueurs', 'id', 'id_type');
     }
+
+    public function unit()
+    {
+        return $this->belongsTo('App\Unit', 'id_unit', 'id');
+    }
 }

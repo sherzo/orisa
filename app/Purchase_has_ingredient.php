@@ -23,10 +23,6 @@ class Purchase_has_ingredient extends Model
      * @var array
      */
 
-    
-    public function unit()
-    {
-        return $this->belongsTo('App\Unit', 'id_purchase', 'id');
-    }
+
 
 }

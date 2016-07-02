@@ -22,13 +22,13 @@
 {!! Form::close() !!}
 <div class="col-md-3"></div>
 
-@if($ingredients)
+@if($ingredients )
 	
 	@include('admin.purchases.partials.list_products')
 	
 @endif
 
-@if($data_ingredient)
+@if($data_ingredient || $data_liqueur)
 
 	@include('admin.purchases.partials.list_products_add')
 

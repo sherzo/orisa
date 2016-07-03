@@ -1,6 +1,8 @@
+
 <div class="col-md-6 center-block">
-<h4>Lista de productos del proveedor</h4>
-<p class="text-muted">Selecciones y agregue</p>
+
+<h3>Lista de productos</h3>
+	<p class="text-muted">Selecciones y agregue</p>
 	<table class="table table-bordered">
 	{!! Form::open(['route' => 'admin.compra.index', 'method' => 'GET']) !!}
 		<thead><tr>
@@ -44,6 +46,7 @@
 				</td>
 			</tr>
 		</tfoot>
+		
 		{!! Form::close() !!}
 	</table>
 

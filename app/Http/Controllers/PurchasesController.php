@@ -9,6 +9,7 @@ use App\Purchase;
 use App\Purchase_has_ingredient;
 use App\Purchase_has_liqueurs;
 use App\Unit;
+use Faker\Factory as Faker;
 use Laracasts\Flash\Flash;
 use App\Liqueur;
 
@@ -23,17 +24,19 @@ class PurchasesController extends Controller
      */
     public function index(Request $request)
     {
+
+
         $providers = Provider::lists('razon_social', 'id');
 
-    
+        
         $request->proveedor ? $ingredients = Provider::find($request->proveedor)->ingredients()->get() : $ingredients = false;
 
         $request->proveedor ? $liqueurs = Provider::find($request->proveedor)->liqueurs()->get() : $liqueurs = false;
 
-
     
         if(isset($request->add_ingredients) || isset($request->add_liqueurs)){
         
+
         if(isset($request->add_ingredients)){ 
 
         foreach ($request->add_ingredients as $key => $value) {
@@ -59,18 +62,18 @@ class PurchasesController extends Controller
         }else {
 
             $data_liqueur = false;
-            $hola = true;
+
         }
 
 
-        return view('admin.purchases.index', compact('providers', 'ingredients', 'liqueurs', 'data_ingredient', 'data_liqueur', 'units_i', 'units_l', 'hola'));
+        return view('admin.purchases.index', compact('providers', 'ingredients', 'liqueurs', 'data_ingredient', 'data_liqueur', 'units_i', 'units_l'));
 
         
         }else {
 
             $data_ingredient = false;
             $data_liqueur = false;
-            $hola=true;
+ 
         
         }
 
@@ -101,7 +104,7 @@ class PurchasesController extends Controller
         $purchase = new Purchase;
         $purchase->status = '0';
         $purchase->save();
-        $compra = $purchase->id;
+  
 
         if(isset($request->ingredients)){ 
         
@@ -109,7 +112,7 @@ class PurchasesController extends Controller
                 
                 $purchase_ingredient = new Purchase_has_ingredient;
                 $purchase_ingredient->id_ingredient = $value;
-                $purchase_ingredient->id_purchase = $compra;
+                $purchase_ingredient->id_purchase = $purchase->id;
                 $purchase_ingredient->cantidad = $request->cantidad_ingredient[$key];
                 $purchase_ingredient->save(); 
             }
@@ -120,13 +123,15 @@ class PurchasesController extends Controller
 
                 $purchase_liqueur = new Purchase_has_liqueurs;
                 $purchase_liqueur->id_liqueur = $value;
-                $purchase_liqueur->id_purchase = $compra;
+                $purchase_liqueur->id_purchase = $purchase->id;
                 $purchase_liqueur->cantidad = $request->cantidad_liqueur[$key];
                 $purchase_liqueur->save();
               
             }
         }
-    Flash::success('<strong>Exito!</strong> Se proceso la orden correctamente!');
+       $url = route('admin.compra.show', $purchase->id);
+
+    Flash::success('<strong>Exito!</strong> Se proceso la <strong><a href="'.$url.'" title="Ver orden">Orden de compra</a></strong> correctamente!');
 
     return redirect('admin/compra');
 
@@ -139,7 +144,7 @@ class PurchasesController extends Controller
      */
     public function show($id)
     {
-        
+        dd($id);
     }
 
     /**
@@ -150,7 +155,7 @@ class PurchasesController extends Controller
      */
     public function edit($id)
     {
-        //
+
     }
 
     /**
@@ -176,4 +181,11 @@ class PurchasesController extends Controller
         //
     }
 
+    public function order()
+    {
+        $purchases = Purchase::paginate(10);
+
+        return view('admin.purchases.list', compact('purchases'));
+
+    }
 }

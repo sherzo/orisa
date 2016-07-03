@@ -44,6 +44,11 @@ Route::get('admin', function(){
 
 Route::group(['prefix' => 'admin'], function(){ 
 
+	Route::post('employees/search', [
+		'uses' => 'EmployeesController@search',
+		'as' => 'admin.employees.search'
+		]);
+
 	Route::resource('employees', 'EmployeesController');
 	Route::get('employees/{all}/create', [
 		'uses' => 'EmployeesController@create',
@@ -53,10 +58,7 @@ Route::group(['prefix' => 'admin'], function(){
 		'uses' => 'EmployeesController@destroy',
 		'as' => 'admin.employees.destroy'
 		]);
-	Route::post('employees/search', [
-		'uses' => 'EmployeesController@search',
-		'as' => 'admin.employees.search'
-		]);
+	
 });
 
    
@@ -66,27 +68,30 @@ Route::group(['prefix' => 'admin'], function(){
 
 Route::group(['prefix' => 'admin'], function(){ 
 
-	Route::resource('proveedores', 'ProvidersController');
-	Route::get('proveedores/{id}/destroy', [
-		'uses' => 'ProvidersController@destroy',
-		'as' => 'admin.proveedores.destroy'
-		]);
-
 	Route::post('proveedores/search', [
 		'uses' => 'ProvidersController@search',
 		'as' => 'admin.proveedores.search'
 		]);
 
+	
+	Route::get('proveedores/{id}/destroy', [
+		'uses' => 'ProvidersController@destroy',
+		'as' => 'admin.proveedores.destroy'
+		]);
+	
+	Route::resource('proveedores', 'ProvidersController');
+
 });
 
 Route::group(['prefix' => 'admin'], function(){
 
+	Route::get('compra/ordenes', [
+		'uses' => 'PurchasesController@order',
+		'as' => 'admin.compra.ordenes'
+		]);
+	
 	Route::resource('compra', 'PurchasesController');
 
-	Route::post('compra/search', [
-		'uses' => 'PurchasesController@search',
-		'as' => 'admin.compra.search'
-		]);
 });
 
 

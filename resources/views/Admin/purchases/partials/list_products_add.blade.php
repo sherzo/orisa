@@ -2,9 +2,10 @@
 
 <div class="row">
 
-	<div class="col-md-8 col-md-offset-2">
-	<h4>Productros agregados</h4>
-	<p class="text-muted">Ingrese cantidades</p>
+	<div class="col-md-10 col-md-offset-1">
+	<hr>
+	<h3>Productos agregados</h3>
+<p class="text-muted center-block">Ingrese cantidades</p>
 		<table class="table table-striped">
 			<thead>
 				<th>#</th>
@@ -103,13 +104,14 @@
 			</tbody>
 		</table>
 	
-	
+	<hr>
 	</div>
 </div>
 <div class="row">
 	<div class="col-md-12">
+
 		<center>	
-		 	<button class="btn btn-success center-blok btn-sm">
+		 	<button class="btn btn-success center-blok btn-sm" title="Guardar orden">
 				<span class="fa fa-save fa-2x"></span>
 			</button>
 		</center>

@@ -12,9 +12,9 @@
   </div>
               
   <div class="col-lg-4">
-      <a href="{{ url('admin/employees/create') }}">
+      <a href="{{ url('admin/compra/ordenes') }}">
       <button type="button" class="btn btn-primary">
-      <span class="fa fa-list"></span> Lista</button></a>
+      <span class="fa fa-list"></span> Lista de ordenes</button></a>
   </div>
 
 </div>

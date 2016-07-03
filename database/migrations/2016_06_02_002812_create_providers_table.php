@@ -14,11 +14,11 @@ class CreateProvidersTable extends Migration
     {
         Schema::create('providers', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('rif', 15);
-            $table->string('razon_social', 20);
+            $table->string('rif', 16);
+            $table->string('razon_social', 30);
             $table->text('direccion');
             $table->text('telefono');
-            $table->string('correo', 15);
+            $table->string('correo', 30);
             $table->timestamps();
         });
     }

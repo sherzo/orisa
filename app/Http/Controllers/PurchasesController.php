@@ -9,9 +9,9 @@ use App\Purchase;
 use App\Purchase_has_ingredient;
 use App\Purchase_has_liqueurs;
 use App\Unit;
-use Faker\Factory as Faker;
 use Laracasts\Flash\Flash;
 use App\Liqueur;
+use Carbon\Carbon;
 
 use App\Http\Requests;
 
@@ -27,43 +27,42 @@ class PurchasesController extends Controller
 
 
         $providers = Provider::lists('razon_social', 'id');
-
         
+        // Cuando seleciona el proveedor traigo los ingredientes realcionados a el
         $request->proveedor ? $ingredients = Provider::find($request->proveedor)->ingredients()->get() : $ingredients = false;
 
+        // Cuando selecciona el proveedor traigo los licores relacionados a el
         $request->proveedor ? $liqueurs = Provider::find($request->proveedor)->liqueurs()->get() : $liqueurs = false;
 
     
+        // Al Agregar a la compra Ingredientes o Licores
         if(isset($request->add_ingredients) || isset($request->add_liqueurs)){
         
+            if(isset($request->add_ingredients)){ 
 
-        if(isset($request->add_ingredients)){ 
-
-        foreach ($request->add_ingredients as $key => $value) {
+                foreach ($request->add_ingredients as $key => $value) {
             
-            $data_ingredient[$key] = Ingredient::find($value);
-            $units_i[] = Ingredient::find($value)->unit()->get();
+                    $data_ingredient[$key] = Ingredient::find($value);
+                    $units_i[] = Ingredient::find($value)->unit()->get();
 
+                }
+
+            }else{       
+                $data_ingredient = false;
             }
 
-        }else {
-            $data_ingredient = false;
-        }
+            if(isset($request->add_liqueurs)){
 
-        if(isset($request->add_liqueurs)){
+                foreach ($request->add_liqueurs as $key => $value) {   
+            
+                    $data_liqueur[$key] = Liqueur::find($value);
+                    $units_l[] = Liqueur::find($value)->unit()->get();
+            
+                }
 
-        foreach ($request->add_liqueurs as $key => $value) {   
-            
-            $data_liqueur[$key] = Liqueur::find($value);
-            $units_l[] = Liqueur::find($value)->unit()->get();
-            
+            }else {
+                $data_liqueur = false;
             }
-
-        }else {
-
-            $data_liqueur = false;
-
-        }
 
 
         return view('admin.purchases.index', compact('providers', 'ingredients', 'liqueurs', 'data_ingredient', 'data_liqueur', 'units_i', 'units_l'));
@@ -100,9 +99,10 @@ class PurchasesController extends Controller
     public function store(Request $request)
     {
 
-      
         $purchase = new Purchase;
+        $date = Carbon::now();
         $purchase->status = '0';
+        $purchase->fecha = $date->format('d-m-Y');
         $purchase->save();
   
 
@@ -119,7 +119,7 @@ class PurchasesController extends Controller
         }
 
         if(isset($request->liqueurs)){
-            foreach ($request->liqueurs as $key => $value2) {
+            foreach ($request->liqueurs as $key => $value) {
 
                 $purchase_liqueur = new Purchase_has_liqueurs;
                 $purchase_liqueur->id_liqueur = $value;
@@ -129,7 +129,8 @@ class PurchasesController extends Controller
               
             }
         }
-       $url = route('admin.compra.show', $purchase->id);
+       
+    $url = route('admin.compra.show', $purchase->id);
 
     Flash::success('<strong>Exito!</strong> Se proceso la <strong><a href="'.$url.'" title="Ver orden">Orden de compra</a></strong> correctamente!');
 
@@ -144,7 +145,24 @@ class PurchasesController extends Controller
      */
     public function show($id)
     {
-        dd($id);
+
+        $purchase = Purchase::find($id);
+        $purchase->each(function($purchase){
+            $purchase->purchase_ingredients;
+            $purchase->purchase_liqueurs;
+        });
+
+
+        
+                foreach ($purchase->purchase_ingredients as $key => $value){
+                    
+                     $ingredients[$key] = Ingredient::find($value->id_ingredient);
+                     $units_i[] = Ingredient::find($value->id_ingredient)->unit()->get();
+                }
+      
+//dd($purchase->purchase_ingredients);
+        return view('admin.purchases.show', compact('purchase', 'ingredients', 'units_i'));
+
     }
 
     /**
@@ -184,7 +202,7 @@ class PurchasesController extends Controller
     public function order()
     {
         $purchases = Purchase::paginate(10);
-
+        
         return view('admin.purchases.list', compact('purchases'));
 
     }

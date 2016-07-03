@@ -21,7 +21,7 @@
 <div class="row"><br>
                     <div class="col-lg-12">
                         <div class="table-responsive">
-                        <p class="text-muted">Existen {{ $purchases->total() }} ingredientes registrados</p>                        
+                        <p class="text-muted">Existen {{ $purchases->total() }} ordenes registradas</p>                        
                             @include('admin.purchases.partials.table')
 
                             {!! $purchases->render() !!}

@@ -29,4 +29,12 @@ class LiqueurRequest extends Request
            'id_providers' => 'required',
         ];
     }
+
+    public function messages()
+    {
+    return [
+        'id_providers.required' => 'No ha selecionado el proveedor',
+
+    ];
+    }
 }

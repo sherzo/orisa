@@ -25,7 +25,7 @@
                 <div class="row"><br>
                     <div class="col-lg-12">
                         <div class="table-responsive">
-                            <p>Existen {{ $liqueurs->total() }} licores registrados</p>
+                            <p class="text-muted">Existen {{ $liqueurs->total() }} licores registrados</p>
                         
                             @include('admin.liqueurs.partials.table')
 

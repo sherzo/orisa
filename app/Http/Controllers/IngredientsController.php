@@ -10,6 +10,7 @@ use App\Ingredient;
 use App\Ingredients_provider;
 use App\Http\Requests;
 use App\Http\Requests\IngredientRequest;
+use App\Http\Requests\IngredientEditRequest;
 use Laracasts\Flash\Flash;
 
 
@@ -112,14 +113,14 @@ class IngredientsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(IngredientRequest $request, $id)
+    public function update(IngredientEditRequest $request, $id)
     {
         $ingredient = Ingredient::findOrFail($id);
        
         $ingredient->fill($request->all());
         $ingredient->save();
 
-        Flash::success('<strong>Existo! </strong> '. $ingredient->nombre_ingrediente. ' se modifico correctamente');
+        Flash::success('<strong>Existo! </strong> '. $ingredient->nombre_ingrediente. ' se actualizo correctamente');
 
 
         return redirect()->back();

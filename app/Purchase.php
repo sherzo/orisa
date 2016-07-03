@@ -22,9 +22,15 @@ class Purchase extends Model
      *
      * @var array
      */
+
 	public function purchase_ingredients()
     {
         return $this->hasMany('App\Purchase_has_ingredient', 'id_purchase', 'id');
+    }
+
+    public function purchase_liqueurs()
+    {
+        return $this->hasMany('App\Purchase_has_liqueurs', 'id_purchase', 'id');
     }
 
 }

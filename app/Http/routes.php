@@ -91,7 +91,7 @@ Route::group(['prefix' => 'admin'], function(){
 		]);
 	
 	Route::resource('compra', 'PurchasesController');
-
+	Route::pattern('compra', '[0-9]+');
 });
 
 
@@ -125,12 +125,6 @@ Route::group(['prefix' => 'admin'], function(){
 		'uses' => 'PlatesController@addIngredient',
 		'as' => 'admin.plates.addIngredient'
 		]);
-	
-	Route::get('platos/listIngredient', function(){
-
-		return view('admin.plates.partials.list_ingredient');
-	
-	}); 
 
 });
 

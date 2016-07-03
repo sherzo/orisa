@@ -8,7 +8,7 @@
 		<div class="col-lg-12">
              <ol class="breadcrumb">
                 <li><a href="#">Inicio</a></li>
-                  <li><a href="#">Usuarios</a></li>
+                  <li><a href="{{ url('admin/ingredientes') }}">Ingredientes</a></li>
                     <li class="active">Editar</li>
             </ol>
     	</div>
@@ -21,6 +21,7 @@
 				<div class="panel-heading">Editar ingrediente: <strong>{{ $ingredient->nombre_ingrediente }}</strong>
 				</div>
 					<div class="panel-body">
+					@include('flash::message')
 					    {{ Form::model($ingredient, array('route' => array('admin.ingredientes.update', $ingredient->id), 'method' => 'PUT')) }}
 						
 						
@@ -59,9 +60,6 @@
 				<div class="form-group">
                 		<br/>
                 <center>
-					<button type="reset" class="btn btn-primary btn-sm" title="Restrablecer">
-						<span class="fa fa-refresh fa-2x"></span>
-					</button>
 					<button class="btn btn-success btn-sm" title="Guardar">
 						<span class="fa fa-save fa-2x"></span>
 					</button>

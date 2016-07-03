@@ -29,7 +29,7 @@
                     <div class="col-lg-12">
                 <!--    @include('flash::message') -->
                       <div class="table-responsive">
-                        <p>Existen {{ $providers->total() }} proveedores registrados</p>
+                        <p class="text-muted">Existen {{ $providers->total() }} proveedores registrados</p>
                         
                           @include('admin.providers.partials.table')
 

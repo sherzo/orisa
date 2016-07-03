@@ -29,7 +29,7 @@
 						<div class="form-group">
 							{!! Form::label('nombre_ingrediente', 'Nombre del ingrediente') !!}
                             
-								{!! Form::text('nombre_ingrediente', null, ['class' => 'form-control', 'placeholder' => 'Ej: Harina pan', 'title' => 'Ingrese el ingrediente']) !!}
+								{!! Form::text('nombre_ingrediente', null, ['class' => 'form-control', 'placeholder' => 'Harina pan', 'title' => 'Ingrese el ingrediente']) !!}
 						</div>
 
 						<div class="form-group">
@@ -49,7 +49,7 @@
 						<div class="form-group">
 							{!! Form::label('caracteristica', 'Caracteristica del ingrediente') !!}
                             
-								{!! Form::text('caracteristica', null, ['class' => 'form-control', 'placeholder' => 'Ej: precocida', 'title' => 'Ingrese alguna caracteristica del alimento']) !!}
+								{!! Form::text('caracteristica', null, ['class' => 'form-control', 'placeholder' => 'precocida', 'title' => 'Ingrese alguna caracteristica del alimento']) !!}  
 						</div>
 
 						<div class="form-group">

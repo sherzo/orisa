@@ -24,5 +24,9 @@ class Purchase_has_ingredient extends Model
      */
 
 
+    public function Ingredient()
+    {
+        return $this->belongsTo('App\Ingredient', 'id_ingredient');
+    }
 
 }

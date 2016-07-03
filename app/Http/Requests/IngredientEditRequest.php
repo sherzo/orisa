@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
 
-class IngredientRequest extends Request
+class IngredientEditRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -21,21 +21,12 @@ class IngredientRequest extends Request
      *
      * @return array
      */
-    public function rules()
+     public function rules()
     {
         return [
             'nombre_ingrediente' => 'required',
             'id_type' => 'required',
             'caracteristica' => 'required',
-            'id_providers' => 'required',
         ];
-    }
-
-    public function messages()
-    {
-    return [
-        'id_providers.required' => 'No ha selecionado el proveedor',
-
-    ];
     }
 }

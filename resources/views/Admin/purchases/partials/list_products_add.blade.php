@@ -77,8 +77,7 @@
 						<span class="input-group-addon">
 						@foreach($units_l as $key2 => $unit)
 							@if($key2 == $key)
-								@foreach($unit as $key3 => $unidad)									
-								
+								@foreach($unit as $key3 => $unidad)																
 									{{ $unidad->unidad }}
 							
 								@endforeach

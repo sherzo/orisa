@@ -4,8 +4,10 @@
                                     <tr>
                                       <th>#</th>
                                       <th>Licor</th>
+                                      <th>Unidad</th>
                                       <th>Tipo</th>
                                       <th>Caracteristica</th>
+
                                       <th>Acciones</th>
                                      </tr>
                                 </thead>
@@ -14,7 +16,9 @@
                                 @foreach($liqueurs as $liqueur)
                                   <tr>
                                    <td>{{ $liqueur->id }}</td>
-                                   <td>{{ $liqueur->nombre_licor }}</td>
+
+                                  <td>{{ $liqueur->nombre_licor }}</td>
+                                   <td>{{ $liqueur->id_unit }}</td>
                                    <td>{{ $liqueur->tipo[0]->tipo_licor }}</td>
                                    <td>{{ $liqueur->caracteristica }}</td>
 

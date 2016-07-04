@@ -43,10 +43,10 @@ class PurchasesController extends Controller
                 foreach ($request->add_ingredients as $key => $value) {
             
                     $data_ingredient[$key] = Ingredient::find($value);
-                    $units_i[] = Ingredient::find($value)->unit()->get();
+                    $units_i[$key] = Ingredient::find($value)->unit()->get();
 
                 }
-
+            
             }else{       
                 $data_ingredient = false;
             }
@@ -56,10 +56,11 @@ class PurchasesController extends Controller
                 foreach ($request->add_liqueurs as $key => $value) {   
             
                     $data_liqueur[$key] = Liqueur::find($value);
-                    $units_l[] = Liqueur::find($value)->unit()->get();
-            
+                    $units_l[$key] = Liqueur::find($value)->unit()->get();
+                   
+                    
                 }
-
+      
             }else {
                 $data_liqueur = false;
             }
@@ -98,11 +99,23 @@ class PurchasesController extends Controller
      */
     public function store(Request $request)
     {
+        $dias = array('1' => 'Domingo', 
+                      '2' => 'Lunes',
+                      '3' => 'Martes',
+                      '4' => 'Miercoles',
+                      '5' => 'Jueves',
+                      '6' => 'Viernes',
+                      '7' => 'Sabado');
 
         $purchase = new Purchase;
         $date = Carbon::now();
+
+        foreach ($dias as $key => $value) {
+            $date->dayOfWeek == $key ? $day = $value: ''; 
+        }
+
         $purchase->status = '0';
-        $purchase->fecha = $date->format('d-m-Y');
+        $purchase->fecha = $day.' '.$date->format('d-m-Y');
         $purchase->save();
   
 
@@ -159,9 +172,15 @@ class PurchasesController extends Controller
                      $ingredients[$key] = Ingredient::find($value->id_ingredient);
                      $units_i[] = Ingredient::find($value->id_ingredient)->unit()->get();
                 }
+
+                foreach ($purchase->purchase_liqueurs as $key => $value){
+                    
+                     $liqueurs[$key] = Liqueur::find($value->id_liqueur);
+                     $units_l[] = Liqueur::find($value->id_liqueur)->unit()->get();
+                }
       
 //dd($purchase->purchase_ingredients);
-        return view('admin.purchases.show', compact('purchase', 'ingredients', 'units_i'));
+        return view('admin.purchases.show', compact('purchase', 'ingredients', 'liqueurs', 'units_i', 'units_l'));
 
     }
 

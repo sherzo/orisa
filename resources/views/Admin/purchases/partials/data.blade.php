@@ -45,6 +45,35 @@
 					</tr>
 
 				@endforeach
+				@foreach($purchase->purchase_liqueurs as $key => $p_liqueur)
+					
+					<tr>
+						<td>{{ $p_liqueur->id }}</td>
+						<td>
+						@foreach($liqueurs as $key2 => $liqueur)
+							@if($key2 == $key)
+								
+								{{ $liqueur->nombre_licor }}
+
+							@endif
+						@endforeach
+						</td>
+						<td>{{ $p_liqueur->cantidad }}</td>
+						<td>						
+						@foreach($units_l as $key2 => $unit)
+							@if($key2 == $key)
+								@foreach($unit as $key3 => $unidad)									
+								
+									{{ $unidad->unidad }}
+							
+								@endforeach
+							@endif
+						@endforeach
+						</td>
+						<td>{{ $liqueurs[0]->caracteristica }}</td>
+					</tr>
+
+				@endforeach
 			</tbody>
 		</table>
 	</div>

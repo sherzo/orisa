@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Faker\Factory as Faker;
 
 class PositionsTableSeeder extends Seeder
 {
@@ -11,16 +12,18 @@ class PositionsTableSeeder extends Seeder
      */
     public function run()
     {
+        $faker = Faker::create();
+
         \DB::table('positions')->insert(array (
-            'name_position' => 'Chef',
-            'salary_month' => '15000',
-        	'time_ordinary' => '15'
+            'codigo_cgo'  => strtoupper($faker->randomLetter).$faker->postcode,
+            'nombre_cgo'  => 'Chef',
+            'salario_cgo' => '15000.00'
         ));
 
 		 \DB::table('positions')->insert(array (
-            'name_position' => 'Mesonero',
-            'salary_month' => '12000',
-        	'time_ordinary' => '15'
+            'codigo_cgo'  => strtoupper($faker->randomLetter).$faker->postcode,
+            'nombre_cgo'  => 'Mesonero',
+            'salario_cgo' => '12000.00'
         ));
     }
 }

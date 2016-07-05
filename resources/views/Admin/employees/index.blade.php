@@ -9,7 +9,16 @@
       </ol>
       <h4 class="page-header">LISTA DE EMPLEADOS</h4>
   </div>
-              
+{!! Form::open(['route' => 'admin.employees.index', 'method' => 'GET', 'class' => 'navbar-form navbar-left pull-right']) !!}
+<div class="input-group"> 
+    <input type="text" class="form-control" placeholder="Buscar" name="name">
+        <span class="input-group-btn">
+            <button class="btn btn-default" type="submit">
+                <span class="glyphicon glyphicon-search"></span>
+            </button>
+        </span>
+</div>
+{!! Form::close() !!}
   <div class="col-lg-4">
       <a href="{{ url('admin/employees/search') }}">
       <button type="button" class="btn btn-primary">

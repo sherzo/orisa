@@ -32,7 +32,7 @@ class UsersTableSeeder extends Seeder
             'name' => 'Jesus',
             'user' => 'admin',
             'password' => \Hash::make('admin'),         
-            'email' => 'sherzo-t@hotmail.com',
+            'email' => 'mtr_1101@hotmail.com',
             'type' => '2'
         ));
 
@@ -40,7 +40,7 @@ class UsersTableSeeder extends Seeder
             'name' => 'Encargado',
             'user' => 'encargado',
             'password' => \Hash::make('encargado'),         
-            'email' => 'sherzo-h@hotmail.com',
+            'email' => 'sherzo-p@hotmail.com',
             'type' => '3'
         ));
 

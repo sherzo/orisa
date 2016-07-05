@@ -201,15 +201,13 @@
                                     <i class="glyphicon glyphicon-briefcase"></i> Empleados</a>
                                 </li>
                                 <li>
-                                    <a href="#">
-                                    <i class="fa  fa-calendar fa-fw"></i> Asistencias</a>
+                                    <a href="{{ url('admin/cargos') }}">
+                                    <i class="glyphicon glyphicon-briefcase"></i> Cargos </a>
                                 </li>
                                 <li>
                                     <a href="#">
-                                    <i class="fa fa-money fa-fw"></i> Contrato</a>
-                                </li>  
-                                                     
-
+                                    <i class="fa  fa-calendar fa-fw"></i> Asistencias</a>
+                                </li>
                             </ul>
                             </li>
   @endif
@@ -296,8 +294,8 @@
 
 
 @yield('contenido')
-
 @yield('employee_content')
+@yield('positions_content')
 
     <!-- /#wrapper -->
 

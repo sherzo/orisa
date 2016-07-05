@@ -99,13 +99,13 @@ class PurchasesController extends Controller
      */
     public function store(Request $request)
     {
-        $dias = array('1' => 'Domingo', 
-                      '2' => 'Lunes',
-                      '3' => 'Martes',
-                      '4' => 'Miercoles',
-                      '5' => 'Jueves',
-                      '6' => 'Viernes',
-                      '7' => 'Sabado');
+        $dias = array('7' => 'Domingo', 
+                      '1' => 'Lunes',
+                      '2' => 'Martes',
+                      '3' => 'Miercoles',
+                      '4' => 'Jueves',
+                      '5' => 'Viernes',
+                      '6' => 'Sabado');
 
         $purchase = new Purchase;
         $date = Carbon::now();

@@ -61,6 +61,14 @@ Route::group(['prefix' => 'admin'], function(){
 	
 });
 
+Route::group(['prefix' => 'admin'], function(){ 
+	Route::resource('cargos', 'PositionsController');
+	Route::get('cargos/{id}/destroy', [
+		'uses' => 'PositionsController@destroy',
+		'as' => 'admin.cargos.destroy'
+		]);
+});
+ 
    
 /*
 * 		RUTAS OLIVER

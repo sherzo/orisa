@@ -14,18 +14,17 @@ class CreateEmployeesTable extends Migration
     {
         Schema::create('employees', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('document_em', 25);
-            $table->date('birthdate_em');
-            $table->string('country_em', 45);
-            $table->text('addres_em');
-            $table->string('names_em', 45);
-            $table->string('civil_status_em', 45);
-            $table->string('state_em', 45);
-            $table->bigInteger('phone_em');
-            $table->string('surnames_em', 45);
-            $table->string('gender_em', 45);
-            $table->string('city_em', 45);
-            $table->string('email_em', 45);
+            $table->string('dni', 25)->unique();
+            $table->string('nombres_em', 45);
+            $table->string('apellidos_em', 45);
+            $table->date('fecha_nacimiento');
+            $table->string('estado_civil', 45);
+            $table->text('direccion_em');
+            $table->string('pais_em', 10);
+            $table->string('estado_em', 10);
+            $table->string('ciudad_em', 10);
+            $table->string('telefono_em', 15);
+            $table->string('genero', 10);
             $table->timestamps();
         });
     }

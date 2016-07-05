@@ -27,10 +27,11 @@ class Employee extends Model
         return $this->hasOne('App\Employee_has_position', 'id_employee', 'id');
     }
 
-    /**
-    * The attributes that should be hidden for arrays.
-    *
-    * @var array
-    */
+    public function scopeName($query, $name)
+    {
+        if (trim($name) != "") {
+            $query->where('nombres_em', "LIKE", "%$name%");  # code...
+        }
+    }
 
 }

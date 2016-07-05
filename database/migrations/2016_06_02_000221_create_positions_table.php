@@ -14,9 +14,9 @@ class CreatePositionsTable extends Migration
     {
         Schema::create('positions', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name_position', 10);
-            $table->double('salary_month', 10,2);
-            $table->integer('time_ordinary');
+            $table->string('codigo_cgo', 10);
+            $table->string('nombre_cgo', 10);
+            $table->double('salario_cgo', 10,2);
             $table->timestamps();
         });
     }

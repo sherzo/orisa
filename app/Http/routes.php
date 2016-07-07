@@ -10,10 +10,18 @@
 | and give it the controller to call when that URI is requested.
 |
 */
+
+/*
+*         RUTAS PRESTABLECIDAS
+*/
 Route::get('/', function()
 {
 	return View::make('welcome');
 });
+
+Route::auth();
+
+Route::get('/home', 'HomeController@index');
 
 
 /*
@@ -29,7 +37,6 @@ Route::group(['prefix' => 'admin'], function(){
 		]);
 
 });
-
 
 
 Route::get('admin', function(){
@@ -74,58 +81,47 @@ Route::group(['prefix' => 'admin'], function(){
 */
 
 Route::group(['prefix' => 'admin'], function(){ 
-
-	Route::post('proveedores/search', [
-		'uses' => 'ProvidersController@search',
-		'as' => 'admin.proveedores.search'
-		]);
-
-	
-	Route::get('proveedores/{id}/destroy', [
-		'uses' => 'ProvidersController@destroy',
-		'as' => 'admin.proveedores.destroy'
-		]);
 	
 	Route::resource('proveedores', 'ProvidersController');
-
-});
-
-Route::group(['prefix' => 'admin'], function(){
+		Route::post('proveedores/search', [
+			'uses' => 'ProvidersController@search',
+			'as' => 'admin.proveedores.search'
+		]);	
+		Route::get('proveedores/{id}/destroy', [
+			'uses' => 'ProvidersController@destroy',
+			'as' => 'admin.proveedores.destroy'
+		]);
 
 	Route::get('compra/ordenes', [
 		'uses' => 'PurchasesController@order',
 		'as' => 'admin.compra.ordenes'
 		]);
-	
-	Route::resource('compra', 'PurchasesController');
+	Route::resource('compra', 'PurchasesController');	
 	Route::pattern('compra', '[0-9]+');
+		
+	
+	
+	Route::resource('licores', 'LiqueursController');
+		Route::get('licores/{id}/destroy', [
+			'uses' => 'LiqueursController@destroy',
+			'as' => 'admin.licores.destroy'
+		]);	
+
+	Route::resource('ingredientes', 'IngredientsController');
+		Route::get('ingredientes/{id}/destroy', [
+			'uses' => 'IngredientsController@destroy',
+			'as' => 'admin.ingredientes.destroy'
+		]);	
 });
 
-
 /*
-* 		RUTAS SAUL 
+* 		--------------- RUTAS SAUL --------------------
 */
 
 
-Route::group(['prefix' => 'admin'], function(){ 
-
-	Route::resource('licores', 'LiqueursController');
-	Route::get('licores/{id}/destroy', [
-		'uses' => 'LiqueursController@destroy',
-		'as' => 'admin.licores.destroy'
-		]);	
-});
-
-Route::group(['prefix' => 'admin'], function(){ 
-
-	Route::resource('ingredientes', 'IngredientsController');
-	Route::get('ingredientes/{id}/destroy', [
-		'uses' => 'IngredientsController@destroy',
-		'as' => 'admin.ingredientes.destroy'
-		]);	
-});
-
 Route::group(['prefix' => 'admin'], function(){
+
+	Route::resource('clientes', 'ClientsController');
 
 	Route::resource('platos', 'PlatesController');
 	Route::post('platos/addIngredient', [
@@ -135,21 +131,6 @@ Route::group(['prefix' => 'admin'], function(){
 
 });
 
-Route::get('lista_ingredientes', function(){
+
 	
-	return view('admin.plates.partials.list_ingredient'); 
 
-});
-
-Route::auth();
-
-Route::get('/home', 'HomeController@index');
-
-
-
-
-Route::group(['prefix' => 'admin'], function(){
-
-	Route::resource('clientes', 'ClientsController');
-
-});

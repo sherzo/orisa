@@ -158,7 +158,7 @@ class PurchasesController extends Controller
      */
     public function show($id)
     {
-
+        
         $purchase = Purchase::find($id);
         $purchase->each(function($purchase){
             $purchase->purchase_ingredients;

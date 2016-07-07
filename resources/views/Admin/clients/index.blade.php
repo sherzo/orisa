@@ -8,9 +8,9 @@
            <div class="col-lg-12">
              <ol class="breadcrumb">
                 <li><a href="{{ url('tablero') }}"><span class="glyphicon glyphicon-home"></span></a></li>
-                  <li class="active">Provedores</li>
+                  <li class="active">Clientes</li>
             </ol>
-                <h4 class="page-header">Lista de Proveedores</h4>
+                <h4 class="page-header">Lista de Clientes</h4>
 
           </div>
                 <div class="col-lg-4">
@@ -27,13 +27,13 @@
 
 
                     <div class="col-lg-12">
-                <!--    @include('flash::message') -->
+                    @include('flash::message')
                       <div class="table-responsive">
-                        <!-- <p class="text-muted">Existen {{ $providers->total() }} proveedores registrados</p> -->
+                        <!-- <p class="text-muted">Existen  proveedores registrados</p> -->
                         
                           @include('admin.clients.partials.table')
 
-                            <!-- {!! $providers->render() !!} -->
+                            
                         </div>
                     </div>
                     </div>

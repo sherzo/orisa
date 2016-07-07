@@ -160,7 +160,7 @@
                             <ul class="nav nav-second-level">
              @if((Auth::user()->type)=='1' || (Auth::user()->type)=='2' || (Auth::user()->type)=='2' || (Auth::user()->type)=='4' || (Auth::user()->type)=='5')                  
                                 <li>
-                                    <a href="{{ url('clientes') }}">
+                                    <a href="{{ url('admin/clientes') }}">
                                     <i class="fa fa-users fa-fw"></i> Clientes</a>
                                 </li>
             @endif                  

@@ -119,7 +119,7 @@
                 @endif
 
                  @if((Auth::user()->type)=='1' || (Auth::user()->type)=='2' || (Auth::user()->type)=='3')
-                <a href="">
+                <a href="{{ url('admin/compra/ordenes') }}">
                 <div class="col-lg-6 col-md-6">
                     <div class="panel panel-yellow">
                         <div class="panel-heading">
@@ -141,7 +141,7 @@
                         </a>
                     </div>
                 </div>
-                </a>
+               
                 
                 <a href="">
                 <div class="col-lg-6 col-md-6">

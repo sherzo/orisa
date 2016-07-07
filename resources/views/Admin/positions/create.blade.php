@@ -12,6 +12,8 @@
     </div>
 </div>
 
+@include('admin.partial.errors')
+
 {{ Form::open(['route' => 'admin.cargos.store', 'method' => 'POST']) }}
    
     @include('admin.positions.partials.fields')

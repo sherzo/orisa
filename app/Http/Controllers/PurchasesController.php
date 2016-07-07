@@ -108,7 +108,7 @@ class PurchasesController extends Controller
                       '6' => 'Sabado');
 
         $purchase = new Purchase;
-        $date = Carbon::now();
+        $date = Carbon::now('America/Caracas');
 
         foreach ($dias as $key => $value) {
             $date->dayOfWeek == $key ? $day = $value: ''; 

@@ -29,8 +29,8 @@
 <div class="row"><br>
     <div class="col-lg-12">
         <div class="dataTable_wrapper">
-            @include('admin.employees.partials.table')
-            {{ $employees->render() }}
+        <p>Existen {{ $employees->total() }} empleados registrados</p>
+            @include('admin.employees.partials.table') {!! $employees->render() !!}
         </div>                
     </div>
 </div>

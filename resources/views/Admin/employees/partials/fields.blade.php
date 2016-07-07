@@ -1,13 +1,18 @@
 @include('flash::message')
 
 <div class="panel panel-default">
-    <div class="panel-heading"> Datos Empleado</div>
+    <div class="panel-heading"> Datos Empleado </div>
         <div class="panel-body">
 
 <ul class="nav nav-tabs nav-justified" role="tablist">
-    <li role="presentation" class="active"><a href="#personales" aria-controls="personales" role="tab" data-toggle="tab">Personales</a></li>
-    <li role="presentation"><a href="#laborables" aria-controls="laborables" role="tab" data-toggle="tab">Laborables</a></li>
-    <li role="presentation"><a href="#nomina" aria-controls="nomina" role="tab" data-toggle="tab">Cuenta Nómina</a></li>
+    <li role="presentation" class="active">
+        <a href="#personales" aria-controls="personales" role="tab" data-toggle="tab">Personales </a>
+    </li>
+    <li role="presentation">
+        <a href="#laborables" aria-controls="laborables" role="tab" data-toggle="tab">Laborables </a></li>
+    <li role="presentation">
+        <a href="#nomina" aria-controls="nomina" role="tab" data-toggle="tab">Cuenta Nómina </a>
+    </li>
 </ul>
 
 <div class="tab-content">

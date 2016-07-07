@@ -203,7 +203,7 @@
                                     <i class="fa fa-suitcase"></i> Cargos </a>
                                 </li>
                                 <li>
-                                    <a href="#">
+                                    <a href="{{ url('admin/asistencias') }}">
                                     <i class="fa  fa-calendar fa-fw"></i> Asistencias</a>
                                 </li>
                             </ul>

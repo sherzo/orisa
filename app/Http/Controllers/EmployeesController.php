@@ -20,8 +20,7 @@ class EmployeesController extends Controller
      */
     public function index(Request $request)
     {
-    $employees = Employee::name($request->get('name'))->orderBy('nombres_em', 'ASC')->paginate();
-
+        $employees = Employee::name($request->get('name'))->orderBy('nombres_em', 'ASC')->paginate(5);
         return view('admin.employees.index', compact('employees'));
     }
 
@@ -127,7 +126,7 @@ class EmployeesController extends Controller
     public function search(Request $request)
     {
         $all = $request->nationality.'-'.$request->document_em;
-        $exists = Employee::where('document_em', $all)->exists()?1:0;
+        $exists = Employee::where('dni', $all)->exists()?1:0;
 
         if ($exists == true) {
             Flash::warning('<strong> Alerta </strong> busqueda con número de cédula <strong>'. $all .'</strong> se encuentra en la base de datos.');
@@ -137,7 +136,7 @@ class EmployeesController extends Controller
         {
             Flash::info('<strong> Alerta </strong> busqueda con número de cédula '. $all .' no se encuentra en la base de datos, proceda a registrar.');
 
-            $positions = Position::lists('name_position', 'id');
+            $positions = Position::lists('nombre_cgo', 'id');
 
             return view('admin.employees.create', compact('all','positions'));
         }

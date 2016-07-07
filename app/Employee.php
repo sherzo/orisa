@@ -14,7 +14,7 @@ class Employee extends Model
     protected $table = 'employees';
 
     protected $fillable = [
-        'document_em', 'birthdate_em', 'country_em', 'addres_em', 'names_em', 'civil_status_em', 'state_em', 'phone_em', 'surnames_em', 'gender_em', 'city_em', 'email_em',
+        'dni', 'nombres_em', 'apellidos_em', 'fecha_nacimiento', 'estado_civil', 'direccion_em', 'pais_em', 'estado_em', 'ciudad_em', 'telefono_em', 'genero'
     ];
 
     public function Data_employee() 

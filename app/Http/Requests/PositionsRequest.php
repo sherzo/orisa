@@ -26,7 +26,7 @@ class PositionsRequest extends Request
         return [
             'code_positions' => 'required|unique:positions',
             'name_positions' => 'required|unique:positions',
-            'salary_month'   =>  'require',
+            'salary_month'   =>  'required',
         ];
     }
 }

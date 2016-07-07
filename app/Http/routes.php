@@ -44,15 +44,10 @@ Route::get('admin', function(){
 
 Route::group(['prefix' => 'admin'], function(){ 
 
+	Route::resource('employees', 'EmployeesController');
 	Route::post('employees/search', [
 		'uses' => 'EmployeesController@search',
 		'as' => 'admin.employees.search'
-		]);
-
-	Route::resource('employees', 'EmployeesController');
-	Route::get('employees/{all}/create', [
-		'uses' => 'EmployeesController@create',
-		'as' => 'admin.employees.create'
 		]);
 	Route::get('employees/{id}/destroy', [
 		'uses' => 'EmployeesController@destroy',
@@ -67,6 +62,10 @@ Route::group(['prefix' => 'admin'], function(){
 		'uses' => 'PositionsController@destroy',
 		'as' => 'admin.cargos.destroy'
 		]);
+});
+
+Route::group(['prefix' => 'admin'], function(){
+	Route::resource('asistencias', 'AttendancesController');
 });
  
    
@@ -145,3 +144,12 @@ Route::get('lista_ingredientes', function(){
 Route::auth();
 
 Route::get('/home', 'HomeController@index');
+
+
+
+
+Route::group(['prefix' => 'admin'], function(){
+
+	Route::resource('clientes', 'ClientsController');
+
+});

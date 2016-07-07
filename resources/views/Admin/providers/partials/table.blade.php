@@ -29,7 +29,7 @@
                                      <a class="btn btn-default btn-xs" href="{{ route('admin.proveedores.edit', $provider) }}" title="Editar">
                                         <span class="fa fa-pencil fa-2x"></span>
                                      </a>
-                                     <a href="{{ route('admin.proveedores.destroy', $provider->id) }}" class="btn btn-default btn-xs" title="Eliminar">
+                                     <a href="{{ url('admin/proveedores') }}/{{$provider->id}}/destroy" class="btn btn-default btn-xs" title="Eliminar">
                                         <span class="fa fa-trash-o fa-2x"></span>
                                      </a>
                                    </td>

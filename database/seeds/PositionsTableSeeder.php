@@ -15,15 +15,15 @@ class PositionsTableSeeder extends Seeder
         $faker = Faker::create();
 
         \DB::table('positions')->insert(array (
-            'codigo_cgo'  => strtoupper($faker->randomLetter).$faker->postcode,
-            'nombre_cgo'  => 'Chef',
-            'salario_cgo' => '15000.00'
+            'codigo'  => strtoupper($faker->randomLetter).$faker->postcode,
+            'nombre'  => 'Chef',
+            'salario' => '15000.00'
         ));
 
 		 \DB::table('positions')->insert(array (
-            'codigo_cgo'  => strtoupper($faker->randomLetter).$faker->postcode,
-            'nombre_cgo'  => 'Mesonero',
-            'salario_cgo' => '12000.00'
+            'codigo'  => strtoupper($faker->randomLetter).$faker->postcode,
+            'nombre'  => 'Mesonero',
+            'salario' => '12000.00'
         ));
     }
 }

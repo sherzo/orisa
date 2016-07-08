@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePositionsTable extends Migration
+class CreatePlanningsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,11 +12,12 @@ class CreatePositionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('positions', function (Blueprint $table) {
+        Schema::create('plannings', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('codigo', 20);
-            $table->string('nombre', 20);
-            $table->double('salario', 10,2);
+            $table->integer('id_shift') ->unsigned();
+            $table->foreign('id_shift') ->references('id')->on('shifts');
+            $table->date('fecha_inicio');
+            $table->date('fecha_culminacion');   
             $table->timestamps();
         });
     }
@@ -28,6 +29,6 @@ class CreatePositionsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('positions');
+        //
     }
 }

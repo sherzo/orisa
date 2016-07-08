@@ -194,20 +194,27 @@
                                 </li>
             @if((Auth::user()->type)=='1' || (Auth::user()->type)=='2' || (Auth::user()->type)=='3' )
                          <li>
-                            <a href="#"  ><i class="fa fa-male fa-fw "></i> Personal <span class="fa arrow"></span></a>
+                            <a href="#"  ><i class="glyphicon glyphicon-briefcase"></i> Empleados <span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                              <li>
                                     <a href="{{ url('admin/employees') }}">
-                                    <i class="glyphicon glyphicon-briefcase"></i> Empleados</a>
+                                    <i class="fa fa-user fa-fw"></i>Personal </a>
                                 </li>
                                 <li>
                                     <a href="{{ url('admin/cargos') }}">
-                                    <i class="fa fa-suitcase"></i> Cargos </a>
+                                    <i class="fa fa-group"></i> Cargos </a>
                                 </li>
                                 <li>
                                     <a href="{{ url('admin/asistencias') }}">
-                                    <i class="fa  fa-calendar fa-fw"></i> Asistencias</a>
+                                    <i class="fa fa-list-ul"></i> Asistencias </a>
                                 </li>
+                                <li>
+                                    <a href="#"> Planificación<span class="fa arrow"></span></a>
+                                    <ul class="nav nav-third-level">
+                                        <li>
+                                            <a href="{{ url('admin/turnos') }}">Turnos</a>
+                                        </li>
+                                    </ul>
                             </ul>
                             </li>
   @endif
@@ -293,8 +300,6 @@
 
 
 @yield('contenido')
-@yield('employee_content')
-@yield('positions_content')
 
     <!-- /#wrapper -->
 

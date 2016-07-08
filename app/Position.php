@@ -9,7 +9,7 @@ class Position extends Model
     protected $table = 'positions';
     
     protected $fillable = [
-        'codigo_cgo', 'nombre_cgo', 'salario_cgo'
+        'codigo', 'nombre', 'salario'
     ];
 
     public function Employee_has_position() 
@@ -20,7 +20,7 @@ class Position extends Model
     public function scopeName($query, $name)
     {
     	if (trim($name) != "") {
-    		$query->where('nombre_cgo', "LIKE", "%$name%");	# code...
+    		$query->where('nombre', "LIKE", "%$name%");	# code...
     	}
     }
  

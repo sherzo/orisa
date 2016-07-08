@@ -24,9 +24,9 @@ class PositionsRequest extends Request
     public function rules()
     {
         return [
-            'code_positions' => 'required|unique:positions',
-            'name_positions' => 'required|unique:positions',
-            'salary_month'   =>  'required',
+            'codigo'    => 'required|unique:positions',
+            'nombre'    => 'required|unique:positions',
+            'salario'   =>  'required',
         ];
     }
 }

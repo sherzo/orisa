@@ -1,6 +1,6 @@
 @extends('layout.layoutAdminTres')
 
-@section('positions_content')
+@section('contenido')
 
 <div class="row">
     <div class="col-lg-12">

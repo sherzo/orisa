@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePositionsTable extends Migration
+class CreateShiftsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,11 +12,11 @@ class CreatePositionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('positions', function (Blueprint $table) {
+        Schema::create('shifts', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('codigo', 20);
-            $table->string('nombre', 20);
-            $table->double('salario', 10,2);
+            $table->string('turno', 20);
+            $table->time('hora_entrada');
+            $table->time('hora_salida');
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class CreatePositionsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('positions');
+        Schema::drop('shifts');
     }
 }

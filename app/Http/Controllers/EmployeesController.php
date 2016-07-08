@@ -136,7 +136,7 @@ class EmployeesController extends Controller
         {
             Flash::info('<strong> Alerta </strong> busqueda con número de cédula '. $all .' no se encuentra en la base de datos, proceda a registrar.');
 
-            $positions = Position::lists('nombre_cgo', 'id');
+            $positions = Position::lists('nombre', 'id');
 
             return view('admin.employees.create', compact('all','positions'));
         }

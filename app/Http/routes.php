@@ -74,7 +74,10 @@ Route::group(['prefix' => 'admin'], function(){
 Route::group(['prefix' => 'admin'], function(){
 	Route::resource('asistencias', 'AttendancesController');
 });
- 
+
+Route::group(['prefix' => 'admin'], function(){
+	Route::resource('turnos', 'ShiftsController');
+});
    
 /*
 * 		RUTAS OLIVER

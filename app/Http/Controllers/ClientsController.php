@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Client;
+use Laracasts\Flash\Flash;
 
 class ClientsController extends Controller
 {
@@ -28,7 +29,32 @@ class ClientsController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.clients.create');
+    }
+
+
+    public function search(Request $request)
+    {
+        if(isset($request->literal)){
+
+            $valor = $request->literal.'-'.$request->cedula;
+            
+            $cleint = Client::cedula($valor)->first();
+
+            if($cleint)
+            {
+                Flash::warning('<strong>Alerta </strong> el cliente con cedula: <strong>'. $client->cedula. '</strong> ya esta registrado');
+            
+                return redirect()->back();
+            }else
+                {   
+
+                 Flash::info('<strong>Perfecto </strong> proceseda a registrar el proveedor');
+
+                return view('admin.clients.search', compact('valor'));
+                }
+    
+        }
     }
 
     /**
@@ -39,7 +65,14 @@ class ClientsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $client = new Client($request->all());
+
+        $client->save();
+
+        Flash::success('<strong>Exito! </strong> Se ha registrado el cliente '. $client->nombre. ' correctamente');
+
+        return redirect('admin/clientes');
+
     }
 
     /**
@@ -61,7 +94,9 @@ class ClientsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $client = Client::findOrFail($id);
+
+        return view('admin.clients.edit', compact('client'));
     }
 
     /**
@@ -73,7 +108,15 @@ class ClientsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $client = Client::findOrFail($id);
+       
+        $client->fill($request->all());
+        $client->save();
+
+        Flash::success('<strong>Exito! </strong> '. $client->nombre. ' se modifico correctamente');
+
+
+        return redirect()->back();
     }
 
     /**

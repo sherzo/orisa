@@ -92,7 +92,7 @@ class ProvidersController extends Controller
         $provider->fill($request->all());
         $provider->save();
 
-        Flash::success('<strong>Existo! </strong> '. $provider->razon_social. ' se modifico correctamente');
+        Flash::success('<strong>Exito! </strong> '. $provider->razon_social. ' se modifico correctamente');
 
 
         return redirect()->back();

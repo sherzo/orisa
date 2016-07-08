@@ -1,29 +1,29 @@
 
 						<div class="form-group">
-							{!! Form::label('muestra', 'Rif') !!}
+							{!! Form::label('muestra', 'Cedula') !!}
                           
-								{!! Form::text('muestra', $valor, ['class' => 'form-control', 'title' => 'Ingrese su nombre', 'disabled']) !!}
+							{!! Form::text('muestra', $client->cedula, ['class' => 'form-control', 'title' => 'Cedula del cliente', 'disabled']) !!}
 							
 						
 						</div>
-   						<input type="hidden" name="rif" value="{{ $valor }}">
+   						<input type="hidden" name="cedula" value="{{ $client->cedula }}">
 
 						<div class="form-group">
-							{!! Form::label('razon_social', 'Razón social') !!} 
+							{!! Form::label('nombre', 'Nombre') !!} 
 
-							{!! Form::text('razon_social', null, ['class' => 'form-control', 'placeholder' =>
-							'Ej: Sefardi C.A', 'title' => 'Ingrese la razon social']) !!}
+							{!! Form::text('nombre', null, ['class' => 'form-control', 'placeholder' =>
+							'Saul Florez', 'title' => 'Ingrese el nombre']) !!}
 						</div>
 						
 						<div class="form-group">
-							{!! Form::label('direccion', 'Dirección fiscal') !!} 
+							{!! Form::label('direccion', 'Dirección') !!} 
 							
-							<textarea name="direccion" class="form-control" placeholder="Ej: Calle 5 de marzo 30-11"></textarea>
+							<textarea name="direccion" class="form-control" placeholder="Calle 5 de marzo 30-11"></textarea>
 						</div>
 						<div class="form-group">
 							{!! Form::label('telefono', 'Numero de telefono') !!}
 							
-							{!! Form::text('telefono', null, ['class' => 'form-control awesome', 'placeholder' => 'Ej: 04145897451', 'title' => 'Ingrese su contraseña']) !!}
+							{!! Form::text('telefono', null, ['class' => 'form-control awesome', 'placeholder' => ' 04145897451', 'title' => 'Ingrese su contraseña']) !!}
 							
 						</div>
 						<div class="form-group"> 

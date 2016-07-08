@@ -8,7 +8,7 @@
 		<div class="col-lg-12">
              <ol class="breadcrumb">
                 <li><a href="#">Inicio</a></li>
-                  <li><a href="{{ route('admin.usuarios.index') }}">Ingredientes</a></li>
+                  <li><a href="{{ route('admin.ingredientes.index') }}">Ingredientes</a></li>
                     <li class="active">Nuevo</li>
             </ol>
     	</div>

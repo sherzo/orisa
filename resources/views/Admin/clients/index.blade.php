@@ -27,7 +27,6 @@
 
 
                     <div class="col-lg-12">
-                    @include('flash::message')
                       <div class="table-responsive">
                         <!-- <p class="text-muted">Existen  proveedores registrados</p> -->
                         

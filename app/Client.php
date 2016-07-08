@@ -22,4 +22,11 @@ class Client extends Model
      */
     
     protected $table = 'clients';
+
+
+    public function scopeCedula($query, $cedula)
+    {
+       $query->where('cedula', $cedula);
+
+    }
 }

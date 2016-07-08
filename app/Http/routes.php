@@ -128,6 +128,10 @@ Route::group(['prefix' => 'admin'], function(){
 		'uses' => 'PlatesController@addIngredient',
 		'as' => 'admin.plates.addIngredient'
 		]);
+	Route::post('clientes/busqueda', [
+		'uses' => 'ClientsController@search',
+		'as' => 'admin.clients.search'
+		]);
 
 });
 

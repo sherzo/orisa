@@ -16,6 +16,7 @@
 			</thead>
 				
 			<tbody>
+			<input type="text" name="id_proveedor" value="{{ $id_proveedor }}">
 				@if($data_ingredient)
 
 					@foreach($data_ingredient as $key => $ingredient)

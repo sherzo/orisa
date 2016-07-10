@@ -34,10 +34,13 @@ class PurchasesController extends Controller
         // Cuando selecciona el proveedor traigo los licores relacionados a el
         $request->proveedor ? $liqueurs = Provider::find($request->proveedor)->liqueurs()->get() : $liqueurs = false;
 
+        $request->proveedor ? $id_proveedor = $request->proveedor : $id_proveedor = false;
     
         // Al Agregar a la compra Ingredientes o Licores
         if(isset($request->add_ingredients) || isset($request->add_liqueurs)){
         
+        $id_proveedor = $request->id_proveedor;
+
             if(isset($request->add_ingredients)){ 
 
                 foreach ($request->add_ingredients as $key => $value) {
@@ -66,7 +69,7 @@ class PurchasesController extends Controller
             }
 
 
-        return view('admin.purchases.index', compact('providers', 'ingredients', 'liqueurs', 'data_ingredient', 'data_liqueur', 'units_i', 'units_l'));
+        return view('admin.purchases.index', compact('providers', 'ingredients', 'liqueurs', 'data_ingredient', 'data_liqueur', 'units_i', 'units_l', 'id_proveedor'));
 
         
         }else {
@@ -77,7 +80,7 @@ class PurchasesController extends Controller
         
         }
 
-        return view('admin.purchases.index', compact('providers', 'ingredients', 'liqueurs', 'data_ingredient', 'data_liqueur'));
+        return view('admin.purchases.index', compact('providers', 'ingredients', 'liqueurs', 'data_ingredient', 'data_liqueur', 'id_proveedor'));
 
     }
 
@@ -115,6 +118,7 @@ class PurchasesController extends Controller
         }
 
         $purchase->status = '0';
+        $purchase->id_provider = $request->id_proveedor;
         $purchase->fecha = $day.' '.$date->format('d-m-Y');
         $purchase->save();
   

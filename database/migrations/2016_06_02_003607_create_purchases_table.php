@@ -14,6 +14,8 @@ class CreatePurchasesTable extends Migration
     {
         Schema::create('purchases', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('id_provider') ->unsigned();
+            $table->foreign('id_provider') ->references('id')->on('providers')->onDelete('cascade');
             $table->integer('status');
             $table->string('fecha', 20);
             $table->timestamps();

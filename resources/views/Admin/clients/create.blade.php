@@ -21,9 +21,12 @@
 					<div class="panel-body">		
 					
 						@include('admin.partial.errors')
+
 						{!! Form::open(['route' => 'admin.clients.search', 'method' => 'POST', 'class' => 'form-inline']) !!}
 
-						@include('admin.clients.partials.fields')
+						@include('admin.clients.partials.form-search')
+
+						{!! Form:close() !!}
 					</div>
 			</div>
 		</div>

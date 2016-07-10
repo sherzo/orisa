@@ -108,7 +108,7 @@
                                 </a>
                                 </div>
                                 <!-- Change this to a button or input when using this as a form -->
-                                <button type="submit" class="btn btn-lg btn-primary btn-block">Entrar</button><br>
+                                <button class="btn btn-lg btn-primary btn-block">Entrar</button><br>
                                 <center><label class="text-center"><a href="{{ url('/password/reset') }}">¿has olvidado tu contraseña?</label></center>
                             </fieldset>
                         </form>

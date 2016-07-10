@@ -102,7 +102,7 @@ class PurchasesController extends Controller
      */
     public function store(Request $request)
     {
-        $dias = array('7' => 'Domingo', 
+        $dias = array('0' => 'Domingo', 
                       '1' => 'Lunes',
                       '2' => 'Martes',
                       '3' => 'Miercoles',
@@ -112,9 +112,9 @@ class PurchasesController extends Controller
 
         $purchase = new Purchase;
         $date = Carbon::now('America/Caracas');
-
+   
         foreach ($dias as $key => $value) {
-            $date->dayOfWeek == $key ? $day = $value: ''; 
+            $date->dayOfWeek == $key ? $day = $value : ''; 
         }
 
         $purchase->status = '0';
@@ -167,6 +167,7 @@ class PurchasesController extends Controller
         $purchase->each(function($purchase){
             $purchase->purchase_ingredients;
             $purchase->purchase_liqueurs;
+            $purchase->provider;
         });
 
 
@@ -225,7 +226,11 @@ class PurchasesController extends Controller
     public function order()
     {
         $purchases = Purchase::paginate(10);
-        
+
+
+        // $purchase = Purchase::provider();
+       // ] dd($purchase);
+
         return view('admin.purchases.list', compact('purchases'));
 
     }

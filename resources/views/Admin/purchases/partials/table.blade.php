@@ -11,10 +11,12 @@
                                 </thead>
                                 <tbody>
                                 
-                                @foreach($purchases as $purchase)
+                                @foreach($purchases as $key => $purchase)
                                   <tr>
                                    <td>{{ $purchase->id }}</td>
-                                   <td></td>
+                                   <td>
+                                  
+                                   </td>
 								                   <td>{{ $purchase->fecha }}</td>
                                    <td class="text-center"><span class="label {!! $purchase->status == 0 ? 'label-warning' : 'label-success' !!}">{!! $purchase->status == 0 ? 'En espera' : 'Recibida' !!}</span></td>
                                    

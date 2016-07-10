@@ -2,8 +2,8 @@
 	<div class="col-md-12">
 		<h3 class="text-center">Orden de compra N° {{ $purchase->id }}</h3>
 	</div>
-	<div class="col-md-12">Proveedor: </div>
-	<div class="col-md-12">Fecha: {{ $purchase->fecha }}</div>
+	<div class="col-md-12"><strong>Proveedor:</strong> {{ $purchase->provider->razon_social }}</div>
+	<div class="col-md-12"><strong>Fecha:</strong> {{ $purchase->fecha }}</div>
 </div>
 <div class="row">
 	<div class="col-md-12">

@@ -33,4 +33,9 @@ class Purchase extends Model
         return $this->hasMany('App\Purchase_has_liqueurs', 'id_purchase', 'id');
     }
 
+
+    public function provider()
+    {
+        return $this->belongsTo('App\Provider', 'id_provider');
+    }
 }

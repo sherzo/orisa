@@ -46,4 +46,12 @@ class Ingredient extends Model
             $query->where('nombre_ingrediente', $nombre);
         }
     }
+
+
+    public function scopeName($query, $name)
+    {
+        if (trim($name) != "") {
+            $query->where('nombre_ingrediente', "LIKE", "%$name%"); 
+        }
+    }
 }

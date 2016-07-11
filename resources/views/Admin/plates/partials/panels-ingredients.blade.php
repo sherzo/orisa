@@ -23,7 +23,7 @@
 
 					<div class="input-group">
 					
-						{!! Form::text('ingrediente_nombre', null, ['class' => 'form-control', 'placeholder' => 'Ingrediente', 'title' => 'Busque ingrediente']) !!}
+						{!! Form::text('name', null, ['class' => 'form-control', 'placeholder' => 'Ingrediente', 'title' => 'Busque ingrediente']) !!}
 							
 						<span class="input-group-btn">
         					<button class="btn btn-default" type="submit" title="Buscar">
@@ -38,7 +38,7 @@
 
 			<br>
 			<div class="row">
-				<div class="col-md-6">
+				<div class="col-md-10">
 					<table class="table">
 						<thead>
 							<th>#</th>
@@ -48,36 +48,7 @@
 							<th>Agregar</th>
 						</thead>
 
-@if(isset($ingredient))
-<tbody>
-	<tr id="fila">
-		<td>
-			{{ $ingredient->id }}
-			<input type="hidden" id="id_ingrediente" name="id_ingr" value="{{ $ingredient->id }}">
-		</td>
-
-		<td>
-			{{ $ingredient->nombre_ingrediente }}
-		</td>
-
-		<td>
-			<div class="form-group msj">
-				{!! Form::text('cantidad', null, ['class' => 'form-control', 'placeholder' => 'Cantidad', 'title' => 'ingrese la cantidad', 'id' => 'cantidad', 'size' => '1']) !!}
-			</div>
-		</td>
-
-		<td>
-			{!! Form::select('id_unit', $units, null, ['class' => 'form-control', 'id' => 'unidad']); !!}
-		</td>
-
-		<td>
-			<a href="" class="btn btn-success btn-sm btn-agregar" title="Agregar a la lista">
-				<span class="fa fa-plus"></span>
-			</a>
-		</td>
-	</tr>	
-</tbody>
-@endif
+					@include('admin.plates.partials.sub-partials.table')
 					</table>
 					<hr>
 				</div>
@@ -95,7 +66,8 @@
 							<th>Unidad</th>
 							<th>Descartar</th>
 						</thead>
-					
+						
+
 						<tbody id="list_ingredient">
 							
 						</tbody>

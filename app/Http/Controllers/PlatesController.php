@@ -26,38 +26,43 @@ class PlatesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function create(Request $request)
     {
         
-        $name_ingredient = $request->get('ingrediente_nombre');
+        $ingredients = Ingredient::name($request->get('name'))->orderBy('nombre_ingrediente', 'ASC')->paginate(5);
+
+        return view('admin.plates.create', compact('ingredients'));
+
+        // $name_ingredient = $request->get('ingrediente_nombre');
         
-        if (isset($name_ingredient))
-        {
-            // Si existe busca en BD
-            $ingredient = Ingredient::agregar($name_ingredient)->first();
+        // if (isset($name_ingredient))
+        // {
+        //     // Si existe busca en BD
+        //     $ingredient = Ingredient::agregar($name_ingredient)->first();
             
-            if($ingredient)
-            {
-                // Si encuentra: *Retorna a la vista el ingrediente y las unidades        
-                $units = Unit::lists( 'unidad', 'id');
+        //     if($ingredient)
+        //     {
+        //         // Si encuentra: *Retorna a la vista el ingrediente y las unidades        
+        //         $units = Unit::lists( 'unidad', 'id');
 
-                return view('admin.plates.create', compact('ingredient', 'units')); 
+        //         return view('admin.plates.create', compact('ingredient', 'units')); 
  
-            }else 
-                {
-                    // Destruyo la variable
-                    unset($ingredient);
+        //     }else 
+        //         {
+        //             // Destruyo la variable
+        //             unset($ingredient);
 
-                    // Mensaje de no encontrado
-                    Flash::warning('<strong>Alerta</strong> ingrediente '. $name_ingredient .' no encontrado');
-                    return view('admin.plates.create', compact('ingredient'));    
-                }
+        //             // Mensaje de no encontrado
+        //             Flash::warning('<strong>Alerta</strong> ingrediente '. $name_ingredient .' no encontrado');
+        //             return view('admin.plates.create', compact('ingredient'));    
+        //         }
 
-        }else 
-            {
-                // Si no entra como una busqueda, retorna la vista
-                return view('admin.plates.create');    
-            }
+        // }else 
+        //     {
+        //         // Si no entra como una busqueda, retorna la vista
+        //         return view('admin.plates.create');    
+        //     }
         
         
     }

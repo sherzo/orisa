@@ -25,4 +25,15 @@ class Plate extends Model
 
     protected $table = 'plates';
 
+
+    public function scopeIngredient($query, $data="")
+    {
+        if($data>0){
+
+            $resultado = $query->where('nombre_ingrediente', 'LIKE', '%'.$data.'%');
+        }else{
+           
+        }
+    }
+
 }

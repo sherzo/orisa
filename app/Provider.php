@@ -37,6 +37,5 @@ class Provider extends Model
     public function scopeRif($query, $rif)
     {
        $query->where('rif', $rif);
-
     }
 }

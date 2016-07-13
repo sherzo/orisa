@@ -27,7 +27,7 @@
 						{{ Form::model($client, array('route' => array('admin.clientes.update', $client->id), 'method' => 'PUT')) }}
 						
 
-						@include('admin.clients.partials.form-edit')
+						@include('admin.clients.partials.fields')
 					</div>
 			</div>
 		</div>

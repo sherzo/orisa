@@ -1,4 +1,4 @@
-
+						<p class="text-muted text-center">Nota: Los campos marcados con (<span class="text-danger">*</span>) son obligatorios</p>
 						<div class="form-group">
 							{!! Form::label('muestra', 'Cedula') !!}
                           
@@ -9,21 +9,21 @@
    						<input type="hidden" name="cedula" value="{{ $valor }}">
 
 						<div class="form-group">
-							{!! Form::label('nombre', 'Nombre') !!} 
+							{!! Form::label('nombre', 'Nombre del cliente') !!} <strong><span class="text-danger">*</span></strong>
 
 							{!! Form::text('nombre', null, ['class' => 'form-control', 'placeholder' =>
-							'Saul Florez', 'title' => 'Ingrese el nombre']) !!}
+							'Saul Florez', 'title' => 'Ingrese el nombre']) !!} 
 						</div>
 						
 						<div class="form-group">
 							{!! Form::label('direccion', 'Dirección') !!} 
 							
-							<textarea name="direccion" class="form-control" placeholder="Calle 5 de marzo 30-11"></textarea>
+							{!! Form::textarea('direccion', null, ['class' => 'form-control', 'rows' => '2', 'placeholder' => 'Calle 4 de marzo #30-11']) !!}
 						</div>
 						<div class="form-group">
-							{!! Form::label('telefono', 'Numero de telefono') !!}
+							{!! Form::label('telefono', 'Numero de telefono') !!} <span></span>
 							
-							{!! Form::text('telefono', null, ['class' => 'form-control awesome', 'placeholder' => ' 04145897451', 'title' => 'Ingrese su contraseña']) !!}
+							{!! Form::text('telefono', null, ['class' => 'form-control awesome', 'placeholder' => '04145897451', 'title' => 'Ingrese su contraseña']) !!}
 							
 						</div>
 						<div class="form-group"> 

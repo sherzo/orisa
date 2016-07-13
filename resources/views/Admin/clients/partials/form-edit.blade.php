@@ -1,12 +1,11 @@
 
 						<div class="form-group">
-							{!! Form::label('muestra', 'Cedula') !!}
+							{!! Form::label('cedula', 'Cedula') !!}
                           
-							{!! Form::text('muestra', $client->cedula, ['class' => 'form-control', 'title' => 'Cedula del cliente', 'disabled']) !!}
+							{!! Form::text('cedula', null, ['class' => 'form-control', 'title' => 'Cedula del cliente', 'disabled']) !!}
 							
 						
 						</div>
-   						<input type="hidden" name="cedula" value="{{ $client->cedula }}">
 
 						<div class="form-group">
 							{!! Form::label('nombre', 'Nombre') !!} 
@@ -18,7 +17,8 @@
 						<div class="form-group">
 							{!! Form::label('direccion', 'Dirección') !!} 
 							
-							<textarea name="direccion" class="form-control" placeholder="Calle 5 de marzo 30-11"></textarea>
+						
+						{!! Form::textarea('direccion', null, ['class' => 'form-control', 'rows' => '2', 'placeholder' => 'Calle 4 de marzo #30-11']) !!}
 						</div>
 						<div class="form-group">
 							{!! Form::label('telefono', 'Numero de telefono') !!}

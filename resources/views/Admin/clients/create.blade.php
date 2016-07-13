@@ -26,7 +26,7 @@
 
 						@include('admin.clients.partials.form-search')
 
-						{!! Form:close() !!}
+						{!! Form::close() !!}
 					</div>
 			</div>
 		</div>

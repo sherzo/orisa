@@ -6,7 +6,7 @@
     <div class="col-lg-12">
         <ol class="breadcrumb">
             <li><a href="{{ url('tablero') }}"><span class="glyphicon glyphicon-home"></span></a></li>
-            <li><a href="#">Turnos</a></li>
+            <li><a href="#">Planificación</a></li>
             <li class="active">Nuevo</li>
         </ol>
     </div>
@@ -14,9 +14,9 @@
 
 @include('admin.partial.errors')
 
-{{ Form::open(['route' => 'admin.turnos.store', 'method' => 'POST']) }}
+{{ Form::open(['route' => 'admin.planificaciones.store', 'method' => 'POST']) }}
    
-    @include('admin.shifts.partials.fields')
+    @include('admin.planning.partials.fields')
     <!-- Boton -->
 <div class="form-group">
     <br/>
@@ -30,5 +30,6 @@
     </center>
 </div> 
 {{ Form::close() }}  
+
 
 @endsection

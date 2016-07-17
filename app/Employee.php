@@ -17,18 +17,21 @@ class Employee extends Model
         'dni', 'nombres_em', 'apellidos_em', 'fecha_nacimiento', 'estado_civil', 'direccion_em', 'pais_em', 'estado_em', 'ciudad_em', 'telefono_em', 'genero'
     ];
 
-    public function data_employee() 
+    public function data() 
     {
-        return $this->hasOne('App\Data_employee', 'id_employee', 'id');
+        return $this->hasOne('App\Data_employee', 'employee_id', 'id');
     } 
 
-    public function employee_has_positions()
+    public function position()
     {
-        return $this->hasOne('App\Employee_has_position', 'id_employee', 'id');
+        return $this->belognsToMany('App\Position', 'employee_has_positions')
+            ->withPivot('employee_id');
     }
-    public function employee_has_shifts()
+
+    public function shift()
     {
-        $this->hasMany('App\Employee_has_shift', 'id_employee', 'id');
+        return $this->belognsToMany('App\Shift', 'employee_has_shifts')
+            ->withPivot('employee_id', 'fecha_inicio', 'fecha_culminacion');
     }
 
     public function scopeName($query, $name)
@@ -38,4 +41,8 @@ class Employee extends Model
         }
     }
 
+    public function scopeSearch($query, $dni)
+    {
+        #
+    }
 }

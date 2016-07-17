@@ -76,7 +76,7 @@ Route::group(['prefix' => 'admin'], function(){
 });
 
 Route::group(['prefix' => 'admin'], function(){
-	Route::resource('turnos', 'ShiftsController');
+	Route::resource('planificaciones', 'PlanningsController');
 });
    
 /*

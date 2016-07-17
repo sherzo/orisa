@@ -15,8 +15,8 @@ class ShiftsController extends Controller
 	public function index()
 	{
 		$employee_has_shifts = Employee_has_shift::paginate(5);
-        #dd($employee_has_shifts);
-        
+        #dd($employee_has_shifts); 
+
 		return view('admin.shifts.index', compact('employee_has_shifts'));
 	}
 

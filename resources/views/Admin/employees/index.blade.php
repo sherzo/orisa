@@ -26,7 +26,7 @@
       <span class="fa fa-plus"></span> Nuevo </button></a>
   </div>
 </div>
-
+@include('flash::message')
 <div class="row"><br>
     <div class="col-lg-12">
         <div class="dataTable_wrapper">

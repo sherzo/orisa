@@ -15,12 +15,12 @@ class Data_employee extends Model
      */
 
     protected $fillable = [
-        'id_employee', 'code_em', 'date_of_admission', 'account_em', 'contract_status', 'cestaticket', 'duration_em', 'bank', 'type_account',
+        'code_em', 'date_of_admission', 'account_em', 'contract_status', 'cestaticket', 'duration_em', 'bank', 'type_account'
     ];
 
-    public function Employee() 
+    public function employee() 
     {
-        return $this->belongsTo('App\Employee', 'id', 'id_employee');
+        return $this->belongsTo('App\Employee', 'id');
     } 
 
     /**

@@ -14,10 +14,12 @@ class CreateEmployeeHasShiftsTable extends Migration
     {
         Schema::create('employee_has_shifts', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('id_employee') ->unsigned();
-            $table->foreign('id_employee') ->references('id')->on('employees')->onDelete('Cascade');
-            $table->integer('id_shift')    ->unsigned();
-            $table->foreign('id_shift')    ->references('id')->on('shifts')->onDelete('Cascade');   
+            $table->integer('employee_id') ->unsigned();
+            $table->integer('shift_id')    ->unsigned();
+            $table->date('fecha_inicio');
+            $table->date('fecha_culminacion');      
+            $table->foreign('employee_id') ->references('id')->on('employees')->onDelete('Cascade');
+            $table->foreign('shift_id')    ->references('id')->on('shifts')->onDelete('Cascade');
             $table->timestamps();
         });
     }

@@ -212,7 +212,7 @@
                                     <a href="#"> Planificación<span class="fa arrow"></span></a>
                                     <ul class="nav nav-third-level">
                                         <li>
-                                            <a href="{{ url('admin/turnos') }}">Turnos</a>
+                                            <a href="{{ url('admin/planificaciones') }}">Turnos</a>
                                         </li>
                                     </ul>
                             </ul>

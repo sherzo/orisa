@@ -12,9 +12,10 @@ class Position extends Model
         'codigo', 'nombre', 'salario'
     ];
 
-    public function Employee_has_position() 
+    public function employee() 
     {
-        return $this->hasMany('App\Employee_has_position', 'id_position', 'id');
+        return $this->belongsToMany('App\Employee', 'employee_has_positions')
+            ->withPivot('position_id');
     } 
 
     public function scopeName($query, $name)

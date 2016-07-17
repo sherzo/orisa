@@ -9,16 +9,12 @@ class Shift extends Model
     protected $table = 'shifts';
     
     protected $fillable = [
-        'turno', 'hora_entrada', 'hora_salida', 'fecha_inicio', 'fecha_culminacion'
+        'turno', 'hora_entrada', 'hora_salida'
     ];
 
-   public function employee_has_shifts()
+   public function employee()
    {
-   		$this->hasMany('App\Employee_has_shifts', 'id_shift', 'id');
+   		return $this->belognsToMany('App\Employee', 'employee_has_shifts')
+            ->withPivot('shift_id', 'fecha_inicio', 'fecha_culminacion');
    }
-   public function planning()
-   {
-   		$this->hasMany('App\Planning', 'id_shift', 'id');
-   }
-
 }

@@ -14,10 +14,10 @@ class CreateEmployeeHasPositionsTable extends Migration
     {
         Schema::create('employee_has_positions', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('id_employee') ->unsigned();
-            $table->foreign('id_employee') ->references('id')->on('employees')->onDelete('cascade');
-            $table->integer('id_position') ->unsigned();
-            $table->foreign('id_position') ->references('id')->on('positions')->onDelete('cascade');
+            $table->integer('position_id') ->unsigned();
+            $table->integer('employee_id') ->unsigned();
+            $table->foreign('employee_id') ->references('id')->on('employees')->onDelete('Cascade');
+            $table->foreign('position_id') ->references('id')->on('positions')->onDelete('Cascade');
         });
     }
 

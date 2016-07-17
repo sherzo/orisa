@@ -194,23 +194,20 @@
                          <li>
                             <a href="#"  ><i class="glyphicon glyphicon-briefcase"></i> Empleados <span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
-                             <li>
-                                    <a href="{{ url('admin/employees') }}">
-                                    <i class="fa fa-user fa-fw"></i>Personal </a>
+                                <li>
+                                    <a href="{{ url('admin/asistencias') }}"> Asistencias </a>
                                 </li>
                                 <li>
-                                    <a href="{{ url('admin/cargos') }}">
-                                    <i class="fa fa-group"></i> Cargos </a>
+                                    <a href="{{ url('admin/cargos') }}"> Cargos </a>
                                 </li>
                                 <li>
-                                    <a href="{{ url('admin/asistencias') }}">
-                                    <i class="fa fa-list-ul"></i> Asistencias </a>
+                                    <a href="{{ url('admin/employees') }}"> Personal </a>
                                 </li>
                                 <li>
                                     <a href="#"> Planificación<span class="fa arrow"></span></a>
                                     <ul class="nav nav-third-level">
                                         <li>
-                                            <a href="{{ url('admin/turnos') }}"> Turnos</a>
+                                            <a href="{{ url('admin/planificaciones') }}"> Turnos</a>
                                         </li>
                                     </ul>   
                             </ul>

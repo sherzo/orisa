@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Data_employee;
 use App\Employee;
-use App\Employee_has_position;
 use App\Position;
 use App\Http\Requests;
 use App\Http\Requests\EmployeeRequest;
@@ -40,25 +39,13 @@ class EmployeesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(EmployeeRequest $request)
+    public function store(Request $request)
     {
+        # Relationships
         $employee = Employee::create($request->all());
-        $data_employees = new Data_employee();
-        $data_employees->id_employee = $employee->id;
-        $data_employees->code_em = $request->code_em;
-        $data_employees->date_of_admission = $request->date_of_admission;
-        $data_employees->contract_status = $request->contract_status;
-        $data_employees->cestaticket = $request->cestaticket;
-        $data_employees->duration_em = $request->duration_em;
-        $data_employees->bank = $request->bank;
-        $data_employees->type_account = $request->type_account;
-        $data_employees->account_em = $request->account_em;
-        $data_employees->save();
-        
-        $employee_has_positions = new Employee_has_position;
-        $employee_has_positions->id_employee = $employee->id;
-        $employee_has_positions->id_position = $request->id_position;
-        $employee_has_positions->save();
+        $positions = Position::find($request->id_position);
+        $employee->data()->create($request->all());
+        $positions->employee()->attach($positions);
 
         Flash::success('<strong> Exito </strong> Registro de '.$employee->names_em.' se realizó correctamente.');
 
@@ -84,10 +71,9 @@ class EmployeesController extends Controller
      */
     public function edit($id)
     {
-        $employee = Employee::find($id);
-        $employee->Data_employee()->where('id_employee', $id)->get();
-        
-        return view('admin.employees.edit', compact('employee'));
+        $employee = Employee::findOrFail($id);
+        $data = $employee->data()->where('employee_id', $id)->get();
+        return view('admin.employees.edit', compact('employee', 'data'));
 
     }
 
@@ -101,9 +87,11 @@ class EmployeesController extends Controller
     public function update(Request $request, $id)
     {
         $employee = Employee::find($id);
-        $employee->fill($request->all());
-        $employee->save();
+        $employee->fill($request->all())->save();
         
+        $data = Data_employee::find($request->employee_id);
+        $data->fill($request->all())->save();
+
         return redirect()->back();
     }
 

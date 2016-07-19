@@ -24,13 +24,13 @@ class Employee extends Model
 
     public function position()
     {
-        return $this->belognsToMany('App\Position', 'employee_has_positions')
+        return $this->belongsToMany('App\Position', 'employee_has_positions')
             ->withPivot('employee_id');
     }
 
     public function shift()
     {
-        return $this->belognsToMany('App\Shift', 'employee_has_shifts')
+        return $this->belongsToMany('App\Shift', 'employee_has_shifts')
             ->withPivot('employee_id', 'fecha_inicio', 'fecha_culminacion');
     }
 

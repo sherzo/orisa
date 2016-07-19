@@ -18,12 +18,21 @@ class PlanningsController extends Controller
     {
     	$employees = Employee::all();
  	 	$shifts = Shift::lists('turno', 'id');
- 	 	return view('admin.planning.create', compact('employees', 'shifts'));  
+ 	 	$selected = array();
+
+ 	 	return view('admin.planning.create', compact('employees', 'shifts', 'selected'));  
     }
 
     public function store(Request $request)
     {
-    		$employees = Employee::find($request->employee_id);
-    		dd($employees);
+   		foreach ($request->employee_id as $key => $value) {
+   			$employees = Employee::find($value);
+   			$employees->shift()->sync($request->id);
+   			#dd($request->id);
+   			#dd($employees->shift->toArray());
+   		}
+    	
+    	
+    	#dd($employees);
     }
 }

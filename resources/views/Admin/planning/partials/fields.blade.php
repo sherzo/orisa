@@ -31,13 +31,13 @@
             <th> Turno </th>
         </tr>
     </thead>
-@foreach($employees as $key => $employee)
+@foreach($employees as $employee)
 {!! Form::hidden('employee_id[]', $employee->id) !!}
     <tbody>
         <tr>
             <td> {{ $employee->nombres_em.' '.$employee->apellidos_em }} </td>
             <td align="center"> {{ $employee->dni }} </td>
-            <td> {!! Form::select('shifts_id', $shifts, null,['class' => 'form-control']) !!} </td>
+            <td> {!! Form::select('id[]', $shifts, null,['class' => 'form-control']) !!} </td>
         </tr>      
     </tbody>
 @endforeach

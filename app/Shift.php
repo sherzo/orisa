@@ -12,9 +12,10 @@ class Shift extends Model
         'turno', 'hora_entrada', 'hora_salida'
     ];
 
-   public function planning()
+   public function employee()
    {
    		return $this->belongsToMany('App\Employee', 'employee_has_shifts')
-            ->withPivot('shift_id', 'fecha_inicio', 'fecha_culminacion');
+            ->withPivot('shift_id', 'fecha_inicio', 'fecha_culminacion')
+            ->withTimestamps();
    }
 }

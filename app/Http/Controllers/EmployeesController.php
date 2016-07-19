@@ -71,7 +71,7 @@ class EmployeesController extends Controller
      */
     public function edit($id)
     {
-        $employee = Employee::findOrFail($id);
+        $employee = Employee::find($id);
         $data = $employee->data()->where('employee_id', $id)->get();
         return view('admin.employees.edit', compact('employee', 'data'));
 

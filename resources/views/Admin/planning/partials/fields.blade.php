@@ -37,7 +37,7 @@
         <tr>
             <td> {{ $employee->nombres_em.' '.$employee->apellidos_em }} </td>
             <td align="center"> {{ $employee->dni }} </td>
-            <td> {!! Form::select('id[]', $shifts, null,['class' => 'form-control']) !!} </td>
+            <td> {!! Form::select('shifts_id[]', $shifts, null,['class' => 'form-control']) !!} </td>
         </tr>      
     </tbody>
 @endforeach

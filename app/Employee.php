@@ -25,7 +25,8 @@ class Employee extends Model
     public function position()
     {
         return $this->belongsToMany('App\Position', 'employee_has_positions')
-            ->withPivot('employee_id');
+            ->withPivot('employee_id')
+            ->withTimestamps();
     }
 
     public function shift()

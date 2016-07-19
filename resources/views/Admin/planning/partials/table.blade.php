@@ -10,6 +10,13 @@
         </tr>
     </thead>
 <tbody>
-                  
+@foreach($employees as $employee)
+	<tr>
+		<td> </td>
+		<td> {{ $employee->nombres_em }} </td>
+		<td> </td>
+		<td> </td>
+	</tr>
+@endforeach           
 </tbody>
 </table>

@@ -6,33 +6,38 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Employee;
 use App\Shift;
+use Carbon\Carbon;
+use Laracasts\Flash\Flash;
 
 class PlanningsController extends Controller
 {
     public function index()
     {
-    	return view('admin.planning.index');
+    	$employees = Employee::paginate(10);		
+    	return view('admin.planning.index', compact('employees'));
     }
 
     public function create()
     {
     	$employees = Employee::all();
  	 	$shifts = Shift::lists('turno', 'id');
- 	 	$selected = array();
-
- 	 	return view('admin.planning.create', compact('employees', 'shifts', 'selected'));  
+ 	 	return view('admin.planning.create', compact('employees', 'shifts'));  
     }
 
     public function store(Request $request)
     {
-   		foreach ($request->employee_id as $key => $value) {
-   			$employees = Employee::find($value);
-   			$employees->shift()->sync($request->id);
-   			#dd($request->id);
-   			#dd($employees->shift->toArray());
-   		}
-    	
-    	
-    	#dd($employees);
+    	$row = array($request->employee_id[0]);
+
+		foreach ($row as $a) 
+   		{
+   			foreach ($request->shifts_id as $b) 
+   			{
+   				$shifts = Shift::find($b);
+   				$shifts->employee()->attach($a, ['fecha_inicio' => $request->fecha_inicio, 'fecha_culminacion' => $request->fecha_culminacion]);
+   			}
+
+   		}	
+
+   		return redirect('admin/planificaciones');
     }
 }

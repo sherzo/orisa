@@ -26,12 +26,13 @@
 	<a href="{{ url('admin/planificaciones/create') }}"><button type="button" class="btn btn-primary"><span class="fa fa-plus"></span> Nuevo </button></a>
 </div>
 </div>
-
+@include('flash::message')
 <div class="row"><br>
 	<div class="col-lg-12">
 		<div class="table-responsive">
 		
 			@include('admin.planning.partials.table') 
+			{!! $employees->render() !!}
 		</div>                
 	</div>
 </div>

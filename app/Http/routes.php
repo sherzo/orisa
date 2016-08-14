@@ -11,24 +11,37 @@
 |
 */
 
-/*
-*         RUTAS PRESTABLECIDAS
-*/
+	/*
+	|	RUTAS DE INICIO
+	|
+	*/
+
 Route::get('/', function()
 {
 	return View::make('welcome');
 });
 
-Route::auth();
+Route::group(['prefix' => '/', 'middleware' => 'guest', 'namespace' => 'Auth'], function() {
 
-Route::get('/home', 'HomeController@index');
+	/*
+	|	RUTAS ANTES DE INICIAR SESIÓN NO MANDA ERROR 404
+	|
+	*/
+
+	Route::get('iniciar-sesion', 'AuthController@getLogin');
+	Route::post('iniciar-sesion', 'AuthController@login');
+	Route::get('registrar', 'AuthController@showRegistrationForm');
+    Route::post('registrar', 'AuthController@register');
+
+});
 
 
-/*
-* 		RUTAS GENERALES
-*/
+Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){ 
 
-Route::group(['prefix' => 'admin'], function(){ 
+	/*
+	|	RUTAS GENERALES
+	|
+	*/
 
 	Route::resource('usuarios', 'UsersController');
 	Route::get('usuarios/{id}/destroy', [
@@ -36,55 +49,32 @@ Route::group(['prefix' => 'admin'], function(){
 		'as' => 'admin.usuarios.destroy'
 		]);
 
-});
 
+	/*
+	|	
+	|	RUTAS JESUS
+	|
+	*/
 
-Route::get('admin', function(){
-
-		return view('admin.index');
-});
-
-
-/*
-*		RUTAS JESUS
-*/
-
-Route::group(['prefix' => 'admin'], function(){ 
-
-	Route::resource('employees', 'EmployeesController');
-	Route::post('employees/search', [
-		'uses' => 'EmployeesController@search',
-		'as' => 'admin.employees.search'
-		]);
-	Route::get('employees/{id}/destroy', [
-		'uses' => 'EmployeesController@destroy',
+ 	Route::resource('/', 'HomeController@index');
+ 	Route::get('salir', 'Auth\AuthController@logout');
+ 	Route::get('employees/search', 'EmployeesController@search');
+ 	Route::resource('employees', 'EmployeesController');
+ 	Route::get('employees/{id}/destroy', [
+ 		'uses' => 'EmployeesController@destroy',
 		'as' => 'admin.employees.destroy'
 		]);
-	
-});
-
-Route::group(['prefix' => 'admin'], function(){ 
 	Route::resource('cargos', 'PositionsController');
 	Route::get('cargos/{id}/destroy', [
 		'uses' => 'PositionsController@destroy',
 		'as' => 'admin.cargos.destroy'
 		]);
-});
+	/*
+	|	
+	|	RUTAS OLIVER
+	|
+	*/
 
-Route::group(['prefix' => 'admin'], function(){
-	Route::resource('asistencias', 'AttendancesController');
-});
-
-Route::group(['prefix' => 'admin'], function(){
-	Route::resource('planificaciones', 'PlanningsController');
-});
-   
-/*
-* 		RUTAS OLIVER
-*/
-
-Route::group(['prefix' => 'admin'], function(){ 
-	
 	Route::resource('proveedores', 'ProvidersController');
 		Route::post('proveedores/search', [
 			'uses' => 'ProvidersController@search',
@@ -115,14 +105,12 @@ Route::group(['prefix' => 'admin'], function(){
 			'uses' => 'IngredientsController@destroy',
 			'as' => 'admin.ingredientes.destroy'
 		]);	
-});
 
-/*
-* 		--------------- RUTAS SAUL --------------------
-*/
-
-
-Route::group(['prefix' => 'admin'], function(){
+	/*
+	|	
+	|	RUTAS SAUL
+	|
+	*/
 
 	Route::resource('clientes', 'ClientsController');
 
@@ -136,8 +124,7 @@ Route::group(['prefix' => 'admin'], function(){
 		'as' => 'admin.clients.search'
 		]);
 
-});
-
+ });
 
 	
 

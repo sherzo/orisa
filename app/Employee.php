@@ -14,7 +14,7 @@ class Employee extends Model
     protected $table = 'employees';
 
     protected $fillable = [
-        'dni', 'nombres_em', 'apellidos_em', 'fecha_nacimiento', 'estado_civil', 'direccion_em', 'pais_em', 'estado_em', 'ciudad_em', 'telefono_em', 'genero'
+        'dni', 'nombres', 'apellidos', 'fecha_nacimiento', 'estado_civil', 'direccion', 'operadora', 'telefono_em', 'genero'
     ];
 
     public function data() 
@@ -38,12 +38,8 @@ class Employee extends Model
     public function scopeName($query, $name)
     {
         if (trim($name) != "") {
-            $query->where('nombres_em', "LIKE", "%$name%");  # code...
+            $query->where('nombres', "LIKE", "%$name%");  # code...
         }
     }
 
-    public function scopeSearch($query, $dni)
-    {
-        #
-    }
 }

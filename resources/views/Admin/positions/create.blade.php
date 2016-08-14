@@ -1,4 +1,4 @@
-@extends('layout.layoutAdminDos')
+@extends('layouts.app')
 
 @section('contenido')
 

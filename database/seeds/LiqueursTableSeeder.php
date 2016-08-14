@@ -12,37 +12,39 @@ class LiqueursTableSeeder extends Seeder
     public function run()
     {
 		\DB::table('liqueurs')->insert(array (
-            'nombre_licor' => 'Carta roja',
-        	'id_type' => '1',
-        	'caracteristica' => 'añejo',      	
-        	'id_unit' => '5',
+            'tlicor_id'      => '1',
+            'id_unit'        => '5',
+            'nombre_licor'   => 'Carta roja',
+        	'caracteristica' => 'Añejo',      	
+        	
         ));
 
-        \DB::table('liqueurs_providers')->insert(array (
-            'id_liqueur' => '1',
-        	'id_provider' => '1',        	
+        \DB::table('providers_has_liqueurs')->insert(array (
+            'licor_id'     => '1',
+        	'proveedor_id' => '1',        	
         ));
 
-        \DB::table('liqueurs_providers')->insert(array (
-            'id_liqueur' => '1',
-        	'id_provider' => '2',        	
+        \DB::table('providers_has_liqueurs')->insert(array (
+            'licor_id'     => '1',
+        	'proveedor_id' => '2',        	
         ));
 
         \DB::table('liqueurs')->insert(array (
-            'nombre_licor' => 'Cacique',
-        	'id_type' => '1',
-        	'caracteristica' => 'añejo',      	
-        	'id_unit' => '5',
+            'tlicor_id'      => '1',
+            'id_unit'        => '5',
+            'nombre_licor'   => 'Cacique',
+        	'caracteristica' => 'Añejo',      	
+        	
         ));
 
-        \DB::table('liqueurs_providers')->insert(array (
-            'id_liqueur' => '2',
-        	'id_provider' => '1',        	
+        \DB::table('providers_has_liqueurs')->insert(array (
+            'licor_id'     => '2',
+        	'proveedor_id' => '1',        	
         ));
 
-        \DB::table('liqueurs_providers')->insert(array (
-            'id_liqueur' => '2',
-        	'id_provider' => '2',        	
+        \DB::table('providers_has_liqueurs')->insert(array (
+            'licor_id'     => '2',
+        	'proveedor_id' => '2',        	
         ));
     }
 }

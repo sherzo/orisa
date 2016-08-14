@@ -19,7 +19,7 @@ class ProvidersController extends Controller
      */
     public function index()
     {
-        $providers = Provider::paginate();
+        $providers = Provider::paginate(5);
 
 
         return view('admin.providers.index', compact('providers'));

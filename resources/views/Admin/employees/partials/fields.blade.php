@@ -81,7 +81,7 @@
     </div>
     <div class="form-group">
         {!! Form::label('id_position', 'Cargo') !!}
-        {!! Form::select('id_position', $positions, null, ['class' => 'form-control',]) !!}
+        {!! Form::select('id_position', $positions, null, ['class' => 'form-control']) !!}
     </div>
 </div>
 <div class="col-xs-4">

@@ -15,70 +15,77 @@ class UsersTableSeeder extends Seeder
 
     	$faker = Faker::create();
         
-        for($i=0; $i < 30; $i++) {
+        for($i=0; $i < 30; $i++) 
+        {
 
-
-        \DB::table('users')->insert(array (
-            'name' => $faker->firstName,
-        	'user' => $faker->unique()->firstName,
-        	'password' => \Hash::make('123456'),
-        	'email' => $faker->unique()->email,
-        	'type' => $faker->randomDigit(array('2', '3', '4', '5', '6'))
-        ));
-
+            \DB::table('users')->insert(array (
+                'roles_id' => '7',
+                'name'     => $faker->firstName,
+                'user'     => $faker->unique()->firstName,
+                'password' => \Hash::make('123456'),
+                'email'    => $faker->unique()->email,
+            ));
         }
 
         \DB::table('users')->insert(array (
-            'name' => 'Jesus',
-            'user' => 'admin',
+            'roles_id' => '1',
+            'name'     => 'Saul',
+            'user'     => 'root',
+            'password' => \Hash::make('root'),          
+            'email'    => 'sherzo-b@hotmail.com',
+        ));
+
+        
+
+        \DB::table('users')->insert(array (
+            'roles_id' => '2',
+            'name'     => 'Jesus',
+            'user'     => 'admin',
             'password' => \Hash::make('admin'),         
-            'email' => 'mtr_1101@hotmail.com',
-            'type' => '2'
+            'email'    => 'mtr_1101@hotmail.com',
         ));
 
         \DB::table('users')->insert(array (
-            'name' => 'Encargado',
-            'user' => 'encargado',
+            'roles_id' => '3',
+            'name'     => 'Encargado',
+            'user'     => 'encargado',
             'password' => \Hash::make('encargado'),         
-            'email' => 'sherzo-p@hotmail.com',
-            'type' => '3'
+            'email'    => 'sherzo-p@hotmail.com',
         ));
 
         \DB::table('users')->insert(array (
-            'name' => 'Cocinero',
-            'user' => 'cocinero',
+            'roles_id' => '4',
+            'name'     => 'Cocinero',
+            'user'     => 'cocinero',
             'password' => \Hash::make('cocinero'),         
-            'email' => 'sherzo-g@hotmail.com',
-            'type' => '4'
+            'email'    => 'sherzo-g@hotmail.com',
         ));
 
         \DB::table('users')->insert(array (
-            'name' => 'Cajera',
-            'user' => 'cajera',
+            'roles_id' => '5',
+            'name'     => 'Cajera',
+            'user'     => 'cajera',
             'password' => \Hash::make('cajero'),         
-            'email' => 'sherzo-f@hotmail.com',
-            'type' => '5'
+            'email'    => 'sherzo-f@hotmail.com',
         ));
 
 
         \DB::table('users')->insert(array (
-            'name' => 'Mesonero',
-            'user' => 'mesonero',
+            'roles_id' => '6',
+            'name'     => 'Mesonero',
+            'user'     => 'mesonero',
             'password' => \Hash::make('mesonero'),         
-            'email' => 'sherzo-c@hotmail.com',
-            'type' => '6'
+            'email'    => 'sherzo-c@hotmail.com',
         ));
 
 
         \DB::table('users')->insert(array (
-            'name' => 'Cliente',
-            'user' => 'cliente',
+            'roles_id' => '7',
+            'name'     => 'Cliente',
+            'user'     => 'cliente',
             'password' => \Hash::make('cliente'),         
-            'email' => 'sherzo-a@hotmail.com',
-            'type' => '7'
+            'email'    => 'sherzo-a@hotmail.com',
         ));
-
-
 
     }
 }

@@ -12,17 +12,17 @@ class ClientsTableSeeder extends Seeder
      */
     public function run()
     {
- 
       	$faker = Faker::create();
 
-        for ($i=0; $i<7; $i++) 
+        for ($i=0; $i<10; $i++) 
         { 
-       		\DB::table('clients')->insert(array (
-			'cedula' => $faker->randomElement($array = array ('V', 'E')).'-'.$faker->numberBetween($min = 200000000, $max = 25000000),
-			'nombre' => $faker->firstName,
-			'direccion' => $faker->address,
-			'telefono' => $faker->ean8,
-			'correo' => $faker->email,
+       	    \DB::table('clients')->insert(array (
+			    'dni_cedula' => $faker->randomElement($array = array ('V', 'E')).'-'.$faker->numberBetween($min = 200000000, $max = 25000000),
+			    'nombres'    => $faker->firstName,
+                'apellidos'  => $faker->lastName,
+			    'direccion'  => $faker->address,
+                'operadora'  => $faker->buildingNumber,
+			    'telefono'   => $faker->ean8,
             ));
         }
     }

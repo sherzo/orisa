@@ -12,23 +12,23 @@ class UnitsTableSeeder extends Seeder
     public function run()
     {
         \DB::table('units')->insert(array (
-        	'unidad' => 'kg'
+        	'unidad' => 'KG'
         ));
 
         \DB::table('units')->insert(array (
-            'unidad' => 'g'
+            'unidad' => 'G'
         ));
 
            \DB::table('units')->insert(array (
-        	'unidad' => 'mg'
+        	'unidad' => 'MG'
         ));
 
        \DB::table('units')->insert(array (
-        	'unidad' => 'l'
+        	'unidad' => 'L'
         ));
 
         \DB::table('units')->insert(array (
-        	'unidad' => 'ml'
+        	'unidad' => 'ML'
         ));
     }
 }

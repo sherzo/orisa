@@ -12,37 +12,38 @@ class IngredientsTableSeeder extends Seeder
     public function run()
     {
       	\DB::table('ingredients')->insert(array (
-            'nombre_ingrediente' => 'harina pan',
-        	'id_type' => '1',
-        	'caracteristica' => 'precocida',      	
-        	'id_unit' => '1',
+            'id_type'        => '1',
+            'id_unit'        => '1',
+            'ingrediente'    => 'Harina Pan',
+        	'caracteristica' => 'Precocida',      	
         ));
 
-        \DB::table('ingredients_providers')->insert(array (
-            'id_ingredient' => '1',
-        	'id_provider' => '1',        	
+        \DB::table('providers_has_ingredients')->insert(array (
+            'ingrediente_id' => '1',
+        	'proveedor_id'   => '1',        	
         ));
 
-        \DB::table('ingredients_providers')->insert(array (
-            'id_ingredient' => '1',
-        	'id_provider' => '2',        	
+        \DB::table('providers_has_ingredients')->insert(array (
+            'ingrediente_id' => '1',
+        	'proveedor_id'   => '2',        	
         ));
 
         \DB::table('ingredients')->insert(array (
-            'nombre_ingrediente' => 'Maceite',
-        	'id_type' => '4',
-        	'caracteristica' => 'aceite de soya',      	
-        	'id_unit' => '4',
+            'id_type'     => '4',
+            'id_unit'     => '4',
+            'ingrediente' => 'Maceite',
+        	'caracteristica' => 'Aceite de soya',      	
+        	
         ));
 
-        \DB::table('ingredients_providers')->insert(array (
-            'id_ingredient' => '2',
-        	'id_provider' => '1',        	
+        \DB::table('providers_has_ingredients')->insert(array (
+            'ingrediente_id' => '2',
+        	'proveedor_id'   => '1',        	
         ));
 
-        \DB::table('ingredients_providers')->insert(array (
-            'id_ingredient' => '2',
-        	'id_provider' => '2',        	
+        \DB::table('providers_has_ingredients')->insert(array (
+            'ingrediente_id' => '2',
+        	'proveedor_id'   => '2',        	
         ));
     }
 }

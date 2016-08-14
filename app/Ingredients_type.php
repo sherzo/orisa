@@ -11,9 +11,12 @@ class Ingredients_type extends Model
      *
      * @var array
      */
+
     protected $fillable = [
         'tipo_ingrediente', 
     ];
+
+    protected $table = 'ingredients_types';
 
     /**
      * The attributes that should be hidden for arrays.
@@ -21,6 +24,8 @@ class Ingredients_type extends Model
      * @var array
      */
     
-
-    protected $table = 'ingredients_types';
+    public function ingrediente()
+    {
+        $this->hasMany('App\Ingredients', 'id_type', 'id');
+    }
 }

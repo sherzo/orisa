@@ -14,10 +14,10 @@
     <tbody>
         <tr>
             <td> </td>
-            <td> {{ $employee->dni }} </td>
-            <td> {{ $employee->nombres_em }} </td>
-            <td> {{ $employee->apellidos_em}}  </td>
-            <td> {{ $employee->telefono_em}} </td>
+            <td> {{ $employee->dni_cedula }} </td>
+            <td> {{ $employee->nombres }} </td>
+            <td> {{ $employee->apellidos}}  </td>
+            <td> {{ $employee->telefono}} </td>
             <td> {{ $employee->genero}} </td>
             <td class="text-center">
                 <a class="btn btn-default btn-xs"> <span class="fa fa-eye fa-2x"></span> </a>

@@ -10,6 +10,7 @@ use App\Http\Requests;
 use App\Http\Requests\EmployeeRequest;
 use Laracasts\Flash\Flash;
 
+
 class EmployeesController extends Controller
 {
     /**
@@ -19,7 +20,7 @@ class EmployeesController extends Controller
      */
     public function index(Request $request)
     {
-        $employees = Employee::name($request->get('name'))->orderBy('nombres_em', 'ASC')->paginate(5);
+        $employees = Employee::name($request->get('name'))->orderBy('nombres', 'ASC')->paginate(5);
         return view('admin.employees.index', compact('employees'));
     }
 
@@ -126,7 +127,7 @@ class EmployeesController extends Controller
 
             $positions = Position::lists('nombre', 'id');
 
-            return view('admin.employees.create', compact('all','positions'));
+            return view('admin/employees/create', compact('all','positions'));
         }
     }
 }

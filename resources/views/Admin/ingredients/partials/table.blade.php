@@ -1,10 +1,10 @@
 @include('flash::message')
- <table class="table table-bordered table-hover table-striped">
+<table class="table table-bordered table-hover table-striped">
                                 <thead>
                                     <tr>
                                       <th>#</th>
                                       <th>Ingrediente</th>
-                                      <th>Tipo</th>
+                                      <th>Clase</th>
                                       <th>Caracteristica</th>
                                       <th>Unidad</th>
                                       <th>Acciones</th>
@@ -15,10 +15,11 @@
                                 @foreach($ingredients as $ingredient)
                                   <tr>
                                    <td>{{ $ingredient->id }}</td>
-                                   <td>{{ $ingredient->nombre_ingrediente }}</td>
-                                   <td>{{ $ingredient->id_type }}</td>
+                                   <td>{{ $ingredient->ingrediente }}</td>
+                                   <td>{{ $ingredient->type->tipo_ingrediente }}</td>
+                                   
                                     <td>{{ $ingredient->caracteristica }}</td>
-                                   <td>{{ $ingredient->id_unit }}</td>                                    
+                                   <td>{{ $ingredient->unit->unidad }}</td>                                  
                                    <td class="text-center">
                                      <a class="btn btn-default btn-xs" title="Ver">
                                         <span class="fa fa-eye fa-2x"></span>

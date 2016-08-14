@@ -9,19 +9,13 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Bootstrap Admin Theme</title>
+    <title>Iniciar sesión</title>
 
-    <!-- Bootstrap Core CSS -->
-    <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- MetisMenu CSS -->
-    <link href="bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
-
-    <!-- Custom CSS -->
-    <link href="dist/css/sb-admin-2.css" rel="stylesheet">
-
-    <!-- Custom Fonts -->
-    <link href="bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    
+    <link rel="stylesheet" type="text/css" href="{{ asset('bower_components/bootstrap/dist/css/bootstrap.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('bower_components/metisMenu/dist/metisMenu.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('dist/css/sb-admin-2.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('bower_components/font-awesome/css/font-awesome.css') }}">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -33,102 +27,55 @@
 </head>
 
 <body>
-
-<div id="wrapper">
-
-       <!-- Navigation -->
-        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="index.html"><img alt="Brand" src="img/logo/Orisa6.png" width="28" height="27"></a>
-                <a href="" class="navbar-brand">Orisa</a>
-                  <ul class="nav navbar-nav">
-                    <li><a href="{{ url('/') }}">Inicio</a></li>
-                </ul>
-                <ul class="nav navbar-nav">
-                    <li><a href="{{ url('/home') }}">Menu del dia</a></li>
-                </ul>
-            </div>
-            <!-- /.navbar-header -->
-
-            <ul class="nav navbar-top-links navbar-right">
-                <ul class="nav navbar-nav">
-                    <li><a href="{{ url('/home') }}">Contacto</a></li>
-                </ul>
-                <ul class="nav navbar-nav">
-                    <li><a href="{{ url('/login') }}">Iniciar Sesión</a></li>
-                </ul>
-                <ul class="nav navbar-nav">
-                    <li><a href="{{ url('/home') }}">Registrarme</a></li>
-                </ul>
-            </ul>
-        </nav>
-            <!-- /.navbar-top-links -->
-
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4 col-md-offset-4">
-                <div class="login-panel panel panel-default">
-                    <div class="panel-heading">
-                        <h2 class="panel-title text-muted">Inicio de sesión</h2>
-                    </div>
-                    <div class="panel-body">
-                        <form  role="form" method="POST" action="{{ url('/login') }}">
-                        {{ csrf_field() }}
-                            <fieldset>
-                                 <div class="form-group{{ $errors->has('user') ? ' has-error' : '' }}">
-                                    <input id="user" type="text" class="form-control" name="user" value="{{ old('user') }}">
-                                
-                                @if ($errors->has('user'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('user') }}</strong>
-                                    </span>
-                                @endif
-                                </div>
-
-                                <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                                    <input id="password" type="password" class="form-control" name="password">
-                
-                                @if ($errors->has('password'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
-                                </div>
-                                <div class="checkbox">
-                                    <label>
-                                        <input name="remember" type="checkbox" value="Remember Me">Recuerdarme
-                                    </label>
-                                    
-                                </a>
-                                </div>
-                                <!-- Change this to a button or input when using this as a form -->
-                                <button class="btn btn-lg btn-primary btn-block">Entrar</button><br>
-                                <center><label class="text-center"><a href="{{ url('/password/reset') }}">¿has olvidado tu contraseña?</label></center>
-                            </fieldset>
-                        </form>
-                    </div>
-                </div>
-            </div>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Bienvenido</h1>
         </div>
     </div>
+    <div class="col-lg-6 col-lg-offset-3"><br><br><br>
+        <ol class="breadcrumb">
+            <li class="active">Iniciar sesión</li>
+        </ol>
+    </div>                  
+    <div class="col-lg-4 col-lg-offset-4"><br>
+        <form  role="form" method="POST" action="{{ url('/iniciar-sesion') }}">
+            {{ csrf_field() }}
+            <div class="form-group{{ $errors->has('user') ? ' has-error' : '' }}"><br>
+                <input id="user" type="text" class="form-control" name="user" placeholder="Correo electrónico" value="{{ old('user') }}">
+                @if ($errors->has('user'))
+                    <span class="help-block">
+                        <samll>{{ $errors->first('user') }}</samll>
+                    </span>
+                @endif
+            </div>
+
+            <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+                <input id="password" type="password" class="form-control" name="password" placeholder="Contraseña">
+                @if ($errors->has('password'))
+                    <span class="help-block">
+                        <small>{{ $errors->first('password') }}</small>
+                    </span>
+                @endif
+            </div>
+            <div class="checkbox">
+                <label>
+                    <input name="remember" type="checkbox" value="Remember Me"> Recuérdame
+                </label>
+            </div>
+            <button class="btn btn-sm btn-primary btn-lg btn-block">Entrar</button><br>
+            <p class="text-center">¿No tiene una cuenta? <a href="{{ url('/registrar') }}"> Cree una.</a> </p>
+            <p class="text-center"><a href="{{ url('/password/reset') }}">He olvidado mi contraseña </a></p>
+            <p class="text-center"><small> © 2016 - Copyright UPTA-FBF </small></p>
+                                
+        </form>
+    </div>
 </div>
-    <!-- jQuery -->
-    <script src="bower_components/jquery/dist/jquery.min.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-
-    <!-- Metis Menu Plugin JavaScript -->
-    <script src="bower_components/metisMenu/dist/metisMenu.min.js"></script>
-
-    <!-- Custom Theme JavaScript -->
-    <script src="dist/js/sb-admin-2.js"></script>
+    
+    <script src="{{ asset('bower_components/jquery/dist/jquery.js') }}"></script>
+    <script src="{{ asset('bower_components/bootstrap/dist/js/bootstrap.js') }}"></script>
+    <script src="{{ asset('bower_components/metisMenu/dist/metisMenu.js') }}"></script>
+    <script src="{{ asset('dist/js/sb-admin-2.js') }}"></script>
 
 </body>
 

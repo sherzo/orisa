@@ -9,20 +9,15 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Agency - Start Bootstrap Theme</title>
+    <title>Restaurant sefardí</title>
 
-    <!-- Bootstrap Core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom Fonts -->
-    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
-    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
-
-    <!-- Theme CSS -->
-    <link href="css/agency.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{ asset('bootstrap/css/bootstrap.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('font-awesome/css/font-awesome.css') }}">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Montserrat:400,700">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Kaushan+Script">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/agency.css') }}">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -56,7 +51,7 @@
                         <a class="page-scroll" href="#services">Servicios</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#portfolio">Nuestro menu</a>
+                        <a class="page-scroll" href="#portfolio">Nuestro menú</a>
                     </li>
                     <li>
                         <a class="page-scroll" href="#about">Nosotros</a>
@@ -65,18 +60,18 @@
                         <a class="page-scroll" href="#team">Equipo</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#contact">Contacto</a>
+                        <a class="page-scroll" href="#contact">Contácto</a>
                     </li>
                     @if (Auth::guest())
                     <li>
-                        <a class="page-scroll" href="{{ url('login') }}">
+                        <a class="page-scroll" href="{{ url('iniciar-sesion') }}">
                         <span class="fa fa-sign-out"></span>
                         Entrar</a>
                     </li>
                     @else 
                     <li>
-                        <a class="page-scroll" href="{{ url('logout') }}" title="Cerrar sesion">
-                        <span class="glyphicon glyphicon-off"></span>
+                        <a class="page-scroll" href="{{ url('/admin') }}" title="Entrar">
+                        <span class="fa fa-sign-out"></span> {{ Auth::user()->name }}
                         
                         </a>
                     </li>

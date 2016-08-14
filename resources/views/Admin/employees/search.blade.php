@@ -1,4 +1,4 @@
-@extends('layout.layoutAdminDos')
+@extends('layouts.app')
 
 @section('contenido')
  	<!-- ./row -->
@@ -21,7 +21,6 @@
       <center>
 			<div class="panel-body">
 				@include('flash::message')					
-			
 			<div class="form-group">
   				<div class="input-group">
 

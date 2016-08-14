@@ -4,79 +4,182 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <title>Laravel</title>
-
-    <!-- Fonts -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700">
-
-    <!-- Styles -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-    {{-- <link href="{{ elixir('css/app.css') }}" rel="stylesheet"> --}}
-
-    <style>
-        body {
-            font-family: 'Lato';
-        }
-
-        .fa-btn {
-            margin-right: 6px;
-        }
-    </style>
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Restaurant sefardí</title>
+    
+    <link rel="stylesheet" type="text/css" href="{{ asset('bower_components/bootstrap/dist/css/bootstrap.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('bower_components/metisMenu/dist/metisMenu.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('dist/css/timeline.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('dist/css/footer.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('dist/css/sb-admin-2.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('bower_components/morrisjs/morris.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('bower_components/font-awesome/css/font-awesome.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('bower_components/datatables-responsive/css/dataTables.responsive.css') }}">
 </head>
-<body id="app-layout">
-    <nav class="navbar navbar-default navbar-static-top">
-        <div class="container">
-            <div class="navbar-header">
 
-                <!-- Collapsed Hamburger -->
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
-                    <span class="sr-only">Toggle Navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-
-                <!-- Branding Image -->
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    Orisa
-                </a>
-            </div>
-
-            <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                <!-- Left Side Of Navbar -->
-                <ul class="nav navbar-nav">
-                    <li><a href="{{ url('/home') }}">Inicio</a></li>
-                </ul>
-
-                <!-- Right Side Of Navbar -->
-                <ul class="nav navbar-nav navbar-right">
-                    <!-- Authentication Links -->
-                    @if (Auth::guest())
-                        <li><a href="{{ url('/login') }}">Iniciar sesión</a></li>
-                        <li><a href="{{ url('/register') }}">Registrarme</a></li>
-                    @else
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                {{ Auth::user()->name }} <span class="caret"></span>
-                            </a>
-
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Salir</a></li>
-                            </ul>
-                        </li>
-                    @endif
-                </ul>
-            </div>
+<body>
+<div id="wrapper">
+    <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="index.html"><img alt="Brand" src="{{ asset('img/logo/Orisa6.png') }}" width="28" height="27"></a>
+            <a href="" class="navbar-brand">Orisa</a>
         </div>
+
+        <ul class="nav navbar-top-links navbar-right">
+            <li class="dropdown">
+                <a class="dropdown-toggle color" data-toggle="dropdown" href="#">
+                    <i class="fa fa-bell fa-fw"></i>  <i class="fa fa-caret-down"></i>
+                </a>
+                <ul class="dropdown-menu dropdown-alerts">
+                    <li>
+                        <a href="#">
+                            <div>
+                                <i class="fa fa-comment fa-fw"></i> New Comment
+                                <span class="pull-right text-muted small">4 minutes ago</span>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a href="#">
+                            <div>
+                                <i class="fa fa-envelope fa-fw"></i> Message Sent
+                                <span class="pull-right text-muted small">4 minutes ago</span>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a href="#">
+                            <div>
+                                <i class="fa fa-tasks fa-fw"></i> New Task
+                                <span class="pull-right text-muted small">4 minutes ago</span>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a href="#">
+                            <div>
+                                <i class="fa fa-upload fa-fw"></i> Server Rebooted
+                                <span class="pull-right text-muted small">4 minutes ago</span>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a class="text-center" href="#">
+                            <strong>See All Alerts</strong>
+                            <i class="fa fa-angle-right"></i>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a class="dropdown-toggle color" data-toggle="dropdown" href="#">
+                    <i class="fa fa-user fa-fw"></i><i class="fa fa-caret-down"></i>
+                </a>
+                <ul class="dropdown-menu dropdown-user">
+                    <li><a href="#"></i>Perfil</a></li>
+                    <li><a href="#"></i>Opciones</a></li>
+                    <li class="divider"></li>
+                    <li><a href="{{ url('/admin/salir') }}">Salir</a></li>
+                </ul>
+            </li>
+        </ul>
+        
+        <div class="navbar-default sidebar" role="navigation">
+            <div class="sidebar-nav navbar-collapse collapse in" aria-expanded="true">
+                <ul class="nav" id="side-menu">
+                    <li><a href="{{ url('admin') }}"><i class="fa fa-fw fa-home"></i> Inicio</a></li>
+                    <li><a href="#"><i class="fa fa-fw fa-cutlery"></i> Servicios<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+@if((Auth::user()->roles_id)=='1' || (Auth::user()->roles_id)=='2' || (Auth::user()->roles_id)=='4' || (Auth::user()->roles_id)=='5')                  
+                            <li><a href="{{ url('admin/clientes') }}">Clientes</a></li>
+@endif                  
+                            <li><a href="{{ url('admin/platos') }}">Platos</a></li>
+                            <li><a href="platos.html">Bebidas</a></li>
+                            <li><a href="platos.html">Comandas</a></li>
+@if((Auth::user()->roles_id)=='1' || (Auth::user()->roles_id)=='2' || (Auth::user()->roles_id)=='4' || (Auth::user()->roles_id)=='5')    
+                            <li><a href="platos.html">Recibos</a></li>
+@endif
+                            <li><a href="{{ url('clientes') }}">Reservaciones</a></li>
+                        </ul>
+                    </li>
+@if((Auth::user()->roles_id)=='1' || (Auth::user()->roles_id)=='2' || (Auth::user()->roles_id)=='3' )
+                    <li><a href="#"  ><i class="fa fa-fw fa-male"></i> Empleados<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li><a href="{{ url('admin/asistencias') }}">Asistencias</a></li>
+                            <li><a href="{{ url('admin/cargos') }}">Cargos</a></li>
+                            <li><a href="{{ url('admin/employees') }}"> Personal </a></li>
+                            <li><a href="#"> Planificación<span class="fa arrow"></span></a>
+                                <ul class="nav nav-third-level">
+                                    <li><a href="{{ url('admin/planificaciones') }}"> Turnos</a></li>
+                                </ul>   
+                        </ul>
+                    </li>
+@endif
+
+@if((Auth::user()->roles_id)=='1' || (Auth::user()->roles_id)=='2' || (Auth::user()->roles_id)=='3' )
+                    <li><a href="#" ><i class="fa fa-fw fa-shopping-cart"></i> Compra<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li><a href="{{ url('admin/compra') }}">Orden de Compra</a></li>
+                            <li><a href="#">Inventario</a></li>
+                            <li><a href="{{ url('admin/proveedores')}}">Proveedores</a></li>  
+                            <li><a href="{{ url('admin/ingredientes') }}">Ingredientes</a></li>                     
+                            <li><a href="{{ url('admin/licores') }}">Licores</a></li>
+                        </ul>
+                    </li>
+@endif
+
+@if((Auth::user()->roles_id)=='1' || (Auth::user()->roles_id)=='2')
+                    <li><a href="#"><i class="fa fa-fw fa-wrench"></i> Mantenimiento<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li><a href="{{ url('admin/usuarios') }}">Usuarios</a></li>
+                            <li><a href="#">Respaldo BD</a></li>
+                            <li><a href="#">Restauranción BD</a></li>
+                            <li><a href="#">Bítacora</a></li>
+                        </ul>
+                    </li>
+@endif
+                </ul>
+            </div>
+         </div>
     </nav>
+               
+  </div>
+    <!-- <footer class="footer">
+      <div class="container">
+        <p class="text-muted">Diseñado y programado por <a> Saul Florez</a>, <a>Jesus Matute</a> y <a>Oliver Linares </a> </p>
+      </div>
+    </footer>
+-->
+    <div id="page-wrapper">
+        @yield('contenido')
+    </div>
 
-    @yield('content')
+    <script src="{{ asset('bower_components/jquery/dist/jquery.js') }}"></script>
+    <script src="{{ asset('bower_components/bootstrap/dist/js/bootstrap.js') }}"></script>
+    <script src="{{ asset('bower_components/metisMenu/dist/metisMenu.js') }}"></script>
+    <script src="{{ asset('dist/js/sb-admin-2.js') }}"></script>
+    <script src="{{ asset('bower_components/datatables/media/js/jquery.dataTables.js') }}"></script>
+    <script src="{{ asset('bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.js') }}"></script>
+    
+    <script>
+    $(document).ready(function() {
+        $('#dataTables-example').DataTable({
+                responsive: true
+        });
+    });
+    </script>
 
-    <!-- JavaScripts -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js" integrity="sha384-I6F5OKECLVtK/BL+8iSLDEHowSAfUo76ZL9+kGAgTRdiByINKJaqTPH/QVNS1VDb" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-    {{-- <script src="{{ elixir('js/app.js') }}"></script> --}}
 </body>
 </html>

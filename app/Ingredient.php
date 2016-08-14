@@ -12,8 +12,10 @@ class Ingredient extends Model
      * @var array
      */
     protected $fillable = [
-        'nombre_ingrediente', 'id_type', 'caracteristica', 'id_unit',
+        'id_type', 'id_unit','ingrediente', 'caracteristica', 
     ];
+    
+    protected $table = 'ingredients';
 
     /**
      * The attributes that should be hidden for arrays.
@@ -26,18 +28,18 @@ class Ingredient extends Model
         return $this->belongsToMany('App\Provider');
     }
 
-    public function tipo()
+    public function type()
     {
-        return $this->belongsToMany('App\Ingredients_type', 'Ingredients', 'id', 'id_type');
+        return $this->belongsTo('App\Ingredients_type', 'id_type');
     }
 
     public function unit()
     {
-        return $this->belongsTo('App\Unit', 'id_unit', 'id');
+        return $this->belongsTo('App\Unit', 'id_unit');
     }
 
 
-    protected $table = 'ingredients';
+    
 
     public function scopeAgregar($query, $nombre)
     {

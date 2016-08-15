@@ -12,7 +12,7 @@ class Purchase extends Model
      * @var array
      */
     protected $fillable = [
-        'status',  
+        'id_provider', 'status', 'fecha', 
     ];
 
     protected $table = 'purchases';
@@ -25,12 +25,12 @@ class Purchase extends Model
 
 	public function purchase_ingredients()
     {
-        return $this->hasMany('App\Purchase_has_ingredient', 'id_purchase', 'id');
+        return $this->hasMany('App\Purchase_has_ingredient', 'id_compra', 'id');
     }
 
     public function purchase_liqueurs()
     {
-        return $this->hasMany('App\Purchase_has_liqueurs', 'id_purchase', 'id');
+        return $this->hasMany('App\Purchase_has_liqueurs', 'id_compra', 'id');
     }
 
 

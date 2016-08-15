@@ -12,7 +12,7 @@ class Purchase_has_liqueurs extends Model
      * @var array
      */
     protected $fillable = [
-        'id_liqueur', 'id_purchase', 'cantidad',  
+        'licor_id', 'compra_id', 'cantidad',  
     ];
 
     protected $table = 'purchase_has_liqueurs';

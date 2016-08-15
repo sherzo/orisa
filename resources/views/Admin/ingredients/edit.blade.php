@@ -34,7 +34,7 @@
 						<div class="form-group">
 							{!! Form::label('nombre_ingrediente', 'Nombre del ingrediente') !!}
                             
-								{!! Form::text('nombre_ingrediente', null, ['class' => 'form-control', 'placeholder' => 'Ej: Harina pan', 'title' => 'Ingrese el ingrediente']) !!}
+								{!! Form::text('ingrediente', null, ['class' => 'form-control', 'placeholder' => 'Ej: Harina pan', 'title' => 'Ingrese el ingrediente']) !!}
 						</div>
 
 						<div class="form-group">

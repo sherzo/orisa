@@ -12,15 +12,11 @@ class Liqueurs_provider extends Model
      * @var array
      */
     protected $fillable = [
-        'id_liqueur', 'id_provider', 
+        'licor_id', 'proveedor_id', 
     ];
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    
+    protected $table = 'providers_has_liqueurs';  
 
-    protected $table = 'liqueurs_providers';    
+    public $timestamps = false;
+
 }

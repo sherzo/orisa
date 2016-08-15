@@ -14,7 +14,8 @@ class Provider extends Model
     protected $fillable = [
      'rif', 'razon_social', 'direccion', 'telefono', 'correo', 
     ];
-
+    
+    protected $table = 'providers';
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -31,7 +32,7 @@ class Provider extends Model
         return $this->belongsToMany('App\Liqueur', 'liqueurs_providers', 'id_provider', 'id_liqueur');
     }
 
-    protected $table = 'providers';
+    
 
 
     public function scopeRif($query, $rif)

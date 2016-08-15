@@ -12,7 +12,7 @@ class Purchase_has_ingredient extends Model
      * @var array
      */
     protected $fillable = [
-        'id_ingredient', 'id_purchase', 'cantidad',  
+        'ingrediente_id', 'compra_id', 'cantidad',  
     ];
 
     protected $table = 'purchase_has_ingredients';
@@ -24,7 +24,7 @@ class Purchase_has_ingredient extends Model
      */
 
 
-    public function Ingredient()
+    public function ingredient()
     {
         return $this->belongsTo('App\Ingredient', 'id_ingredient');
     }

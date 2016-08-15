@@ -18,6 +18,9 @@
       <span class="fa fa-plus"></span> Nueva</button></a>
   </div>
 </div>
+<div class="col-lg-12">
+    @include('flash::message')
+</div>
 <div class="row"><br>
                     <div class="col-lg-12">
                         <div class="table-responsive">

@@ -14,8 +14,8 @@
         <a  href="{{ url('admin/ingredientes/create') }}" class="btn btn-primary">
             <span class="fa fa-plus"></span> Nuevo
         </a>
-    </div>  
-    <div class="col-lg-12">
+    </div>
+    <div class="col-lg-12"><br>
         @include('flash::message')
     </div>
     <div class="col-lg-12"><br>

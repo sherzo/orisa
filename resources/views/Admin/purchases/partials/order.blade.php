@@ -1,4 +1,4 @@
-@include('flash::message')
+
 
 {!! Form::open(['route' => 'admin.compra.index', 'method' => 'GET']) !!}
 <div class="form-group">

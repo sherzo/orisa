@@ -56,7 +56,8 @@ class PlanningsController extends Controller
 			$dias = array('0' => 'Domingo', '1' => 'Lunes', '2' => 'Martes', '3' => 'Miercoles', '4' => 'Jueves', '5' => 'Viernes', '6' => 'Sabado');
 
 			$planificaciones = Planning::find($request->id);
-
+			$dias = array('Lunes','Martes','Miercoles','Jueves','Viernes','Sabado','Domingo');
+			
 			return view('admin.planificaciones.plannings', compact('planificaciones', 'dias'));
 		
 		}

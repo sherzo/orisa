@@ -36,10 +36,18 @@
                      		{!! Form::text('dni', $planificacion->fecha_final,['class' => 'form-control', 'disabled']) !!} 
                     	</div>  
                     </div>
-                   	@for($i=$planificacion->fecha_inicio; $i<=$planificacion->fecha_final ; $i = date('Y-m-d', strtotime($i ."+ 1 days")))
-                   		{{ $i }}   
-                   	@endfor
                     @endforeach
+                </div>
+                <div class="row">
+                	
+                	<div class="col-lg-10 col-lg-offset-2">
+                	@for($i=$planificacion->fecha_inicio; $i<=$planificacion->fecha_final ; $i = date('Y-m-d', strtotime($i ."+ 1 days"))) 
+
+                   		{{ $i }} 
+                   		
+                   	@endfor
+                   	</div>
+
                 </div>
             </div>
         </div>

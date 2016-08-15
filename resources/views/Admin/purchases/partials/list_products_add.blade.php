@@ -26,7 +26,7 @@
 					
 					<input type="hidden" name="ingredients[]" value="{{ $ingredient->id }}">
 				</td>
-					<td>{{ $ingredient->nombre_ingrediente }}</td>
+					<td>{{ $ingredient->ingrediente }}</td>
 					<td>
 					<div class="input-group">
 		

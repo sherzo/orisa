@@ -25,4 +25,9 @@ class Liqueurs_type extends Model
     ];
 
     protected $table = 'liqueurs_types';
+
+    public function licores()
+    {
+        $this->hasMany('App\Liqueur', 'tlicor_id', 'id');
+    }
 }

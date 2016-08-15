@@ -18,7 +18,7 @@
 				<td>
 					{!! Form::checkbox('add_ingredients[]', $ingredient->id) !!}
 				</td>
-				<td>{{ $ingredient->nombre_ingrediente }}</td>
+				<td>{{ $ingredient->ingrediente }}</td>
 			</tr>		
 			@endforeach
 

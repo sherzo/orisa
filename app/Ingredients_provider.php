@@ -12,15 +12,10 @@ class Ingredients_provider extends Model
      * @var array
      */
     protected $fillable = [
-        'id_ingredient', 'id_provider', 
+        'ingrediente_id', 'proveedor_id', 
     ];
+    protected $table = 'providers_has_ingredients';
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
+    public $timestamps = false;
     
-
-    protected $table = 'ingredients_providers';
 }

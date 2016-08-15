@@ -34,9 +34,9 @@
 						</div>
 						
 						<div class="form-group">
-						    {!! Form::label('id_type', 'Tipo de licor') !!}
+						    {!! Form::label('tlicor_id', 'Tipo de licor') !!}
 
-							{!! Form::select('id_type', $liqueurs_types, null, ['class' => 'form-control']);
+							{!! Form::select('tlicor_id', $liqueurs_types, null, ['class' => 'form-control']);
 							!!}
 						</div>
 

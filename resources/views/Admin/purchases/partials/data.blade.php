@@ -24,7 +24,7 @@
 						@foreach($ingredients as $key2 => $ingredient)
 							@if($key2 == $key)
 								
-								{{ $ingredient->nombre_ingrediente }}
+								{{ $ingredient->ingrediente }}
 
 							@endif
 						@endforeach

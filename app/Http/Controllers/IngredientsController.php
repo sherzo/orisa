@@ -65,13 +65,13 @@ class IngredientsController extends Controller
         {
             $ingredients_provider = new Ingredients_provider;
 
-            $ingredients_provider->id_ingredient = $ingredient->id;
-            $ingredients_provider->id_provider = $id_provider;
+            $ingredients_provider->ingrediente_id = $ingredient->id;
+            $ingredients_provider->proveedor_id = $id_provider;
             $ingredients_provider->save();
         }   
 
-        Flash::success('<strong>Exito!</strong> Se registro el ingrediente '.
-         $ingredient->nombre_ingrediente .' correctamente!');
+        Flash::success('<strong>Exito</strong> se ha registrado el ingrediente '.
+         $ingredient->ingrediente .' correctamente.');
 
         return redirect('admin/ingredientes');
     }
@@ -120,7 +120,7 @@ class IngredientsController extends Controller
         $ingredient->fill($request->all());
         $ingredient->save();
 
-        Flash::success('<strong>Existo! </strong> '. $ingredient->nombre_ingrediente. ' se actualizo correctamente');
+        Flash::success('<strong>Exito </strong> '. $ingredient->ingrediente. ' se actualizo correctamente.');
 
 
         return redirect()->back();
@@ -138,7 +138,7 @@ class IngredientsController extends Controller
         $ingredient = Ingredient::find($id);
         $ingredient->delete();
 
-        Flash::success('<strong>Exito! </strong> el ingrediente '. $ingredient->nombre_ingrediente .' se eliminó correctamente');
+        Flash::success('<strong>Exito </strong> el ingrediente '. $ingredient->ingrediente .' se eliminó correctamente.');
 
         return redirect('admin/ingredientes');
     }

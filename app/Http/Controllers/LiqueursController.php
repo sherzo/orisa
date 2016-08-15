@@ -23,11 +23,7 @@ class LiqueursController extends Controller
      */
     public function index()
     {   
-        $liqueurs = Liqueur::paginate();
-        $liqueurs->each(function($liqueurs){
-            $liqueurs->tipo;
-        });
-
+        $liqueurs = Liqueur::paginate(5);
 
         return view('admin.liqueurs.index', compact('liqueurs'));
     }
@@ -67,8 +63,8 @@ class LiqueursController extends Controller
         {
             $liqueurs_provider = new Liqueurs_provider;
 
-            $liqueurs_provider->id_liqueur = $liqueur->id;
-            $liqueurs_provider->id_provider = $id_provider;
+            $liqueurs_provider->licor_id = $liqueur->id;
+            $liqueurs_provider->proveedor_id = $id_provider;
             $liqueurs_provider->save();
         }   
 

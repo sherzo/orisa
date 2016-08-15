@@ -25,7 +25,6 @@ class PurchasesController extends Controller
     public function index(Request $request)
     {
 
-
         $providers = Provider::lists('razon_social', 'id');
         
         // Cuando seleciona el proveedor traigo los ingredientes realcionados a el
@@ -116,9 +115,9 @@ class PurchasesController extends Controller
         foreach ($dias as $key => $value) {
             $date->dayOfWeek == $key ? $day = $value : ''; 
         }
-
-        $purchase->status = '0';
+        
         $purchase->id_provider = $request->id_proveedor;
+        $purchase->status = '0';
         $purchase->fecha = $day.' '.$date->format('d-m-Y');
         $purchase->save();
   
@@ -128,8 +127,8 @@ class PurchasesController extends Controller
             foreach ($request->ingredients as $key => $value) {
                 
                 $purchase_ingredient = new Purchase_has_ingredient;
-                $purchase_ingredient->id_ingredient = $value;
-                $purchase_ingredient->id_purchase = $purchase->id;
+                $purchase_ingredient->ingrediente_id = $value;
+                $purchase_ingredient->compra_id = $purchase->id;
                 $purchase_ingredient->cantidad = $request->cantidad_ingredient[$key];
                 $purchase_ingredient->save(); 
             }
@@ -139,8 +138,8 @@ class PurchasesController extends Controller
             foreach ($request->liqueurs as $key => $value) {
 
                 $purchase_liqueur = new Purchase_has_liqueurs;
-                $purchase_liqueur->id_liqueur = $value;
-                $purchase_liqueur->id_purchase = $purchase->id;
+                $purchase_liqueur->licor_id = $value;
+                $purchase_liqueur->compra_id = $purchase->id;
                 $purchase_liqueur->cantidad = $request->cantidad_liqueur[$key];
                 $purchase_liqueur->save();
               

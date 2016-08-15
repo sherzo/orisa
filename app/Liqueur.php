@@ -12,7 +12,7 @@ class Liqueur extends Model
      * @var array
      */
     protected $fillable = [
-        'nombre_licor', 'id_type', 'caracteristica', 'id_unit', 
+       'tlicor_id', 'id_unit', 'nombre_licor', 'caracteristica', 
     ];
 
     /**
@@ -26,7 +26,7 @@ class Liqueur extends Model
 
     public function tipo()
     {
-        return $this->belongsToMany('App\Liqueurs_type', 'liqueurs', 'id', 'id_type');
+        return $this->belongsTo('App\Liqueurs_type', 'tlicor_id');
     }
 
     public function unit()

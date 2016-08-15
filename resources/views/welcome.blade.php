@@ -646,21 +646,13 @@
         </div>
     </div>
 
-    <!-- jQuery -->
-    <script src="vendor/jquery/jquery.min.js"></script>
 
-    <!-- Bootstrap Core JavaScript -->
-    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-
-    <!-- Plugin JavaScript -->
+    <script src="{{ asset('jquery/jquery.js') }}"></script>
+    <script src="{{ asset('bootstrap/js/bootstrap.js') }}"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
-
-    <!-- Contact Form JavaScript -->
-    <script src="js/jqBootstrapValidation.js"></script>
-    <script src="js/contact_me.js"></script>
-
-    <!-- Theme JavaScript -->
-    <script src="js/agency.min.js"></script>
+    <script src="{{ asset('js/jqBootstrapValidation.js') }}"></script>
+    <script src="{{ asset('js/contact_me.js') }}"></script>
+    <script src="{{ asset('js/agency.js') }}"></script>
 
 </body>
 

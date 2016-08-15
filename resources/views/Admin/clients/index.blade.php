@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('contenido')
-
 <div class="row">
     <div class="col-lg-12"><br><br>
         <ol class="breadcrumb">

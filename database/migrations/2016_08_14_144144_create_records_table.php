@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePlanningsTable extends Migration
+class CreateRecordsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,12 +12,10 @@ class CreatePlanningsTable extends Migration
      */
     public function up()
     {
-        Schema::create('plannings', function (Blueprint $table) {
+        Schema::create('records', function (Blueprint $table) {
             $table->increments('id');
-            $table->date('fecha_inicio')->unique();
-            $table->date('fecha_final')->unique();
-            $table->string('estatus', 10); // [ Realizada, creada]
-            $table->timestamps();
+            $table->integer('usuario_id')->unsigned();
+            $table->foreign('usuario_id')->references('id')->on('users')->onDelete('Cascade');
         });
     }
 
@@ -28,6 +26,6 @@ class CreatePlanningsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('plannings');
+        Schema::drop('records');
     }
 }

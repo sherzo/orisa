@@ -69,6 +69,12 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
 		'uses' => 'PositionsController@destroy',
 		'as' => 'admin.cargos.destroy'
 		]);
+	Route::get('planificaciones/administrar', [
+		'uses' => 'PlanningsController@administrar',
+		'as' => 'admin.planificaciones.administrar'
+		]);
+	Route::resource('planificaciones', 'PlanningsController');
+
 	/*
 	|	
 	|	RUTAS OLIVER

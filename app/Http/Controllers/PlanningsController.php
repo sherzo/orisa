@@ -4,37 +4,61 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests;
-use App\Employee;
-use App\Shift;
+use App\Planning;
 use Carbon\Carbon;
 use Laracasts\Flash\Flash;
+use App\Http\Requests\PlanningRequest;
 
 class PlanningsController extends Controller
 {
-		public function index()
-		{
-			$employees = Employee::paginate(10);		
-			return view('admin.planning.index', compact('employees'));
-		}
+	public function index()
+	{
+		$planificaciones = Planning::paginate(10);	
 
-		public function create()
-		{
-			$employees = Employee::all();
-			$shifts = Shift::lists('turno', 'id');
-			return view('admin.planning.create', compact('employees', 'shifts'));  
-		}
+		return view('admin.planificaciones.index', compact('planificaciones'));
+	}
 
-		public function store(Request $request)
-		{
-			$i = 0;
+	public function create()
+	{
+		return view('admin.planificaciones.create');  
+	}
 
-				foreach ($request->shifts_id as $b) 
-				{
-					$shifts = Shift::find($b);
-					$shifts->employee()->attach($request->employee_id[$i], ['fecha_inicio' => $request->fecha_inicio, 'fecha_culminacion' => $request->fecha_culminacion]);
-					$i++;
-				}
+	public function store(PlanningRequest $request)
+	{
+		if($request->fecha_inicio == $request->fecha_final)
+		{
+
+			Flash::warning('<strong> Error </strong> las fechas de las planificaciones no pueden ser iguales.');
+
+			return redirect('admin/planificaciones/create');
+
+		}else{
+
+			$planificaciones = Planning::create($request->all());
+			$planificaciones->save();
+
+			Flash::success('<strong> Éxito </strong> se ha creado un nuevo registro de planificaciones.');
 
 			return redirect('admin/planificaciones');
 		}
+	}
+
+	public function administrar(Request $request)
+	{
+
+		if(empty($request->id)){
+
+			Flash::warning('<strong> Error </strong> debe seleccionar una planificación para poder ejecutar una acción.');
+
+			return redirect()->back();
+		} else {
+		
+			$dias = array('0' => 'Domingo', '1' => 'Lunes', '2' => 'Martes', '3' => 'Miercoles', '4' => 'Jueves', '5' => 'Viernes', '6' => 'Sabado');
+
+			$planificaciones = Planning::find($request->id);
+
+			return view('admin.planificaciones.plannings', compact('planificaciones', 'dias'));
+		
+		}
+	}
 }

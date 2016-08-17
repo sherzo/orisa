@@ -26,6 +26,6 @@ class Ingredients_type extends Model
     
     public function ingrediente()
     {
-        $this->hasMany('App\Ingredients', 'id_type', 'id');
+        return $this->hasMany('App\Ingredients', 'id_type', 'id');
     }
 }

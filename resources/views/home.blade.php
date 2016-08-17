@@ -89,7 +89,7 @@
                         </div>
                         <div class="col-xs-9 text-right">
                             <div class="huge">3</div>
-                            <div>Ordenes de compra</div>
+                            <div>Ordenes</div>
                         </div>
                     </div>
                 </div>

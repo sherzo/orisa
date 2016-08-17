@@ -69,11 +69,16 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
 		'uses' => 'PositionsController@destroy',
 		'as' => 'admin.cargos.destroy'
 		]);
-	Route::get('planificaciones/administrar', [
+	Route::get('planificaciones/{id}/administrar', [
 		'uses' => 'PlanningsController@administrar',
 		'as' => 'admin.planificaciones.administrar'
 		]);
 	Route::resource('planificaciones', 'PlanningsController');
+	Route::get('planificaciones/administrar/dias/turnos', [
+		'uses' => 'Planning_DaysController@turnos',
+		'as'   => 'admin.planificaciones.administrar.dias.turnos'
+ 		]);
+	Route::resource('planificaciones/administrar/dias', 'Planning_DaysController');
 
 	/*
 	|	

@@ -18,8 +18,10 @@ class Days_planning extends Model
     	'planificacion_id', 'dia', 'estatus',
     ];
 
+    public $timestamps = false;
+    
    	public function planif() 
    	{
-   		$this->belognsTo('App\Planning', 'planificacion_id');
+   		return $this->belongsTo('App\Planning', 'planificacion_id');
    	}
 }

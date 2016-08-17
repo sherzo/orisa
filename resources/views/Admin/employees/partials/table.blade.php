@@ -21,7 +21,6 @@
             <td> {{ $employee->genero}} </td>
             <td class="text-center">
                 <a class="btn btn-default btn-xs"> <span class="fa fa-eye fa-2x"></span> </a>
-
                 <a class="btn btn-default btn-xs" href="{{ route('admin.employees.edit', $employee) }}"><span class="fa fa-pencil fa-2x"></span> </a>
 
                 <a href="{{ route('admin.employees.destroy', $employee->id) }}" class="btn btn-default btn-xs" title="Eliminar"> <span class="fa fa-trash-o fa-2x"></span> </a> </td>

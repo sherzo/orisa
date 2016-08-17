@@ -27,12 +27,7 @@
 </head>
 
 <body>
-<div class="container">
-    <div class="row">
-        <div class="col-lg-12">
-            <h1 class="page-header">Bienvenido</h1>
-        </div>
-    </div>
+<div class="container"><br><br><br>
     <div class="col-lg-6 col-lg-offset-3"><br><br><br>
         <ol class="breadcrumb">
             <li class="active">Iniciar sesión</li>

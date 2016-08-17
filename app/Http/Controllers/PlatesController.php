@@ -30,7 +30,7 @@ class PlatesController extends Controller
     public function create(Request $request)
     {
         
-        $ingredients = Ingredient::name($request->get('name'))->orderBy('nombre_ingrediente', 'ASC')->paginate(5);
+        $ingredients = Ingredient::name($request->get('name'))->orderBy('ingrediente', 'ASC')->paginate(5);
 
         return view('admin.plates.create', compact('ingredients'));
 

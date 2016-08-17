@@ -15,6 +15,7 @@
             <div class="panel-body">
                 <div class="row">
                     <div class="col-lg-6 col-lg-offset-3">
+                        {{ csrf_field() }}
                         <div class="form-group{{ $errors->has('fecha_inicio') ? ' has-error' : '' }}">
                             {!! Form::label('inicio', 'Inicio') !!} <strong><span class="text-danger">*</span></strong>
                             {!! Form::date('fecha_inicio', null,['class' => 'form-control', 'title' => 'Fecha inicio de la planificacíon']) !!}

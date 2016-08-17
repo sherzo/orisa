@@ -20,6 +20,8 @@ class CreateEmployeesHasPlanningsTable extends Migration
             $table->foreign('turno_id')->references('id')->on('turns')->onDelete('Cascade');
             $table->integer('planificacion_id')->unsigned();
             $table->foreign('planificacion_id')->references('id')->on('plannings')->onDelete('Cascade');
+            $table->integer('dias_libres_id')->unsigned();
+            $table->foreign('dias_libres_id')->references('id')->on('free_days')->onDelete('Cascade');
         });
     }
 

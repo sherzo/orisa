@@ -30,7 +30,8 @@ class Plate extends Model
     {
         if($data>0){
 
-            $resultado = $query->where('nombre_ingrediente', 'LIKE', '%'.$data.'%');
+            $resultado = $query->where('ingrediente', 'LIKE', '%'.$data.'%');
+            
         }else{
            
         }

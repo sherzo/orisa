@@ -24,8 +24,8 @@ class PlanningRequest extends Request
     public function rules()
     {
         return [
-            'fecha_inicio' => 'required|unique:plannings',
-            'fecha_final'  => 'required|unique:plannings',
+            'fecha_inicio' => 'required',
+            'fecha_final'  => 'required',
             'estatus'      => 'required',
         ];
     }

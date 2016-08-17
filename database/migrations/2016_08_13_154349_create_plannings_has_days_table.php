@@ -17,7 +17,8 @@ class CreatePlanningsHasDaysTable extends Migration
             $table->integer('planificacion_id')->unsigned();
             $table->foreign('planificacion_id')->references('id')->on('plannings')->onDelete('Cascade');
             $table->date('dia');
-            $table->string('estatus', 20); // [ Laborable, Libre ]
+            $table->string('estatus', 20); // [ Laborable, Libre, No-Laborable ]
+            $table->string('detalle', 255); // [Detalle del porque día Inhábil]
         });
     }
 

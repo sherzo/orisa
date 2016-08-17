@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePlanningsTable extends Migration
+class CreateFreeDaysTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,12 +12,9 @@ class CreatePlanningsTable extends Migration
      */
     public function up()
     {
-        Schema::create('plannings', function (Blueprint $table) {
+        Schema::create('free_days', function(Blueprint $table) {
             $table->increments('id');
-            $table->date('fecha_inicio');
-            $table->date('fecha_final');
-            $table->string('estatus', 10); // [ Realizada, creada]
-            $table->timestamps();
+            $table->date('fecha')->unique();
         });
     }
 
@@ -28,6 +25,6 @@ class CreatePlanningsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('plannings');
+        Schema::drop('free_days');
     }
 }

@@ -25,6 +25,21 @@ class PlanningsController extends Controller
 
 	public function store(PlanningRequest $request)
 	{
+
+	$datetime1 = date_create($request->fecha_inicio);
+	$datetime2 = date_create($request->fecha_final);
+	$interval = date_diff($datetime1, $datetime2);
+    $result = $interval->format('%a');
+    	
+    	if ($result > 10) 
+    	{
+ 			
+ 			Flash::warning('<strong> Error </strong> las fechas deben estan en un rango no mayor a 10 días.');
+ 			
+ 			return redirect()->back();
+
+ 		} else {
+
 		if($request->fecha_inicio == $request->fecha_final)
 		{
 
@@ -41,25 +56,25 @@ class PlanningsController extends Controller
 
 			return redirect('admin/planificaciones');
 		}
+		}
 	}
 
-	public function administrar(Request $request)
+	public function administrar($id)
 	{
 
-		if(empty($request->id)){
+		$planificacion = Planning::find($id);
 
-			Flash::warning('<strong> Error </strong> debe seleccionar una planificación para poder ejecutar una acción.');
+			if ($planificacion->estatus == 'Realizada') 
+			{
+				Flash::warning('<strong> Error </strong> los días de esta planificación ya fueron creados, debe tomar una planificación con un estatus diferente.');
 
-			return redirect()->back();
-		} else {
-		
-			$dias = array('0' => 'Domingo', '1' => 'Lunes', '2' => 'Martes', '3' => 'Miercoles', '4' => 'Jueves', '5' => 'Viernes', '6' => 'Sabado');
+				return redirect()->back();
 
-			$planificaciones = Planning::find($request->id);
-			$dias = array('Lunes','Martes','Miercoles','Jueves','Viernes','Sabado','Domingo');
+			} else {
+
+				return view('admin.planificaciones.create_days', compact('planificacion'));
+
+			}
 			
-			return view('admin.planificaciones.plannings', compact('planificaciones', 'dias'));
-		
-		}
 	}
 }

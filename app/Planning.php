@@ -18,9 +18,9 @@ class Planning extends Model
      'fecha_inicio', 'fecha_final', 'estatus',
     ];
 
-   	public function dias_planif() 
+   	public function dias() 
    	{
-   		$this->hasMany('App\Days_planning', 'planificacion_id', 'id');
+   		return $this->hasMany('App\Days_planning', 'planificacion_id', 'id');
    	}
    	
 }

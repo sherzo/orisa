@@ -18,7 +18,7 @@ class Data_employee extends Model
         'code_em', 'date_of_admission', 'account_em', 'contract_status', 'cestaticket', 'duration_em', 'bank', 'type_account'
     ];
 
-    public function employee() 
+    public function em() 
     {
         return $this->belongsTo('App\Employee', 'id');
     } 

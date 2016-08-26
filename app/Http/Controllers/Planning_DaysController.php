@@ -13,14 +13,14 @@ class Planning_DaysController extends Controller
     public function index()
     {
         $dias = Days_Planning::paginate(7);   
-        return view('admin.planificaciones.dias.index', compact('dias'));
+        return view('admin.dias.index', compact('dias'));
     }
 
     public function edit($id)
     {
         $dia = Days_planning::find($id);
 
-        return view('admin.planificaciones.dias.edit', compact('dia'));
+        return view('admin.dias.edit', compact('dia'));
     }
 
     public function create()
@@ -62,8 +62,4 @@ class Planning_DaysController extends Controller
 			return redirect('admin/planificaciones');
     }
 
-    public function turnos()
-    {
-        return view('admin.planificaciones.turnos.index');
-    }
 }

@@ -11,7 +11,7 @@
     </div>
 {!! Form::model($dia, array('route' => array('admin.planificaciones.administrar.dias.update', $dia->id), 'method' => 'PUT')) !!}
 
-	@include('admin.planificaciones.partials.edit_days')
+	@include('admin.dias.partials.fields_edit')
 
 {!! Form::close() !!}
      

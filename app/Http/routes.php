@@ -52,7 +52,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
 
 	/*
 	|	
-	|	RUTAS JESUS
+	|	Rutas Jesús Matute
 	|
 	*/
 
@@ -73,11 +73,14 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
 		'uses' => 'PlanningsController@administrar',
 		'as' => 'admin.planificaciones.administrar'
 		]);
+	/*
+	|
+	|	Rutas resource controladores de planificación
+	|
+	*/
 	Route::resource('planificaciones', 'PlanningsController');
-	Route::get('planificaciones/administrar/dias/turnos', [
-		'uses' => 'Planning_DaysController@turnos',
-		'as'   => 'admin.planificaciones.administrar.dias.turnos'
- 		]);
+	Route::get('planificaciones/administrar/dias/turnos/seleccionar-planificacion', 'TurnsController@select');
+	Route::resource('planificaciones/administrar/dias/turnos', 'TurnsController');
 	Route::resource('planificaciones/administrar/dias', 'Planning_DaysController');
 
 	/*

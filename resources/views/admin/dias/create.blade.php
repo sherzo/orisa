@@ -17,7 +17,7 @@
 </div>
 
 {!! Form::open(['route' => 'admin.planificaciones.administrar.dias.store', 'method' => 'POST', 'name' => 'form']) !!}
-    @include('admin.planificaciones.partials.fields_plannings')
+    @include('admin.dias.partials.fields_create')
 {!! Form::close() !!}   
 
 @endsection

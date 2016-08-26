@@ -16,6 +16,7 @@ class CreatePlanningsTable extends Migration
             $table->increments('id');
             $table->date('fecha_inicio');
             $table->date('fecha_final');
+            $table->string('fechas', 50);
             $table->string('estatus', 10); // [ Realizada, creada]
             $table->timestamps();
         });

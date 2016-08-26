@@ -6,7 +6,7 @@
         <ol class="breadcrumb">
             <li><a href="{{ url('tablero') }}"><span class="glyphicon glyphicon-home"></span></a></li>
             <li><a href="{{url ('admin/planificaciones')}}">Planificación</a></li>
-            <li class="active">Dìas</li>
+            <li class="active">Días</li>
         </ol>
         <h5 class="page-header">DÍAS DE PLANIFICACIÓN</h5>
     </div>
@@ -25,7 +25,7 @@
 		@include('flash::message')	
 	</div>
 	<div class="col-lg-12">
-		@include('admin.planificaciones.partials.table_days') {{ $dias->render() }}             
+		@include('admin.dias.partials.table') {{ $dias->render() }}             
 	</div>
 </div>
 @endsection

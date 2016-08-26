@@ -24,4 +24,9 @@ class Days_planning extends Model
    	{
    		return $this->belongsTo('App\Planning', 'planificacion_id');
    	}
+
+    public function planificacion()
+    {
+        return $this->hasMany('App\Planning_turn_employee', 'dias_id', 'id');
+    }
 }

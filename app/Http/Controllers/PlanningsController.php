@@ -72,7 +72,7 @@ class PlanningsController extends Controller
 
 			} else {
 
-				return view('admin.planificaciones.create_days', compact('planificacion'));
+				return view('admin.dias.create', compact('planificacion'));
 
 			}
 			

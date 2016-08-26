@@ -124,7 +124,7 @@
                                 <ul class="nav nav-third-level">
                                     <li><a href="{{ url('admin/planificaciones') }}"> Fechas</a></li>
                                     <li><a href="{{ url('admin/planificaciones/administrar/dias') }}"> Días</a></li>
-                                    <li><a href="{{ url('admin/planificaciones/administrar/dias/turnos') }}"> Turnos</a></li>
+                                    <li><a href="{{ url('admin/planificaciones/administrar/dias/turnos') }}"> Horario</a></li>
                                 </ul>   
                         </ul>
                     </li>

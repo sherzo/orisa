@@ -64,15 +64,15 @@ class PlanningsController extends Controller
 
 		$planificacion = Planning::find($id);
 
-			if ($planificacion->estatus == 'Realizada' or 'Procesada') 
+			if ($planificacion->estatus == 'Creada') 
 			{
-				Flash::warning('<strong> Error </strong> los días de esta planificación ya fueron creados, debe tomar una planificación con un estatus diferente.');
-
-				return redirect()->back();
+				return view('admin.dias.create', compact('planificacion'));
 
 			} else {
 
-				return view('admin.dias.create', compact('planificacion'));
+				Flash::warning('<strong> Error </strong> los días de esta planificación ya fueron creados, debe tomar una planificación con un estatus diferente.');
+
+				return redirect()->back();
 
 			}
 			

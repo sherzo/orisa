@@ -21,8 +21,10 @@ class TurnsController extends Controller
 
     public function select()
     {
-        $planificaciones = Planning::all()->lists('fechas', 'id');
-        return view('admin.turnos.select', compact('planificaciones'));
+        $planificaciones = Planning::where('estatus', '=', 'Realizada');
+        $planificacion = $planificaciones->lists('fechas', 'id');
+        
+        return view('admin.turnos.select', compact('planificacion'));
     }
 
     public function create(Request $request)

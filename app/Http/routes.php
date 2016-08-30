@@ -129,10 +129,15 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
 	Route::resource('clientes', 'ClientsController');
 
 	Route::resource('platos', 'PlatesController');
-	Route::post('platos/addIngredient', [
-		'uses' => 'PlatesController@addIngredient',
-		'as' => 'admin.plates.addIngredient'
-		]);
+
+	Route::get('platos/create/ingredients/{type}',  function($type){
+
+		$ingredients = App\Ingredient::where('id_type', $type)->get();
+
+
+		return Response::json($ingredients);
+
+	});
 	Route::post('clientes/busqueda', [
 		'uses' => 'ClientsController@search',
 		'as' => 'admin.clients.search'

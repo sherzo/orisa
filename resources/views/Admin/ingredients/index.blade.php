@@ -18,7 +18,7 @@
     <div class="col-lg-12"><br>
         @include('flash::message')
     </div>
-    <div class="col-lg-12"><br>
+    <div class="col-lg-12">
         <div class="table-responsive">
             <p class="text-muted"><small>Existen {{ $ingredients->total() }} ingredientes registrados</small></p>
                 @include('admin.ingredients.partials.table') {!! $ingredients->render() !!}

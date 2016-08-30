@@ -7,7 +7,10 @@
 
         <div class="row">
            <div class="col-lg-12">
-             @include('admin.partial.breadcumb', array('value1' => 'Platos', 'value2' => 'Nuevo'))
+              <ol class="breadcrumb">
+                  <li><a href="{{ url('tablero') }}"><span class="glyphicon glyphicon-home"></span></a></li>
+                  <li><a href="{{ route('admin.platos.index') }}">Platos</a></li>
+              </ol>
             
                 <h4 class="page-header">Lista de Platos</h4>
 

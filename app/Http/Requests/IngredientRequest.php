@@ -28,6 +28,7 @@ class IngredientRequest extends Request
             'id_unit' => 'required',
             'ingrediente' => 'required',
             'caracteristica' => 'required',
+            'id_providers' => 'required',
             
         ];
     }

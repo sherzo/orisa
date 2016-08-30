@@ -179,10 +179,35 @@
         $('div.alert').not('.alert-important').delay(5000).fadeOut(350);
     </script>
 
-    <script type="text/javascript">
+    <script>
         $("#select_all").click(function(){
             $('input:checkbox').not(this).prop('checked', this.checked);
         });;
+    </script>
+
+    <script>
+
+        $('#types').on('change', function(e){
+            console.log(e);
+
+            var type = e.target.value;
+
+            $.get('create/ingredients/' + type, function(data){
+               
+               $('#ingredients').empty();
+
+               $.each(data, function(index, typeObj){
+
+                $('#ingredients').append(
+                    '<tr><td>'+typeObj.id + index +'</td>'+
+                    '<td>'+typeObj.ingrediente+'</td>'+
+                    '<td><a class="btn btn-success btn-xs pull-center"><span class="glyphicon glyphicon-plus"></span></a></td></tr>'
+                    );
+
+               });
+                
+            });
+        }); 
     </script>
 </body>
 </html>

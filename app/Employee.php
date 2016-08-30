@@ -22,6 +22,11 @@ class Employee extends Model
         return $this->hasOne('App\Data_employee', 'employee_id', 'id');
     } 
 
+    public function hoem() #Holiday
+    {
+        return $this->hasMany('App\Holiday', 'empleado_id', 'id');
+    }
+
     public function scopeName($query, $name)
     {
         if (trim($name) != "") {

@@ -31,7 +31,7 @@ class PlanningsController extends Controller
 	$interval = date_diff($datetime1, $datetime2);
     $result = $interval->format('%a');
     	
-    	if ($result > 10) 
+    	if ($result > 7) 
     	{
  			
  			Flash::warning('<strong> Error </strong> las fechas deben estan en un rango no mayor a 10 días.');
@@ -64,7 +64,7 @@ class PlanningsController extends Controller
 
 		$planificacion = Planning::find($id);
 
-			if ($planificacion->estatus == 'Realizada') 
+			if ($planificacion->estatus == 'Realizada' or 'Procesada') 
 			{
 				Flash::warning('<strong> Error </strong> los días de esta planificación ya fueron creados, debe tomar una planificación con un estatus diferente.');
 

@@ -46,9 +46,7 @@ class Planning_DaysController extends Controller
     	{
 
     		$planificacion = Planning::find($request->id);
-    		$planificacion->dias()->saveMany([
-    			new Days_planning(['dia' => $dia, 'estatus' => $request->estatus[$i]])
-    			]);
+    		$planificacion->dias()->saveMany([new Days_planning(['dia' => $dia, 'estatus' => $request->estatus[$i]])]);
 
     	$i++;
 

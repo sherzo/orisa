@@ -15,7 +15,7 @@ class Planning extends Model
 	*/
 
 	protected $fillable = [
-		'fecha_inicio', 'fecha_final', 'estatus',
+		'fecha_inicio', 'fecha_final', 'fechas', 'estatus',
 	];
 
 	public function dias() 

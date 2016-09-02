@@ -186,28 +186,48 @@
     </script>
 
     <script>
-
         $('#types').on('change', function(e){
-            console.log(e);
-
             var type = e.target.value;
-
             $.get('create/ingredients/' + type, function(data){
                
-               $('#ingredients').empty();
-
-               $.each(data, function(index, typeObj){
-
-                $('#ingredients').append(
-                    '<tr><td>'+typeObj.id + index +'</td>'+
-                    '<td>'+typeObj.ingrediente+'</td>'+
-                    '<td><a class="btn btn-success btn-xs pull-center"><span class="glyphicon glyphicon-plus"></span></a></td></tr>'
+                $('#ingredients1').empty();
+                $('#ingredients1').append('<table class="table table-hover table-bordered"><thead><tr><th>id</th><th>Ingrediente</th><th>Agregar</th></tr></thead><tbody id="ingredients"></tbody></table>');
+                $.each(data, function(index, typeObj){
+                    $('#ingredients').append(
+                        '<tr><td>'+ typeObj.id +'</td>'+
+                        '<td>'+ typeObj.ingrediente + '</td>'+
+                        '<td align="center"><a class="agregar btn btn-success btn-xs pull-center" type="'
+                        + typeObj.id+'">'+
+                        '<span class="glyphicon glyphicon-plus"></span></a>'+
+                        '</td></tr>'
                     );
-
-               });
                 
-            });
-        }); 
+               });
+                $('.agregar').on('click', function(){
+                    var id_i = $(this).attr('type');
+                    var tabla = ''
+                
+                    $('#agregados').append(tabla);
+                
+                    $.get('create/addingredient/' + id_i, function(data){
+                        $.each(data, function(index, IngObj){
+                            $('#Tagregados').append(
+                                '<tr class="nuevo success" ><td>'+ IngObj.id +'</td>'+
+                                '<td>'+ IngObj.ingrediente +'</td>'+
+                                '<td><input type="text" class="form-control"></td>'+
+                                '<td><input type="text" class="form-control"></td>'+
+                                '<td align="center"><a class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span></a></td>'
+                            );
+                    
+                        });
+                        $('.nuevo').slideDown(1000);
+                    });//FIN SEGUNDA PETICION AJAX
+                });
+            
+            });//FIN PRIMERA PETICION AJAX
+            
+        });//FIN DE TODA LA FUNCION JQUERY
+        
     </script>
 </body>
 </html>

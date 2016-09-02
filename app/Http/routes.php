@@ -1,5 +1,4 @@
 <?php
-
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -10,52 +9,39 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-
 	/*
 	|	RUTAS DE INICIO
 	|
 	*/
-
 Route::get('/', function()
 {
 	return View::make('welcome');
 });
-
 Route::group(['prefix' => '/', 'middleware' => 'guest', 'namespace' => 'Auth'], function() {
-
 	/*
 	|	RUTAS ANTES DE INICIAR SESIÓN NO MANDA ERROR 404
 	|
 	*/
-
 	Route::get('iniciar-sesion', 'AuthController@getLogin');
 	Route::post('iniciar-sesion', 'AuthController@login');
 	Route::get('registrar', 'AuthController@showRegistrationForm');
     Route::post('registrar', 'AuthController@register');
-
 });
-
-
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){ 
-
 	/*
 	|	RUTAS GENERALES
 	|
 	*/
-
 	Route::resource('usuarios', 'UsersController');
 	Route::get('usuarios/{id}/destroy', [
 		'uses' => 'UsersController@destroy',
 		'as' => 'admin.usuarios.destroy'
 		]);
-
-
 	/*
 	|	
 	|	Rutas Jesús Matute
 	|
 	*/
-
  	Route::resource('/', 'HomeController@index');
  	Route::get('salir', 'Auth\AuthController@logout');
  	Route::get('employees/search', 'EmployeesController@search');
@@ -82,13 +68,11 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
 	Route::get('planificaciones/administrar/dias/turnos/seleccionar-planificacion', 'TurnsController@select');
 	Route::resource('planificaciones/administrar/dias/turnos', 'TurnsController');
 	Route::resource('planificaciones/administrar/dias', 'Planning_DaysController');
-
 	/*
 	|	
 	|	RUTAS OLIVER
 	|
 	*/
-
 	Route::resource('proveedores', 'ProvidersController');
 		Route::post('proveedores/search', [
 			'uses' => 'ProvidersController@search',
@@ -98,7 +82,6 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
 			'uses' => 'ProvidersController@destroy',
 			'as' => 'admin.proveedores.destroy'
 		]);
-
 	Route::get('compra/ordenes', [
 		'uses' => 'PurchasesController@order',
 		'as' => 'admin.compra.ordenes'
@@ -113,37 +96,28 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
 			'uses' => 'LiqueursController@destroy',
 			'as' => 'admin.licores.destroy'
 		]);	
-
 	Route::resource('ingredientes', 'IngredientsController');
 		Route::get('ingredientes/{id}/destroy', [
 			'uses' => 'IngredientsController@destroy',
 			'as' => 'admin.ingredientes.destroy'
 		]);	
-
 	/*
 	|	
 	|	RUTAS SAUL
 	|
 	*/
-
 	Route::resource('clientes', 'ClientsController');
-
 	Route::resource('platos', 'PlatesController');
-
 	Route::get('platos/create/ingredients/{type}',  function($type){
-
 		$ingredients = App\Ingredient::where('id_type', $type)->get();
-
-
 		return Response::json($ingredients);
-
+	});
+	Route::get('platos/create/addingredient/{id_i}', function($id_i){
+		$ingredient = App\Ingredient::where('id', $id_i)->get();
+		return Response::json($ingredient);
 	});
 	Route::post('clientes/busqueda', [
 		'uses' => 'ClientsController@search',
 		'as' => 'admin.clients.search'
 		]);
-
  });
-
-	
-

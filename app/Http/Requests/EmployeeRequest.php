@@ -24,16 +24,20 @@ class EmployeeRequest extends Request
     public function rules()
     {
         return [
-            
-            'birthdate_em' => 'required',
-            'country_em' => 'required',
-            'addres_em' => 'required',
-            'names_em' => 'required',
-            'state_em' => 'required',
-            'phone_em' => 'required',
-            'surnames_em' => 'required',
-            'city_em' => 'required',
-            'email_em' => 'required',
+            'dni_cedula'        => 'required|unique:employees',
+            'nombres'           => 'required|regex:/^([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-])+((\s*)+([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-]*)*)+$/',
+            'apellidos'         => 'required|regex:/^([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-])+((\s*)+([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-]*)*)+$/',
+            'fecha_nacimiento'  => 'required',
+            'estado_civil'      => 'required',
+            'genero'            => 'required',
+            'direccion'         => 'required',
+            'telefono'          => 'digits_between:10,15|required',
+            'codigo'            => 'required|alpha_dash',
+            'fecha_de_admision' => 'required',
+            'cestaticket'       => 'required',
+            'cargo_id'          => 'required',
+            'turno_id'          => 'required',
+            'contrato'          => 'required',
         ];
     }
 }

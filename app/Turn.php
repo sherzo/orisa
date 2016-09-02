@@ -12,5 +12,8 @@ class Turn extends Model
         'turno', 'hora_entrada', 'hora_salida'
     ];
 
-
+    public function em()
+    {
+    	return $this->belongsTo('App\Employee', 'id');
+    }
 }

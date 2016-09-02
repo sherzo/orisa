@@ -14,6 +14,10 @@ class CreateEmployeesTable extends Migration
     {
         Schema::create('employees', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('cargo_id')->unsigned();
+            $table->foreign('cargo_id')->references('id')->on('positions');
+            $table->integer('turno_id')->unsigned();
+            $table->foreign('turno_id')->references('id')->on('turns');
             $table->string('url', 255)->unique();
             $table->string('dni_cedula', 15)->unique();
             $table->string('nombres', 45);

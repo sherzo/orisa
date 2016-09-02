@@ -58,12 +58,18 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
 
  	Route::resource('/', 'HomeController@index');
  	Route::get('salir', 'Auth\AuthController@logout');
- 	Route::get('employees/search', 'EmployeesController@search');
- 	Route::resource('employees', 'EmployeesController');
- 	Route::get('employees/{id}/destroy', [
+
+ 	Route::get('empleados/buscar', [
+ 		'uses' =>'EmployeesController@search',
+ 		'as'   => 'admin.empleados.search'
+ 		]);
+ 	
+ 	Route::resource('empleados', 'EmployeesController');
+ 	Route::get('empleados/{id}/destroy', [
  		'uses' => 'EmployeesController@destroy',
-		'as' => 'admin.employees.destroy'
+		'as'   => 'admin.employees.destroy'
 		]);
+
 	Route::resource('cargos', 'PositionsController');
 	Route::get('cargos/{id}/destroy', [
 		'uses' => 'PositionsController@destroy',
@@ -71,7 +77,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
 		]);
 	Route::get('planificaciones/{id}/administrar', [
 		'uses' => 'PlanningsController@administrar',
-		'as' => 'admin.planificaciones.administrar'
+		'as'   => 'admin.planificaciones.administrar'
 		]);
 	/*
 	|

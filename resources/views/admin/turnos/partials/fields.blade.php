@@ -9,7 +9,7 @@
 </div>
 <div class="table-responsive">
 	<table class="table table-striped">
-		<tr>
+		<tr class="odd gradeA">
 			<th>{!! Form::hidden('planificacion_id', $planificacion->id) !!}</th>
 
 @for($i=$planificacion->fecha_inicio; $i<=$planificacion->fecha_final ; $i = date('Y-m-d', strtotime($i ."+ 1 days")))
@@ -22,7 +22,7 @@
 		</tr>
 @foreach($empleados as $empleado)
 		<tr>
-			<td> {{$empleado->nombres}}</td>
+			<td> {{ $empleado->full_name }}</td>
 @for($m=0;$m<$k;$m++)
 			<td class="text-center"> <input type="checkbox" name="empleado_id[<?=$empleado->id?>][]" value="{{$dia_id[$m]}}" title="Marqué la opción correspondiente al día laboral del empleado"> </td>
 

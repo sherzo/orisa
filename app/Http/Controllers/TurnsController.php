@@ -14,16 +14,19 @@ class TurnsController extends Controller
 {
     public function index()
     {
-        $empleados = Holiday::all();
+        $planificaciones = Holiday::groupBy('empleado_id')->get();
 
-        return view('admin.turnos.index', compact('empleados'));
+        #dd($planificaciones);
+        
+        return view('admin.turnos.index', compact('planificaciones'));
+       
     }
 
     public function select()
     {
         $planificaciones = Planning::where('estatus', '=', 'Realizada');
         $planificacion = $planificaciones->lists('fechas', 'id');
-        
+       
         return view('admin.turnos.select', compact('planificacion'));
     }
 

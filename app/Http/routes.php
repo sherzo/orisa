@@ -138,6 +138,15 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
 		return Response::json($ingredients);
 
 	});
+
+	Route::get('platos/create/addingredient/{id_i}', function($id_i){
+
+		$ingredient = App\Ingredient::where('id', $id_i)->get();
+
+		return Response::json($ingredient);
+
+	});
+
 	Route::post('clientes/busqueda', [
 		'uses' => 'ClientsController@search',
 		'as' => 'admin.clients.search'

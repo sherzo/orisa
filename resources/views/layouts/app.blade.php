@@ -6,13 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-
     <title>Restaurant sefardí</title>
     
     <link rel="stylesheet" type="text/css" href="{{ asset('bower_components/bootstrap/dist/css/bootstrap.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('bower_components/metisMenu/dist/metisMenu.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('bower_components/datatables-responsive/css/dataTables.responsive.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('dist/css/timeline.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('dist/css/footer.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('dist/css/sb-admin-2.css') }}">
@@ -122,7 +119,7 @@
                         <ul class="nav nav-second-level">
                             <li><a href="#">Asistencias</a></li>
                             <li><a href="{{ url('admin/cargos') }}">Cargos</a></li>
-                            <li><a href="{{ url('admin/empleados') }}"> Personal </a></li>
+                            <li><a href="{{ url('admin/employees') }}"> Personal </a></li>
                             <li><a href="#"> Prenómina<span class="fa arrow"></span></a>
                                 <ul class="nav nav-third-level">
                                     <li><a href="{{ url('admin/planificaciones') }}"> Fechas</a></li>
@@ -175,8 +172,8 @@
     <script src="{{ asset('bower_components/bootstrap/dist/js/bootstrap.js') }}"></script>
     <script src="{{ asset('bower_components/metisMenu/dist/metisMenu.js') }}"></script>
     <script src="{{ asset('dist/js/sb-admin-2.js') }}"></script>
-    <script src="{{ asset('bower_components/datatables/media/js/jquery.dataTables.js') }}"></script>
-    <script src="{{ asset('bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.js') }}"></script>
+<!--     <script src="{{ asset('bower_components/datatables/media/js/jquery.dataTables.js') }}"></script>
+    <script src="{{ asset('bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.js') }}"></script> -->
     
     <script>
         $('div.alert').not('.alert-important').delay(5000).fadeOut(350);
@@ -187,16 +184,10 @@
             $('input:checkbox').not(this).prop('checked', this.checked);
         });;
     </script>
-    <script>
-    $(document).ready(function() {
-        $('#dataTables-example').DataTable({
-                responsive: true
-        });
-    });
-    </script>
+
     <script>
 
-    $('#types').on('change', function(e){
+        $('#types').on('change', function(e){
             console.log(e);
 
             var type = e.target.value;

@@ -14,30 +14,24 @@ class Employee extends Model
     protected $table = 'employees';
 
     protected $fillable = [
-        'cargo_id', 'turno_id', 'url', 'dni_cedula','nombres', 'apellidos', 'fecha_nacimiento', 'estado_civil', 'direccion', 'operadora', 'telefono', 'genero'
+        'dni', 'nombres', 'apellidos', 'fecha_nacimiento', 'estado_civil', 'direccion', 'operadora', 'telefono_em', 'genero'
     ];
 
-    public function info() #Inf
+    public function info() 
     {
-        return $this->hasOne('App\Data_employee', 'empleado_id', 'id');
+        return $this->hasOne('App\Data_employee', 'employee_id', 'id');
     } 
 
-    public function turno() #Turn
-    {
-        return $this->hasOne('App\Turn', 'id', 'turno_id');
-    }
-
-    public function cargo() #Position
-    {
-        return $this->hasOne('App\Position', 'id', 'cargo_id');
-    }
     public function hoem() #Holiday
     {
         return $this->hasMany('App\Holiday', 'empleado_id', 'id');
     }
 
-    public function getFullNameAttribute()
+    public function scopeName($query, $name)
     {
-        return $this->nombres . ' ' . $this->apellidos;
+        if (trim($name) != "") {
+            $query->where('nombres', "LIKE", "%$name%");  # code...
+        }
     }
+
 }

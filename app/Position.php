@@ -12,11 +12,6 @@ class Position extends Model
         'codigo', 'nombre', 'salario'
     ];
 
-    public function em()
-    {
-        return $this->belongsTo('App\Employee', 'id');
-    }
-
     public function scopeName($query, $name)
     {
     	if (trim($name) != "") {

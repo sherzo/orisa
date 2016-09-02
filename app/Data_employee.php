@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Data_employee extends Model
 {   
-    protected $table = 'info_employees';
+    protected $table = 'data_employees';
 
     /**
      * The attributes that are mass assignable.
@@ -15,14 +15,24 @@ class Data_employee extends Model
      */
 
     protected $fillable = [
-        'empleado_id', 'codigo', 'fecha_de_admision', 'account_em', 'contrato', 'cestaticket', 'duracion', 'banco', 'cuenta_tipo', 'cuenta_numero'
+        'code_em', 'date_of_admission', 'account_em', 'contract_status', 'cestaticket', 'duration_em', 'bank', 'type_account'
     ];
 
-    public $timestamps = false;
-    
     public function em() 
     {
-        return $this->belongsTo('App\Employee', 'empleado_id');
+        return $this->belongsTo('App\Employee', 'id');
     } 
+
+    /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
+
+    public function unit()
+    {
+        return $this->belongsTo('App\purchase', 'id_purchase', 'id');
+    }
+
 
 }

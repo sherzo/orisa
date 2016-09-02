@@ -15,8 +15,8 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('dist/css/sb-admin-2.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('bower_components/morrisjs/morris.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('bower_components/font-awesome/css/font-awesome.css') }}">
-<!--     <link rel="stylesheet" type="text/css" href="{{ asset('bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('bower_components/datatables-responsive/css/dataTables.responsive.css') }}"> -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('bower_components/datatables-responsive/css/dataTables.responsive.css') }}"> 
 </head>
 
 <body>
@@ -119,7 +119,7 @@
                         <ul class="nav nav-second-level">
                             <li><a href="#">Asistencias</a></li>
                             <li><a href="{{ url('admin/cargos') }}">Cargos</a></li>
-                            <li><a href="{{ url('admin/employees') }}"> Personal </a></li>
+                            <li><a href="{{ url('admin/empleados') }}"> Personal </a></li>
                             <li><a href="#"> Prenómina<span class="fa arrow"></span></a>
                                 <ul class="nav nav-third-level">
                                     <li><a href="{{ url('admin/planificaciones') }}"> Fechas</a></li>
@@ -172,13 +172,19 @@
     <script src="{{ asset('bower_components/bootstrap/dist/js/bootstrap.js') }}"></script>
     <script src="{{ asset('bower_components/metisMenu/dist/metisMenu.js') }}"></script>
     <script src="{{ asset('dist/js/sb-admin-2.js') }}"></script>
-<!--     <script src="{{ asset('bower_components/datatables/media/js/jquery.dataTables.js') }}"></script>
-    <script src="{{ asset('bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.js') }}"></script> -->
+    <script src="{{ asset('bower_components/datatables/media/js/jquery.dataTables.js') }}"></script>
+    <script src="{{ asset('bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.js') }}"></script>
     
     <script>
         $('div.alert').not('.alert-important').delay(5000).fadeOut(350);
     </script>
-
+    <script>
+    $(document).ready(function() {
+        $('#dataTables-example').DataTable({
+                responsive: true
+        });
+    });
+    </script>
     <script>
         $("#select_all").click(function(){
             $('input:checkbox').not(this).prop('checked', this.checked);

@@ -22,7 +22,7 @@
 		</tr>
 @foreach($empleados as $empleado)
 		<tr>
-			<td> {{$empleado->nombres}}</td>
+			<td> {{ $empleado->full_name }} </td>
 @for($m=0;$m<$k;$m++)
 			<td class="text-center"> <input type="checkbox" name="empleado_id[<?=$empleado->id?>][]" value="{{$dia_id[$m]}}" title="Marqué la opción correspondiente al día laboral del empleado"> </td>
 

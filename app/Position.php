@@ -11,12 +11,9 @@ class Position extends Model
     protected $fillable = [
         'codigo', 'nombre', 'salario'
     ];
-
-    public function scopeName($query, $name)
+    public function em()
     {
-    	if (trim($name) != "") {
-    		$query->where('nombre', "LIKE", "%$name%");	# code...
-    	}
+        return $this->belongsTo('App\Employee', 'id');
     }
  
 }

@@ -20,7 +20,6 @@ class CreateInfoEmployeesTable extends Migration
             $table->date('fecha_de_admision');
             $table->string('contrato', 45);
             $table->string('cestaticket', 15);
-            $table->integer('duracion');
             $table->string('banco', 35);
             $table->string('cuenta_tipo', 20);
             $table->string('cuenta_numero', 255)->unique();

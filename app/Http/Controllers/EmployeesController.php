@@ -6,8 +6,10 @@ use Illuminate\Http\Request;
 use App\Data_employee;
 use App\Employee;
 use App\Position;
+use App\Turn;
 use App\Http\Requests;
 use App\Http\Requests\EmployeeRequest;
+use App\Http\Requests\SearchRequest;
 use Laracasts\Flash\Flash;
 
 
@@ -20,8 +22,13 @@ class EmployeesController extends Controller
      */
     public function index(Request $request)
     {
-        $employees = Employee::name($request->get('name'))->orderBy('nombres', 'ASC')->paginate(5);
-        return view('admin.employees.index', compact('employees'));
+        $empleados = Employee::all();
+        return view('admin.empleados.index', compact('empleados'));
+    }
+
+    public function search(Request $request)
+    {
+        return view('admin.empleados.search');
     }
 
     /**
@@ -29,10 +36,26 @@ class EmployeesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {   
-        //
-    }
+    public function create(SearchRequest $request)
+    {
+        $dni_cedula = $request->nationality.'-'.$request->cedula;
+        $exists = Employee::where('dni_cedula', $dni_cedula)->exists()?1:0;
+
+        if ($exists) 
+        {
+            Flash::warning('<strong> Alerta </strong> busqueda con número de cédula <strong>'. $dni_cedula .'</strong> se encuentra en la base de datos.');
+            return redirect()->back();
+        }
+        else
+        {
+            Flash::info('<strong> INFO </strong> búsqueda con número de cédula '. $dni_cedula .' no se encuentra en la base de datos, proceda a llenar los campos.');
+
+            $cargos = Position::lists('nombre', 'id');
+            $turnos = Turn::lists('turno', 'id');
+
+            return view('admin/empleados/create', compact('dni_cedula','cargos', 'turnos'));
+        }
+    } 
 
     /**
      * Store a newly created resource in storage.
@@ -40,17 +63,14 @@ class EmployeesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(EmployeeRequest $request)
     {
-        # Relationships
-        $employee = Employee::create($request->all());
-        $positions = Position::find($request->id_position);
-        $employee->data()->create($request->all());
-        $positions->employee()->attach($positions);
+        $empleado = Employee::create($request->all());
+        $empleado->info()->create($request->all());
 
-        Flash::success('<strong> Exito </strong> Registro de '.$employee->names_em.' se realizó correctamente.');
+        Flash::success('<strong> Éxito </strong> se ha registrado el empleado '.$empleado->nombres.' correctamente.');
 
-        return redirect('admin/employees');
+        return redirect('admin/empleados');
     }
 
     /**
@@ -61,7 +81,7 @@ class EmployeesController extends Controller
      */
     public function show()
     {
-        return view('admin.employees.search');
+        #
     }
 
     /**
@@ -72,9 +92,12 @@ class EmployeesController extends Controller
      */
     public function edit($id)
     {
-        $employee = Employee::find($id);
-        $data = $employee->data()->where('employee_id', $id)->get();
-        return view('admin.employees.edit', compact('employee', 'data'));
+        $empleado = Employee::findOrfail($id);
+        $cargos = Position::lists('nombre', 'id');
+        $turnos = Turn::lists('turno', 'id');
+        $dni_cedula = $empleado->dni_cedula;
+
+        return view('admin.empleados.edit', compact('empleado', 'turnos', 'cargos', 'dni_cedula'));
 
     }
 
@@ -87,11 +110,11 @@ class EmployeesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $employee = Employee::find($id);
-        $employee->fill($request->all())->save();
-        
-        $data = Data_employee::find($request->employee_id);
-        $data->fill($request->all())->save();
+        $empleado= Employee::find($id);
+        $empleado->fill($request->all())->save(); 
+
+        $info = $empleado->info;
+        $info->fill($request->all())->save();
 
         return redirect()->back();
     }
@@ -110,24 +133,5 @@ class EmployeesController extends Controller
         Flash::success('<strong> Exito </strong> el empleado '. $employee->names_em .' se eliminó correctamente');
 
         return redirect('admin/employees');
-    }
-
-    public function search(Request $request)
-    {
-        $all = $request->nationality.'-'.$request->document_em;
-        $exists = Employee::where('dni', $all)->exists()?1:0;
-
-        if ($exists == true) {
-            Flash::warning('<strong> Alerta </strong> busqueda con número de cédula <strong>'. $all .'</strong> se encuentra en la base de datos.');
-            return redirect()->back();
-        }
-        else
-        {
-            Flash::info('<strong> Alerta </strong> busqueda con número de cédula '. $all .' no se encuentra en la base de datos, proceda a registrar.');
-
-            $positions = Position::lists('nombre', 'id');
-
-            return view('admin/employees/create', compact('all','positions'));
-        }
     }
 }

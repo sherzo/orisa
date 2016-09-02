@@ -22,5 +22,5 @@ class Planning extends Model
 	{
 		return $this->hasMany('App\Days_planning', 'planificacion_id', 'id');
 	}
-
+	
 }

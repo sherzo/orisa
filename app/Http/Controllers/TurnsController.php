@@ -14,9 +14,9 @@ class TurnsController extends Controller
 {
     public function index()
     {
-        $empleados = Holiday::all();
+        $planificaciones = Holiday::groupBy('empleado_id')->get();
 
-        return view('admin.turnos.index', compact('empleados'));
+        return view('admin.turnos.index', compact('planificaciones'));
     }
 
     public function select()

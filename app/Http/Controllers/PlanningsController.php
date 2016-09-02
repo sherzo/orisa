@@ -49,7 +49,9 @@ class PlanningsController extends Controller
 
 		}else{
 
+			$fechas = $request->fecha_inicio . ' - ' . $request->fecha_final;
 			$planificaciones = Planning::create($request->all());
+			$planificaciones->fechas = $fechas;
 			$planificaciones->save();
 
 			Flash::success('<strong> Éxito </strong> se ha creado un nuevo registro de planificaciones.');

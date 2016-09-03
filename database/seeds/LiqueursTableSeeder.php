@@ -12,9 +12,9 @@ class LiqueursTableSeeder extends Seeder
     public function run()
     {
 		\DB::table('liqueurs')->insert(array (
-            'tlicor_id'      => '1',
+            'type_id'      => '1',
             'id_unit'        => '5',
-            'nombre_licor'   => 'Carta roja',
+            'licor'   => 'Carta roja',
         	'caracteristica' => 'Añejo',      	
         	
         ));
@@ -30,9 +30,9 @@ class LiqueursTableSeeder extends Seeder
         ));
 
         \DB::table('liqueurs')->insert(array (
-            'tlicor_id'      => '1',
+            'type_id'      => '1',
             'id_unit'        => '5',
-            'nombre_licor'   => 'Cacique',
+            'licor'   => 'Cacique',
         	'caracteristica' => 'Añejo',      	
         	
         ));

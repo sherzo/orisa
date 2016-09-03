@@ -14,11 +14,11 @@ class CreateLiqueursTable extends Migration
     {
         Schema::create('liqueurs', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('tlicor_id') ->unsigned();
-            $table->foreign('tlicor_id') ->references('id')->on('liqueurs_types');
+            $table->integer('type_id') ->unsigned();
+            $table->foreign('type_id') ->references('id')->on('liqueurs_types');
             $table->integer('id_unit') ->unsigned();
             $table->foreign('id_unit') ->references('id')->on('units');
-            $table->string('nombre_licor');
+            $table->string('licor');
             $table->string('caracteristica', 30);
             $table->timestamps();
         });

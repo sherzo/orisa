@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Ingredient;
 use App\Ingredients_type;
+use App\Liqueurs_type;
 use App\Unit;
 use Laracasts\Flash\Flash;
 
@@ -35,8 +36,10 @@ class PlatesController extends Controller
         */
 
         $ingredients_types = Ingredients_type::lists('tipo_ingrediente', 'id');
+        $liqueurs_types = Liqueurs_type::lists('tipo_licor', 'id');
+
  
-        return view('admin.plates.create', compact('ingredients_types'));
+        return view('admin.plates.create', compact('ingredients_types', 'liqueurs_types'));
 
         // $name_ingredient = $request->get('ingrediente_nombre');
         

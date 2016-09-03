@@ -1,72 +1,44 @@
 <br>
-	<div class="panel panel-default">
-
-		<div class="panel-heading">Licores del plato</div>
-			<div class="panel-body">
+<div class="panel panel-default">
+	<div class="panel-heading">Licores del plato</div>
+		<div class="panel-body">
 			<div class="row">
-				<div class="col-md-10">
-					<p>Busque y agregue los licores del plato</p>
+				<div class="col-md-12"><h4>1.- Busque y agregue licores</h4></div>
+			</div>
+			
+			<div class="row">
+				<div class="col-md-4 col-md-offset-4">
+					<div class="form-group">
+						<label for="tipo">Seleccione el tipo</label>
+						{!! Form::select('liqueurs_types', $liqueurs_types, null, ['class' => 'form-control', 'id' => 'types_liqueurs']) !!}
+					</div>
 				</div>
 			</div>
-				<div class="row">	
-					<div class="col-md-3">
-			
 
-					
-							{!! Form::text('name', null, ['class' => 'form-control', 'placeholder' => 'Ingrediente', 'title' => 'Busque ingrediente']) !!}
-
-					
-      
-   				 </div>
-			
-			<div class="col-md-2">
-				{!! Form::text('name', null, ['class' => 'form-control', 'placeholder' => 'Cantidad', 'title' => 'Ingrese la cantidad', 'disabled']) !!}
+			<div class="row">
+				<div class="col-md-6 col-md-offset-3" id="lista_licores"></div>				
 			</div>
-			<div class="col-md-2">
-				<select class="form-control">
-					<option>L</option>
-					<option>Ml</option>
-					
-				</select>
+			
+			<hr>
+
+			<div class="row">
+				<div id="" class="col-md-12">
+					<h4 class="muted">2.- Coloque las cantidades</h4>
+					<table class="table">
+						<thead>
+							<tr class="active">
+								<th>id</th>
+								<th>Ingrediente</th>
+								<th>Cantidad</th>
+								<th>Unidad</th>
+								<th>Remover</th>
+							</tr>
+						</thead>
+						<tbody id="licores_agregados">				
+						</tbody>
+					</table>
+				</div>
 			</div>
-			<div class="col-md-2 ">
-				<button class="btn btn-success btn-sm pull-right"><span class="fa fa-plus"></span></button>
-		</div>
-	</div>
 
-	<div class="row"><hr>
-		<div class="col-md-10"><br>
-		<p class="bold">Lista de licores agregados</p>
-			<table class="table table-hover">
-				<thead>
-				<th>#</th>
-				<th>Licor</th>
-				<th>Cantidad</th>
-				<th>Unidad</th>
-				<th>Acción</th>
-				</thead>
-
-				<tbody>
-				<tr>
-				<td>1</td>
-					<td>Vino</td>
-					<td>
-						10
-
-					</td>
-					<td>
-						ml.
-					</td>
-					<td>
-						<button class="btn btn-danger btn-sm"><span class="fa fa-times"></span></button>
-					</td>
-				</tr>
-
-				
-				</tbody>
-			</table>
-		</div>
-	</div>
-				
-			</div><!-- FIN PANEL BODY -->
-	</div><!-- FIN PANEL -->
+		</div><!-- FIN PANEL BODY -->
+</div><!-- FIN PANEL -->

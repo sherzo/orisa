@@ -113,10 +113,12 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
 	*/
 	Route::resource('clientes', 'ClientsController');
 	Route::resource('platos', 'PlatesController');
+
+	// INGREDIENTES
 	Route::get('platos/create/ingredients/{type}',  function($type){
 		$ingredients = App\Ingredient::where('id_type', $type)->get();
 		return Response::json($ingredients);
-	});
+	});			
 	Route::get('platos/create/addingredient/{id_i}', function($id_i){
 		$ingredient = App\Ingredient::where('id', $id_i)->get();
 
@@ -124,6 +126,21 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
 
 		return Response::json(array('ingredient' => $ingredient, 'units' => $units));
 	});
+
+	// LICORES
+	Route::get('platos/create/liqueurs/{type}',  function($type){
+		$liqueur = App\Liqueur::where('type_id', $type)->get();
+		return Response::json($liqueur);
+	});
+
+	Route::get('platos/create/addliqueur/{id_l}', function($id_l){
+		$liqueur = App\Liqueur::where('id', $id_l)->get();
+
+		$units = App\Unit::all();
+
+		return Response::json(array('liqueur' => $liqueur, 'units' => $units));
+	});
+
 	Route::post('clientes/busqueda', [
 		'uses' => 'ClientsController@search',
 		'as' => 'admin.clients.search'

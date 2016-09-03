@@ -198,35 +198,55 @@
                
                 $('#ingredients1').empty();
                 $('#ingredients1').append('<table class="table table-hover table-bordered"><thead><tr><th>id</th><th>Ingrediente</th><th>Agregar</th></tr></thead><tbody id="ingredients"></tbody></table>');
+
+
                 $.each(data, function(index, typeObj){
                     $('#ingredients').append(
                         '<tr><td>'+ typeObj.id +'</td>'+
                         '<td>'+ typeObj.ingrediente + '</td>'+
-                        '<td align="center"><a class="agregar btn btn-success btn-xs pull-center" type="'
+                        '<td align="center"><a class="agregar btn btn-success btn-sm pull-center" type="'
                         + typeObj.id+'">'+
                         '<span class="glyphicon glyphicon-plus"></span></a>'+
                         '</td></tr>'
                     );
                 
                });
+                
                 $('.agregar').on('click', function(){
-                    var id_i = $(this).attr('type');
-                    var tabla = ''
-                
-                    $('#agregados').append(tabla);
-                
-                    $.get('create/addingredient/' + id_i, function(data){
-                        $.each(data, function(index, IngObj){
-                            $('#Tagregados').append(
-                                '<tr class="nuevo success" ><td>'+ IngObj.id +'</td>'+
-                                '<td>'+ IngObj.ingrediente +'</td>'+
-                                '<td><input type="text" class="form-control"></td>'+
-                                '<td><input type="text" class="form-control"></td>'+
-                                '<td align="center"><a class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span></a></td>'
-                            );
                     
+                    var id_i = $(this).attr('type');
+                                   
+                    $.get('create/addingredient/' + id_i, function(data){
+
+                        $.each(data['units'], function(index, IngObj){ 
+                                    console.log('<option value="'+ IngObj.id +'">'+ IngObj.unidad +'</option>');
+                            });
+                       
+
+
+                        $('#Tagregados').append(
+                        '<tr class="nuevo success" ><td>'+ data['ingredient'][0].id +
+                        '</td><td>' + data['ingredient'][0].ingrediente + 
+                        '</td><td><input type="text" class="form-control"></td><td><select class="form-control"><option value="'+ data['units'][0].id +' ">'+ data['units'][0].unidad +'</option> '+
+                        '<option value="'+ data['units'][1].id +' ">'+ data['units'][1].unidad +
+                        '</option> '+
+                        '<option value="'+ data['units'][2].id +' ">'+ data['units'][2].unidad +
+                        '</option> '+
+                        '<option value="'+ data['units'][3].id +' ">'+ data['units'][3].unidad +
+                        '</option> '+
+                        '<option value="'+ data['units'][4].id +' ">'+ data['units'][4].unidad +
+                        '</option> '+
+                        '</td><td align="center"><a class="btn btn-sm btn-danger remove"><span class="fa fa-times"></span></a>'
+                        );
+                        
+                        
+
+
+                        $('.remove').on('click', function(){
+
+                            $(this).parents('tr').first().remove();
                         });
-                        $('.nuevo').slideDown(1000);
+
                     });//FIN SEGUNDA PETICION AJAX
                 });
             

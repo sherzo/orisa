@@ -4,6 +4,9 @@
 <div class="panel panel-default">
 	<div class="panel-heading">Ingredientes del plato</div>
 		<div class="panel-body">
+		<div class="row">
+			<div class="col-md-12"><p>1.- Busque y agregue los ingredientes</p></div>
+		</div>
 			<div class="row">
 				<div class="col-md-4 col-md-offset-4">
 					<div class="form-group">
@@ -27,7 +30,7 @@
 			<div class="row">
 				<div id="agregados" class="col-md-12">
 
-		<p class="muted">Lista de ingredientes agregados</p>
+		<p class="muted">2.- Lista de ingredientes agregados coloque las cantidades</p>
 					<table class="table">
 						<thead>
 							<tr>

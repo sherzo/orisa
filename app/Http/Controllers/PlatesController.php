@@ -106,7 +106,10 @@ class PlatesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $file = $request->file('image');
+        dd($file);
+        $name = 'orisa_' . time() . '.' . $file->getClientOriginalExtension();
+        dd($name); 
     }
 
     /**

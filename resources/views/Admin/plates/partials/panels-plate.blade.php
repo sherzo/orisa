@@ -3,7 +3,6 @@
 		<div class="panel-heading">Datos iniciales</div>
 			<div class="panel-body">
 
-				{!! Form::open(['route' => 'admin.platos.store', 'method' => 'POST']) !!}
 			
 				<div class="col-xs-6 col-md-3">
     				<a href="#" class="thumbnail">
@@ -13,7 +12,7 @@
 
 				<div class="form-group">
 				
-					{!! Form::label('name', 'Imagen del plato') !!}
+					{!! Form::label('image', 'Imagen del plato') !!}
 
 					{!!  Form::file('image'); !!}
 				</div>
@@ -21,9 +20,9 @@
 		<div class="row">
 			<div class="col-md-6 col-lg-4">
 				<div class="form-group">
-					{!! Form::label('nombre_plato', 'Nombre del plato') !!}
+					{!! Form::label('plato', 'Nombre del plato') !!}
 
-					{!! Form::text('nombre_plato', null, ['class' => 'form-control', 'placeholder' => 'Ejemplo: Ajiaco', 'title' => 'Ingrese su nombre']) !!}
+					{!! Form::text('plato', null, ['class' => 'form-control', 'placeholder' => 'Ejemplo: Ajiaco', 'title' => 'Ingrese su nombre']) !!}
 				</div>
 			</div>
 			<div class="col-md-6 col-lg-4">
@@ -40,5 +39,18 @@
 				</div>
 			</div>
 		</div>
+		<div class="row">
+			<div class="col-md-12"><br>
+				<center>
+					<button class="btn btn-primary btn-sm" title="Borrar">
+						<span class="fa fa-refresh fa-2x"></span>
+					</button>
+					<button class="btn btn-success btn-sm" title="Guardar">
+						<span class="fa fa-save fa-2x"></span>
+					</button>
+                </center>
+			</div>
+		</div>
+
 	</div>
 </div>

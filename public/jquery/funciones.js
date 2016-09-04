@@ -29,10 +29,10 @@ $('#types').on('change', function(e){
                 $.get('create/addingredient/' + id_i, function(data){
 
                 $('#Tagregados').append(
-                    '<tr class="nuevo success" ><td>'+ data['ingredient'][0].id +
+                    '<tr class="nuevo success" ><td><input type="text" name="id_ingredientes[]" value="'+data['ingredient'][0].id +'">'+ data['ingredient'][0].id +
                     '</td><td>' + data['ingredient'][0].ingrediente + 
-                    '</td><td><input type="text" class="form-control"></td><td>'+
-                    '<select class="form-control"><option value="'+ data['units'][0].id +' ">'+ data['units'][0].unidad +'</option> '+
+                    '</td><td><input type="text" name="cantidades_i[]" class="form-control"></td><td>'+
+                    '<select class="form-control" name="unidades_i[]"><option value="'+ data['units'][0].id +' ">'+ data['units'][0].unidad +'</option> '+
                     '<option value="'+ data['units'][1].id +' ">'+ data['units'][1].unidad +
                     '</option> '+
                     '<option value="'+ data['units'][2].id +' ">'+ data['units'][2].unidad +
@@ -93,10 +93,10 @@ $('#types_liqueurs').on('change', function(e){
                 $.get('create/addliqueur/' + id_l, function(data){
 
                 $('#licores_agregados').append(
-                    '<tr class="nuevo success" ><td>'+ data['liqueur'][0].id +
+                    '<tr class="nuevo success" ><td><input type="text" name="id_licores[]" value="'+data['liqueur'][0].id+'">'+ data['liqueur'][0].id +
                     '</td><td>' + data['liqueur'][0].licor + 
-                    '</td><td><input type="text" class="form-control"></td><td>'+
-                    '<select class="form-control"><option value="'+ data['units'][0].id +' ">'+ data['units'][0].unidad +'</option> '+
+                    '</td><td><input type="text" name="cantidades_l[]" class="form-control"></td><td>'+
+                    '<select name="unidades_l[]" class="form-control"><option value="'+ data['units'][0].id +' ">'+ data['units'][0].unidad +'</option> '+
                     '<option value="'+ data['units'][1].id +' ">'+ data['units'][1].unidad +
                     '</option> '+
                     '<option value="'+ data['units'][2].id +' ">'+ data['units'][2].unidad +

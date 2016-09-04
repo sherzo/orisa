@@ -19,6 +19,7 @@
     <li role="presentation"><a href="#licores" aria-controls="profile" role="tab" data-toggle="tab">Licores</a></li>
     <li role="presentation"><a href="#plato" aria-controls="messages" role="tab" data-toggle="tab">Publicación de plato</a></li>
   </ul>
+    {!! Form::open(['route' => 'admin.platos.store', 'method' => 'POST', 'files' => true]) !!}
 
 <div class="tab-content">
 
@@ -34,6 +35,9 @@
     <div role="tabpanel" class="tab-pane" id="plato">
    		@include('admin.plates.partials.panels-plate')        
     </div><!-- FIN PILLS PLATO -->
-
+  
 </div>
+
+    {!! Form::close() !!}
+
 @endsection

@@ -1,4 +1,6 @@
 <br>
+
+
 <div class="panel panel-default">
 	<div class="panel-heading">Ingredientes del plato</div>
 		<div class="panel-body">
@@ -39,6 +41,6 @@
 					</table>
 				</div>
 			</div>
-
+			
 		</div><!-- FIN PANEL BODY -->
 </div><!-- FIN PANEL -->

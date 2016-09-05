@@ -15,11 +15,7 @@ use Laracasts\Flash\Flash;
 
 class EmployeesController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index(Request $request)
     {
         $empleados = Employee::all();
@@ -31,11 +27,6 @@ class EmployeesController extends Controller
         return view('admin.empleados.search');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create(SearchRequest $request)
     {
         $dni_cedula = $request->nationality.'-'.$request->cedula;
@@ -44,6 +35,7 @@ class EmployeesController extends Controller
         if ($exists) 
         {
             Flash::warning('<strong> Alerta </strong> busqueda con número de cédula <strong>'. $dni_cedula .'</strong> se encuentra en la base de datos.');
+            
             return redirect()->back();
         }
         else
@@ -57,12 +49,6 @@ class EmployeesController extends Controller
         }
     } 
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(EmployeeRequest $request)
     {
         $empleado = Employee::create($request->all());
@@ -73,23 +59,11 @@ class EmployeesController extends Controller
         return redirect('admin/empleados');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show()
     {
         #
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         $empleado = Employee::findOrfail($id);
@@ -101,13 +75,6 @@ class EmployeesController extends Controller
 
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         $empleado= Employee::find($id);
@@ -119,12 +86,6 @@ class EmployeesController extends Controller
         return redirect()->back();
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         $employee = Employee::find($id);

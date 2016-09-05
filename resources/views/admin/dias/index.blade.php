@@ -2,30 +2,32 @@
 
 @section('contenido')
 <div class="row">
-    <div class="col-lg-12"><br><br>
+		<div class="col-lg-12">
+				<h5 class="page-header"></h5>
+		</div>
+    <div class="col-lg-12">
         <ol class="breadcrumb">
             <li><a href="{{ url('tablero') }}"><span class="glyphicon glyphicon-home"></span></a></li>
             <li><a href="{{url ('admin/planificaciones')}}">Planificación</a></li>
             <li class="active">Días</li>
         </ol>
-        <h5 class="page-header">DÍAS DE PLANIFICACIÓN</h5>
     </div>
-	{!! Form::open(['route' => 'admin.planificaciones.index', 'method' => 'GET', 'class' => 'navbar-form navbar-left pull-right']) !!}
-		<div class="input-group"> 
-			<input type="text" class="form-control" placeholder="Buscar" name="name">
-			<span class="input-group-btn">
-				<button class="btn btn-default" type="submit">
-					<span class="glyphicon glyphicon-search"></span>
-				</button>
-			</span>
-		</div>
-	{!! Form::close() !!}
-
-	<div class="col-lg-12">
-		@include('flash::message')	
-	</div>
-	<div class="col-lg-12">
-		@include('admin.dias.partials.table') {{ $dias->render() }}             
-	</div>
+</div>
+<div><br>
+    @include('flash::message')
+</div>
+<div class="row">
+    <div class="col-lg-12"><br>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Días
+            </div>
+            <div class="panel-body">
+                <div class="dataTable_wrapper">
+                    @include('admin.dias.partials.table')
+                </div>
+            </div>
+        </div>                
+    </div>
 </div>
 @endsection

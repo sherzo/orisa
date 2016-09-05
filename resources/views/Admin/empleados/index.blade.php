@@ -18,7 +18,7 @@
         <button type="button" class="btn btn-primary "><span class="fa fa-plus"></span></button>
     </a>
 </div>
-<div>
+<div><br>
     @include('flash::message')
 </div>
 <div class="row">

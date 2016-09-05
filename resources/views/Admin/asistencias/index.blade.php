@@ -8,13 +8,13 @@
 		</div>
     <div class="col-lg-12">
         <ol class="breadcrumb">
-            <li><a href="{{ url('tablero') }}"><span class="glyphicon glyphicon-home"></span></a></li>
-            <li class="active">Planificaciones </li>
+            <li><a href="{{ url('admin') }}"><span class="glyphicon glyphicon-home"></span></a></li>
+            <li class="active">Asistencias </li>
         </ol>
     </div>
 </div>
 <div class="col-lg-14">
-    <a href="{{ url('admin/planificaciones/create') }}">
+    <a href="{{ url('admin/asistencias/buscar') }}">
         <button type="button" class="btn btn-primary "><span class="fa fa-plus"></span></button>
     </a>
 </div>
@@ -25,11 +25,11 @@
     <div class="col-lg-12"><br>
         <div class="panel panel-default">
             <div class="panel-heading">
-                Fechas
+               Fechas
             </div>
             <div class="panel-body">
                 <div class="dataTable_wrapper">
-                    @include('admin.planificaciones.partials.table') 
+                    @include('admin.asistencias.partials.table') 
                 </div>
             </div>
         </div>                

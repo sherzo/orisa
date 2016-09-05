@@ -14,7 +14,7 @@ class CreateDaysWithAssistancesTable extends Migration
     {
         Schema::create('days_with_assistances', function (Blueprint $table) {
             $table->increments('id');
-            // Falta
+            $table->date('fecha');
         });
     }
 

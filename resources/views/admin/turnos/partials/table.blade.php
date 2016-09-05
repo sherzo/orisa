@@ -6,7 +6,7 @@
             <th>Turno</th>
             <th>Cargo</th>
             <th>Planificación</th>
-            <th class="center">Acciones</th>
+            <th>Acciones</th>
         </tr>
     </thead>
     <tbody> 
@@ -61,7 +61,7 @@
             <th>Turno</th>
             <th>Cargo</th>
             <th>Planificación</th>
-            <th class="center">Acciones</th>
+            <th>Acciones</th>
         </tr>
     </thead>
 </table>                                    

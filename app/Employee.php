@@ -14,12 +14,17 @@ class Employee extends Model
     protected $table = 'employees';
 
     protected $fillable = [
-        'cargo_id', 'turno_id', 'url', 'dni_cedula','nombres', 'apellidos', 'fecha_nacimiento', 'estado_civil', 'direccion', 'operadora', 'telefono', 'genero'
+        'cargo_id', 'turno_id', 'url', 'dni_cedula', 'nombres', 'apellidos', 'fecha_nacimiento', 'estado_civil', 'direccion', 'operadora', 'telefono', 'genero'
     ];
 
     public function info() #info
     {
         return $this->hasOne('App\Data_employee', 'empleado_id', 'id');
+    } 
+
+    public function attendance() #Attendances
+    {
+        return $this->hasMany('App\Assistance', 'empleado_id', 'id');
     } 
 
     public function hoem() #Holiday

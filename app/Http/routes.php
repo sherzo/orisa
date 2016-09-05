@@ -64,6 +64,11 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
 		'uses' => 'PlanningsController@administrar',
 		'as'   => 'admin.planificaciones.administrar'
 		]);
+	Route::get('asistencias/buscar', [
+ 		'uses' =>'AssistsController@search',
+ 		'as'   => 'admin.asistencias.search'
+ 		]);
+	Route::resource('asistencias', 'AssistsController');
 	/*
 	|
 	|	Rutas resource controladores de planificación

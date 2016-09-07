@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Plate extends Model
+class Plates_has_liqueur extends Model
 {
    /**
      * The attributes that are mass assignable.
@@ -12,7 +12,7 @@ class Plate extends Model
      * @var array
      */
     protected $fillable = [
-     'plato', 'descripcion', 'precio', 'image_id',
+     'plato_id', 'licor_id', 'cantidad_licor', 
     ];
 
     /**
@@ -20,14 +20,6 @@ class Plate extends Model
      *
      * @var array
      */
-
-
-
-    protected $table = 'plates';
-
-    public function image()
-    {
-        return $this->belongsTo('App\Image');
-    }
-
+    
+    protected $table = 'plates_has_liqueurs';
 }

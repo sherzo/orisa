@@ -12,12 +12,14 @@ class CreatePlatesWithLiqueursTable extends Migration
      */
     public function up()
     {
-        Schema::create('plates_with_liqueurs', function (Blueprint $table) {
+        Schema::create('plates_has_liqueurs', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('licor_id')->unsigned();
-            $table->foreign('licor_id')->references('id')->on('liqueurs')->onDelete('Cascade');
             $table->integer('plato_id')->unsigned();
             $table->foreign('plato_id')->references('id')->on('plates')->onDelete('Cascade');
+            $table->integer('licor_id')->unsigned();
+            $table->foreign('licor_id')->references('id')->on('liqueurs')->onDelete('Cascade');
+            $table->integer('cantidad_licor');
+            $table->timestamps();
         });
     }
 
@@ -28,6 +30,6 @@ class CreatePlatesWithLiqueursTable extends Migration
      */
     public function down()
     {
-        Schema::drop('plates_with_liqueurs');
+        Schema::drop('plates_has_liqueurs');
     }
 }

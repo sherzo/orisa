@@ -12,40 +12,54 @@
                   <li><a href="{{ route('admin.platos.index') }}">Platos</a></li>
               </ol>
             
-                <h4 class="page-header">Lista de Platos</h4>
-
-          </div>
+              @include('flash::message')
+            </div>
                 <div class="col-lg-4">
                        <a  href="{{ url('admin/platos/create') }}" class="btn btn-primary">
                         <span class="fa fa-plus"></span> Nuevo
                         </a>
                 </div>  
+                <br>
           </div>
           <!--  CIERRE DEL ROW -->
 
         
             
-<div class="row">
- <br>
- <?php 
-for ($i=0; $i < 17; $i++) { 
+          <div class="row">
+            @foreach($plates as $plate)
+              <div class="col-md-4">
+                <div class="panel panel-default">
+                  <div class="panel-body">
+                    <img src="../img/plates/{{ $plate->image->nombre }}" alt="" class="img-responsive">
+                  </div>
+                  <div class="panel-footer">
+                    {{ $plate->plato }}
+                    
+                    <a href="#" class="btn btn-default btn-xs pull-right "> <span class="fa fa-trash-o fa-2x"></span> </a> &nbsp;&nbsp;
 
- ?>
-  <div class="col-sm-6 col-md-3">
-    <div class="thumbnail">
-      <img src="../img/plato{{$i}}.png" >
-      <div class="caption">
-        <h5>Arroz con pollo</h5>
-        <!-- <hr>-->
-        <p><a href="#" class="btn btn-default btn-xs" role="button"><span class="fa fa-pencil fa-2x"></span></a> <a href="#" class="btn btn-danger btn-xs" role="button"><span class="fa fa-trash-o fa-2x"></span></a></p>
-      </div>
-    </div>
-  </div>
+                    <a href="#" class="btn btn-default btn-xs pull-right "> <span class="fa fa-trash-o fa-2x"></span> </a> &nbsp;&nbsp;
+                
+                    <a href="#" class="btn btn-default btn-xs pull-right "> <span class="fa fa-pencil fa-2x"></span> </a>
+                  </div>
+                </div>
+              </div>
+<!--               <div class="col-sm-6 col-md-4">
+                <div class="thumbnail">
+                  <img src="../img/plates/{{ $plate->image->nombre }}" >
+                  <div class="caption">
+                    <h4>{{ $plate->plato }}</h4>
+                    
+                    <p>
+                      <a href="#" class="btn btn-default btn-xs" role="button"><span class="fa fa-pencil fa-2x"></span></a>
 
-<?php } ?>
-        
-               </div>
-    </div>
+                      <a href="#" class="btn btn-danger btn-xs pull-right" role="button"><span class="fa fa-trash-o fa-2x"></span></a>
+                    </p>
+                  </div>
+                </div>
+              </div> -->
+            @endforeach
+          </div>
+    
 
 
   @endsection

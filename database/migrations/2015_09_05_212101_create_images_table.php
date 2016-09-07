@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePlatesTable extends Migration
+class CreateImagesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,14 +12,10 @@ class CreatePlatesTable extends Migration
      */
     public function up()
     {
-        Schema::create('plates', function (Blueprint $table) {
+        Schema::create('images', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('plato', 15);
-            $table->text('descripcion');
-            $table->double('precio', 15,2);
-            $table->integer('image_id') ->unsigned();
-            $table->foreign('image_id') ->references('id')->on('images');
-
+            $table->string('nombre');
+            $table->string('direccion');
             $table->timestamps();
         });
     }
@@ -31,6 +27,6 @@ class CreatePlatesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('plates');
+        //
     }
 }

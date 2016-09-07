@@ -3,11 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Plate;
 use App\Ingredient;
 use App\Ingredients_type;
 use App\Liqueurs_type;
 use App\Unit;
 use Laracasts\Flash\Flash;
+use App\Plates_has_ingredient;
+use App\Plates_has_liqueur;
+use App\Image;
 
 use App\Http\Requests;
 
@@ -19,8 +23,13 @@ class PlatesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        return view('admin.plates.index');
+    {   
+        $plates = Plate::all();
+        $plates->each(function($plates){
+            $plates->image;
+        });
+        return view('admin.plates.index')
+            ->with('plates', $plates);
     }
 
     /**
@@ -40,36 +49,6 @@ class PlatesController extends Controller
 
  
         return view('admin.plates.create', compact('ingredients_types', 'liqueurs_types'));
-
-        // $name_ingredient = $request->get('ingrediente_nombre');
-        
-        // if (isset($name_ingredient))
-        // {
-        //     // Si existe busca en BD
-        //     $ingredient = Ingredient::agregar($name_ingredient)->first();
-            
-        //     if($ingredient)
-        //     {
-        //         // Si encuentra: *Retorna a la vista el ingrediente y las unidades        
-        //         $units = Unit::lists( 'unidad', 'id');
-
-        //         return view('admin.plates.create', compact('ingredient', 'units')); 
- 
-        //     }else 
-        //         {
-        //             // Destruyo la variable
-        //             unset($ingredient);
-
-        //             // Mensaje de no encontrado
-        //             Flash::warning('<strong>Alerta</strong> ingrediente '. $name_ingredient .' no encontrado');
-        //             return view('admin.plates.create', compact('ingredient'));    
-        //         }
-
-        // }else 
-        //     {
-        //         // Si no entra como una busqueda, retorna la vista
-        //         return view('admin.plates.create');    
-        //     }
         
         
     }
@@ -77,23 +56,8 @@ class PlatesController extends Controller
 
     public function addIngredient(Request $request) {
 
-       if(isset($request->id_ingrediente)){
-        
-        /*$_SESSION['ingredientes'][$request->id_ingrediente] = array('id' => $request->id_ingrediente,
-                            'ingrediente' => 'arroz',
-                            'cantidad' => $request->cantidad,
-                             'unidad' => $request->unidad
-                             );
-*/
-
-        $json = array('id' => $request->id_ingrediente, 
-                     'cantidad' => $request->cantidad,
-                     'unidad' => $request->unidad,
-                     'success' => true);
-
-        echo json_encode($json);
-        
-       }
+      
+    
 
     }
 
@@ -106,10 +70,53 @@ class PlatesController extends Controller
      */
     public function store(Request $request)
     {
-        $file = $request->file('image');
-        dd($file);
-        $name = 'orisa_' . time() . '.' . $file->getClientOriginalExtension();
-        dd($name); 
+        if($request->file('image'))
+        {
+            $file = $request->file('image');
+            $name = 'orisa_' . time() . '.' . $file->getClientOriginalExtension();
+            $path = public_path() . '/img/plates/';
+            $file->move($path, $name);
+
+            $image = new Image();
+            $image->nombre = $name;
+            $image->direccion = $path.$name;
+            $image->save();
+        }
+
+
+
+        $plate = new Plate($request->all());
+        $plate->image_id = $image->id;
+        $plate->save();
+
+        foreach ($request->id_ingredientes as $key => $value) {
+            
+            $receta = new Plates_has_ingredient();
+
+            $receta->plato_id = $plate->id;
+            $receta->ingrediente_id = $request->id_ingredientes[$key];
+            $receta->cantidad_ingrediente = $request->cantidades_i[$key];
+
+            $receta->save();            
+        }
+
+        if ($request->id_licores) {
+            
+            foreach ($request->id_licores as $key => $value) {
+            
+                $receta = new Plates_has_liqueur();
+
+                $receta->plato_id = $plate->id;
+                $receta->licor_id = $request->id_licores[$key];
+                $receta->cantidad_licor = $request->cantidades_l[$key];
+
+                $receta->save();            
+            }
+        }
+
+    Flash::success('<strong>Exito </strong> el plato '. $plate->plato .' se creo correctamente.');
+
+        return redirect('admin/platos');
     }
 
     /**

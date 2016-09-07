@@ -28,6 +28,6 @@ class Liqueurs_type extends Model
 
     public function licores()
     {
-        $this->hasMany('App\Liqueur', 'tlicor_id', 'id');
+        $this->hasMany('App\Liqueur', 'type_id', 'id');
     }
 }

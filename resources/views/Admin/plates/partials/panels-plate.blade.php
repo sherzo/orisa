@@ -16,7 +16,7 @@
 
 					{!!  Form::file('image'); !!}
 				</div>
-					<br><br><br><br><br><br><br>
+					<br><br><br><br><br>
 		<div class="row">
 			<div class="col-md-6 col-lg-4">
 				<div class="form-group">
@@ -36,6 +36,16 @@
 
 						<span class="input-group-addon">.00</span>
 					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<div class="form-group">
+					{!! Form::label('descripcion', 'Descipción') !!}	
+
+					{!! Form::textarea('descripcion', null, ['class' => 'form-control']) !!}	
+
 				</div>
 			</div>
 		</div>

@@ -24,12 +24,12 @@ class Provider extends Model
 
     public function ingredients()
     {
-        return $this->belongsToMany('App\Ingredient', 'ingredients_providers', 'id_provider', 'id_ingredient');
+        return $this->belongsToMany('App\Ingredient', 'providers_has_ingredients', 'proveedor_id', 'ingrediente_id');
     }
 
     public function liqueurs()
     {
-        return $this->belongsToMany('App\Liqueur', 'liqueurs_providers', 'id_provider', 'id_liqueur');
+        return $this->belongsToMany('App\Liqueur', 'providers_has_liqueurs', 'proveedor_id', 'licor_id');
     }
 
     

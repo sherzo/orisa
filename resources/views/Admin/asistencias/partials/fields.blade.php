@@ -24,10 +24,10 @@
 					{{ $empleado->turno->turno }}
 				</td>
 				<td class="text-center"> 
-					{!! Form::time('hora_entrada[]', $empleado->turno->hora_entrada) !!}
+					{!! Form::time('hora_entrada', $empleado->turno->hora_entrada) !!}
 				</td>
 				<td class="text-center">  
-					{!! Form::time('hora_salida[]', $empleado->turno->hora_salida) !!}
+					{!! Form::time('hora_salida', $empleado->turno->hora_salida) !!}
 				</td>
 			</tr>
 		@endforeach

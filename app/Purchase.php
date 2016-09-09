@@ -25,12 +25,12 @@ class Purchase extends Model
 
 	public function purchase_ingredients()
     {
-        return $this->hasMany('App\Purchase_has_ingredient', 'id_compra', 'id');
+        return $this->hasMany('App\Purchase_has_ingredient', 'compra_id', 'id');
     }
 
     public function purchase_liqueurs()
     {
-        return $this->hasMany('App\Purchase_has_liqueurs', 'id_compra', 'id');
+        return $this->hasMany('App\Purchase_has_liqueurs', 'compra_id', 'id');
     }
 
 

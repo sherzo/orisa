@@ -15,7 +15,7 @@ class Purchase_has_liqueurs extends Model
         'licor_id', 'compra_id', 'cantidad',  
     ];
 
-    protected $table = 'purchase_has_liqueurs';
+    protected $table = 'purchases_has_liqueurs';
 
     /**
      * The attributes that should be hidden for arrays.

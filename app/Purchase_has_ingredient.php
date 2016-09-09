@@ -15,8 +15,9 @@ class Purchase_has_ingredient extends Model
         'ingrediente_id', 'compra_id', 'cantidad',  
     ];
 
-    protected $table = 'purchase_has_ingredients';
-
+    protected $table = 'purchases_has_ingredients';
+    
+    public $timestamps = false;
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -26,7 +27,7 @@ class Purchase_has_ingredient extends Model
 
     public function ingredient()
     {
-        return $this->belongsTo('App\Ingredient', 'id_ingredient');
+        return $this->belongsTo('App\Ingredient', 'ingrediente_id');
     }
 
 }

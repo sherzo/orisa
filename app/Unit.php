@@ -21,8 +21,6 @@ class Unit extends Model
      * @var array
      */
 
-
-
     protected $table = 'units';
 
 

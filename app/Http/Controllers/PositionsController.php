@@ -13,7 +13,7 @@ class PositionsController extends Controller
 {
     public function index(Request $request)
     {
-        $positions = Position::name($request->get('name'))->orderBy('nombre', 'ASC')->paginate();
+        $positions = Position::all();
 
         return view('admin.positions.index', compact('positions'));
     }

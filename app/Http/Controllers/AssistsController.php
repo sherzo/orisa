@@ -34,17 +34,11 @@ class AssistsController extends Controller
         {
             $exists = Day_attendance::where('fecha', $request->fecha)->first();
 
-            if ($exists) 
-            {
+            $fecha = $request->fecha;
+            $empleados = Employee::orderBy('nombres')->get();
 
+            return view('admin.asistencias.create', compact('fecha', 'empleados'));
 
-            }else{
-
-                $fecha = $request->fecha;
-                $empleados = Employee::orderBy('nombres')->get();
-
-                return view('admin.asistencias.create', compact('fecha', 'empleados'));
-            }
 
         }else{
 
@@ -56,7 +50,21 @@ class AssistsController extends Controller
 
     public function store(Request $request)
     {
-        dd($request->all());
+        $asistencia = Day_attendance::create($request->all());
+
+        foreach ($request->empleados as $key => $empleado) 
+        {
+           $asistencias = new Assistance;
+           $asistencias->empleado_id = $empleado;
+           $asistencias->asistencia_id = $asistencia->id;
+           $asistencias->hora_entrada = $request->hora_entrada[$key];
+           $asistencias->hora_salida = $request->hora_salida[$key];
+           $asistencias->save();
+        }
+
+        Flash::success('<strong> Éxito </strong> se han creado nuevas asistencias para la fecha <strong>'. $request->fecha .'</strong>.');
+
+        return redirect('admin/asistencias');
     }
 
     public function show($id)
@@ -66,12 +74,20 @@ class AssistsController extends Controller
 
     public function edit($id)
     {
-    	// 
+        $asistencia = Assistance::find($id);
+
+    	return view('admin.asistencias.edit', compact('asistencia')); 
     }
 
     public function update(Request $request, $id)
     {
-    	//
+
+    	$asistencia= Assistance::find($id);
+        $asistencia->fill($request->all())->save(); 
+
+        Flash::success('<strong> Éxito </strong> se ha modificado la fecha '. $asistencia->attendays->fecha .' correctamente.');
+
+        return redirect()->back();
     }
 
     public function destroy($id)

@@ -38,9 +38,11 @@
                     </a>
                 </td>
                 
-                <td> 
+                <td class="text-center"> 
                     <a href="#">
-                        05-12-1994
+                        <a class="btn btn-default btn-circle"> <span class="fa fa-eye"></span> </a>
+                        <a class="btn btn-warning btn-circle" href="{{ route('admin.asistencias.edit', [$asistencia->id]) }}"><span class="fa fa-pencil"></span></a>
+                        <a class="btn btn-danger btn-circle" href="{{ route('admin.asistencias.destroy', [$asistencia->id]) }}" title="Eliminar"> <span class="fa fa-trash-o"></span></a>
                     </a>
                 </td>
             </tr>

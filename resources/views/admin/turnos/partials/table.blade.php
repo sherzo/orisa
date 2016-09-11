@@ -54,15 +54,5 @@
             </tr> 
     @endforeach
     </tbody>
-     <thead>
-        <tr>
-            <th>#</th>
-            <th>Empleado</th>
-            <th>Turno</th>
-            <th>Cargo</th>
-            <th>Planificación</th>
-            <th>Acciones</th>
-        </tr>
-    </thead>
 </table>                                    
 

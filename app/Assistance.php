@@ -7,14 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 class Assistance extends Model
 {
     protected $fillable = [
-     'empleado_id', 'asistencia_id', 'hora_entrada', 'hora_salida', 'motivo', 'justificacion' 
+     'empleado_id', 'asistencia_id', 'hora_entrada', 'hora_salida', 'motivo', 'justificacion', 
     ];
 
     protected $table = 'assistances';
+    public $timestamps = false;
 
     public function attendays()
     {
-    	return $this->hasOne('App\Day_attendance', 'id', 'asistencia_id');
+    	return $this->belongsTo('App\Day_attendance', 'asistencia_id');
     }
 
     public function personal()

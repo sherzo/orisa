@@ -51,15 +51,4 @@
             </tr> 
         @endforeach
     </tbody>
-     <thead>
-        <tr>
-            <th>#</th>
-            <th>Cédula</th>
-            <th>Nombres</th>
-            <th>Apellidos</th>
-            <th>Teléfono</th>
-            <th>Género</th>
-            <th class="center">Acciones</th>
-        </tr>
-    </thead>
 </table> 

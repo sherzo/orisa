@@ -11,9 +11,10 @@ class Day_attendance extends Model
     ];
 
     protected $table = 'days_with_assistances';
-
-    public function atten()
+    public $timestamps = false;
+    
+    public function attendance()
     {
-    	return $this->belongsTo('App\Assistance', 'id');
+    	return $this->hasMany('App\Assistance', 'asistencia_id', 'id');
     }
 }

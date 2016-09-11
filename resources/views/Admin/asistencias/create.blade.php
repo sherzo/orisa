@@ -25,7 +25,7 @@
             </div>
             <div class="panel-body">
                 <div class="table-responsive">
-                    {!! Form::open(['route' => 'admin.asistencias.store', 'method' => 'POST', 'name' => 'form']) !!}
+                    {!! Form::open(['route' => 'admin.asistencias.store', 'method' => 'POST', 'name' => 'form1']) !!}
                         {{ csrf_field() }} @include('admin.asistencias.partials.fields')   
                     {!! Form::close() !!} 
                 </div>

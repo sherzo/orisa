@@ -38,14 +38,5 @@
 	   </tr>
         @endforeach           
     </tbody>
-    <thead>
-        <tr>
-            <th>#</th>
-            <th>Comienza</th>
-            <th>Finaliza</th>
-            <th>Estatus</th>
-            <th>Acción</th>
-        </tr>
-    </thead>
 </table>
 

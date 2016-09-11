@@ -185,6 +185,27 @@
         });
     });
     </script>
+    <script type="text/javascript">
+    function desbloquear() 
+    {    
+        hora_entrada = document.form1['hora_entrada[]'];
+        hora_salida = document.form1['hora_salida[]'];
+
+
+        for (i = 0, checks = document.form1['empleados[]']; i < checks.length; i++)
+        {
+            if(checks[i].checked)
+            {
+
+                hora_entrada[i].disabled = false;
+                hora_salida[i].disabled = false;
+            }else{
+                hora_entrada[i].disabled = true;
+                hora_salida[i].disabled = true;
+            }
+        }
+    }
+    </script>
     <script>
         $("#select_all").click(function(){
             $('input:checkbox').not(this).prop('checked', this.checked);

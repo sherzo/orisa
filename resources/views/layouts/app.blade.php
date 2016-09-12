@@ -106,6 +106,9 @@
                             <li><a href="{{ url('admin/clientes') }}">Clientes</a></li>
 @endif                  
                             <li><a href="{{ url('admin/platos') }}">Platos</a></li>
+                            <li><a href="#">Salsas</a></li>
+
+
                             <li><a href="platos.html">Bebidas</a></li>
                             <li><a href="platos.html">Comandas</a></li>
 @if((Auth::user()->roles_id)=='1' || (Auth::user()->roles_id)=='2' || (Auth::user()->roles_id)=='4' || (Auth::user()->roles_id)=='5')    

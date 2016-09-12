@@ -118,8 +118,23 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
 	*/
 	Route::resource('clientes', 'ClientsController');
 	Route::resource('platos', 'PlatesController');
+	Route::resource('sauces', 'SaucesController');
 
-	// INGREDIENTES
+	//INGREDIENTES SALSAS
+	
+	Route::get('sauces/create/ingredients/{type}',  function($type){
+		$ingredients = App\Ingredient::where('id_type', $type)->get();
+		return Response::json($ingredients);
+	});			
+	Route::get('sauces/create/addingredient/{id_i}', function($id_i){
+		$ingredient = App\Ingredient::where('id', $id_i)->get();
+
+		$units = App\Unit::all();
+
+		return Response::json(array('ingredient' => $ingredient, 'units' => $units));
+	});
+
+	// INGREDIENTES PLATOS
 	Route::get('platos/create/ingredients/{type}',  function($type){
 		$ingredients = App\Ingredient::where('id_type', $type)->get();
 		return Response::json($ingredients);
@@ -151,4 +166,4 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
 		'as' => 'admin.clients.search'
 		]);
 
- });
+ 	});

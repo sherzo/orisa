@@ -18,6 +18,8 @@ class CreateSaucesHasIngredientsTable extends Migration
             $table->foreign('sauce_id')->references('id')->on('sauces')->onDelete('Cascade');
             $table->integer('ingredient_id')->unsigned();
             $table->foreign('ingredient_id')->references('id')->on('ingredients')->onDelete('Cascade');
+            $table->integer('cantidad_ingrediente');
+            $table->string('unidad', 5);
             $table->timestamps();
         });
     }
@@ -29,6 +31,6 @@ class CreateSaucesHasIngredientsTable extends Migration
      */
     public function down()
     {
-       // Sechema::drop('sauces_has_ingredients');
+        Schema::drop('sauces_has_ingredients');
     }
 }

@@ -19,6 +19,7 @@ class CreatePlatesWithLiqueursTable extends Migration
             $table->integer('licor_id')->unsigned();
             $table->foreign('licor_id')->references('id')->on('liqueurs')->onDelete('Cascade');
             $table->integer('cantidad_licor');
+            $table->string('unidad', 5);
             $table->timestamps();
         });
     }

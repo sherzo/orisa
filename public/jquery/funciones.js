@@ -59,6 +59,12 @@ $('#types').on('change', function(e){
                     });
 
             });//FIN SEGUNDA PETICION AJAX
+
+            // if($('#espacio_boton').is(':empty')){
+            //     $('#espacio_boton').append('<center><button class="btn btn-success btn-sm"><span class="fa fa-save fa-2x"></span></button></center>');
+            // }
+
+
                 
         });
             
@@ -129,7 +135,8 @@ $('#types_liqueurs').on('change', function(e){
                     });
 
             });//FIN SEGUNDA PETICION AJAX
-                
+
+        
         });
            
     });//FIN PRIMERA PETICION AJAX

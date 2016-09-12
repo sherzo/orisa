@@ -25,6 +25,6 @@ class CreateSaucesTable extends Migration
      */
     public function down()
     {
-       // Sechema::drop('sauces_has_ingredients');
+       Schema::drop('sauces_has_ingredients');
     }
 }

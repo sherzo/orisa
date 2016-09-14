@@ -119,6 +119,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
 	Route::resource('clientes', 'ClientsController');
 	Route::resource('platos', 'PlatesController');
 	Route::resource('sauces', 'SaucesController');
+	Route::resource('reservaciones', 'ReservationsController');
 
 	//INGREDIENTES SALSAS
 	

@@ -15,6 +15,7 @@ class CreateSaucesTable extends Migration
         Schema::create('sauces', function (Blueprint $table) {
             $table->increments('id');
             $table->string('salsa', 20);
+            $table->timestamps();
         });
     }
 

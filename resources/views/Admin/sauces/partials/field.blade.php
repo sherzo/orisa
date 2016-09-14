@@ -2,10 +2,6 @@
 
 {!! Form::text('salsa', null, ['class' => 'form-control', 'placeholder' => 'Salsa de tomate'])!!}
 
-
-
-
-
 <br><hr>
 <div class="row">
 	<div class="col-md-12">
@@ -22,8 +18,6 @@
 		</div>
 	</div>
 </div>
-
-
 
 <div class="row">
 		<div class="col-md-6 col-md-offset-3" id="ingredients1"></div>

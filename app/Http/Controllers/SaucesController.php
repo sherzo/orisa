@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
 use App\Http\Requests;
 use App\Ingredients_type;
+use App\Sauce;
+use Illuminate\Http\Request;
 
 class SaucesController extends Controller
 {
@@ -39,7 +39,22 @@ class SaucesController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
+
+        $sauce = new Sauce($request->all());
+        $sauce->save();
+
+        foreach ($request->id_ingredientes as $key => $value) {
+            
+            $receta = new Sauces_has_ingredient();
+
+            $receta->sauce_id = $sauce->id;
+            $receta->ingrediente_id = $request->id_ingredientes[$key];
+            $receta->cantidad_ingrediente = $request->cantidades_i[$key];
+            $receta->unidad = $request->unidades_i[$key];
+            // $receta->save();            
+        }
+
+        dd($receta);
     }
 
     /**

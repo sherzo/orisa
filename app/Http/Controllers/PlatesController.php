@@ -52,16 +52,6 @@ class PlatesController extends Controller
         
         
     }
-
-
-    public function addIngredient(Request $request) {
-
-      
-    
-
-    }
-
-
     /**
      * Store a newly created resource in storage.
      *

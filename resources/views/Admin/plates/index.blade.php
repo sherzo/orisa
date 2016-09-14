@@ -13,6 +13,7 @@
               </ol>
             
               @include('flash::message')
+            
             </div>
                 <div class="col-lg-4">
                        <a  href="{{ url('admin/platos/create') }}" class="btn btn-primary">
@@ -23,7 +24,7 @@
           </div>
           <!--  CIERRE DEL ROW -->
 
-        
+        <br>
             
           <div class="row">
             @foreach($plates as $plate)

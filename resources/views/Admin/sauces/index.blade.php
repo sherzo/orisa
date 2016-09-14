@@ -23,8 +23,11 @@
 </div>
 <div class="row">
     <div class="col-lg-12"><br>
-                   
-    </div>
+        <div class="table-responsive">
+            <p class="text-muted"><small>Existen {{ $sauces->total() }} tipos de salsas registradas</small></p> 
+            @include('admin.sauces.partials.table') {!! $sauces->render() !!}
+        </div>
+    </div>                   
 </div>
 
 @endsection

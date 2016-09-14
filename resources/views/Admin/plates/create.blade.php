@@ -41,3 +41,17 @@
     {!! Form::close() !!}
 
 @endsection
+
+@section('js')
+  <script>
+    $('.select-sauces').chosen({
+      placeholder_text_multiple: 'Selecione las Salsas',
+      no_results_text: 'No se encontraron salsas'
+    });
+
+    $('.select-types').chosen({
+      placeholder_text_single: 'Seleccione el tipo',
+      no_results_text: 'No se encontraron tipo'
+    });
+  </script>
+@endsection

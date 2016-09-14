@@ -4,18 +4,16 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Purchase_has_liqueurs extends Model
+class Plates_has_sauce extends Model
 {
- /**
+    /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'licor_id', 'compra_id', 'cantidad', 'unidad_id',  
+      'salsa_id', 'plato_id',
     ];
-
-    protected $table = 'purchases_has_liqueurs';
 
     /**
      * The attributes that should be hidden for arrays.
@@ -23,6 +21,5 @@ class Purchase_has_liqueurs extends Model
      * @var array
      */
 
-    
-    
+    protected $table = 'plates_has_sauces';
 }

@@ -26,6 +26,6 @@ class CreateSaucesTable extends Migration
      */
     public function down()
     {
-       Schema::drop('sauces_has_ingredients');
+       Schema::drop('sauces');
     }
 }

@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests;
+use Laracasts\Flash\Flash;
 use App\Ingredients_type;
 use App\Sauce;
+use App\Sauces_has_ingredients;
 use Illuminate\Http\Request;
 
 class SaucesController extends Controller
@@ -15,8 +17,10 @@ class SaucesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        return view('admin.sauces.index');
+    {   
+        $sauces = Sauce::paginate(5);
+
+        return view('admin.sauces.index', compact('sauces'));
     }
 
     /**
@@ -39,22 +43,24 @@ class SaucesController extends Controller
      */
     public function store(Request $request)
     {
-
         $sauce = new Sauce($request->all());
         $sauce->save();
 
         foreach ($request->id_ingredientes as $key => $value) {
             
-            $receta = new Sauces_has_ingredient();
+            $receta = new Sauces_has_ingredients();
 
             $receta->sauce_id = $sauce->id;
-            $receta->ingrediente_id = $request->id_ingredientes[$key];
+            $receta->ingredient_id = $request->id_ingredientes[$key];
             $receta->cantidad_ingrediente = $request->cantidades_i[$key];
-            $receta->unidad = $request->unidades_i[$key];
-            // $receta->save();            
+            $receta->unidad_id = $request->unidades_i[$key];
+            $receta->save();            
         }
 
-        dd($receta);
+        Flash::success('<strong>Exito! </strong> la salsa: '. $sauce->salsa .' se creo correctamente.');
+
+        return redirect('admin/sauces');
+
     }
 
     /**

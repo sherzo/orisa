@@ -12,7 +12,7 @@
 				<div class="col-md-4 col-md-offset-4">
 					<div class="form-group">
 						<label for="tipo">Seleccione el tipo</label>
-						{!! Form::select('ingredients_types', $ingredients_types, null, ['class' => 'form-control', 'id' => 'types']) !!}
+						{!! Form::select('ingredients_types', $ingredients_types, null, ['class' => 'form-control select-types', 'id' => 'types']) !!}
 					</div>
 				</div>
 			</div>
@@ -39,6 +39,13 @@
 						<tbody id="Tagregados">				
 						</tbody>
 					</table>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-12">
+					<h4 class="muted">3.- Selecciones La o las Salsas</h4>	
+					{!! Form::select('sauces[]', $sauces, null, ['class' => 'form-control select-sauces form-control', 'multiple']) !!}
 				</div>
 			</div>
 			

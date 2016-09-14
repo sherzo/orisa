@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Purchase_has_ingredient extends Model
+class Sauces_has_ingredients extends Model
 {
      /**
      * The attributes that are mass assignable.
@@ -12,10 +12,10 @@ class Purchase_has_ingredient extends Model
      * @var array
      */
     protected $fillable = [
-        'ingrediente_id', 'compra_id', 'cantidad', 'unidad_id',
+        'sauce_id', 'ingredient_id', 'cantidad_ingrediente', 'unidad_id',
     ];
 
-    protected $table = 'purchases_has_ingredients';
+    protected $table = 'sauces_has_ingredients';
     
     public $timestamps = false;
     /**
@@ -24,10 +24,8 @@ class Purchase_has_ingredient extends Model
      * @var array
      */
 
-
     public function ingredient()
     {
-        return $this->belongsTo('App\Ingredient', 'ingrediente_id');
+        return $this->belongsTo('App\Ingredient', 'ingredient_id');
     }
-
 }

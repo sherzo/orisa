@@ -87,7 +87,7 @@ $('#types_liqueurs').on('change', function(e){
           '<tbody id="list_liqueurs"></tbody></table>');
 
         if(data == ''){
-            $('#ingredients').append(
+            $('#list_liqueurs').append(
             '<tr><td colspan="3" align="center"> No hay licores de este tipo</td>');
 
         }else{ 

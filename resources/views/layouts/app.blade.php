@@ -16,7 +16,8 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('bower_components/morrisjs/morris.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('bower_components/font-awesome/css/font-awesome.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('bower_components/datatables-responsive/css/dataTables.responsive.css') }}"> 
+    <link rel="stylesheet" type="text/css" href="{{ asset('bower_components/datatables-responsive/css/dataTables.responsive.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('chosen/bootstrap-chosen.css') }}">
 </head>
 
 <body>
@@ -177,6 +178,9 @@
     <script src="{{ asset('dist/js/sb-admin-2.js') }}"></script>
     <script src="{{ asset('bower_components/datatables/media/js/jquery.dataTables.js') }}"></script>
     <script src="{{ asset('bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.js') }}"></script><script src="{{ asset('jquery/funciones.js') }}"></script>
+    <script src="{{ asset('chosen/chosen.jquery.min.js') }}"></script>
+
+        @yield('js')
     
     <script>
         $('div.alert').not('.alert-important').delay(5000).fadeOut(350);

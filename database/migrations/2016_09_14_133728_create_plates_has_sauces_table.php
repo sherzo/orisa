@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePlatesWithLiqueursTable extends Migration
+class CreatePlatesHasSaucesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,15 +12,12 @@ class CreatePlatesWithLiqueursTable extends Migration
      */
     public function up()
     {
-        Schema::create('plates_has_liqueurs', function (Blueprint $table) {
+        Schema::create('plates_has_sauces', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('salsa_id')->unsigned();
+            $table->foreign('salsa_id')->references('id')->on('sauces')->onDelete('Cascade');
             $table->integer('plato_id')->unsigned();
             $table->foreign('plato_id')->references('id')->on('plates')->onDelete('Cascade');
-            $table->integer('licor_id')->unsigned();
-            $table->foreign('licor_id')->references('id')->on('liqueurs')->onDelete('Cascade');
-            $table->integer('cantidad_licor');
-            $table->integer('unidad_id')->unsigned();
-            $table->foreign('unidad_id')->references('id')->on('units')->onDelete('Cascade');
             $table->timestamps();
         });
     }
@@ -32,6 +29,6 @@ class CreatePlatesWithLiqueursTable extends Migration
      */
     public function down()
     {
-        Schema::drop('plates_has_liqueurs');
+         Schema::drop('plates_has_sauces');    
     }
 }

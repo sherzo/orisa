@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <meta charset="utf-8">
+      <title>Panel de Ventas</title>
+      <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+      <link rel="stylesheet" type="text/css" href="css/materialize.min.css">
+
+      <link rel="stylesheet" type="text/css" href="fonts/roboto/Roboto-Bold.eot">
+
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+
+    <body>
+    <style type="text/css">
+
+      .productos {
+        height: 370px;
+      }
+
+      .comanda {
+        height: 370px;
+      }
+      .side-nav {
+        width: 100px;
+      }
+    </style>
+
+  <ul id="slide-out" class="side-nav">
+    <li><a href="#!" class="waves-effect"><i class="material-icons">cloud</i></a></li>
+    <li><a href="#!"><i class="material-icons">notifications_active</i></a></li>
+    <li><div class="divider"></div></li>
+    <li><a class="waves-effect" href="#!"></a></li>
+  </ul>
+
+
+    <div class="row">
+      <div class="col-s12"><div class="card-panel">
+              <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
+    </div>
+      </div>
+      <div class="col s3">
+        <div class="card-panel comanda">
+        </div>
+      </div>
+      <div class="col s9">
+      <div class="card-panel productos">
+        <h1>Este es el panel de productos</h1>
+        </div>
+      </div>
+    </div>
+  
+
+
+
+
+
+      <!--Import jQuery before materialize.js-->
+      <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+      <script type="text/javascript" src="js/materialize.min.js"></script>
+      <script>
+        // Initialize collapse button
+  $(".button-collapse").sideNav();
+  // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+  //$('.collapsible').collapsible();
+      </script>
+    </body>
+
+
+  </html>
+    

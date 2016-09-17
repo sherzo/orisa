@@ -1,6 +1,6 @@
 <br>
 <div class="panel panel-default">
-	<div class="panel-heading">Ingredientes del plato</div>
+	<div class="panel-heading">Ingredientes de la bebida</div>
 		<div class="panel-body">
 			<div class="row">
 				<div class="col-md-12"><h4>1.- Busque y agregue ingredientes</h4></div>
@@ -38,13 +38,5 @@
 					</table>
 				</div>
 			</div>
-
-			<div class="row">
-				<div class="col-md-12">
-					<h4 class="muted">3.- Selecciones La o las Salsas</h4>	
-					{!! Form::select('sauces[]', $sauces, null, ['class' => 'form-control select-sauces form-control', 'multiple']) !!}
-				</div>
-			</div>
-			
 		</div><!-- FIN PANEL BODY -->
 </div><!-- FIN PANEL -->

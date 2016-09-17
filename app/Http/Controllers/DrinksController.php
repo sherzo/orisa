@@ -3,21 +3,20 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Plate;
+
+use App\Http\Requests;
+use App\Drink;
 use App\Ingredient;
 use App\Ingredients_type;
 use App\Liqueurs_type;
 use App\Unit;
 use Laracasts\Flash\Flash;
-use App\Plates_has_ingredient;
-use App\Plates_has_liqueur;
-use App\Plates_has_sauce;
+use App\Drinks_has_ingredient;
+use App\Drinks_has_liqueur;
 use App\Image;
 use App\Sauce;
 
-use App\Http\Requests;
-
-class PlatesController extends Controller
+class DrinksController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -25,13 +24,13 @@ class PlatesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {   
-        $plates = Plate::all();
-        $plates->each(function($plates){
-            $plates->image;
+    {
+        $drinks = Drink::all();
+        $drinks->each(function($drinks){
+            $drinks->image;
         });
-        return view('admin.plates.index')
-            ->with('plates', $plates);
+
+        return view('admin.drinks.index', compact('drinks'));
     }
 
     /**
@@ -39,20 +38,15 @@ class PlatesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-
-    public function create(Request $request)
+    public function create()
     {
-
         $ingredients_types = Ingredients_type::lists('tipo_ingrediente', 'id');
+
         $liqueurs_types = Liqueurs_type::lists('tipo_licor', 'id');
 
-        $sauces = Sauce::lists('salsa', 'id');
-
- 
-        return view('admin.plates.create', compact('ingredients_types', 'liqueurs_types', 'sauces'));
-        
-        
+        return view('admin.drinks.create', compact('liqueurs_types', 'ingredients_types'));
     }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -61,59 +55,49 @@ class PlatesController extends Controller
      */
     public function store(Request $request)
     {
-        
         //--  Manipulando la imagen 
         if($request->file('image'))
         {
             $file = $request->file('image');
             $name = 'orisa_' . time() . '.' . $file->getClientOriginalExtension();
-            $path = public_path() . '/img/plates/';
+            $path = public_path() . '/img/drinks/';
             $file->move($path, $name);
 
             $image = new Image();
             $image->imagen = $name;
             $image->save();
         }
-
-        
-        //--  Guardando datos del plato
-        $plate = new Plate($request->all());
-        $plate->image_id = $image->id;
-        $plate->save();
+    //--  Guardando datos de la bebida
+        $drink = new Drink($request->all());
+        $drink->image_id = $image->id;
+        $drink->save();
 
         // Guardando los ingredientes
-        foreach ($request->id_ingredientes as $key => $value) {
-            
-            $receta = new Plates_has_ingredient();
+        if ($request->id_ingredientes) {
+    
+            foreach ($request->id_ingredientes as $key => $value) {
+                
+                $receta = new Drinks_has_ingredient();
 
-            $receta->plato_id = $plate->id;
-            $receta->ingrediente_id = $request->id_ingredientes[$key];
-            $receta->cantidad_ingrediente = $request->cantidades_i[$key];
-            $receta->unidad_id = $request->unidades_i[$key];
+                $receta->bebida_id = $drink->id;
+                $receta->ingrediente_id = $request->id_ingredientes[$key];
+                $receta->cantidad_ingrediente = $request->cantidades_i[$key];
+                $receta->unidad_id = $request->unidades_i[$key];
 
-            $receta->save();            
+                $receta->save();   
+
+            }         
         }
 
-        //-- Guardando la salsas --//
-        if ($request->sauces) {
-            
-            foreach ($request->sauces as $key => $value) {
-                $salsa = new Plates_has_sauce();
-
-                $salsa->salsa_id = $value;
-                $salsa->plato_id = $plate->id;
-                $salsa->save();
-            }
-        }
 
         //-- Guardando los licores
         if ($request->id_licores) {
             
             foreach ($request->id_licores as $key => $value) {
             
-                $receta = new Plates_has_liqueur();
+                $receta = new Drinks_has_liqueur();
 
-                $receta->plato_id = $plate->id;
+                $receta->bebida_id = $drink->id;
                 $receta->licor_id = $request->id_licores[$key];
                 $receta->cantidad_licor = $request->cantidades_l[$key];
                 $receta->unidad_id = $request->unidades_l[$key];
@@ -122,11 +106,9 @@ class PlatesController extends Controller
             }
         }
 
+        Flash::success('<strong>Exito </strong> La bebida '. $drink->bebida .' se creo correctamente.');
 
-
-        Flash::success('<strong>Exito </strong> el plato '. $plate->plato .' se creo correctamente.');
-
-        return redirect('admin/platos');
+        return redirect('admin/bebidas');
     }
 
     /**

@@ -1,28 +1,28 @@
 <br>
 <div class="panel panel-default">
-	<div class="panel-heading">Ingredientes del plato</div>
+	<div class="panel-heading">Licores de la bebida</div>
 		<div class="panel-body">
 			<div class="row">
-				<div class="col-md-12"><h4>1.- Busque y agregue ingredientes</h4></div>
+				<div class="col-md-12"><h4>1.- Busque y agregue licores</h4></div>
 			</div>
 			
 			<div class="row">
 				<div class="col-md-4 col-md-offset-4">
 					<div class="form-group">
 						<label for="tipo">Seleccione el tipo</label>
-						{!! Form::select('ingredients_types', $ingredients_types, null, ['class' => 'form-control select-types', 'id' => 'types']) !!}
+						{!! Form::select('liqueurs_types', $liqueurs_types, null, ['class' => 'form-control', 'id' => 'types_liqueurs']) !!}
 					</div>
 				</div>
 			</div>
 
 			<div class="row">
-				<div class="col-md-6 col-md-offset-3" id="ingredients1"></div>				
+				<div class="col-md-6 col-md-offset-3" id="lista_licores"></div>				
 			</div>
 			
 			<hr>
 
 			<div class="row">
-				<div id="agregados" class="col-md-12">
+				<div id="" class="col-md-12">
 					<h4 class="muted">2.- Coloque las cantidades</h4>
 					<table class="table">
 						<thead>
@@ -34,17 +34,12 @@
 								<th>Remover</th>
 							</tr>
 						</thead>
-						<tbody id="Tagregados"></tbody>
+						<tbody id="licores_agregados">				
+						</tbody>
 					</table>
 				</div>
+				
 			</div>
 
-			<div class="row">
-				<div class="col-md-12">
-					<h4 class="muted">3.- Selecciones La o las Salsas</h4>	
-					{!! Form::select('sauces[]', $sauces, null, ['class' => 'form-control select-sauces form-control', 'multiple']) !!}
-				</div>
-			</div>
-			
 		</div><!-- FIN PANEL BODY -->
 </div><!-- FIN PANEL -->

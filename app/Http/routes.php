@@ -32,6 +32,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
 	|	RUTAS GENERALES
 	|
 	*/
+	Route::resource('privilegios', 'PrivelController');
 	Route::resource('usuarios', 'UsersController');
 	Route::get('usuarios/{id}/destroy', [
 		'uses' => 'UsersController@destroy',
@@ -120,6 +121,37 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
 	Route::resource('platos', 'PlatesController');
 	Route::resource('sauces', 'SaucesController');
 	Route::resource('reservaciones', 'ReservationsController');
+	Route::resource('bebidas', 'DrinksController');
+
+	//LICORES BEBIDAS
+
+	Route::get('bebidas/create/liqueurs/{type}',  function($type){
+		$liqueur = App\Liqueur::where('type_id', $type)->get();
+		return Response::json($liqueur);
+	});
+
+	Route::get('bebidas/create/addliqueur/{id_l}', function($id_l){
+		$liqueur = App\Liqueur::where('id', $id_l)->get();
+
+		$units = App\Unit::all();
+
+		return Response::json(array('liqueur' => $liqueur, 'units' => $units));
+	});
+
+	// INGREDIENTES BEBIDAS
+
+	Route::get('bebidas/create/ingredients/{type}',  function($type){
+		$ingredients = App\Ingredient::where('id_type', $type)->get();
+		return Response::json($ingredients);
+	});			
+	Route::get('bebidas/create/addingredient/{id_i}', function($id_i){
+		$ingredient = App\Ingredient::where('id', $id_i)->get();
+
+		$units = App\Unit::all();
+
+		return Response::json(array('ingredient' => $ingredient, 'units' => $units));
+	});
+
 
 	//INGREDIENTES SALSAS
 	

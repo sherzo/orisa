@@ -142,3 +142,45 @@ $('#types_liqueurs').on('change', function(e){
     });//FIN PRIMERA PETICION AJAX
             
 });//FIN DE TODA LA FUNCION JQUERY
+
+
+
+//--- VALIDACIONES 
+
+$('#guardar').submit(function(e){
+    var posicion = $('#ingredientes');
+    if ($('#Tagregados').is(':empty')){
+        $('#error').append(' <span class="label label-danger"> 1</span>');     
+    return false;
+}
+});
+
+
+$('#form_salsa').submit(function(){
+
+    //LIMPIO ESTILOS
+    $('#salsa_label').attr('class', '');
+    $('#titulo_ingredientes').attr('class', '');
+    $('#tipo_label').attr('class', '');
+
+    //Si salas vacio
+    if ($('#salsa').val() == '') {
+        $('.hidden').attr('class', 'show');
+        $('#salsa_label').attr('class', 'text-danger');
+
+        if ($('#Tagregados').is(':empty')){
+            $('#tipo_label').attr('class', 'text-danger');
+            $('#titulo_ingredientes').attr('class', 'text-danger');
+        }
+
+        return false;
+    }
+
+    if ($('#Tagregados').is(':empty')) {
+            $('.hidden').attr('class', 'show');
+            $('#tipo_label').attr('class', 'text-danger');
+            $('#titulo_ingredientes').attr('class', 'text-danger');
+
+        return false;
+    }
+});

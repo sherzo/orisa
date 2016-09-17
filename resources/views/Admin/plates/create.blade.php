@@ -15,11 +15,11 @@
     </div>
 
 <ul class="nav nav-tabs nav-justified" role="tablist">
-    <li role="presentation" class="active"><a href="#ingredientes" aria-controls="home" role="tab" data-toggle="tab">Ingrediente</a></li>
+    <li role="presentation" class="active"><a href="#ingredientes" aria-controls="home" role="tab" data-toggle="tab" id="error">Ingrediente</a></li>
     <li role="presentation"><a href="#licores" aria-controls="profile" role="tab" data-toggle="tab">Licores</a></li>
     <li role="presentation"><a href="#plato" aria-controls="messages" role="tab" data-toggle="tab">Publicación de plato</a></li>
   </ul>
-    {!! Form::open(['route' => 'admin.platos.store', 'method' => 'POST', 'files' => true]) !!}
+    {!! Form::open(['route' => 'admin.platos.store', 'method' => 'POST', 'files' => true, 'id' => 'guardar']) !!}
 
 <div class="tab-content">
 

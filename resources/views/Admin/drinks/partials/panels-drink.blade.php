@@ -12,7 +12,7 @@
 
 				<div class="form-group">
 				
-					{!! Form::label('image', 'Imagen del plato') !!}
+					{!! Form::label('image', 'Imagen de la bebida') !!}
 
 					{!!  Form::file('image'); !!}
 				</div>
@@ -20,9 +20,9 @@
 		<div class="row">
 			<div class="col-md-6 col-lg-4">
 				<div class="form-group">
-					{!! Form::label('plato', 'Nombre del plato') !!}
+					{!! Form::label('bebida', 'Nombre de la bebida') !!}
 
-					{!! Form::text('plato', null, ['class' => 'form-control', 'placeholder' => 'Ejemplo: Ajiaco', 'title' => 'Ingrese su nombre']) !!}
+					{!! Form::text('bebida', null, ['class' => 'form-control', 'placeholder' => 'Ejemplo: Mojito', 'title' => 'Ingrese su nombre']) !!}
 				</div>
 			</div>
 			<div class="col-md-6 col-lg-4">

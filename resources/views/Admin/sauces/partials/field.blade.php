@@ -1,24 +1,26 @@
-{!! Form::label('salsa', 'Nombre de la salsa') !!}
+<div class="panel panel-danger hidden">
+	<p class="text-danger">Corriga los errores antes de guardar</p>
+</div>
+{!! Form::label('salsa', 'Nombre de la salsa', ['id' => 'salsa_label']) !!}
 
-{!! Form::text('salsa', null, ['class' => 'form-control', 'placeholder' => 'Salsa de tomate'])!!}
+{!! Form::text('salsa', null, ['class' => 'form-control', 'placeholder' => 'Salsa de tomate', 'id' => 'salsa'])!!}
 
 <br><hr>
 <div class="row">
-	<div class="col-md-12">
-		<h4>1.- Agregue los ingredientes</h4>
+	<div class="col-md-12" id="titulo">
+		<h4 id="titulo_ingredientes">1.- Agregue los ingredientes</h4>
 	</div>
 </div>
 <div class="row">
 	<div class="col-md-4 col-md-offset-4">
 		<div class="form-group"><br>
-			<label for="tipo">Seleccione el tipo</label>
+			<label for="tipo" id="tipo_label">Seleccione el tipo</label>
 				
 				{!! Form::select('ingredients_types', $ingredients_types, null, ['class' => 'form-control', 'id' => 'types']) !!}
 
 		</div>
 	</div>
 </div>
-
 <div class="row">
 		<div class="col-md-6 col-md-offset-3" id="ingredients1"></div>
 </div>
@@ -37,8 +39,7 @@
 								<th>Remover</th>
 							</tr>
 						</thead>
-						<tbody id="Tagregados">				
-						</tbody>
+						<tbody id="Tagregados"></tbody>
 					</table>
 				</div>
 			</div>

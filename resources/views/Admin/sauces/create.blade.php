@@ -19,7 +19,7 @@
 				<div class="panel-heading">Registro de Salsas</div>
 					<div class="panel-body">
 					
-						{!! Form::open(['route' => 'admin.sauces.store', 'method' => 'POST']) !!}
+						{!! Form::open(['route' => 'admin.sauces.store', 'method' => 'POST', 'id' => 'form_salsa']) !!}
 
 							@include('admin.sauces.partials.field')
 

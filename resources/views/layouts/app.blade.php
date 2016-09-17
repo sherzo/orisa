@@ -30,8 +30,8 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index.html"><img alt="Brand" src="{{ asset('img/logo/Orisa6.png') }}" width="28" height="27"></a>
-            <a href="" class="navbar-brand">Orisa</a>
+            <a class="navbar-brand" href="{{ url('admin') }}"><img alt="Brand" src="{{ asset('img/logo/Orisa6.png') }}" width="28" height="27"></a>
+            <a href="{{ url('admin') }}" class="navbar-brand">Orisa</a>
         </div>
 
         <ul class="nav navbar-top-links navbar-right">
@@ -110,7 +110,7 @@
                             <li><a href="{{ url('admin/sauces') }}">Salsas</a></li>
 
 
-                            <li><a href="platos.html">Bebidas</a></li>
+                            <li><a href="{{ url('admin/bebidas') }}">Bebidas</a></li>
                             <li><a href="platos.html">Comandas</a></li>
 @if((Auth::user()->roles_id)=='1' || (Auth::user()->roles_id)=='2' || (Auth::user()->roles_id)=='4' || (Auth::user()->roles_id)=='5')    
                             <li><a href="platos.html">Recibos</a></li>
@@ -217,10 +217,6 @@
         $("#select_all").click(function(){
             $('input:checkbox').not(this).prop('checked', this.checked);
         });;
-    </script>
-
-    <script>
-        
     </script>
 </body>
 </html>

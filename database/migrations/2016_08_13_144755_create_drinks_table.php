@@ -14,11 +14,12 @@ class CreateDrinksTable extends Migration
     {
         Schema::create('drinks', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('unidad_id') ->unsigned();
-            $table->foreign('unidad_id') ->references('id')->on('units');
-            $table->string('bebida');
+            $table->string('bebida', 15);
+            $table->text('descripcion');
             $table->double('precio', 15,2);
-            $table->string('caracteristica', 30);
+            $table->integer('image_id') ->unsigned();
+            $table->foreign('image_id') ->references('id')->on('images');
+
             $table->timestamps();
         });
     }

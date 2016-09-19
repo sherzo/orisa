@@ -115,7 +115,7 @@
 @if((Auth::user()->roles_id)=='1' || (Auth::user()->roles_id)=='2' || (Auth::user()->roles_id)=='4' || (Auth::user()->roles_id)=='5')    
                             <li><a href="platos.html">Recibos</a></li>
 @endif
-                            <li><a href="{{ url('clientes') }}">Reservaciones</a></li>
+                            <li><a href="{{ url('admin/reservaciones') }}">Reservaciones</a></li>
                         </ul>
                     </li>
 @if((Auth::user()->roles_id)=='1' || (Auth::user()->roles_id)=='2' || (Auth::user()->roles_id)=='3' )

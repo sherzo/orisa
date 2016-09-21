@@ -12,6 +12,8 @@
                     <li class="active">Editar</li>
             </ol>
     	</div>
+    		<div class="col-lg-12"><h4>Privilegios</h4></div>
+
     </div>
 
 	<div class="row">	

@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests;
+use App\Module;
+use App\Modules_has_action;
+use App\User;
 use Illuminate\Http\Request;
 
-use App\Http\Requests;
-
-class PrivelController extends Controller
+class PrivilegesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -57,8 +59,18 @@ class PrivelController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {
-        dd($id);
+    {   
+        $user = User::findOrFail($id);
+
+        $modules_actions = Modules_has_action::all();
+        $modules_actions->each(function($modules_actions){
+            $modules_actions->modulo;
+            $modules_actions->accion;
+        });
+
+        $modules = Module::all();
+
+        return view('admin.privileges.edit', compact('modules_actions', 'modules'));
     }
 
     /**

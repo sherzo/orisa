@@ -13,18 +13,21 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call(RolesTableSeeder::class);
-        $this->call(UsersTableSeeder::class);
-        $this->call(UnitsTableSeeder::class);
-        $this->call(LiqueursTypeTableSeeder::class);
-        $this->call(IngredientsTypesTableSeeder::class);          
-        $this->call(PositionsTableSeeder::class);         
-        $this->call(ProvidersTableSeeder::class);
-        $this->call(LiqueursTableSeeder::class);
-        $this->call(IngredientsTableSeeder::class);
-        $this->call(DeductionsTableSeeder::class);
-        $this->call(TurnsTableSeeder::class);
-        $this->call(EmployeesTableSeeder::class);
-        $this->call(ClientsTableSeeder::class);
+        // $this->call(RolesTableSeeder::class);
+        // $this->call(UsersTableSeeder::class);
+        // $this->call(UnitsTableSeeder::class);
+        // $this->call(LiqueursTypeTableSeeder::class);
+        // $this->call(IngredientsTypesTableSeeder::class);       
+        // $this->call(PositionsTableSeeder::class);         
+        // $this->call(ProvidersTableSeeder::class);
+        // $this->call(LiqueursTableSeeder::class);
+        // $this->call(IngredientsTableSeeder::class);
+        // $this->call(DeductionsTableSeeder::class);
+        // $this->call(TurnsTableSeeder::class);
+        // $this->call(EmployeesTableSeeder::class);
+        // $this->call(ClientsTableSeeder::class);
+        // $this->call(ModulesTableSeeder::class);
+        //$this->call(ActionsTableSeeder::class);
+        $this->call(ModulesActionsTableSeeder::class);
     }
 }

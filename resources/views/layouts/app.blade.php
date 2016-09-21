@@ -89,7 +89,7 @@
                     <i class="fa fa-user fa-fw"></i><i class="fa fa-caret-down"></i>
                 </a>
                 <ul class="dropdown-menu dropdown-user">
-                    <li><a href="#"></i>Perfil</a></li>
+                    <li><a href="{{ url('admin/usuarios') }}/{{Auth::user()->id}}"></i>Perfil</a></li>
                     <li><a href="#"></i>Opciones</a></li>
                     <li class="divider"></li>
                     <li><a href="{{ url('/admin/salir') }}">Salir</a></li>

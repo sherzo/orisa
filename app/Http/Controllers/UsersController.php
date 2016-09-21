@@ -55,7 +55,9 @@ class UsersController extends Controller
      */
     public function show($id)
     {
-        //
+        $user = User::findOrFail($id);
+        
+        return view('admin.users.show', compact('user'));
     }
 
     /**
@@ -85,6 +87,7 @@ class UsersController extends Controller
         $user = User::findOrFail($id);
        
         $user->fill($request->all());
+        $user->password = \Hash::make($request->password);
         $user->save();
 
         return redirect()->back();

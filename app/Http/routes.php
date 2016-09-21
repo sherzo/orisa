@@ -32,7 +32,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
 	|	RUTAS GENERALES
 	|
 	*/
-	Route::resource('privilegios', 'PrivelController');
+	Route::resource('privilegios', 'PrivilegesController');
 	Route::resource('usuarios', 'UsersController');
 	Route::get('usuarios/{id}/destroy', [
 		'uses' => 'UsersController@destroy',

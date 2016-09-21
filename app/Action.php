@@ -4,22 +4,27 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Plates_has_ingredient extends Model
+class Action extends Model
 {
-    /**
+     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-     'plato_id', 'ingrediente_id', 'cantidad_ingrediente', 
+        'accion', 
     ];
+    
+    protected $table = 'actions';
 
     /**
      * The attributes that should be hidden for arrays.
      *
      * @var array
      */
-    protected $table = 'plates_has_ingredients';
 
+    public function Modulos()
+    {
+        return $this->belongsToMany('App\Module', 'Modules_has_actions');
+    }
 }

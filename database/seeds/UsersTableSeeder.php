@@ -38,11 +38,19 @@ class UsersTableSeeder extends Seeder
         
 
         \DB::table('users')->insert(array (
-            'roles_id' => '2',
+            'roles_id' => '1',
             'name'     => 'Jesus',
             'user'     => 'admin',
             'password' => \Hash::make('admin'),         
             'email'    => 'mtr_1101@hotmail.com',
+        ));
+
+        \DB::table('users')->insert(array (
+            'roles_id' => '2',
+            'name'     => 'Admin',
+            'user'     => 'Aministrador',
+            'password' => \Hash::make('administrador'),         
+            'email'    => 'sherzo-la@hotmail.com',
         ));
 
         \DB::table('users')->insert(array (

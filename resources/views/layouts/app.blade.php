@@ -107,6 +107,7 @@
                             <li><a href="{{ url('admin/clientes') }}">Clientes</a></li>
 @endif                  
                             <li><a href="{{ url('admin/platos') }}">Platos</a></li>
+                            <li><a href="#">Jugos</a></li>
                             <li><a href="{{ url('admin/sauces') }}">Salsas</a></li>
 
 

@@ -56,15 +56,7 @@
 							{!! Form::label('id_providers', 'Seleciones los proveedores del ingrediente') !!}
 						
 						<br>
-							@foreach ($providers as $id => $provider)
-								<div class="checkbox">
-  									<label>
-    									<input type="checkbox" name="id_providers[]" value="{{ $id }}">
-                               				{{ $provider }}
- 							 		 </label>
-								</div>
-						   @endforeach
-						
+							{!! Form::select('id_providers[]', $providers, null, ['class' => 'form-control select-providers form-control', 'multiple']) !!}
 						</div>
 <div class="form-group">
                 		<br/>
@@ -84,4 +76,13 @@
 		</div>
 	</div>
 </div>
+@endsection
+
+@section('js')
+<script>
+$('.select-providers').chosen({
+      placeholder_text_multiple: 'Selecione los proveedores',
+      no_results_text: 'No se encontro al proveedor'
+    });
+</script>
 @endsection

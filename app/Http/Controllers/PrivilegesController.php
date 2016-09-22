@@ -70,7 +70,7 @@ class PrivilegesController extends Controller
 
         $modules = Module::all();
 
-        return view('admin.privileges.edit', compact('modules_actions', 'modules'));
+        return view('admin.privileges.edit', compact('modules_actions', 'modules', 'user'));
     }
 
     /**
@@ -82,7 +82,7 @@ class PrivilegesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        dd($request->all());
     }
 
     /**

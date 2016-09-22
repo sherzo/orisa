@@ -12,22 +12,25 @@ class ActionsTableSeeder extends Seeder
     public function run()
     {
         \DB::table('actions')->insert(array (
-            'accion'	=> 'ver',
+            'accion'	=> 'Ver',
         ));
         \DB::table('actions')->insert(array (
-            'accion'	=> 'crear',
+            'accion'	=> 'Crear',
         ));
         \DB::table('actions')->insert(array (
-            'accion'	=> 'editar',
+            'accion'	=> 'Editar',
         ));
         \DB::table('actions')->insert(array (
-            'accion'	=> 'eliminar',
+            'accion'	=> 'Eliminar',
         ));
         \DB::table('actions')->insert(array (
-            'accion'	=> 'procesar',
+            'accion'    => 'Orden de compra',
         ));
         \DB::table('actions')->insert(array (
-            'accion'	=> 'administrar',
+            'accion'	=> 'Procesar',
+        ));
+        \DB::table('actions')->insert(array (
+            'accion'	=> 'Administrar',
         ));
     }
 }

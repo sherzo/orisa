@@ -11,26 +11,78 @@ class ModulesTableSeeder extends Seeder
      */
     public function run()
     {
+        //------SERVICIOS
         \DB::table('modules')->insert(array (
-            'modulo'	=> 'clientes',
+            'modulo'	=> 'Clientes',
         ));
         \DB::table('modules')->insert(array (
-            'modulo'	=> 'platos',
+            'modulo'	=> 'Platos',
         ));
         \DB::table('modules')->insert(array (
-            'modulo'	=> 'bebidas',
+            'modulo'	=> 'Bebidas',
         ));
         \DB::table('modules')->insert(array (
-            'modulo'	=> 'salsas',
+            'modulo'    => 'Jugos',
         ));
         \DB::table('modules')->insert(array (
-            'modulo'	=> 'comandas',
+            'modulo'	=> 'Salsas',
         ));
         \DB::table('modules')->insert(array (
-            'modulo'	=> 'recibos',
+            'modulo'	=> 'Comandas',
         ));
         \DB::table('modules')->insert(array (
-            'modulo'	=> 'reservaciones',
+            'modulo'	=> 'Recibos',
+        ));
+        \DB::table('modules')->insert(array (
+            'modulo'	=> 'Reservacion',
+        ));
+        //-------EMPLEADOS
+        \DB::table('modules')->insert(array (
+            'modulo'    => 'Asistencias',
+        ));
+        \DB::table('modules')->insert(array (
+            'modulo'    => 'Cargos',
+        ));
+        \DB::table('modules')->insert(array (
+            'modulo'    => 'Personal',
+        ));
+        \DB::table('modules')->insert(array (
+            'modulo'    => 'Fechas',
+        ));
+        \DB::table('modules')->insert(array (
+            'modulo'    => 'Dias',
+        ));
+        \DB::table('modules')->insert(array (
+            'modulo'    => 'Planificacion',
+        ));
+        //--------COMPRA
+        \DB::table('modules')->insert(array (
+            'modulo'    => 'Orden de compra',
+        ));
+        \DB::table('modules')->insert(array (
+            'modulo'    => 'Inventario',
+        ));
+        \DB::table('modules')->insert(array (
+            'modulo'    => 'Proveedores',
+        ));
+        \DB::table('modules')->insert(array (
+            'modulo'    => 'Ingredientes',
+        ));
+        \DB::table('modules')->insert(array (
+            'modulo'    => 'Licores',
+        ));
+        //-------- Mantenimiento
+        \DB::table('modules')->insert(array (
+            'modulo'    => 'Usuarios',
+        ));
+        \DB::table('modules')->insert(array (
+            'modulo'    => 'Respaldo BD',
+        ));
+        \DB::table('modules')->insert(array (
+            'modulo'    => 'Restauracion',
+        ));
+        \DB::table('modules')->insert(array (
+            'modulo'    => 'Bitacora',
         ));
     }
 }

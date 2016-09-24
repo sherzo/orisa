@@ -29,6 +29,11 @@ class User extends Authenticatable
         $this->hasMany('App\Rol', 'roles_id');
     }
 
+    public function modules_actions()
+    {
+       return $this->hasMany('App\Users_modules_action'); 
+    }
+    
     public function is_role($hasRol)
     {
         # code...

@@ -1,9 +1,9 @@
-<div class="text-center">
-	{!! Form::open(['route' => 'admin.asistencias.create', 'method' => 'GET', 'class' => 'form-inline']) !!}   
+{!! Form::open(['route' => 'admin.asistencias.create', 'method' => 'GET', 'class' => 'form-inline']) !!}  	
+	<div class="text-center">
 		<div class="form-group">
 			<div class="input-group">
 				<div class="form-group{{ $errors->has('fecha') ? ' has-error' : '' }}">
-					{!! Form::date('fecha', null, ['class' => 'form-control', 'title' => 'Ingrese la fecha, para registrar asistencia.', 'placeholder' => '25607932', 'required']) !!}
+					{!! Form::date('fecha', null, ['class' => 'form-control', 'title' => 'Ingrese la fecha, para registrar asistencia.', 'required']) !!}
 
 					<span class="input-group-btn">
 						<button type="submit" class="btn btn-default" id="buscar" title="Buscar">
@@ -20,5 +20,5 @@
 				</div>
 			</div>
 		</div>
-	{!! Form::close() !!}	
-</div>
+	</div>
+{!! Form::close() !!}	

@@ -5,7 +5,7 @@
 <div class="input-group">
 	<div class="form-group">
 
-    {!! Form::select('proveedor', $providers, null, ['class' => 'form-control', 'onchange' => 'productos()']) !!}
+    {!! Form::select('proveedor', $providers, null, ['class' => 'form-control']) !!}
 
 	</div>
       <!-- BOTON BUSCAR -->

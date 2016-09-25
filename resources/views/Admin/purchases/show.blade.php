@@ -34,7 +34,7 @@
         </span>
 						
 				</div>
-					<div class="panel-body">
+					<div class="panel-body">k
           @include('flash::message')
 
               @include('admin.purchases.partials.data')

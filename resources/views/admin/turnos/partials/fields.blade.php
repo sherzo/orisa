@@ -4,16 +4,18 @@
 	$count_employees=count($empleados);
 	$empleado_id = array(); 	
 ?>
-<div>
-	@include('flash::message')
+<div class="col-lg-12"><br>
+    @include('flash::message')
 </div>
-<div class="table-responsive">
-	<table class="table table-striped">
-		<tr>
-			<th>{!! Form::hidden('planificacion_id', $planificacion->id) !!}</th>
+<table class="table table-striped table-responsive">
+	<tr>
+		<td class="text-center"><br>
+			<input type="checkbox" id="select_all">
+			{!! Form::hidden('planificacion_id', $planificacion->id) !!}
+		</td>
 
 @for($i=$planificacion->fecha_inicio; $i<=$planificacion->fecha_final ; $i = date('Y-m-d', strtotime($i ."+ 1 days")))
-			<td class="text-center"> {{ $i }} <p class="text-info"> {{$planificacion->dias[$k]->estatus}} </p> </td>
+		<td class="text-center"> {{ $i }} <p class="text-info"> {{$planificacion->dias[$k]->estatus}} </p> </td>
 		<?php 
 			$dia_id[$k]=$planificacion->dias[$k]->id;
 			$k++;
@@ -36,5 +38,5 @@
 	<div class="col-lg-1 col-lg-offset-11">
 		<button type="submit" class="btn btn-primary btn-sm"> Guardar </button><br><br>
 	</div>
-</div>
+
 

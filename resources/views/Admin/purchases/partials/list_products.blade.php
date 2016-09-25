@@ -11,7 +11,6 @@
 			</tr>
 		</thead>
 		<tbody>
-		<input type="text" name="id_proveedor" value="{{ $id_proveedor }}">
 		
 			@foreach($ingredients as $ingredient)
 			<tr>

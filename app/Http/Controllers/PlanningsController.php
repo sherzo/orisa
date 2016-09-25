@@ -26,20 +26,6 @@ class PlanningsController extends Controller
 	public function store(PlanningRequest $request)
 	{
 
-	$datetime1 = date_create($request->fecha_inicio);
-	$datetime2 = date_create($request->fecha_final);
-	$interval = date_diff($datetime1, $datetime2);
-    $result = $interval->format('%a');
-    	
-    	if ($result > 7) 
-    	{
- 			
- 			Flash::warning('<strong> Error </strong> las fechas deben estan en un rango no mayor a 10 días.');
- 			
- 			return redirect()->back();
-
- 		} else {
-
 		if($request->fecha_inicio == $request->fecha_final)
 		{
 
@@ -58,7 +44,7 @@ class PlanningsController extends Controller
 
 			return redirect('admin/planificaciones');
 		}
-		}
+		
 	}
 
 	public function administrar($id)

@@ -77,6 +77,10 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
 	*/
 	Route::resource('planificaciones', 'PlanningsController');
 	Route::get('planificaciones/administrar/dias/turnos/seleccionar-planificacion', 'TurnsController@select');
+	Route::get('planificaciones/administrar/dias/turnos/ver-planificacion', [
+		'uses' => 'TurnsController@view',
+		'as'   => 'admin.planificaciones.administrar.dias.turnos.view'
+		]);
 	Route::resource('planificaciones/administrar/dias/turnos', 'TurnsController');
 	Route::resource('planificaciones/administrar/dias', 'Planning_DaysController');
 	/*

@@ -48,7 +48,7 @@ class TurnsController extends Controller
             foreach ($dias as $value) 
             {
 
-            $empleado->hoem()->saveMany([new Holiday(['empleado_id' => $empleado, 'dia_id' => $value])]);
+            $empleado->hoem()->saveMany([new Holiday(['empleado_id' => $empleado, 'dia_id' => $value, 'planificacion_id' => $request->planificacion_id])]);
             
             }
         }
@@ -58,6 +58,68 @@ class TurnsController extends Controller
         $planificacion->save();
 
         Flash::success('<strong> Éxito </strong> se han creado nuevos registros de días para los empleados.');
+
+        return redirect('admin/planificaciones/administrar/dias/turnos');
+
+        }else{
+
+            Flash::warning('<strong> Error </strong> debe marcar las opciónes para guardar la planificación.');
+            return redirect()->back();
+
+        }
+    }
+
+    public function view(Request $request)
+    {
+
+        $planificaciones = Planning::where('estatus', '=', 'Procesada');
+        $planificacion = $planificaciones->lists('fechas', 'id');
+        $empleados = Employee::all();
+
+        $request->planificacion ? $planning = Planning::find($request->planificacion)->dias()->get() : $planning = false;
+        $request->planificacion ? $holiday = Holiday::where('planificacion_id', $request->planificacion)->get() : $holiday = false; 
+        $id = $request->planificacion;
+
+        return view('admin.turnos.show', compact('planificacion', 'planning', 'holiday', 'empleados', 'id'));
+
+    }
+
+    public function edit($id)
+    {
+        $dias = Planning::find($id)->dias()->get();
+        $planificacion = Holiday::where('planificacion_id', $id)->get();
+        $empleados = Employee::all();
+
+        return view('admin.turnos.edit', compact('dias', 'planificacion', 'empleados', 'id'));
+    }
+
+    public function update(Request $request)
+    {
+        $planificaciones = Holiday::where('planificacion_id', $request->planificacion_id)->get();
+
+        foreach ($planificaciones as $key => $planificacion) 
+        {
+
+           $planificacion->delete();
+
+        }
+        
+        if(isset($request->empleado_id)) 
+        {
+    
+        foreach($request->empleado_id as $key => $dias) 
+        { 
+            $empleado = Employee::find($key);
+
+            foreach ($dias as $value) 
+            {
+
+            $empleado->hoem()->saveMany([new Holiday(['empleado_id' => $empleado, 'dia_id' => $value, 'planificacion_id' => $request->planificacion_id])]);
+            
+            }
+        }
+
+        Flash::success('<strong> Éxito </strong> se han editado los registros de días para los empleados.');
 
         return redirect('admin/planificaciones/administrar/dias/turnos');
 

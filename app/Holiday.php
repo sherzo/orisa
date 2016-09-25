@@ -14,7 +14,7 @@ class Holiday extends Model
     protected $table = 'employees_has_days';
 
     protected $fillable = [
-        'empleado_id', 'dia_id' 
+        'empleado_id', 'dia_id', 'planificacion_id', 
     ];
 
     public $timestamps = false;
@@ -27,5 +27,10 @@ class Holiday extends Model
     public function day()
     {
     	return $this->belongsTo('App\Days_planning', 'dia_id');
+    }
+
+    public function planning()
+    {
+       return $this->belongsTo('App\Planning', 'planificacion_id');
     }
 }

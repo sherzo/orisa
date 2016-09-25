@@ -183,9 +183,9 @@
                 </div>
                 <div class="col-lg-12">
                     <div class="col-lg-offset-10"><br><br>
-                    &nbsp;&nbsp;<button type="reset" class="btn btn-danger">Borrar</button>
-                    &nbsp;&nbsp;<button type="submit" class="btn btn-primary">Guardar</button>
-                </div>
+                        &nbsp;&nbsp;<button type="reset" class="btn btn-danger">Borrar</button>
+                        &nbsp;&nbsp;<button type="submit" class="btn btn-primary">Guardar</button>
+                    </div>
                 </div>
                 <!-- < -->
         </div>  

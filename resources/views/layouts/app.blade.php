@@ -178,7 +178,8 @@
     <script src="{{ asset('bower_components/metisMenu/dist/metisMenu.js') }}"></script>
     <script src="{{ asset('dist/js/sb-admin-2.js') }}"></script>
     <script src="{{ asset('bower_components/datatables/media/js/jquery.dataTables.js') }}"></script>
-    <script src="{{ asset('bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.js') }}"></script><script src="{{ asset('jquery/funciones.js') }}"></script>
+    <script src="{{ asset('bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.js') }}"></script>
+    <script src="{{ asset('jquery/funciones.js') }}"></script>
     <script src="{{ asset('chosen/chosen.jquery.min.js') }}"></script>
 
         @yield('js')

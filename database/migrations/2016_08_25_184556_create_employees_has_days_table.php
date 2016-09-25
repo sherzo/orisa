@@ -18,6 +18,8 @@ class CreateEmployeesHasDaysTable extends Migration
             $table->foreign('empleado_id')->references('id')->on('employees');
             $table->integer('dia_id')->unsigned();
             $table->foreign('dia_id')->references('id')->on('plannings_has_days');
+            $table->integer('planificacion_id')->unsigned();
+            $table->foreign('planificacion_id')->references('id')->on('plannings');
         });
     }
 

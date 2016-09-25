@@ -1,16 +1,8 @@
 <div class="row">
-    <div class="col-lg-12">
-        <h3 class="page-header"> Planificación</h3>
-    </div>
-</div>
-<div class="col-lg-12">
-    @include('flash::message')
-</div>
-<div class="row">
-    <div class="col-lg-6 col-lg-offset-3">
+    <div class="col-lg-8 col-lg-offset-2">
         <div class="panel panel-default">
             <div class="panel-heading">
-                Formulario
+                Fechas
             </div>
             <div class="panel-body">
                 <div class="row">
@@ -37,10 +29,12 @@
 
                             {!! Form::hidden('estatus', 'Creada') !!}
                         </div>
-                        <div class="form-group"><br>
-                            <p class="text-muted text-center">Los campos marcados con (<span class="text-danger">*</span>) son obligatorios.</p>
-                        </div>
+                    </div>
+                    <div class="col-lg-12">
                         <div class="form-group">
+                            <div class="form-group"><br>
+                                <p class="text-muted text-center">Los campos marcados con (<span class="text-danger">*</span>) son obligatorios.</p>
+                            </div>
                             <center>
                                 <button type="reset" class="btn btn-link">
                                     Borrar

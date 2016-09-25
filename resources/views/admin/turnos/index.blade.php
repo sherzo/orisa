@@ -16,7 +16,7 @@
 <div class="col-lg-14">
  	<a href="{{ url('admin/planificaciones/administrar/dias/turnos/seleccionar-planificacion') }}"><button type="button" class="btn btn-primary"><span class="fa fa-plus"></span></button></a>
 </div>
-<div>
+<div><br>
 	@include('flash::message')
 </div>
 <div class="row">
@@ -28,6 +28,9 @@
             <div class="panel-body">
                 <div class="dataTable_wrapper">
                     @include('admin.turnos.partials.table')
+                    <div class="well">
+                        <a class="btn btn-default btn-lg btn-block" href="{{ url('admin/planificaciones/administrar/dias/turnos/ver-planificacion ') }}"> <span class="fa fa-eye"></span></a>
+                    </div>
                 </div>
             </div>
         </div>                

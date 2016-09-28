@@ -28,9 +28,4 @@ class Planning extends Model
 		return $this->hasMany('App\Holiday', 'planificacion_id', 'id');
 	}
 
-	public function getFechasAttribute()
-    {
-        return $this->fecha_inicio . ' - ' . $this->fecha_final;
-    }
-	
 }

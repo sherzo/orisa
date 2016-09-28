@@ -17,6 +17,7 @@ Route::get('/', function()
 {
 	return View::make('welcome');
 });
+
 Route::group(['prefix' => '/', 'middleware' => 'guest', 'namespace' => 'Auth'], function() {
 	/*
 	|	RUTAS ANTES DE INICIAR SESIÓN NO MANDA ERROR 404
@@ -69,7 +70,14 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
  		'uses' =>'AssistsController@search',
  		'as'   => 'admin.asistencias.search'
  		]);
+	/*
+	|
+	|	Rutas resource controladores de nómina
+	|
+	*/
 	Route::resource('asistencias', 'AssistsController');
+	Route::resource('deducciones', 'DeductionsController');
+	Route::resource('nomina', 'PayrollController');
 	/*
 	|
 	|	Rutas resource controladores de planificación

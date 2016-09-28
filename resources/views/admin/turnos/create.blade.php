@@ -23,9 +23,17 @@
 	<p> Creada: {{ $planificacion->created_at }}</p>
 </div>
 <div class="col-lg-12">
-	{!! Form::open(['route' => 'admin.planificaciones.administrar.dias.turnos.store', 'method' => 'POST', 'name' => 'form']) !!}
-		{{ csrf_field() }} @include('admin.turnos.partials.fields')
-	{!! Form::close() !!} 
+    <div class="row">
+        <div class="table-responsive">
+            {!! Form::open(['route' => 'admin.planificaciones.administrar.dias.turnos.store', 'method' => 'POST', 'name' => 'form']) !!}
+                {{ csrf_field() }} @include('admin.turnos.partials.fields')
+                <div class="text-left">
+                    <button type="submit" class="btn btn-primary btn-sm"> Guardar </button><br><br>
+                </div>
+
+            {!! Form::close() !!} 
+        </div>
+    </div>
 </div>
 
 @endsection

@@ -122,9 +122,14 @@
 @if((Auth::user()->roles_id)=='1' || (Auth::user()->roles_id)=='2' || (Auth::user()->roles_id)=='3' )
                     <li><a href="#"  ><i class="fa fa-fw fa-male"></i> Empleados<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
-                            <li><a href="{{ url ('admin/asistencias') }}">Asistencias</a></li>
-                            <li><a href="{{ url('admin/cargos') }}">Cargos</a></li>
-                            <li><a href="{{ url('admin/empleados') }}"> Personal </a></li>
+                            <li><a href="{{ url ('admin/asistencias') }}"> Asistencias </a></li>
+                            <li><a href="{{ url('admin/cargos') }}"> Cargos </a></li>
+                            <li><a href="#"> Nómina<span class="fa arrow"></span></a>
+                                <ul class="nav nav-third-level">
+                                    <li><a href="{{ url('admin/nomina') }}}">Cálculo</a></li>
+                                    <li><a href="{{ url('admin/deducciones') }}"> Deducciones </a></li>
+                                    <li><a href="{{ url('admin/empleados') }}"> Personal </a></li>
+                                </ul>
                             <li><a href="#"> Prenómina<span class="fa arrow"></span></a>
                                 <ul class="nav nav-third-level">
                                     <li><a href="{{ url('admin/planificaciones') }}"> Fechas</a></li>

@@ -27,4 +27,5 @@ class Days_planning extends Model
 	{
 		return $this->hasMany('App\Holiday', 'dia_id', 'id');
 	}
+
 }

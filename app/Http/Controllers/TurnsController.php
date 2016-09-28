@@ -23,7 +23,7 @@ class TurnsController extends Controller
     {
         $planificaciones = Planning::where('estatus', '=', 'Realizada');
         $planificacion = $planificaciones->lists('fechas', 'id');
-        
+
         return view('admin.turnos.select', compact('planificacion'));
     }
 

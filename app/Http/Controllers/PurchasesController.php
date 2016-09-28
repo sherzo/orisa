@@ -37,7 +37,7 @@ class PurchasesController extends Controller
     
         // Al Agregar a la compra Ingredientes o Licores
         if(isset($request->add_ingredients) || isset($request->add_liqueurs)){
-        
+            
         $id_proveedor = $request->id_proveedor;
 
             if(isset($request->add_ingredients)){ 

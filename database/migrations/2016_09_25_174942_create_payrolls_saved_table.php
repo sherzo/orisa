@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDeductionsTable extends Migration
+class CreatePayrollsSavedTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,12 +12,11 @@ class CreateDeductionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('deductions', function (Blueprint $table) {
+        Schema::create('payrolls_saved', function(Blueprint $table){
             $table->increments('id');
-            $table->float('ISLR', 15,2);
-            $table->float('SSO', 15,2);
-            $table->float('RPE', 15,2);
-            $table->float('RPVH', 15,2);
+            $table->string('mes', 20);
+            $table->integer('quincena');
+            $table->integer('year');
             $table->timestamps();
         });
     }
@@ -29,6 +28,6 @@ class CreateDeductionsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('deductions');
+        Schema::drop('payrolls_saved');
     }
 }

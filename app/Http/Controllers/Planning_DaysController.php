@@ -39,7 +39,8 @@ class Planning_DaysController extends Controller
 
     public function store(Request $request)
     {
-		
+	
+       
     	$i=0;
 
     	foreach ($request->dia as $dia) 

@@ -1,32 +1,81 @@
-@include('flash::message')
-<div class="form-group">
-  {!! Form::label('rif', 'Ingrese el Rif') !!}
+<div class="col-lg-6">
+	@if($rif)
+		<div class="form-group{{ $errors->has('rif') ? ' has-error' : '' }}">
+			{!! Form::label('rif', 'RIF') !!}   
+			{!! Form::text('rif', $rif, ['class' => 'form-control', 'title' => 'Número de RIF', 'disabled']) !!}
+			{!! Form::hidden('rif', $rif) !!}
 
+			@if ($errors->has('rif'))
+	            <span class="help-block">
+	                <small>{{ $errors->first('rif') }}</small>
+	           	</span>
+	        @endif
+		</div>
+	@else
+		<div class="form-group{{ $errors->has('rif') ? ' has-error' : '' }}">
+			{!! Form::label('rif', 'RIF') !!}   
+			{!! Form::text('rif', null, ['class' => 'form-control', 'title' => 'Número de RIF', 'disabled']) !!}
+
+			@if ($errors->has('rif'))
+	            <span class="help-block">
+	                <small>{{ $errors->first('rif') }}</small>
+	           	</span>
+	        @endif
+		</div>
+	@endif
 </div>
-<div class="form-group">
+<div class="col-lg-12">
+<hr>	
+</div>
+<div class="col-lg-12">
+	<div class="form-group{{ $errors->has('razon_social') ? ' has-error' : '' }}">
+		{!! Form::label('razon_social', 'Nombre') !!} 
+		{!! Form::text('razon_social', null, ['class' => 'form-control', 'placeholder' => 'Alimentos Polar Comercial, C.A', 'title' => 'Introduzca su nombre o razón social']) !!}
 
-  <div class="input-group">
-      <!--  SELECT -->
-      <div class="form-group">
-        <select class="form-control" name="literal" title="Seleccione literal" id="literal">
-                    <option value="J">J -</option>
-                    <option value="C">C -</option>
-                    <option value="G">G -</option>
-              </select>           
-          </div>  
+		@if ($errors->has('razon_social'))
+            <span class="help-block">
+                <em><small>{{ $errors->first('razon_social') }}</small></em>
+           	</span>
+        @endif
+	</div>
+	<div class="form-group">
+		{!! Form::label('telefono', 'Teléfono') !!}
+		<div class="form-inline{{ $errors->has('telefono') ? ' has-error' : '' }}">	
+			{!! Form::select('operadora', array('0412' => '0412', '0424' => '0424', '0416' => '0416', '0414' => '0414', '0426' => '0426'), null, ['class' => 'form-control']) !!}
+			{!! Form::text('telefono', null, ['class' => 'form-control awesome', 'placeholder' => '4968557', 'size' => '53', 'title' => 'Introduzca su número de teléfono']) !!}
+		
+			@if ($errors->has('telefono'))
+	            <span class="help-block">
+	                <em><small>{{ $errors->first('telefono') }}</small></em>
+	           	</span>
+	        @endif	
 
-      <!-- INPUT -->
-        <div class="form-group">
-            {!! Form::text('rif', null, ['class' => 'form-control', 'title' => 'Ingrese el Rif', 'size' => '74', 'placeholder' => '25607932', 'id' => 'rif', 'required']) !!}  
-    </div>
+        </div>			
+	</div>
+	<div class="form-group{{ $errors->has('correo') ? ' has-error' : '' }}"> 
+		{!! Form::label('correo', 'E-mail') !!}
+		{!! Form::text('correo', null, ['class' => 'form-control', 'placeholder' => 'ejemplo@gmail.com', 'title' => 'Introduzca su correo electrónico']) !!}
 
-      <!-- BOTON BUSCAR -->
-      <span class="input-group-btn">
-          <button type="submit" class="btn btn-default" type="button" id="buscar" title="Buscar proveedor">
-          <span class="glyphicon glyphicon-search"></span>
-          </button>
-        </span>
-      
-    </div><!-- CIERRA INPUT-GROUP-->
-</div><!-- CIERRA FORM-GROUP -->
-  <br><br>
+		@if ($errors->has('correo'))
+            <span class="help-block">
+                <em><small>{{ $errors->first('correo') }}</small></em>
+           	</span>
+        @endif
+	</div>
+	<div class="form-group{{ $errors->has('direccion') ? ' has-error' : '' }}">
+		{!! Form::label('direccion', 'Dirección') !!} 
+		{!! Form::textarea('direccion', null, ['class' => 'form-control', 'rows' => '5', 'placeholder' => '6362 Bahringer Fork South Asa, WY 42384', 'title' => 'Dirección fiscal']) !!}
+
+		@if ($errors->has('direccion'))
+            <span class="help-block">
+                <em><small>{{ $errors->first('direccion') }}</small></em>
+           	</span>
+        @endif
+	</div>
+	<br>
+	<div class="form-group tooltip-demo text-center">
+		<button class="btn btn-default btn-sm" type="submit" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Guardar"><span class="glyphicon glyphicon-floppy-saved fa-2x"></span></button>
+		<button class="btn btn-default btn-sm" type="reset" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Borrar"><span class="glyphicon glyphicon-floppy-remove fa-2x"></span></button>
+	    <br>
+	</div> 
+</div>

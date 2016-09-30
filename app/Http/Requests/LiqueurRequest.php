@@ -24,9 +24,11 @@ class LiqueurRequest extends Request
     public function rules()
     {
         return [
-           'nombre_licor' => 'required',
-           'caracteristica' => 'required',
-           'id_providers' => 'required',
+            'licor'          => 'required|unique:liqueurs',
+            'type_id'        => 'required',
+            'id_unit'        => 'required',
+            'caracteristica' => 'required',
+            'id_providers'   => 'required',
         ];
     }
 

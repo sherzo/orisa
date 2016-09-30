@@ -7,7 +7,6 @@ use App\Provider;
 use App\Unit;
 use App\Ingredients_type;
 use App\Ingredient;
-use App\Ingredients_provider;
 use App\Http\Requests;
 use App\Http\Requests\IngredientRequest;
 use App\Http\Requests\IngredientEditRequest;
@@ -23,7 +22,7 @@ class IngredientsController extends Controller
      */
     public function index()
     {
-        $ingredients = Ingredient::paginate();
+        $ingredients = Ingredient::all();
 
         return view('admin.ingredients.index', compact('ingredients'));
 
@@ -36,17 +35,11 @@ class IngredientsController extends Controller
      */
     public function create()
     {
-        //Proveedores
+
         $providers = Provider::lists('razon_social', 'id');
-
-        //Unidades de medida
         $units = Unit::lists( 'unidad', 'id');
-
-        //Tipos de ingredientes
         $ingredients_types = Ingredients_type::lists( 'tipo_ingrediente', 'id');
 
-
-        // Compacto todas la variables a la vista del registro
         return view('admin.ingredients.create', compact('units', 'providers', 'ingredients_types'));
     }
 
@@ -60,18 +53,14 @@ class IngredientsController extends Controller
     {
         
         $ingredient = Ingredient::create($request->all());
+        $ingredient->save();
 
-        foreach($request->id_providers as $id_provider) 
+        foreach($request->id_providers as $provider) 
         {
-            $ingredients_provider = new Ingredients_provider;
-
-            $ingredients_provider->ingrediente_id = $ingredient->id;
-            $ingredients_provider->proveedor_id = $id_provider;
-            $ingredients_provider->save();
+            $ingredient->providers()->attach($provider);
         }   
 
-        Flash::success('<strong>Exito</strong> se ha registrado el ingrediente '.
-         $ingredient->ingrediente .' correctamente.');
+        Flash::success('<strong> Perfecto </strong> se ha registrado un nuevo ingrediente '.$ingredient->ingrediente .' correctamente.');
 
         return redirect('admin/ingredientes');
     }
@@ -96,14 +85,12 @@ class IngredientsController extends Controller
     public function edit($id)
     {
         $ingredient = Ingredient::findOrFail($id);
-        
-         //Tipos de ingredientes
         $ingredients_types = Ingredients_type::lists( 'tipo_ingrediente', 'id');
-
-        //Unidades de medida
         $units = Unit::lists( 'unidad', 'id');
 
-          return view('admin.ingredients.edit', compact('ingredient', 'ingredients_types', 'providers', 'units'));
+        $providers = false;
+
+        return view('admin.ingredients.edit', compact('ingredient', 'providers', 'ingredients_types', 'providers', 'units'));
     }
 
     /**

@@ -19,7 +19,9 @@ class CreateIngredientsTable extends Migration
             $table->integer('id_unit') ->unsigned();
             $table->foreign('id_unit') ->references('id')->on('units');
             $table->string('ingrediente', 15);
+            $table->integer('stock');
             $table->string('caracteristica', 40);
+            $table->integer('stock_min');
             $table->timestamps();
         });
     }

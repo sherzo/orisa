@@ -30,7 +30,7 @@ class EmployeesController extends Controller
     public function create(SearchRequest $request)
     {
         $dni_cedula = $request->nationality.'-'.$request->cedula;
-        $exists = Employee::where('dni_cedula', $dni_cedula)->exists()?1:0;
+        $exists = Employee::where('dni_cedula', $dni_cedula)->exists();
 
         if ($exists) 
         {

@@ -1,5 +1,4 @@
-<div class="text-center">
-	{!! Form::open(['route' => 'admin.empleados.create', 'method' => 'GET', 'class' => 'form-inline']) !!}   
+<div class="text-center">  
 		<div class="form-group">
 			<div class="input-group">
 				<div class="form-group{{ $errors->has('cedula') ? ' has-error' : '' }}">
@@ -24,6 +23,5 @@
 				   
 				</div>
 			</div>
-		</div>
-	{!! Form::close() !!}	
+		</div>	
 </div>

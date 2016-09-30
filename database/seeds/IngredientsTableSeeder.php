@@ -15,7 +15,9 @@ class IngredientsTableSeeder extends Seeder
             'id_type'        => '1',
             'id_unit'        => '1',
             'ingrediente'    => 'Harina Pan',
-        	'caracteristica' => 'Precocida',      	
+            'stock'          => '0',
+        	'caracteristica' => 'Precocida',  
+            'stock_min'      => '20',    	
         ));
 
         \DB::table('providers_has_ingredients')->insert(array (
@@ -29,10 +31,12 @@ class IngredientsTableSeeder extends Seeder
         ));
 
         \DB::table('ingredients')->insert(array (
-            'id_type'     => '4',
-            'id_unit'     => '4',
-            'ingrediente' => 'Maceite',
-        	'caracteristica' => 'Aceite de soya',      	
+            'id_type'        => '4',  
+            'id_unit'        => '4',
+            'ingrediente'    => 'Maceite',
+            'stock'          => '0',
+        	'caracteristica' => 'Aceite de soya', 
+            'stock_min'      => '20',     	
         	
         ));
 

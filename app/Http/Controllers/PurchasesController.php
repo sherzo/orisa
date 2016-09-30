@@ -3,16 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Provider;
+
+use Carbon\Carbon;
+use App\Drink;
 use App\Ingredient;
+use App\Liqueur;
+use App\Provider;
 use App\Purchase;
-use App\Purchase_has_ingredient;
-use App\Purchase_has_liqueurs;
 use App\Unit;
 use Laracasts\Flash\Flash;
-use App\Liqueur;
-use Carbon\Carbon;
-
 use App\Http\Requests;
 
 class PurchasesController extends Controller
@@ -22,21 +21,30 @@ class PurchasesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
+    {
+        $orders = Purchase::all();
+
+        return view('admin.purchases.index', compact('orders'));
+
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create(Request $request)
     {
 
         $providers = Provider::lists('razon_social', 'id');
         
-        // Cuando seleciona el proveedor traigo los ingredientes realcionados a el
         $request->proveedor ? $ingredients = Provider::find($request->proveedor)->ingredients()->get() : $ingredients = false;
-
-        // Cuando selecciona el proveedor traigo los licores relacionados a el
         $request->proveedor ? $liqueurs = Provider::find($request->proveedor)->liqueurs()->get() : $liqueurs = false;
-
+        $request->proveedor ? $drinks = Provider::find($request->proveedor)->drinks()->get() : $drinks = false;
         $request->proveedor ? $id_proveedor = $request->proveedor : $id_proveedor = false;
     
-        // Al Agregar a la compra Ingredientes o Licores
-        if(isset($request->add_ingredients) || isset($request->add_liqueurs)){
+        if(isset($request->add_ingredients) || isset($request->add_liqueurs) || isset($request->add_drinks)){
             
         $id_proveedor = $request->id_proveedor;
 
@@ -49,7 +57,8 @@ class PurchasesController extends Controller
 
                 }
             
-            }else{       
+            }else{      
+
                 $data_ingredient = false;
             }
 
@@ -64,33 +73,39 @@ class PurchasesController extends Controller
                 }
       
             }else {
+
                 $data_liqueur = false;
             }
 
+            if(isset($request->add_drinks)){ 
 
-        return view('admin.purchases.index', compact('providers', 'ingredients', 'liqueurs', 'data_ingredient', 'data_liqueur', 'units_i', 'units_l', 'id_proveedor'));
+                foreach ($request->add_drinks as $key => $drink) {
+            
+                    $data_drink[$key] = Drink::find($drink);
+                    $units_d[$key] = Drink::find($value)->unit()->get();
+
+                }
+            
+            }else{     
+
+                $data_drink = false;
+            }
+
+
+
+        return view('admin.purchases.create', compact('providers', 'ingredients', 'liqueurs', '$drinks', 'data_ingredient', 'data_liqueur', 'data_drink', 'units_d', 'units_i', 'units_l', 'id_proveedor'));
 
         
         }else {
 
             $data_ingredient = false;
             $data_liqueur = false;
+            $data_drink = false;
  
         
         }
 
-        return view('admin.purchases.index', compact('providers', 'ingredients', 'liqueurs', 'data_ingredient', 'data_liqueur', 'id_proveedor'));
-
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        
+        return view('admin.purchases.create', compact('providers', 'ingredients', 'liqueurs', 'drinks', 'data_ingredient', 'data_liqueur', 'data_drink', 'id_proveedor'));
     }
 
     /**
@@ -100,55 +115,42 @@ class PurchasesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        $dias = array('0' => 'Domingo', 
-                      '1' => 'Lunes',
-                      '2' => 'Martes',
-                      '3' => 'Miercoles',
-                      '4' => 'Jueves',
-                      '5' => 'Viernes',
-                      '6' => 'Sabado');
-
-        $purchase = new Purchase;
+    {   
         $date = Carbon::now('America/Caracas');
-   
-        foreach ($dias as $key => $value) {
-            $date->dayOfWeek == $key ? $day = $value : ''; 
-        }
-        
-        $purchase->id_provider = $request->id_proveedor;
-        $purchase->status = '0';
-        $purchase->fecha = $day.' '.$date->format('d-m-Y');
-        $purchase->save();
-  
+
+        $order = new Purchase;
+        $order->proveedor_id = $request->id_proveedor;
+        $order->estatus = '0';
+        $order->fecha = $date;
+        $order->save();
 
         if(isset($request->ingredients)){ 
         
-            foreach ($request->ingredients as $key => $value) {
-                
-                $purchase_ingredient = new Purchase_has_ingredient;
-                $purchase_ingredient->ingrediente_id = $value;
-                $purchase_ingredient->compra_id = $purchase->id;
-                $purchase_ingredient->cantidad = $request->cantidad_ingredient[$key];
-                $purchase_ingredient->save(); 
+            foreach ($request->ingredients as $i => $ingredient) {
+
+                $order->ingredient()->attach([$ingredient => ['cantidad' => $request->cantidad_ingredient[$i]]]);
             }
         }
 
-        if(isset($request->liqueurs)){
-            foreach ($request->liqueurs as $key => $value) {
+        if(isset($request->liqueurs)){ 
+        
+            foreach ($request->liqueurs as $l => $liqueur) {
 
-                $purchase_liqueur = new Purchase_has_liqueurs;
-                $purchase_liqueur->licor_id = $value;
-                $purchase_liqueur->compra_id = $purchase->id;
-                $purchase_liqueur->cantidad = $request->cantidad_liqueur[$key];
-                $purchase_liqueur->save();
-              
+                $order->liqueur()->attach([$liqueur => ['cantidad' => $request->cantidad_liqueur[$l]]]);
+            }
+        }
+
+        if(isset($request->drinks)){ 
+        
+            foreach ($request->drinks as $d => $drink) {
+
+                $order->drink()->attach([$drink => ['cantidad' => $request->cantidad_drink[$d]]]);
             }
         }
        
-    $url = route('admin.compra.show', $purchase->id);
+    $url = route('admin.compra.show', $order->id);
 
-    Flash::success('<strong>Exito!</strong> Se proceso la <strong><a href="'.$url.'" title="Ver orden">Orden de compra</a></strong> correctamente!');
+    Flash::success('<strong> Exito </strong> Se proceso la <strong><a href="'.$url.'" title="Ver orden">Orden de compra</a></strong> correctamente!');
 
     return redirect('admin/compra');
 
@@ -161,30 +163,13 @@ class PurchasesController extends Controller
      */
     public function show($id)
     {
-        
-        $purchase = Purchase::find($id);
-        $purchase->each(function($purchase){
-            $purchase->purchase_ingredients;
-            $purchase->purchase_liqueurs;
-            $purchase->provider;
-        });
+        $order = Purchase::find($id);
 
-
-        
-                foreach ($purchase->purchase_ingredients as $key => $value){
-                    
-                     $ingredients[$key] = Ingredient::find($value->id_ingredient);
-                     $units_i[] = Ingredient::find($value->id_ingredient)->unit()->get();
-                }
-
-                foreach ($purchase->purchase_liqueurs as $key => $value){
-                    
-                     $liqueurs[$key] = Liqueur::find($value->id_liqueur);
-                     $units_l[] = Liqueur::find($value->id_liqueur)->unit()->get();
-                }
+        $ingredients = $order->ingredient()->get();
+        $liqueurs = $order->liqueur()->get();
+        $drinks = $order->drink()->get();
       
-//dd($purchase->purchase_ingredients);
-        return view('admin.purchases.show', compact('purchase', 'ingredients', 'liqueurs', 'units_i', 'units_l'));
+        return view('admin.purchases.show', compact('order', 'ingredients', 'liqueurs', 'drinks'));
 
     }
 
@@ -222,15 +207,58 @@ class PurchasesController extends Controller
         //
     }
 
-    public function order()
+    public function process($id)
     {
-        $purchases = Purchase::paginate(10);
+        $order = Purchase::find($id);
+        
+        if($order->estatus == '0')
+        {
+            $order->estatus = '1';
+            $order->save();
 
+            $ingredients = $order->ingredient()->get();
+            $liqueurs = $order->liqueur()->get();
+            $drinks = $order->drink()->get();
 
-        // $purchase = Purchase::provider();
-       // ] dd($purchase);
+            if ($ingredients or $liqueurs or $drinks) 
+            {
+               
+                foreach ($ingredients as $key => $ingredient) 
+                {
+                    
+                    $ingredient->stock += $ingredient->pivot->cantidad;
+                    $ingredient->save();
+                }
 
-        return view('admin.purchases.list', compact('purchases'));
+                foreach ($liqueurs as $key => $liqueur) 
+                {
+                    
+                    $liqueur->stock += $liqueur->pivot->cantidad;
+                    $liqueur->save();
+                }
 
+                foreach ($drinks as $key => $drink) 
+                {
+                    
+                    $drink->stock += $drink->pivot->cantidad;
+                    $drink->save();
+                }
+
+                Flash::success('<strong> Perfecto </strong> se ha incrementado la existencia de los productos en el inventario correctamente.');
+
+                return redirect('admin/compra');
+
+            }else{
+
+                Flash::warning('<strong> Alerta </strong> error al incrementar la existencia de los productos.');
+            }
+
+        }else{
+
+            Flash::warning('<strong> Alerta </strong> esta orden se encuentra en estado procesado.');
+
+            return redirect()->back();
+        }
+        
     }
 }

@@ -19,8 +19,7 @@ class ProvidersController extends Controller
      */
     public function index()
     {
-        $providers = Provider::paginate(5);
-
+        $providers = Provider::all();
 
         return view('admin.providers.index', compact('providers'));
     }
@@ -30,9 +29,25 @@ class ProvidersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        return view('admin.providers.create');
+
+        $rif = $request->literal.$request->rif;
+        $exist = Provider::where('rif', $rif)->exists();
+
+        if($exist)
+        {
+            Flash::warning('<strong> Alerta </strong> busqueda con número de rif <strong>'. $rif .'</strong> se encuentra en la base de datos.');
+
+            return redirect()->back();
+
+        }else{
+
+            Flash::info('<strong> INFO </strong> búsqueda con número de rif <strong>'.$rif.'</strong> no se encuentra en la base de datos, proceda a llenar los campos.');
+
+            return view('admin.providers.create', compact('rif'));
+        }
+
     }
 
     /**
@@ -43,11 +58,10 @@ class ProvidersController extends Controller
      */
     public function store(ProviderRequest $request)
     {
-        $provider = new Provider($request->all());
-
+        $provider = Provider::create($request->all());
         $provider->save();
 
-        Flash::success('<strong>Exito! </strong> Se ha registrado el proveedor '. $provider->razon_social. ' correctamente');
+        Flash::success('<strong> Perfecto </strong> se ha registrado un nuevo proveedor <em>'. $provider->razon_social.'</em> correctamente.');
 
         return redirect('admin/proveedores');
 
@@ -74,7 +88,9 @@ class ProvidersController extends Controller
     {
         $provider = Provider::findOrFail($id);
 
-        return view('admin.providers.edit', compact('provider'));
+        $rif = false;
+
+        return view('admin.providers.edit', compact('provider', 'rif'));
     }
 
     /**
@@ -92,7 +108,7 @@ class ProvidersController extends Controller
         $provider->fill($request->all());
         $provider->save();
 
-        Flash::success('<strong>Exito! </strong> '. $provider->razon_social. ' se modifico correctamente');
+        Flash::success('<strong> Perfecto </strong> se ha actualizado el proveedor <em>'.$provider->razon_social.'</em>correctamente.');
 
 
         return redirect()->back();
@@ -114,30 +130,9 @@ class ProvidersController extends Controller
         return redirect('admin/proveedores');
     }
 
-//---------------- METODO CREADO PARA VERIFICAR QUE NO EXISTE EL PROVEEDOR
-
     public function search(Request $request)
     {
-        if(isset($request->literal)){
-
-            $valor = $request->literal.'-'.$request->rif;
-        
-        $provider = Provider::rif($valor)->first();
-
-        if($provider)
-        {
-            Flash::warning('<strong>Alerta </strong> Proveedor de rif: <strong>'. $provider->rif. '</strong> ya esta registrado');
-        return redirect()->back();
-        }else
-        {   
-
-        Flash::info('<strong>Perfecto </strong> proceseda a registrar el proveedor');
-
-          return view('admin.providers.search', compact('valor'));
-        }
-    
-    }
-
+        return view('admin.providers.search');
     }
 
 }

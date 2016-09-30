@@ -15,21 +15,21 @@ class ProvidersTableSeeder extends Seeder
       $faker = Faker::create();
         
       	\DB::table('providers')->insert(array (
-            'rif'          => 'J-25607793',
-            'razon_social' => 'Alimentos polar',
-            'direccion'    => 'Remavenca, turmero',
-            'operadora'    => '0412',
-            'telefono'     => '04144740599',
-            'correo'       => 'polar@hotmail.com',
+            'rif'          => 'J-00006372-9',
+            'razon_social' => 'Alimentos Polar Comercial, C.A.',
+            'direccion'    => 'Turmero, Aragua',
+            'operadora'    => '0800',
+            'telefono'     => '3728242',
+            'correo'       => 'carola.valdivia@fundacionempresaspolar.org',
         ));
 
       	\DB::table('providers')->insert(array (
-            'rif'          => 'J-24420646',
-            'razon_social' => 'Santa teresa',
+            'rif'          => 'J-00032569-3',
+            'razon_social' => 'C.A. Ron Santa teresa',
             'direccion'    => 'El consejo',
-            'operadora'    => '0412',
-            'telefono'     => '04145899312',
-            'correo'       => 'santa-teresa@gmail.com',
+            'operadora'    => '0800',
+            'telefono'     => '4002598',
+            'correo'       => 'info@fundacionsantateresa.org',
         ));
 
         for ($i=0; $i<7; $i++) 

@@ -15,18 +15,24 @@
 		</ol>
 	</div>
 </div>
-
+<br>
+<div>
+    @include('flash::message')
+</div>
+{!! Form::open(['route' => 'admin.empleados.create', 'method' => 'GET', 'class' => 'form-inline']) !!} 
 <div class="row"> 
-	<div class="col-lg-6 col-lg-offset-3"><br>
+	<div class="col-lg-6 col-lg-offset-3">
 		<div class="panel panel-default">
-			<div class="panel-heading">DNI - CÉDULA</div>
+			<div class="panel-heading">
+				<em>Cédula de Identidad</em>
+			</div>
 			<div class="panel-body">
 				<div class="row">       
-					@include('admin.empleados.partials.search')
+					@include('admin.empleados.partials.fields-search')
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
-
+{!! Form::close() !!}
 @endsection

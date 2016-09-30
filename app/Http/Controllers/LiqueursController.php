@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Liqueur;
 use App\Provider;
-use App\Liqueurs_provider;
 use App\Unit;
 use App\Liqueurs_type;
 use App\Http\Requests;
@@ -23,7 +22,7 @@ class LiqueursController extends Controller
      */
     public function index()
     {   
-        $liqueurs = Liqueur::paginate(5);
+        $liqueurs = Liqueur::all();
 
         return view('admin.liqueurs.index', compact('liqueurs'));
     }
@@ -35,16 +34,11 @@ class LiqueursController extends Controller
      */
     public function create()
     {   
-        //Proveedores
+        
         $providers = Provider::lists('razon_social', 'id');
-
-        //Tipos de licores
         $liqueurs_types = Liqueurs_type::lists('tipo_licor', 'id');
-
-        //Unidades de medida
         $units = Unit::lists( 'unidad', 'id');
 
-        // Compacto todas la variables a la vista del registro
         return view('admin.liqueurs.create', compact('units', 'liqueurs_types', 'providers'));
     }
 
@@ -56,20 +50,16 @@ class LiqueursController extends Controller
      */
     public function store(LiqueurRequest $request)
     {
-  
-    $liqueur = Liqueur::create($request->all());
 
-       foreach($request->id_providers as $id_provider) 
+        $liqueur = Liqueur::create($request->all());
+        $liqueur->save();
+
+        foreach($request->id_providers as $provider) 
         {
-            $liqueurs_provider = new Liqueurs_provider;
-
-            $liqueurs_provider->licor_id = $liqueur->id;
-            $liqueurs_provider->proveedor_id = $id_provider;
-            $liqueurs_provider->save();
+            $liqueur->providers()->attach($provider);
         }   
 
-        Flash::success('<strong>Exito!</strong> Se registro '.
-         $liqueur->nombre_licor .' correctamente!');
+        Flash::success('<strong> Perfecto </strong> a registrado un nuevo licor <em>'.$liqueur->licor.'</em> correctamente.');
 
         return redirect('admin/licores');
     }
@@ -93,15 +83,12 @@ class LiqueursController extends Controller
      */
     public function edit($id)
     {
+
         $liqueur = Liqueur::findOrFail($id);
-
-        //Tipos de licores
         $liqueurs_types = Liqueurs_type::lists('tipo_licor', 'id');
-
-
-        //Unidades de medida
         $units = Unit::lists( 'unidad', 'id');
 
+        $providers = false;
 
         return view('admin.liqueurs.edit', compact('liqueur', 'providers', 'liqueurs_types', 'units'));
     }
@@ -117,10 +104,9 @@ class LiqueursController extends Controller
     {
         $liqueur = Liqueur::findOrFail($id);
        
-        $liqueur->fill($request->all());
-        $liqueur->save();
+        $liqueur->fill($request->all())->save();
 
-        Flash::success('<strong>Existo. El licor </strong> '. $liqueur->liqueur_name. ' se modifico correctamente');
+        Flash::success('<strong>Existo. El licor </strong> '. $liqueur->licor. ' se modifico correctamente');
 
         return redirect()->back();
     }
@@ -136,7 +122,7 @@ class LiqueursController extends Controller
         $liqueur = Liqueur::find($id);
         $liqueur->delete();
 
-        Flash::success('Exito el ingrediente '. $liqueur->liqueur_name .' se eliminó correctamente');
+        Flash::success('Exito el ingrediente '. $liqueur->licor .' se eliminó correctamente');
 
         return redirect('admin/licores');
     }

@@ -11,9 +11,7 @@ class Purchase extends Model
      *
      * @var array
      */
-    protected $fillable = [
-        'id_provider', 'status', 'fecha', 
-    ];
+    protected $fillable = ['proveedor_id', 'status', 'fecha'];
 
     protected $table = 'purchases';
 
@@ -23,19 +21,24 @@ class Purchase extends Model
      * @var array
      */
 
-	public function purchase_ingredients()
-    {
-        return $this->hasMany('App\Purchase_has_ingredient', 'compra_id', 'id');
-    }
-
-    public function purchase_liqueurs()
-    {
-        return $this->hasMany('App\Purchase_has_liqueurs', 'compra_id', 'id');
-    }
-
 
     public function provider()
     {
-        return $this->belongsTo('App\Provider', 'id_provider');
+        return $this->belongsTo('App\Provider', 'proveedor_id');
+    }
+
+    public function ingredient()
+    {
+        return $this->belongsToMany('App\Ingredient', 'purchases_has_ingredients', 'compra_id', 'ingrediente_id')->withPivot('cantidad'); 
+    }
+
+    public function liqueur()
+    {
+        return $this->belongsToMany('App\Liqueur', 'purchases_has_liqueurs', 'compra_id', 'licor_id')->withPivot( 'cantidad'); 
+    }
+
+    public function drink()
+    {
+        return $this->belongsToMany('App\Drink', 'purchases_has_drinks', 'compra_id', 'bebida_id')->withPivot('cantidad'); 
     }
 }

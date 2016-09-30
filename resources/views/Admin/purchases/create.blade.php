@@ -7,7 +7,7 @@
 		<h1 class="page-header"></h1>
 		<ol class="breadcrumb">
 			<li><a href="{{ url('admin') }}"><span class="glyphicon glyphicon-home"></span></a></li>
-			<li><a href="{{ route('admin.proveedores.index') }}">Proveedores</a></li>
+			<li class="active">Encargo</li>
 			<li class="active">Nuevo</li>
 		</ol>
 	</div>
@@ -16,19 +16,17 @@
 <div>
     @include('flash::message')
 </div>
-{!! Form::open(['route' => 'admin.proveedores.create', 'method' => 'GET', 'class' => 'form-inline']) !!}
 <div class="row">
-	<div class="col-lg-6 col-lg-offset-3">
+	<div class="col-lg-12">
 		<div class="panel panel-default">
 			<div class="panel-heading">
-	            <em>Registro Único de Información Fiscal</em>
+	            Basic Form Elements
 	        </div>
 	        <div class="panel-body">
-	            @include('admin.providers.partials.fields-search')
+	            @include('admin.purchases.partials.fields')
 	        </div>
 	    </div>
 	</div>
 </div>
-{!! Form::close() !!}
 
 @endsection

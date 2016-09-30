@@ -111,7 +111,7 @@
                             <li><a href="{{ url('admin/sauces') }}">Salsas</a></li>
 
 
-                            <li><a href="{{ url('admin/bebidas') }}">Bebidas</a></li>
+                            <li><a href="#">Bebidas Alcoholicas</a></li>
                             <li><a href="platos.html">Comandas</a></li>
 @if((Auth::user()->roles_id)=='1' || (Auth::user()->roles_id)=='2' || (Auth::user()->roles_id)=='4' || (Auth::user()->roles_id)=='5')    
                             <li><a href="platos.html">Recibos</a></li>
@@ -130,12 +130,14 @@
                                     <li><a href="{{ url('admin/deducciones') }}"> Deducciones </a></li>
                                     <li><a href="{{ url('admin/empleados') }}"> Personal </a></li>
                                 </ul>
+                            </li>
                             <li><a href="#"> Prenómina<span class="fa arrow"></span></a>
                                 <ul class="nav nav-third-level">
                                     <li><a href="{{ url('admin/planificaciones') }}"> Fechas</a></li>
                                     <li><a href="{{ url('admin/planificaciones/administrar/dias') }}"> Días</a></li>
                                     <li><a href="{{ url('admin/planificaciones/administrar/dias/turnos') }}"> Planificación</a></li>
-                                </ul>   
+                                </ul> 
+                            </li>  
                         </ul>
                     </li>
 @endif
@@ -144,10 +146,14 @@
                     <li><a href="#" ><i class="fa fa-fw fa-shopping-cart"></i> Compra<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li><a href="{{ url('admin/compra') }}">Orden de Compra</a></li>
-                            <li><a href="#">Inventario</a></li>
-                            <li><a href="{{ url('admin/proveedores')}}">Proveedores</a></li>  
-                            <li><a href="{{ url('admin/ingredientes') }}">Ingredientes</a></li>                     
-                            <li><a href="{{ url('admin/licores') }}">Licores</a></li>
+                            <li><a href="{{ url('admin/proveedores')}}">Proveedores</a></li> 
+                            <li><a href="#"> Inventario<span class="fa arrow"></span></a>
+                                <ul class="nav nav-third-level">
+                                    <li><a href="{{ url('admin/ingredientes') }}">Ingredientes</a></li>                     
+                                    <li><a href="{{ url('admin/licores') }}">Licores</a></li>
+                                    <li><a href="{{ url('admin/bebidas') }}">Bebidas</a></li>
+                                </ul>
+                            </li> 
                         </ul>
                     </li>
 @endif
@@ -224,6 +230,17 @@
         $("#select_all").click(function(){
             $('input:checkbox').not(this).prop('checked', this.checked);
         });;
+    </script>
+    <script>
+    // tooltip demo
+    $('.tooltip-demo').tooltip({
+        selector: "[data-toggle=tooltip]",
+        container: "body"
+    })
+
+    // popover demo
+    $("[data-toggle=popover]")
+        .popover()
     </script>
 </body>
 </html>

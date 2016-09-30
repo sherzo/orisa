@@ -44,9 +44,9 @@
                     </a>  
                 </td>
                 <td class="text-center">
-                    <a class="btn btn-default btn-circle"> <span class="fa fa-eye"></span> </a>
-                    <a class="btn btn-warning btn-circle" href="{{ route('admin.empleados.edit', [$empleado->id]) }}"><span class="fa fa-pencil"></span></a>
-                    <a class="btn btn-danger btn-circle" href="{{ route('admin.empleados.destroy', [$empleado->id]) }}" title="Eliminar"> <span class="fa fa-trash-o"></span></a>
+                    <a class="btn btn-default btn-xs"> <span class="glyphicon glyphicon-eye-open fa-2x"></span></a>
+                    <a class="btn btn-default btn-xs" href="{{ route('admin.empleados.edit', [$empleado->id]) }}"><span class="glyphicon glyphicon-pencil fa-2x"></span></a>
+                    <a class="btn btn-default btn-xs" href="{{ route('admin.empleados.destroy', [$empleado->id]) }}" title="Eliminar"> <span class="glyphicon glyphicon-trash fa-2x"></span></a>
                 </td>
             </tr> 
         @endforeach

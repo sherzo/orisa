@@ -24,11 +24,12 @@ class ProviderRequest extends Request
     public function rules()
     {
         return [
-            'rif' => 'required|unique:providers',
-            'razon_social' => 'max:25|required',
-            'direccion' => 'required',
-            'telefono' => 'max:11|required',
-            'correo' => 'max:22|required',
+
+            'rif'          => 'required|unique:providers',
+            'razon_social' => 'max:30|required',
+            'direccion'    => 'required',
+            'telefono'     => 'required|digits:7',
+            'correo'       => 'required|email|unique:providers',
         ];
     }
 

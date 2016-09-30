@@ -7,25 +7,23 @@ use Illuminate\Database\Eloquent\Model;
 class Ingredient extends Model
 {
     /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    protected $fillable = [
-        'id_type', 'id_unit','ingrediente', 'caracteristica', 
-    ];
-    
+    * The attributes that are mass assignable.
+    *
+    * @var array
+    */
+
     protected $table = 'ingredients';
+    protected $fillable = ['id_type', 'id_unit', 'ingrediente', 'caracteristica'];
 
     /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
+    * The attributes that should be hidden for arrays.
+    *
+    * @var array
+    */
 
     public function providers()
     {
-        return $this->belongsToMany('App\Provider');
+        return $this->belongsToMany('App\Provider', 'providers_has_ingredients', 'ingrediente_id', 'proveedor_id');
     }
 
     public function type()
@@ -38,22 +36,8 @@ class Ingredient extends Model
         return $this->belongsTo('App\Unit', 'id_unit');
     }
 
-
-    
-
-    public function scopeAgregar($query, $nombre)
+    public function purchase()
     {
-        if($nombre != "")
-        {
-            $query->where('nombre_ingrediente', $nombre);
-        }
-    }
-
-
-    public function scopeName($query, $name)
-    {
-        if (trim($name) != "") {
-            $query->where('nombre_ingrediente', "LIKE", "%$name%"); 
-        }
+        return $this->belongsToMany('App\Purchase', 'purchases_has_ingredients', 'compra_id', 'ingrediente_id')->withPivot('cantidad');
     }
 }

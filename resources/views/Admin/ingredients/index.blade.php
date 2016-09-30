@@ -2,26 +2,37 @@
 
 @section('contenido')
 
-<div class="row">         
+<div class="row">
     <div class="col-lg-12">
+        <h1 class="page-header"></h1>
         <ol class="breadcrumb">
-            <li><a href="{{ url('admin')}} "><span class="glyphicon glyphicon-home"></span></a></li>
+            <li><a href="{{ url('admin') }}"><span class="glyphicon glyphicon-home"></span></a></li>
             <li class="active">Ingredientes</li>
         </ol>
-        <h4 class="page-header">LISTA DE INGREDIENTES</h4>
     </div>
+</div>
+<div class="row">
     <div class="col-lg-4">
-        <a  href="{{ url('admin/ingredientes/create') }}" class="btn btn-primary">
-            <span class="fa fa-plus"></span> Nuevo
+        <a href="{{ url('admin/ingredientes/create') }}">
+            <button type="button" class="btn btn-primary"><span class="fa fa-plus"></span></button>
         </a>
     </div>
-    <div class="col-lg-12"><br>
-        @include('flash::message')
-    </div>
+</div>
+<br>
+<div>
+    @include('flash::message')
+</div>
+<div class="row">
     <div class="col-lg-12">
-        <div class="table-responsive">
-            <p class="text-muted"><small>Existen {{ $ingredients->total() }} ingredientes registrados</small></p>
-                @include('admin.ingredients.partials.table') {!! $ingredients->render() !!}
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <em>Registro de Ingredientes</em>
+            </div>
+            <div class="panel-body">
+                <div class="dataTable_wrapper">
+                    @include('admin.ingredients.partials.table')
+                </div>
+            </div>
         </div>
     </div>
 </div>

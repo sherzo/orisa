@@ -4,7 +4,7 @@
 			<th>#</th>
 			<th> Código </th>
 			<th> Cargo </th>
-			<th> Salario </th>
+			<th> Sueldo </th>
 			<th> Acciones </th>
 		</tr>
 	</thead>
@@ -32,8 +32,8 @@
 				</a>
 			</td>
 			<td class="text-center">
-				<a class="btn btn-warning btn-circle" href="{{ route('admin.cargos.edit', [$position]) }}"> <span class="fa fa-pencil"></span> </a>
-				<a class="btn btn-danger btn-circle"  href="{{ route('admin.cargos.destroy', [$position->id]) }}" title="Eliminar"> <span class="fa fa-trash-o"></span> </a>
+				<a class="btn btn-default btn-xs" href="{{ route('admin.cargos.edit', [$position]) }}"> <span class="glyphicon glyphicon-pencil fa-2x"></span> </a>
+				<a class="btn btn-default btn-xs"  href="{{ route('admin.cargos.destroy', [$position->id]) }}" title="Eliminar"> <span class="glyphicon glyphicon-trash fa-2x"></span> </a>
 			</td>
 		</tr>
 	@endforeach                       

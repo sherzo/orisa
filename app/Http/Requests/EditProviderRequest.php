@@ -24,10 +24,10 @@ class EditProviderRequest extends Request
     public function rules()
     {
         return [
-            'razon_social' => 'max:25|required',
-            'direccion' => 'required',
-            'telefono' => 'max:11|required',
-            'correo' => 'max:22|required',
+            'razon_social' => 'max:30|required',
+            'direccion'    => 'required',
+            'telefono'     => 'required|digits:7',
+            'correo'       => 'required|email',
         ];
     }
 }

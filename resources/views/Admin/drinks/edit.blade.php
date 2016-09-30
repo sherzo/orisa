@@ -7,8 +7,8 @@
 		<h1 class="page-header"></h1>
 		<ol class="breadcrumb">
 			<li><a href="{{ url('admin') }}"><span class="glyphicon glyphicon-home"></span></a></li>
-			<li><a href="{{ url('admin/proveedores') }}">Proveedores</a></li>
-			<li class="active">Nuevo</li>
+			<li><a href="{{ route('admin.usuarios.index') }}">Licores</a></li>
+			<li class="active">Editar</li>
 		</ol>
 	</div>
 </div>
@@ -16,16 +16,16 @@
 <div>
     @include('flash::message')
 </div>
-{{ Form::model($provider, ['route' => ['admin.proveedores.update', $provider->id], 'method' => 'PUT']) }}
+{!! Form::model($drink, ['route' => ['admin.bebidas.update', $drink->id], 'method' => 'PUT']) !!}
 	{{ csrf_field() }}
 	<div class="row">
 		<div class="col-lg-12">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-		            <em>Registro de Proveedor</em>
+		            <em>Editar Bebida <strong>{{ $drink->bebida }}</strong></em>
 		        </div>
 		        <div class="panel-body">
-		            @include('admin.providers.partials.fields')
+		            @include('admin.drinks.partials.fields')
 		        </div>
 		    </div>
 		</div>

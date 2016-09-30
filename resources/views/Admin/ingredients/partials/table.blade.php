@@ -1,37 +1,48 @@
-<table class="table table-bordered table-hover table-striped">
-                                <thead>
-                                    <tr>
-                                      <th>#</th>
-                                      <th>Ingrediente</th>
-                                      <th>Clase</th>
-                                      <th>Caracteristica</th>
-                                      <th>Unidad</th>
-                                      <th>Acciones</th>
-                                     </tr>
-                                </thead>
-                                <tbody>
-                                
-                                @foreach($ingredients as $ingredient)
-                                  <tr>
-                                   <td>{{ $ingredient->id }}</td>
-                                   <td>{{ $ingredient->ingrediente }}</td>
-                                   <td>{{ $ingredient->type->tipo_ingrediente }}</td>
-                                   
-                                    <td>{{ $ingredient->caracteristica }}</td>
-                                   <td>{{ $ingredient->unit->unidad }}</td>                                  
-                                   <td class="text-center">
-                                     <a class="btn btn-default btn-xs" title="Ver">
-                                        <span class="fa fa-eye fa-2x"></span>
-                                     </a>
-                                     <a class="btn btn-default btn-xs" href="{{ route('admin.ingredientes.edit', $ingredient) }}" title="Editar">
-                                        <span class="fa fa-pencil fa-2x"></span>
-                                     </a>
-                                     <a href="{{ route('admin.ingredientes.destroy', $ingredient->id) }}" class="btn btn-default btn-xs" title="Eliminar">
-                                        <span class="fa fa-trash-o fa-2x"></span>
-                                     </a>
-                                   </td>
-                                  </tr>
-                                @endforeach
-                               
-                                </tbody>
-                            </table>
+<table class="table table-striped table-bordered table-hover" id="dataTables-example">
+	<thead>
+		<tr>
+			<th>#</th>
+			<th>Ingrediente</th>
+			<th>Categoria</th>
+			<th>Característica</th>
+			<th>Unidad</th>
+			<th>Acciones</th>
+		</tr>
+	</thead>
+	<tbody>
+	@foreach($ingredients as $ingredient)
+		<tr>
+			<td>
+				<a href="{{ route('admin.ingredientes.edit', $ingredient) }}">
+					{{ $ingredient->id }}
+				</a>
+			</td>
+			<td>
+				<a href="{{ route('admin.ingredientes.edit', $ingredient) }}">
+					{{ $ingredient->ingrediente }}
+				</a>
+			</td>
+			<td>
+				<a href="{{ route('admin.ingredientes.edit', $ingredient) }}">
+					{{ $ingredient->type->tipo_ingrediente }}
+				</a>
+			</td>
+			<td>
+				<a href="{{ route('admin.ingredientes.edit', $ingredient) }}">
+					{{ $ingredient->caracteristica }}
+				</a>
+			</td>
+			<td>
+				<a href="{{ route('admin.ingredientes.edit', $ingredient) }}">
+					{{ $ingredient->unit->unidad }}
+				</a>
+			</td>                                  
+			<td class="text-center tooltip-demo">
+				<a class="btn btn-default btn-xs" type="button" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Ver"><span class="glyphicon glyphicon-eye-open fa-2x"></span></a>
+				<a class="btn btn-default btn-xs" href="{{ route('admin.ingredientes.edit', $ingredient) }}" type="button" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Editar"><span class="glyphicon glyphicon-pencil fa-2x"></span></a>
+				<a class="btn btn-default btn-xs" href="{{ route('admin.ingredientes.destroy', $ingredient->id) }}" type="button" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Eliminar"><span class="glyphicon glyphicon-trash fa-2x"></span></a>
+			</td>
+		</tr>
+	@endforeach
+	</tbody>
+</table>

@@ -96,12 +96,10 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
 	|	RUTAS OLIVER
 	|
 	*/
+	Route::get('proveedores/search', ['uses' => 'ProvidersController@search', 'as' => 'admin.proveedores.search']);
 	Route::resource('proveedores', 'ProvidersController');
-		Route::post('proveedores/search', [
-			'uses' => 'ProvidersController@search',
-			'as' => 'admin.proveedores.search'
-		]);	
-		Route::get('proveedores/{id}/destroy', [
+		
+	Route::get('proveedores/{id}/destroy', [
 			'uses' => 'ProvidersController@destroy',
 			'as' => 'admin.proveedores.destroy'
 		]);
@@ -109,8 +107,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
 		'uses' => 'PurchasesController@order',
 		'as' => 'admin.compra.ordenes'
 		]);
-	Route::resource('compra', 'PurchasesController');	
-	Route::pattern('compra', '[0-9]+');
+	Route::get('compra/{id}/procesar', ['uses' => 'PurchasesController@process','as' => 'admin.compra.procesar']);
+	Route::resource('compra', 'PurchasesController');
 		
 	
 	

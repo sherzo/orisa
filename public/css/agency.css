@@ -608,6 +608,118 @@ section#contact :-ms-input-placeholder {
 section#contact .text-danger {
   color: #e74c3c;
 }
+
+/* reservaciones css */
+
+section#reservations .form-group input,
+section#reservations .form-group textarea{
+  padding: 20px;
+}
+
+section#reservations .form-group select{
+  padding: 30px;
+}
+.padding-corto {
+  padding-top: 5px;
+}
+section#reservations .form-group input[type=date]{
+  padding: 12px;
+}
+section#reservations .form-group input.form-control {
+  height: auto;
+}
+section#reservations .form-group textarea.form-control {
+  height: 236px;
+}
+section#reservations .form-control:focus {
+  border-color: #fed136;
+  box-shadow: none;
+}
+section#reservations ::-webkit-input-placeholder {
+  font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: #eeeeee;
+}
+section#reservations :-moz-placeholder {
+  /* Firefox 18- */
+  font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: #eeeeee;
+}
+section#reservations ::-moz-placeholder {
+  /* Firefox 19+ */
+  font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: #eeeeee;
+}
+section#reservations :-ms-input-placeholder {
+  font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: #eeeeee;
+}
+section#reservations .text-danger {
+  color: #e74c3c;
+}
+
+#reservations .portfolio-item {
+  margin: 0 0 15px;
+  right: 0;
+}
+#reservations .portfolio-item .portfolio-link {
+  display: block;
+  position: relative;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+#reservations .portfolio-item .portfolio-link .portfolio-hover {
+  background: rgba(254, 209, 54, 0.4);
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: all ease 0.5s;
+  -webkit-transition: all ease 0.5s;
+  -moz-transition: all ease 0.5s;
+}
+
+#reservations .portfolio-item .portfolio-link .portfolio-hover:hover {
+  opacity: 1;
+}
+#reservations .portfolio-item .portfolio-link .portfolio-hover .portfolio-hover-content {
+  position: absolute;
+  width: 100%;
+  height: 20px;
+  font-size: 20px;
+  text-align: center;
+  top: 50%;
+  margin-top: -12px;
+  color: white;
+}
+#reservations .portfolio-item .portfolio-link .portfolio-hover .portfolio-hover-content i {
+  margin-top: -12px;
+}
+#reservations .portfolio-item .portfolio-link .portfolio-hover .portfolio-hover-content h3,
+#reservations .portfolio-item .portfolio-link .portfolio-hover .portfolio-hover-content h4 {
+  margin: 0;
+}
+#reservations .portfolio-item .portfolio-caption {
+  max-width: 400px;
+  margin: 0 auto;
+  background-color: white;
+  text-align: center;
+  padding: 5px;
+}
+#reservations .portfolio-item .portfolio-caption h4 {
+  text-transform: none;
+  margin: 0;
+}
+/* FIN RESERVACIONES CSS*/
+
 footer {
   padding: 25px 0;
   text-align: center;

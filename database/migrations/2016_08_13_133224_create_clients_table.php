@@ -20,6 +20,7 @@ class CreateClientsTable extends Migration
             $table->text('direccion');
             $table->integer('operadora');
             $table->string('telefono', 10);
+            $table->string('tipo')->default('regular');
             $table->timestamps();
         });
     }

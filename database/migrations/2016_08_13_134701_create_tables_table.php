@@ -14,7 +14,8 @@ class CreateTablesTable extends Migration
     {
         Schema::create('tables', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('mesa');
+            $table->integer('numero_mesa');
+            $table->string('estatus')->default('disponible');
             $table->timestamps();
         });
     }

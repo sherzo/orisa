@@ -18,6 +18,32 @@ Route::get('/', function()
 	return View::make('welcome');
 });
 
+Route::get('/search/{cedula}', function($cedula){
+	$client = App\Client::where('dni_cedula', $cedula)->get();
+	return Response::json($client);
+});
+
+Route::get('/solicitud-reservacion/{fecha}/{hora}', function($fecha, $hora){
+
+	$tables = App\Table::all();
+
+	$reservations = App\Reservation::where('fecha_reservacion', $fecha)->get();
+	dd($reservations);
+	// $tables->each(function($tables){
+	// 	$tables->reservations;
+	// });
+
+
+
+	// $reservations = App\Reservation::where('fecha_reservacion', $fecha)->get();
+
+	
+
+	// return Response::json($reservations);
+});
+
+Route::resource('usuario-vip', 'TemporalController');
+
 Route::group(['prefix' => '/', 'middleware' => 'guest', 'namespace' => 'Auth'], function() {
 	/*
 	|	RUTAS ANTES DE INICIAR SESIÓN NO MANDA ERROR 404

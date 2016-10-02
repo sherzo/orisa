@@ -12,7 +12,7 @@ class Client extends Model
      * @var array
      */
     protected $fillable = [
-     'cedula', 'nombre', 'direccion', 'telefono', 'correo', 
+     'dni_cedula', 'nombres', 'apellidos', 'direccion', 'operadora', 'telefono', 'tipo',
     ];
 
     /**
@@ -23,10 +23,14 @@ class Client extends Model
     
     protected $table = 'clients';
 
+    public function user()
+    {
+        return $this->belongsToMany('App\User', 'users_vip');
+    }
 
     public function scopeCedula($query, $cedula)
     {
-       $query->where('cedula', $cedula);
+       $query->where('dni_cedula', $cedula);
 
     }
 }

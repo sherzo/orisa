@@ -25,5 +25,14 @@ class ClientsTableSeeder extends Seeder
 			    'telefono'   => $faker->ean8,
             ));
         }
+
+        \DB::table('clients')->insert(array (
+                'dni_cedula' => 'V-25607793',
+                'nombres'    => 'Saul',
+                'apellidos'  => 'Florez',
+                'direccion'  => 'Calle 5 marzo #30-11',
+                'operadora'  => '0414',
+                'telefono'   => '5899312',
+        ));
     }
 }

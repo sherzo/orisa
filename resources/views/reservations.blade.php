@@ -19,7 +19,7 @@
                         </div>
                         <div class="form-group">
                             <label>Hora</label>
-                            <select class="form-control" id="hora" placeholder="seleccione..." data-toggle="tooltip" data-placement="top" title="Hora de la reservación">
+                            <select class="form-control" id="hora" data-toggle="tooltip" data-placement="top" title="Hora de la reservación">
                                 <option value="9:00:00">9:00 am</option>
                                 <option value="10:00:00">10:00 am</option>
                                 <option value="11:00:00">11:00 am</option>
@@ -37,12 +37,18 @@
                             <p class="help-block text-danger"></p>
                         </div>
                         <div class="form-group">
-                            <button class="btn btn-xl"  data-toggle="tooltip" data-placement="top" title="Guardar reservación" disabled="">
+                        <label>Alguna especificación</label>
+                            <textarea class="form-control" data-toggle="tooltip" data-placement="top" title="Algo en que podamos ayudarlo (Ej: dos mesas juntas)"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-xl" id="btn" data-toggle="tooltip" data-placement="top" title="Guardar reservación" disabled="true">
                                 Reservar
                             </button>
                         </div>
                     </div>
-                
+                    <div id="contenedor">
+                        
+                    <!-- </div>
                     <div class="col-md-2 col-sm-6 portfolio-item">
                     <a href="#portfolioModal1" class="portfolio-link" data-toggle="modal" >
                         <div class="portfolio-hover">
@@ -55,7 +61,7 @@
                     <div class="portfolio-caption">
                         <h5>Mesa #</h5>
                     </div>
-                    </div>
+                    </div> -->
                    
                 </form>
             </div>

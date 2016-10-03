@@ -18,8 +18,7 @@ class ClientsTableSeeder extends Seeder
         { 
        	    \DB::table('clients')->insert(array (
 			    'dni_cedula' => $faker->randomElement($array = array ('V', 'E')).'-'.$faker->numberBetween($min = 200000000, $max = 25000000),
-			    'nombres'    => $faker->firstName,
-                'apellidos'  => $faker->lastName,
+			    'nombre'    => $faker->firstName.' '.$faker->lastName,
 			    'direccion'  => $faker->address,
                 'operadora'  => $faker->buildingNumber,
 			    'telefono'   => $faker->ean8,
@@ -28,8 +27,7 @@ class ClientsTableSeeder extends Seeder
 
         \DB::table('clients')->insert(array (
                 'dni_cedula' => 'V-25607793',
-                'nombres'    => 'Saul',
-                'apellidos'  => 'Florez',
+                'nombre'    => 'Saul',
                 'direccion'  => 'Calle 5 marzo #30-11',
                 'operadora'  => '0414',
                 'telefono'   => '5899312',

@@ -55,10 +55,39 @@ $("#hora").on('change', function(e){
 	if(fecha!= ''){
 		$.get("solicitud-reservacion/" + fecha + '/' + hora, function(data){
 
+			$('#contenedor').empty();
 			$.each(data, function(index, typeObj){
-				
+				var image = 'mesa';
+				var status = 'Disponible';
+				if(typeObj){
+					image = 'mesa-ocupada';
+					status = 'Ocupada';
+				}
+
+				var render = '<div class="col-md-2 col-sm-6 portfolio-item" id="seleccionado">'+
+							'<a href="#" class="portfolio-link seleccionado" data-toggle="modal">'+
+							'<div class="portfolio-hover '+ status +'"><div class="portfolio-hover-content">'+
+							'<i class="fa fa-plus fa-3x"></i></div></div><img src="img/'+image+'.png"'+
+							'class="img-responsive" alt=""></a><div class="portfolio-caption">'+
+							'<em><p class="text-muted"> #'+ index + ' '+ status +'</p><em></div></div>';
+				$('#contenedor').append(render);
 			});
 
+			$(".portfolio-hover").on('click', function(){
+				if(!$(this).hasClass('Ocupada')){
+				$(this).attr('class', 'portfolio-seleccionado');
+				$("#btn").attr('disabled', false);
+			}
+
+			$(".portfolio-seleccionado").on('click', function(){
+				if(!$(this).hasClass('Ocupada')){
+				$(this).attr('class', 'portfolio-hover');
+			}
+			
+			});
+
+			
+		 });
 		});
 
 	}// if

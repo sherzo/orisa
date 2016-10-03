@@ -26,20 +26,44 @@ Route::get('/search/{cedula}', function($cedula){
 Route::get('/solicitud-reservacion/{fecha}/{hora}', function($fecha, $hora){
 
 	$tables = App\Table::all();
-
-	$reservations = App\Reservation::where('fecha_reservacion', $fecha)->get();
-	dd($reservations);
-	// $tables->each(function($tables){
-	// 	$tables->reservations;
+	// $tables->each(function($tables, $fecha){
+	// 	$tables->reservations->where('fecha_reservacion', $fecha);
 	// });
 
+	$reservations = App\Reservation::where('fecha_reservacion', $fecha)->get();
 
+	$mesas = array('1' => null,
+				   '2' => null,
+				   '3' => null,
+				   '4' => null,
+				   '5' => null,
+				   '6' => null,
+				   '7' => null,				   
+				   '8' => null,			
+				   '9' => null,
+				   '10' => null,
+				   '11' => null,
+				   '12' => null);  
 
-	// $reservations = App\Reservation::where('fecha_reservacion', $fecha)->get();
+	foreach ($reservations as $key => $reservation) {
+		
+		foreach ($tables as $key2 => $table) {
+			
+			if($reservation->table_id == $table->id) {
+				
+				foreach ($mesas as $key3 => $mesa) {
 
-	
+					if($key3 == $table->id){
+						
+						$mesas[$key3] = true;
+					
+					}
+				}
+			}
+		}
+	}
 
-	// return Response::json($reservations);
+	return Response::json($mesas);
 });
 
 Route::resource('usuario-vip', 'TemporalController');

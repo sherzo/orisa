@@ -9,6 +9,8 @@
 			<!--  SELECT -->
 			<div class="form-group">
 				<select class="form-control" name="literal" title="Seleccione literal" id="literal">
+						<option value="V">V -</option>
+						<option value="E">E -</option>
                 		<option value="J">J -</option>
                 		<option value="C">C -</option>
                 		<option value="G">G -</option>

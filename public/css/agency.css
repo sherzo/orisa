@@ -611,7 +611,10 @@ section#contact .text-danger {
 }
 
 /* reservaciones css */
-
+.bg-yelow {
+  background-color: #fed136;
+  color: white;
+}
 section#reservations .form-group input,
 section#reservations .form-group textarea{
   padding: 20px;

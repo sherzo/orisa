@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
 use App\Http\Requests;
+use App\Reservation;
+use App\User;
+use Carbon\Carbon;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ReservationsController extends Controller
 {
@@ -35,9 +38,23 @@ class ReservationsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        dd($request->all());
+    {   
+       foreach ($request->mesas_reservadas as $key => $mesa) {
+
+            $reservation = new Reservation($request->all());
+            $date = Carbon::now()->format('Y-m-d');
+            $reservation->fecha_solicitud = $date;
+            $reservation->client_id = 11;
+            $reservation->table_id = $mesa;
+
+            $reservation->save();
+         }
+
+    return redirect()->back();
+
     }
+       
+        
 
     /**
      * Display the specified resource.

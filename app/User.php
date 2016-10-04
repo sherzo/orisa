@@ -29,7 +29,7 @@ class User extends Authenticatable
         $this->hasMany('App\Rol', 'roles_id');
     }
 
-    public function  client()
+    public function client()
     {
         return $this->belongsToMany('App\Client', 'users_vip');
     }

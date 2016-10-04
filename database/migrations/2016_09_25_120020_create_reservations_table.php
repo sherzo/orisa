@@ -21,7 +21,9 @@ class CreateReservationsTable extends Migration
             $table->date('fecha_solicitud');
             $table->date('fecha_reservacion');
             $table->time('hora_reservacion');
-            $table->string('estatus')->default('sin confirmar');        
+            $table->text('especificacion');
+            $table->string('estatus')->default('sin confirmar');
+            $table->timestamps();        
         });
     }
 

@@ -7,19 +7,19 @@
                     <h3 class="section-subheading text-muted">Información sobre sus reservaciones</h3>
                 </div>
             </div>
-            {!! Form::open(['route' => 'reservaciones.store', 'method' => 'POST', 'id' => 'contactForm', 'name' => 'sentMessage']) !!}
+            {!! Form::open(['route' => 'reservaciones.store', 'method' => 'POST', 'name' => 'sentMessage', 'novalidate']) !!}
              <div class="row">
-                 
+                    
                     <div class="col-md-4">
                         <div class="form-group">
                         <label>Fecha</label>
-                            <input type="date" class="form-control" placeholder="" id="fecha" required data-validation-required-message="Please enter your name." data-toggle="tooltip" data-placement="top" title="Fecha de la reservación">
+                            <input type="date" class="form-control" placeholder="" id="fecha" required data-validation-required-message="Please enter your name." data-toggle="tooltip" data-placement="top" title="Fecha de la reservación" name="fecha_reservacion">
                             <p class="help-block">Seleccione la Fecha</p>
                             <p class="help-block text-danger"></p>
                         </div>
                         <div class="form-group">
                             <label>Hora</label>
-                            <select class="form-control" id="hora" data-toggle="tooltip" data-placement="top" title="Hora de la reservación">
+                            <select class="form-control" id="hora" data-toggle="tooltip" data-placement="top" title="Hora de la reservación" name="hora_reservacion">
                                 <option value="9:00:00">9:00 am</option>
                                 <option value="10:00:00">10:00 am</option>
                                 <option value="11:00:00">11:00 am</option>
@@ -38,35 +38,47 @@
                         </div>
                         <div class="form-group">
                         <label>Alguna especificación</label>
-                            <textarea class="form-control" data-toggle="tooltip" data-placement="top" title="Algo en que podamos ayudarlo (Ej: dos mesas juntas)"></textarea>
+                            <textarea class="form-control" data-toggle="tooltip" data-placement="top" title="Algo en que podamos ayudarlo (Ej: dos mesas juntas)" name="especificacion"></textarea>
                         </div>
-                        <div class="form-group">
+                        
                             <button type="submit" >
                                 Reservar
                             </button>
                         </div>
-                    </div>
+                    
                     <div id="contenedor">
-                        
-                    <!-- </div>
-                    <div class="col-md-2 col-sm-6 portfolio-item">
-                    <a href="#portfolioModal1" class="portfolio-link" data-toggle="modal" >
-                        <div class="portfolio-hover">
-                            <div class="portfolio-hover-content">
-                                <i class="fa fa-plus fa-3x"></i>
-                            </div>
-                        </div>
-                        <img src="img/mesa.png" class="img-responsive" alt="">
-                    </a>
-                    <div class="portfolio-caption">
-                        <h5>Mesa #</h5>
-                    </div>
-                    </div> -->
-                   
-                
-            </div>
-            
+                    </div>   
         </div>
         {!! Form::close() !!}
+        <div class="row">
+        <div class="col-lg-12">
+            <h2 class="text-center">Mis reservaciones</h1>
+        </div>
+            <div class="col-lg-12">
+                <table class="table  table-bordered">
+                    <thead class="bg-yelow">
+                        <th><h3>Mesa</h3></th>
+                        <th><h3>Fecha</h3></th>
+                        <th><h3>Hora</h3></th>
+                        <th><h3>Estatus</h3></th>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><h4>#3</h4></td>
+                            <td><h4>miercoles 30 de septiembre</h4></td>
+                            <td><h4>9:00 am</h4></td>
+                            <td><h4>Sin confirmar</h4></td>
+                        </tr>
+                                                <tr>
+                            <td><h4>#3</h4></td>
+                            <td><h4>miercoles 30 de septiembre</h4></td>
+                            <td><h4>9:00 am</h4></td>
+                            <td><h4>Sin confirmar</h4></td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 </section>

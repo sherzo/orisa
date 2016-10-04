@@ -26,9 +26,6 @@ Route::get('/search/{cedula}', function($cedula){
 Route::get('/solicitud-reservacion/{fecha}/{hora}', function($fecha, $hora){
 
 	$tables = App\Table::all();
-	// $tables->each(function($tables, $fecha){
-	// 	$tables->reservations->where('fecha_reservacion', $fecha);
-	// });
 
 	$reservations = App\Reservation::where('fecha_reservacion', $fecha)->get();
 
@@ -67,6 +64,7 @@ Route::get('/solicitud-reservacion/{fecha}/{hora}', function($fecha, $hora){
 });
 
 Route::resource('usuario-vip', 'TemporalController');
+Route::resource('reservaciones', 'ReservationsController');
 
 Route::group(['prefix' => '/', 'middleware' => 'guest', 'namespace' => 'Auth'], function() {
 	/*
@@ -177,20 +175,20 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
 	|	RUTAS SAUL
 	|
 	*/
+	Route::get('clientes/search', ['uses' => 'ClientsController@search', 'as' => 'admin.clientes.buscar']);
 	Route::resource('clientes', 'ClientsController');
 	Route::resource('platos', 'PlatesController');
 	Route::resource('sauces', 'SaucesController');
-	Route::resource('reservaciones', 'ReservationsController');
 	Route::resource('bebidas', 'DrinksController');
-
+	Route::resource('tragos', 'BeveragesController');
 	//LICORES BEBIDAS
 
-	Route::get('bebidas/create/liqueurs/{type}',  function($type){
+	Route::get('tragos/create/liqueurs/{type}',  function($type){
 		$liqueur = App\Liqueur::where('type_id', $type)->get();
 		return Response::json($liqueur);
 	});
 
-	Route::get('bebidas/create/addliqueur/{id_l}', function($id_l){
+	Route::get('tragos/create/addliqueur/{id_l}', function($id_l){
 		$liqueur = App\Liqueur::where('id', $id_l)->get();
 
 		$units = App\Unit::all();
@@ -200,11 +198,11 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
 
 	// INGREDIENTES BEBIDAS
 
-	Route::get('bebidas/create/ingredients/{type}',  function($type){
+	Route::get('tragos/create/ingredients/{type}',  function($type){
 		$ingredients = App\Ingredient::where('id_type', $type)->get();
 		return Response::json($ingredients);
 	});			
-	Route::get('bebidas/create/addingredient/{id_i}', function($id_i){
+	Route::get('tragos/create/addingredient/{id_i}', function($id_i){
 		$ingredient = App\Ingredient::where('id', $id_i)->get();
 
 		$units = App\Unit::all();

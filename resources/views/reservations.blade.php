@@ -7,9 +7,9 @@
                     <h3 class="section-subheading text-muted">Información sobre sus reservaciones</h3>
                 </div>
             </div>
-            <div class="row">
+            {!! Form::open(['route' => 'reservaciones.store', 'method' => 'POST', 'id' => 'contactForm', 'name' => 'sentMessage']) !!}
              <div class="row">
-                 <form name="sentMessage" id="contactForm" novalidate>
+                 
                     <div class="col-md-4">
                         <div class="form-group">
                         <label>Fecha</label>
@@ -41,7 +41,7 @@
                             <textarea class="form-control" data-toggle="tooltip" data-placement="top" title="Algo en que podamos ayudarlo (Ej: dos mesas juntas)"></textarea>
                         </div>
                         <div class="form-group">
-                            <button class="btn btn-xl" id="btn" data-toggle="tooltip" data-placement="top" title="Guardar reservación" disabled="true">
+                            <button type="submit" >
                                 Reservar
                             </button>
                         </div>
@@ -63,8 +63,10 @@
                     </div>
                     </div> -->
                    
-                </form>
+                
             </div>
+            
         </div>
+        {!! Form::close() !!}
     </div>
 </section>

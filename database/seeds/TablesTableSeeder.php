@@ -13,7 +13,7 @@ class TablesTableSeeder extends Seeder
     {
         for ($i=1; $i <= 12; $i++) { 
 
-	        \DB::table('reservations')->insert(array (
+	        \DB::table('tables')->insert(array (
 	            'numero_mesa' => $i,
 	        ));
 	        

@@ -15,7 +15,7 @@
 </div>
 <div class="col-lg-14">
     <a href="{{ url('admin/sauces/create') }}">
-        <button type="button" class="btn btn-primary "><span class="fa fa-plus"></span> Nuevo</button>
+        <button type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Nueva Salsa"><span class="fa fa-plus"></span></button>
     </a>
 </div>
 <div><br>

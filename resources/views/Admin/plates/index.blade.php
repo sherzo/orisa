@@ -3,23 +3,23 @@
 @section('contenido')
 
  <!-- Page Content -->
-        <div class="row">
-           <div class="col-lg-12">
-              <ol class="breadcrumb">
-                  <li><a href="{{ url('tablero') }}"><span class="glyphicon glyphicon-home"></span></a></li>
-                  <li><a href="{{ route('admin.platos.index') }}">Platos</a></li>
-              </ol>
-            
-              @include('flash::message')
-            
-            </div>
-                <div class="col-lg-4">
-                       <a  href="{{ url('admin/platos/create') }}" class="btn btn-primary">
-                        <span class="fa fa-plus"></span> Nuevo
-                        </a>
-                </div>  
-                <br>
-          </div>
+<div class="row">
+    <div class="col-lg-12">
+        <h5 class="page-header"></h5>
+    </div>
+    <div class="col-lg-12">
+        <ol class="breadcrumb">
+            <li><a href="{{ url('admin') }}"><span class="glyphicon glyphicon-home"></span></a></li>
+            <li class="active">Platos</li>
+        </ol>
+    </div>
+
+    <div class="col-lg-4">
+        <a  href="{{ url('admin/platos/create') }}" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Nuevo Plato"">
+            <span class="fa fa-plus"></span>
+        </a>
+    </div>
+</div>
           <!--  CIERRE DEL ROW -->            
           <div class="row">
             @foreach($plates as $plate)
@@ -31,8 +31,6 @@
                   <div class="panel-footer">
                     {{ $plate->plato }}
                     
-                    <a href="#" class="btn btn-default btn-xs pull-right "> <span class="fa fa-trash-o fa-2x"></span> </a> &nbsp;&nbsp;
-
                     <a href="#" class="btn btn-default btn-xs pull-right "> <span class="fa fa-trash-o fa-2x"></span> </a> &nbsp;&nbsp;
                 
                     <a href="#" class="btn btn-default btn-xs pull-right "> <span class="fa fa-pencil fa-2x"></span> </a>

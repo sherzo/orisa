@@ -2,9 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
+use App\Beverage;
+use App\Beverages_has_ingredient;
+use App\Beverages_has_liqueur;
 use App\Http\Requests;
+use App\Image;
+use App\Ingredient;
+use App\Ingredients_type;
+use App\Liqueurs_type;
+use Illuminate\Http\Request;
 
 class BeveragesController extends Controller
 {
@@ -15,7 +21,13 @@ class BeveragesController extends Controller
      */
     public function index()
     {
-        //
+        $beverages = Beverage::all();
+        $beverages->each(function($beverages){
+            $beverages->imag;
+        });
+
+        return view('admin.beverages.index')
+            ->with('beverages', $beverages);
     }
 
     /**
@@ -25,7 +37,10 @@ class BeveragesController extends Controller
      */
     public function create()
     {
-        //
+        $ingredients_types = Ingredients_type::lists('tipo_ingrediente', 'id');
+        $liqueurs_types = Liqueurs_type::lists('tipo_licor', 'id');
+
+        return view('admin.beverages.create', compact('ingredients_types', 'liqueurs_types'));
     }
 
     /**
@@ -35,8 +50,54 @@ class BeveragesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //
+    {   
+        //--  Manipulando la imagen 
+        if($request->file('image'))
+        {
+            $file = $request->file('image');
+            $name = 'berevage_' . time() . '.' . $file->getClientOriginalExtension();
+            $path = public_path() . '/img/tragos/';
+            $file->move($path, $name);
+
+            $image = new Image();
+            $image->imagen = $name;
+            $image->save();
+        }
+        $beverage = new Beverage($request->all());
+        $beverage->image_id = $image->id;
+        $beverage->save();
+    
+        foreach ($request->id_ingredientes as $key => $ingrediente) {
+            
+            $receta = new Beverages_has_ingredient();
+
+            $receta->beverage_id = $beverage->id;
+            $receta->ingredient_id = $ingrediente;
+            $receta->cantidad_ingrediente = $request->cantidades_i[$key];
+            $receta->unit_id = $request->unidades_i[$key];
+
+            $receta->save();            
+        }
+
+        if($request->id_licores){
+            
+            foreach ($request->id_licores as $key => $licor) {
+                
+                $receta = new Beverages_has_liqueur();
+
+                $receta->beverage_id = $beverage->id;
+                $receta->liqueur_id = $licor;
+                $receta->cantidad_licor = $request->cantidades_l[$key];
+                $receta->unit_id = $request->unidades_l[$key];
+
+                $receta->save();            
+            } 
+        }
+
+        Flash::success('<strong>Perfecto </strong> el trago '. $beverage->trago .' se creo correctamente.');
+
+        return redirect('admin/tragos');
+
     }
 
     /**
@@ -58,7 +119,12 @@ class BeveragesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $beverage = Beverage::find($id);
+        $beverage->each(function($beverage){
+            $beverage->ingredients;
+            $beverage->receta;           
+        });
+        return view('admin.beverages.edit')->with('berevage', $beverage);
     }
 
     /**

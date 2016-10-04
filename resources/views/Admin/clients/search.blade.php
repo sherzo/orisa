@@ -2,39 +2,32 @@
 
 @section('contenido')
 
-
- 	<!-- ./row -->
-	<div class="row">
-		<div class="col-lg-12">
-             <ol class="breadcrumb">
-                <li><a href="{{ url('tablero') }}"><span class="glyphicon glyphicon-home"></span></a></li>
-                  <li><a href="{{ route('admin.clientes.index') }}">Clientes</a></li>
-                    <li class="active">Nuevo</li>
-            </ol>
-    	</div>
+<div class="row">
+    <div class="col-lg-12">
+        <h5 class="page-header"></h5>
     </div>
+    <div class="col-lg-12">
+        <ol class="breadcrumb">
+            <li><a href="{{ url('admin') }}"><span class="glyphicon glyphicon-home"></span></a></li>
+            <li><a href="{{ url('admin/planificaciones') }}"> Clientes</a></li>
+            <li class="active">Buscar</li>
+        </ol>
+    </div>
+</div>
 
-	<div class="row">	
-		<div class="col-lg-10 ">
-			<div class="panel panel-default">
-				<div class="panel-heading">Registro de clientes</div>
-					<div class="panel-body">
-
-						@include('admin.partial.errors')
-
-
-						{!! Form::open(['route' => 'admin.clientes.store', 'method' => 'POST']) !!}
-					 	
-						@include('admin.clients.partials.fields')
-
-						
-
-						{!! Form::close() !!}
-
-
-					</div>
-        	</div>
-		</div>
+	{!! Form::open(['route' => 'admin.clientes.create', 'method' => 'GET', 'class' => 'form-inline']) !!}
+<div class="row">
+	<div class="col-lg-6 col-lg-offset-3">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+	            <em>Registro de Clientes</em>
+	        </div>
+	        <div class="panel-body">
+	            @include('admin.clients.partials.form-search')
+	        </div>
+	    </div>
 	</div>
 </div>
+{!! Form::close() !!}
+
 @endsection

@@ -104,14 +104,17 @@
                     <li><a href="#"><i class="fa fa-fw fa-cutlery"></i> Servicios<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
 @if((Auth::user()->roles_id)=='1' || (Auth::user()->roles_id)=='2' || (Auth::user()->roles_id)=='4' || (Auth::user()->roles_id)=='5')                  
-                            <li><a href="{{ url('admin/clientes') }}">Clientes</a></li>
+                            
 @endif                  
-                            <li><a href="{{ url('admin/platos') }}">Platos</a></li>
-                            <li><a href="#">Jugos</a></li>
-                            <li><a href="{{ url('admin/sauces') }}">Salsas</a></li>
-
-
-                            <li><a href="#">Bebidas Alcoholicas</a></li>
+                            <li><a href="#"> Menú<span class="fa arrow"></span></a>
+                                <ul class="nav nav-third-level">
+                                    <li><a href="{{ url('admin/platos') }}">Platos</a></li>
+                                    <li><a href="#">Jugos</a></li>
+                                    <li><a href="{{ url('admin/sauces') }}">Salsas</a></li>
+                                    <li><a href="{{ url('admin/tragos') }}">Bebidas Alcoholicas</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="{{ url('admin/clientes') }}">Clientes</a></li>
                             <li><a href="platos.html">Comandas</a></li>
 @if((Auth::user()->roles_id)=='1' || (Auth::user()->roles_id)=='2' || (Auth::user()->roles_id)=='4' || (Auth::user()->roles_id)=='5')    
                             <li><a href="platos.html">Recibos</a></li>
@@ -241,6 +244,11 @@
     // popover demo
     $("[data-toggle=popover]")
         .popover()
+
+
+    $(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+    })
     </script>
 </body>
 </html>

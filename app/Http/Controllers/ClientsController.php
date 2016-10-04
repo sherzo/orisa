@@ -32,29 +32,9 @@ class ClientsController extends Controller
         return view('admin.clients.create');
     }
 
-
     public function search(Request $request)
     {
-        if(isset($request->literal)){
-
-            $valor = $request->literal.'-'.$request->cedula;
-            
-            $cleint = Client::cedula($valor)->first();
-
-            if($cleint)
-            {
-                Flash::warning('<strong>Alerta </strong> el cliente con cedula: <strong>'. $client->cedula. '</strong> ya esta registrado');
-            
-                return redirect()->back();
-            }else
-                {   
-
-                 Flash::info('<strong>Perfecto </strong> proceseda a registrar el proveedor');
-
-                return view('admin.clients.search', compact('valor'));
-                }
-    
-        }
+        return view('admin.clients.search');
     }
 
     /**
@@ -129,4 +109,5 @@ class ClientsController extends Controller
     {
         //
     }
+
 }

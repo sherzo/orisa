@@ -125,6 +125,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
 	*/
 	Route::resource('asistencias', 'AssistsController');
 	Route::resource('deducciones', 'DeductionsController');
+	Route::get('nomina/select', ['uses' =>'PayrollController@select', 'as' => 'admin.payroll.select']);
 	Route::resource('nomina', 'PayrollController');
 	/*
 	|
@@ -155,6 +156,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
 		'uses' => 'PurchasesController@order',
 		'as' => 'admin.compra.ordenes'
 		]);
+	Route::post('compra/save', ['uses' => 'PurchasesController@saved','as' => 'admin.compra.save']);
 	Route::get('compra/{id}/procesar', ['uses' => 'PurchasesController@process','as' => 'admin.compra.procesar']);
 	Route::resource('compra', 'PurchasesController');
 		

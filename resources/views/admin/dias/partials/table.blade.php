@@ -37,8 +37,8 @@
                     {{ $dia->estatus }}
                 </a>
             </td>
-            <td class="text-center">
-                <a class="btn btn-warning btn-xs" href="{{ route('admin.planificaciones.administrar.dias.edit', $dia->id) }}"><span class="fa fa-pencil fa-2x"></span></a>
+            <td class="text-center tooltip-demo">                     
+                <a class="btn btn-default btn-xs" href="{{ route('admin.planificaciones.administrar.dias.edit', $dia->id) }}" type="button" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Editar"><span class="glyphicon glyphicon-pencil fa-2x"></span></a>
             </td>
 	   </tr>
         @endforeach           

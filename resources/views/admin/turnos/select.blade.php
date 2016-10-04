@@ -13,19 +13,19 @@
         </ol>
     </div>
 </div>
-<div class="row">
-    <div class="col-lg-10 col-lg-offset-1">
-		<div class="panel panel-default">
-			<div class="panel-heading">
-				Datos de la Planificación	
-			</div>
-			<div class="panel-body">
-			{!! Form::open(['route' => 'admin.planificaciones.administrar.dias.turnos.create', 'method' => 'GET']) !!}
-				@include('admin.turnos.partials.list')
-			{!! Form::close() !!}
+{!! Form::open(['route' => 'admin.planificaciones.administrar.dias.turnos.create', 'method' => 'GET']) !!}
+	<div class="row">
+	    <div class="col-lg-10 col-lg-offset-1">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					Datos de la Planificación	
+				</div>
+				<div class="panel-body">
+					@include('admin.turnos.partials.list')
+				</div>
 			</div>
 		</div>
 	</div>
-</div>
+{!! Form::close() !!}
 
 @endsection

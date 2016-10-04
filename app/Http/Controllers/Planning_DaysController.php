@@ -12,7 +12,7 @@ class Planning_DaysController extends Controller
 {
     public function index()
     {
-        $dias = Days_Planning::paginate(7);   
+        $dias = Days_Planning::all();   
         return view('admin.dias.index', compact('dias'));
     }
 

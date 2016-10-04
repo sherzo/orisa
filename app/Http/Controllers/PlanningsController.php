@@ -13,7 +13,7 @@ class PlanningsController extends Controller
 {
 	public function index()
 	{
-		$planificaciones = Planning::paginate(10);	
+		$planificaciones = Planning::all();	
 
 		return view('admin.planificaciones.index', compact('planificaciones'));
 	}

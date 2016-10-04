@@ -129,7 +129,7 @@
                             <li><a href="{{ url('admin/cargos') }}"> Cargos </a></li>
                             <li><a href="#"> Nómina<span class="fa arrow"></span></a>
                                 <ul class="nav nav-third-level">
-                                    <li><a href="{{ url('admin/nomina') }}}">Cálculo</a></li>
+                                    <li><a href="{{ url('admin/nomina') }}">Cálculo</a></li>
                                     <li><a href="{{ url('admin/deducciones') }}"> Deducciones </a></li>
                                     <li><a href="{{ url('admin/empleados') }}"> Personal </a></li>
                                 </ul>

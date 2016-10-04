@@ -285,10 +285,12 @@
 	</div>
 	<div class="row">
 		<div class="col-md-10 col-md-offset-1">	
-			 <div class="box-footer">
-                <button type="submit" class="btn btn-success btn-sm"><!--<i class="fa fa-save"></i>-->Guardar</button>
-				<button type="reset" class="btn btn-danger pull-right btn-flat btn-sm"><!--<i class="fa fa-times"></i>--> Cancelar</button>
-              </div>
+			 <br>
+            <div class="form-group tooltip-demo text-center">
+                <button class="btn btn-default btn-sm" type="submit" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Guardar"><span class="glyphicon glyphicon-floppy-saved fa-2x"></span></button>
+                <button class="btn btn-default btn-sm" type="reset" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Borrar"><span class="glyphicon glyphicon-floppy-remove fa-2x"></span></button>
+                <br>
+            </div> 
 		</div>
 	</div>
 

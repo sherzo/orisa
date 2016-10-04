@@ -8,14 +8,8 @@
 		<ol class="breadcrumb">
 			<li><a href="{{ url('admin') }}"><span class="glyphicon glyphicon-home"></span></a></li>
 			<li class="active">Prenómina</li>
+			<li class="active">Nuevo</li>
 		</ol>
-	</div>
-</div>
-<div class="row">
-	<div class="col-lg-4">
-		<a href="{{ url('admin/nomina/select') }}">
-			<button type="button" class="btn btn-primary"><span class="fa fa-plus"></span></button>
-		</a>
 	</div>
 </div>
 <br>
@@ -26,15 +20,13 @@
 	<div class="col-lg-12">
 		<div class="panel panel-default">
 			<div class="panel-heading">
-                <em>Registro de prenóminas</em>
-            </div>
-            <div class="panel-body">
-            	<div class="dataTable_wrapper">
-                	@include('admin.payroll.partials.table')
-                </div>
-            </div>
-        </div>
-    </div>
+	            <em>Prenómina</em>
+	        </div>
+	        <div class="panel-body">
+	            @include('admin.payroll.partials.fields')
+	        </div>
+	    </div>
+	</div>
 </div>
 
 @endsection

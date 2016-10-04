@@ -31,9 +31,9 @@
                     {{ $planificacion->estatus }}
                 </a>
             </td>
-            <td class="text-center">
-                <a class="btn btn-primary btn-xs" href="{{ route('admin.planificaciones.administrar', $planificacion->id) }}" title="Administrar"><span class="fa fa-calendar-o fa-2x"></span></a>
-                <a href="{{ route('admin.planificaciones.destroy', $planificacion->id) }}" class="btn btn-danger btn-xs" title="Borrar"> <span class="fa fa-trash-o fa-2x"></span> </a> </td>
+            <td class="text-center tooltip-demo">                     
+                <a class="btn btn-default btn-xs" href="{{ route('admin.planificaciones.administrar', $planificacion->id) }}" type="button" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Administrar"><span class="glyphicon glyphicon-calendar fa-2x"></span></a>
+                <a href="{{ route('admin.planificaciones.destroy', $planificacion->id) }}" class="btn btn-default btn-xs" type="button" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Eliminar"><span class="glyphicon glyphicon-trash fa-2x"></span></a>
             </td>
 	   </tr>
         @endforeach           

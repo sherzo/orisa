@@ -26,10 +26,10 @@
 					{{ $order->estatus == 0 ? 'En espera' : 'Recibido'}}
 				</span>
 			</td>
-			<td class="text-center"> 					  
-				<a class="btn btn-default btn-xs" href="{{ route('admin.compra.show', $order->id) }}" title="Ver"><span class="glyphicon glyphicon-eye-open fa-2x"></span></a>
-				<a class="btn btn-default btn-xs" href="{{ route('admin.compra.edit', $order) }}" title="Editar"><span class="glyphicon glyphicon-pencil fa-2x"></span></a>
-				<a href="{{ route('admin.compra.destroy', $order->id) }}" class="btn btn-default btn-xs" title="Eliminar"><span class="glyphicon glyphicon-trash fa-2x"></span></a>
+			<td class="text-center tooltip-demo"> 					  
+				<a class="btn btn-default btn-xs" href="{{ route('admin.compra.show', $order->id) }}" type="button" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Ver"><span class="glyphicon glyphicon-eye-open fa-2x"></a>
+				<a class="btn btn-default btn-xs" href="{{ route('admin.compra.edit', $order) }}" type="button" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Editar"><span class="glyphicon glyphicon-pencil fa-2x"></span></a>
+				<a class="btn btn-default btn-xs" href="{{ route('admin.compra.destroy', $order->id) }}" type="button" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Eliminar"><span class="glyphicon glyphicon-trash fa-2x"></span></a>
 			</td>
 		</tr>
 	@endforeach

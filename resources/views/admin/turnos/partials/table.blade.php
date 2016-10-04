@@ -45,11 +45,10 @@
                         {{ $planif->fechas }}
                     </a>
                 </td>
-  
-                <td class="text-center">
-                    <a class="btn btn-default btn-circle"> <span class="fa fa-eye"></span></a>
-                    <a class="btn btn-warning btn-circle" href="{{ route('admin.planificaciones.administrar.dias.turnos.edit', [$planificacion->id]) }}"><span class="fa fa-pencil"></span></a>
-                    <a class="btn btn-danger btn-circle" href="{{ route('admin.empleados.destroy', [$planificacion->id]) }}" title="Eliminar"> <span class="fa fa-trash-o"></span></a> 
+                <td class="text-center tooltip-demo">                     
+                    <a class="btn btn-default btn-xs" href="" type="button" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Ver"><span class="glyphicon glyphicon-eye-open fa-2x"></span></a>
+                    <a class="btn btn-default btn-xs" href="{{ route('admin.planificaciones.administrar.dias.turnos.edit', [$planificacion->id]) }}" type="button" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Editar"><span class="glyphicon glyphicon-pencil fa-2x"></span></a>
+                    <a href="{{ route('admin.empleados.destroy', [$planificacion->id]) }}" class="btn btn-default btn-xs" type="button" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Eliminar"><span class="glyphicon glyphicon-trash fa-2x"></span></a>
                 </td>
             </tr> 
     @endforeach

@@ -37,13 +37,10 @@
                         {{ $asistencia->hora_salida }}
                     </a>
                 </td>
-                
-                <td class="text-center"> 
-                    <a href="#">
-                        <a class="btn btn-default btn-circle"> <span class="fa fa-eye"></span> </a>
-                        <a class="btn btn-warning btn-circle" href="{{ route('admin.asistencias.edit', [$asistencia->id]) }}"><span class="fa fa-pencil"></span></a>
-                        <a class="btn btn-danger btn-circle" href="{{ route('admin.asistencias.destroy', [$asistencia->id]) }}" title="Eliminar"> <span class="fa fa-trash-o"></span></a>
-                    </a>
+                <td class="text-center tooltip-demo">                     
+                    <a class="btn btn-default btn-xs" href="{{ route('admin.asistencias.edit', [$asistencia->id]) }}" type="button" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Ver"><span class="glyphicon glyphicon-eye-open fa-2x"></span></a>
+                    <a class="btn btn-default btn-xs" href="{{ route('admin.asistencias.destroy', [$asistencia->id]) }}" type="button" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Editar"><span class="glyphicon glyphicon-pencil fa-2x"></span></a>
+                    <a href="" class="btn btn-default btn-xs" type="button" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Eliminar"><span class="glyphicon glyphicon-trash fa-2x"></span></a>
                 </td>
             </tr>
         @endforeach

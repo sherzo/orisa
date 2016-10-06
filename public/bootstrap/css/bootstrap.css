@@ -248,6 +248,9 @@ th {
   .label {
     border: 1px solid #000;
   }
+  .padding-corto{
+    padding-top: 5px;
+  }
   .table {
     border-collapse: collapse !important;
   }

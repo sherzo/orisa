@@ -21,9 +21,9 @@ class Beverage extends Model
     *
     * @var array
     */
-    public function imag() #info
+    public function image()
     {
-        return $this->hasOne('App\Image', 'id', 'image_id');
+        return $this->belongsTo('App\Image');
     }
 
     public function ingredients()

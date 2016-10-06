@@ -18,7 +18,7 @@
 
 <ul class="nav nav-tabs nav-justified" role="tablist">   
     <li role="presentation" class="active"><a href="#licores" aria-controls="profile" role="tab" data-toggle="tab">Licores</a></li>
-    <li role="presentation"><a href="#ingredientes" aria-controls="home" role="tab" data-toggle="tab" id="error">Ingrediente</a></li>
+    <li role="presentation"><a href="#ingredientes" aria-controls="home" role="tab" data-toggle="tab" id="error">Ingredientes</a></li>
     <li role="presentation"><a href="#trago" aria-controls="messages" role="tab" data-toggle="tab">Publicación de la bebida</a></li>
   </ul>
     {!! Form::open(['route' => 'admin.tragos.store', 'method' => 'POST', 'files' => true, 'id' => 'guardar']) !!}

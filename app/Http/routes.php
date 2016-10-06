@@ -183,6 +183,33 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
 	Route::resource('sauces', 'SaucesController');
 	Route::resource('bebidas', 'DrinksController');
 	Route::resource('tragos', 'BeveragesController');
+	Route::resource('comandas', 'CommandsController');
+	Route::get('comandas/create/eleccion/{eleccion}', function($eleccion){
+		if($eleccion == 1){
+			$platos = App\Plate::all();
+			$platos->each(function($platos){
+				$platos->image;
+			});
+			
+			return Response::json($platos);
+
+		}elseif ($eleccion == 2) {
+			$tragos = App\Beverage::all();
+			$tragos->each(function($tragos){
+				$tragos->image;
+			});
+
+			return Response::json($tragos);
+		}elseif ($eleccion == 3) {
+			
+			$jugos = App\Juices::all();
+
+		}elseif($eleccion == 4
+			){
+			$bebidas = App\Drink::all();
+			dd($bebidas);
+		}
+	});
 	//LICORES BEBIDAS
 
 	Route::get('tragos/create/liqueurs/{type}',  function($type){

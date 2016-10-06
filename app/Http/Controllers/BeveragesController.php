@@ -11,6 +11,7 @@ use App\Ingredient;
 use App\Ingredients_type;
 use App\Liqueurs_type;
 use Illuminate\Http\Request;
+use Laracasts\Flash\Flash;
 
 class BeveragesController extends Controller
 {

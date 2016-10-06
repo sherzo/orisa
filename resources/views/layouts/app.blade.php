@@ -114,8 +114,16 @@
                                     <li><a href="{{ url('admin/tragos') }}">Bebidas Alcoholicas</a></li>
                                 </ul>
                             </li>
+                            <li><a href="#"> Comandas<span class="fa arrow"></span></a>
+                                <ul class="nav nav-third-level">
+                                    <li><a href="{{ url('admin/comandas') }}">Nueva</a></li>
+                                    <li><a href="#">En espera</a></li>
+                                    <li><a href="{{ url('admin/sauces') }}">Procesadas</a></li>
+                                </ul>
+                            </li>
+
                             <li><a href="{{ url('admin/clientes') }}">Clientes</a></li>
-                            <li><a href="platos.html">Comandas</a></li>
+                            
 @if((Auth::user()->roles_id)=='1' || (Auth::user()->roles_id)=='2' || (Auth::user()->roles_id)=='4' || (Auth::user()->roles_id)=='5')    
                             <li><a href="platos.html">Recibos</a></li>
 @endif
@@ -194,6 +202,7 @@
     <script src="{{ asset('bower_components/datatables/media/js/jquery.dataTables.js') }}"></script>
     <script src="{{ asset('bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.js') }}"></script>
     <script src="{{ asset('jquery/funciones.js') }}"></script>
+    <script src="{{ asset('js/comandas.js') }}"></script>
     <script src="{{ asset('chosen/chosen.jquery.min.js') }}"></script>
 
         @yield('js')

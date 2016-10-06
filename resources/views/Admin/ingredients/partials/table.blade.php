@@ -5,6 +5,7 @@
 			<th>Ingrediente</th>
 			<th>Categoria</th>
 			<th>Característica</th>
+			<th>Stock</th>
 			<th>Unidad</th>
 			<th>Acciones</th>
 		</tr>
@@ -30,6 +31,11 @@
 			<td>
 				<a href="{{ route('admin.ingredientes.edit', $ingredient) }}">
 					{{ $ingredient->caracteristica }}
+				</a>
+			</td>
+			<td>
+				<a href="{{ route('admin.ingredientes.edit', $ingredient) }}">
+					{{ $ingredient->stock }}
 				</a>
 			</td>
 			<td>

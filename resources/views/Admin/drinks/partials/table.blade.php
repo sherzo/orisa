@@ -4,6 +4,7 @@
 			<th>#</th>
 			<th>Bebida</th>
 			<th>Característica</th>
+			<th>Stock</th>
 			<th>Unidad</th>
 			<th>Acciones</th>
 		</tr>
@@ -25,6 +26,11 @@
 				<td>
 					<a href="{{ route('admin.bebidas.edit', [$drink->id]) }}">
 						{{ $drink->caracteristica }}
+					</a>
+				</td>
+				<td>
+					<a href="{{ route('admin.bebidas.edit', [$drink->id]) }}">
+						{{ $drink->stock }}
 					</a>
 				</td>
 				<td>

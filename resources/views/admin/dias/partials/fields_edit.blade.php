@@ -1,36 +1,22 @@
-<div class="col-lg-10 col-lg-offset-1">
-	<div class="panel panel-default">
-		<div class="panel-heading">Editar <strong> {{ $dia->id }}</strong></div>
-		<div class="panel-body">
-			{{ csrf_field() }}
-			<div class="col-lg-3 col-lg-offset-1">
-				<div class="form-group">
-					{!! Form::label('dia', 'Fecha') !!}
-                    {!! Form::text('dia', null, ['class' => 'form-control', 'title' => 'Día de la semana', 'disabled' => 'disabled']) !!}	
-				</div>
-			</div>
-			<div class="col-lg-3">
-				<div class="form-group">
-					{!! Form::label('estatus', 'Estatus') !!}
-                    {!! Form::select('estatus', array('Hábil' => 'Hábil', 'Inhábil' => 'Inhábil'), null, ['class' => 'form-control', 'title' => 'Seleccioné la clase de día que corresponde a esta fecha.']) !!}
-				</div>
-			</div>
-   			<div class="col-lg-4">
-				<div class="form-group">
-					{!! Form::label('detalles', 'Detalles') !!}
-                    {!! Form::text('detalle', null, ['class' => 'form-control', 'title' => 'Describa algun detalle referente a este día.']) !!}	
-				</div>
-			</div>
-		</div>		
-		<div class="form-group">
-            <center>
-				<button type="reset" class="btn btn-primary btn-sm" title="Restablecer">
-					<span class="fa fa-refresh fa-2x"></span>
-				</button>
-				<button class="btn btn-success btn-sm" title="Guardar">
-					<span class="fa fa-save fa-2x"></span>
-				</button>
-            </center>
-        </div> 
-    </div>
-</div>    
+
+<div class="col-lg-6">
+	<div class="form-group">
+		{!! Form::label('estatus', 'Estatus') !!}
+        {!! Form::select('estatus', array('Hábil' => 'Hábil', 'Inhábil' => 'Inhábil'), null, ['class' => 'form-control', 'title' => 'Seleccioné la clase de día que corresponde a esta fecha.']) !!}
+	</div>
+</div>
+<div class="col-lg-6">
+	<div class="form-group">
+		{!! Form::label('detalles', 'Detalles') !!}
+        {!! Form::text('detalle', null, ['placeholder' => 'Decreto Nacional' ,'class' => 'form-control', 'title' => 'Describa algun detalle referente a este día.']) !!}	
+	</div>
+</div>	
+<div class="col-lg-12">
+    <br>
+    <div class="form-group tooltip-demo text-center">
+        <button class="btn btn-default btn-sm" type="submit" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Guardar"><span class="glyphicon glyphicon-floppy-saved fa-2x"></span></button>
+        <button class="btn btn-default btn-sm" type="reset" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Cancelar"><span class="glyphicon glyphicon-floppy-remove fa-2x"></span></button>
+        <br>
+    </div>  
+</div>
+

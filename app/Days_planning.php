@@ -14,7 +14,7 @@ class Days_planning extends Model
 	* @var array
 	*/
 
-	protected $fillable = ['planificacion_id', 'dia', 'estatus'];
+	protected $fillable = ['planificacion_id', 'dia', 'estatus', 'detalle'];
 
 	public $timestamps = false;
 		

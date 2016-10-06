@@ -17,7 +17,7 @@ class ClientsController extends Controller
      */
     public function index()
     {
-        $clients = Client::paginate(5);
+        $clients = Client::all();
 
         return view('admin.clients.index', compact('clients'));
     }
@@ -27,9 +27,26 @@ class ClientsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        return view('admin.clients.create');
+    public function create(Request $request)
+    {   
+        $dni_cedula = $request->literal.$request->cedula;
+
+        $exist = Client::where('dni_cedula', $dni_cedula)->exists();
+
+        if($exist) 
+        {
+            Flash::warning('<strong> Alerta </strong> busqueda con número de cédula <strong>'. $dni_cedula .'</strong> se encuentra en la base de datos.');
+            
+            return redirect()->back(); 
+
+        }else{
+
+            Flash::info('<strong> INFO </strong> búsqueda con número de cédula '. $dni_cedula .' no se encuentra en la base de datos, proceda a llenar los campos.');
+
+            return view('admin.clients.create', compact('dni_cedula'));
+
+        }
+        
     }
 
     public function search(Request $request)
@@ -75,8 +92,8 @@ class ClientsController extends Controller
     public function edit($id)
     {
         $client = Client::findOrFail($id);
-
-        return view('admin.clients.edit', compact('client'));
+        $dni_cedula = false;
+        return view('admin.clients.edit', compact('client', 'dni_cedula'));
     }
 
     /**

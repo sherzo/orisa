@@ -1,4 +1,4 @@
-<table class="table table-bordered table-hover table-striped">
+<table class="table table-striped table-bordered table-hover" id="dataTables-example">
     <thead>
         <tr>
             <th>#</th>
@@ -12,21 +12,23 @@
     <tbody>                 
     @foreach($clients as $client)
         <tr>
-            <td>{{ $client->id }}</td>
-            <td>{{ $client->dni_cedula }}</td>
-            <td>{{ $client->nombres }}</td>
-            <td>{{ $client->telefono }}</td>                                   
-            <td class="text-center">
-                <a class="btn btn-default btn-xs" title="Ver">
-                    <span class="fa fa-eye fa-2x"></span>
-                </a>
-                <a class="btn btn-default btn-xs" href="{{ route('admin.clientes.edit', $client) }}" title="Editar">
-                    <span class="fa fa-pencil fa-2x"></span>
-                </a>
-                <a href="{{ route('admin.clientes.destroy', $client->id) }}" class="btn btn-default btn-xs" title="Eliminar">
-                    <span class="fa fa-trash-o fa-2x"></span>
-                </a>
+            <td>
+                {{ $client->id }}
             </td>
+            <td>
+                {{ $client->dni_cedula }}
+            </td>
+            <td>
+                {{ $client->nombre }}
+            </td>
+            <td>
+                {{ $client->telefono }}
+            </td>                      
+            <td class="text-center tooltip-demo">                     
+                <a class="btn btn-default btn-xs" href="" type="button" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Ver"><span class="glyphicon glyphicon-eye-open fa-2x"></a>
+                <a class="btn btn-default btn-xs" href="{{ route('admin.clientes.edit', $client) }}" type="button" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Editar"><span class="glyphicon glyphicon-pencil fa-2x"></span></a>
+                <a class="btn btn-default btn-xs" href="{{ route('admin.clientes.destroy', $client->id) }}" type="button" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Eliminar"><span class="glyphicon glyphicon-trash fa-2x"></span></a>
+            </td>             
         </tr>
     @endforeach                         
     </tbody>

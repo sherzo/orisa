@@ -37,15 +37,15 @@ class EmployeesController extends Controller
             Flash::warning('<strong> Alerta </strong> busqueda con número de cédula <strong>'. $dni_cedula .'</strong> se encuentra en la base de datos.');
             
             return redirect()->back();
-        }
-        else
-        {
+        
+        }else{
+            
             Flash::info('<strong> INFO </strong> búsqueda con número de cédula '. $dni_cedula .' no se encuentra en la base de datos, proceda a llenar los campos.');
 
             $cargos = Position::lists('nombre', 'id');
             $turnos = Turn::lists('turno', 'id');
-
-            return view('admin/empleados/create', compact('dni_cedula','cargos', 'turnos'));
+            $empleado = false;
+            return view('admin/empleados/create', compact('dni_cedula','cargos', 'turnos','empleado'));
         }
     } 
 
@@ -69,7 +69,7 @@ class EmployeesController extends Controller
         $empleado = Employee::findOrfail($id);
         $cargos = Position::lists('nombre', 'id');
         $turnos = Turn::lists('turno', 'id');
-        $dni_cedula = $empleado->dni_cedula;
+        $dni_cedula = false;
 
         return view('admin.empleados.edit', compact('empleado', 'turnos', 'cargos', 'dni_cedula'));
 
@@ -82,6 +82,8 @@ class EmployeesController extends Controller
 
         $info = $empleado->info;
         $info->fill($request->all())->save();
+
+        Flash::success('<strong> Éxito </strong> se ha actualizado el empleado <em>'.$empleado->full_name.'</em> correctamente.');
 
         return redirect()->back();
     }

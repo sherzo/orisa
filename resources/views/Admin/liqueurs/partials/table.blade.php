@@ -5,6 +5,7 @@
 			<th>Licor</th>
 			<th>Categoría</th>
 			<th>Característica</th>
+			<th>Stock</th>
 			<th>Unidad</th>
 			<th>Acciones</th>
 		</tr>
@@ -28,6 +29,11 @@
 				<td>
 					<a href="{{ route('admin.licores.edit', $liqueur) }}">
 						{{ $liqueur->caracteristica }}
+					</a>
+				</td>
+				<td>
+					<a href="{{ route('admin.licores.edit', $liqueur) }}">
+						{{ $liqueur->stock }}
 					</a>
 				</td>
 				<td>

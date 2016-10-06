@@ -8,8 +8,7 @@
     <div class="col-lg-12">
         <ol class="breadcrumb">
             <li><a href="{{ url('tablero') }}"><span class="glyphicon glyphicon-home"></span></a></li>
-            <li><a href="{{url ('admin/planificaciones')}}">Planificación</a></li>
-            <li class="active">Días</li>
+            <li class="active">Planificaciones</li>
         </ol>
     </div>
 </div>

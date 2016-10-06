@@ -41,7 +41,7 @@
                             <textarea class="form-control" data-toggle="tooltip" data-placement="top" title="Algo en que podamos ayudarlo (Ej: dos mesas juntas)" name="especificacion"></textarea>
                         </div>
                         
-                            <button type="submit" >
+                            <button type="submit" class="btn btn-primary btn-xl" data-toggle="tooltip" data-placement="top" title="Realizar reservación" >
                                 Reservar
                             </button>
                         </div>
@@ -52,28 +52,28 @@
         {!! Form::close() !!}
         <div class="row">
         <div class="col-lg-12">
-            <h2 class="text-center">Mis reservaciones</h1>
+            <h2 class="text-center section-heading">Mis reservaciones</h1>
         </div>
             <div class="col-lg-12">
-                <table class="table  table-bordered">
+                <table class="table  table-bordered table-condensed table-hover">
                     <thead class="bg-yelow">
-                        <th><h3>Mesa</h3></th>
+                        <th><h3 class="none">Mesa</h3></th>
                         <th><h3>Fecha</h3></th>
                         <th><h3>Hora</h3></th>
                         <th><h3>Estatus</h3></th>
                     </thead>
                     <tbody>
-                        <tr>
+                        <tr class="active">
+                            <td><h4>#2</h4></td>
+                            <td><h4>miercoles 30 de septiembre</h4></td>
+                            <td><h4>9:00 am</h4></td>
+                            <td><h4><span class="label label-danger" data-toggle="tooltip" data-placement="top" title="Ingrese a su correo para confirmar">Sin confirmar</span></h4></td>
+                        </tr >
+                                                <tr class="active">
                             <td><h4>#3</h4></td>
                             <td><h4>miercoles 30 de septiembre</h4></td>
                             <td><h4>9:00 am</h4></td>
-                            <td><h4>Sin confirmar</h4></td>
-                        </tr>
-                                                <tr>
-                            <td><h4>#3</h4></td>
-                            <td><h4>miercoles 30 de septiembre</h4></td>
-                            <td><h4>9:00 am</h4></td>
-                            <td><h4>Sin confirmar</h4></td>
+                            <td><h4><span class="label label-success" data-toggle="tooltip" data-placement="top" title="Reservación confirmada">Confirmada</span></h4></td>
                         </tr>
 
                     </tbody>

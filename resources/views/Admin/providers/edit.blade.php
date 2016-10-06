@@ -8,7 +8,7 @@
 		<ol class="breadcrumb">
 			<li><a href="{{ url('admin') }}"><span class="glyphicon glyphicon-home"></span></a></li>
 			<li><a href="{{ url('admin/proveedores') }}">Proveedores</a></li>
-			<li class="active">Nuevo</li>
+			<li class="active">Editar</li>
 		</ol>
 	</div>
 </div>
@@ -22,7 +22,7 @@
 		<div class="col-lg-12">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-		            <em>Registro de Proveedor</em>
+		            <em>Editar: {{ $provider->razon_social }}</em>
 		        </div>
 		        <div class="panel-body">
 		            @include('admin.providers.partials.fields')

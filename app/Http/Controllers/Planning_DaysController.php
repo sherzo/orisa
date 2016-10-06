@@ -34,7 +34,9 @@ class Planning_DaysController extends Controller
         $dia = Days_planning::find($id);
         $dia->fill($request->all())->save();
 
-        return redirect('admin/planificaciones/administrar/dias');
+        Flash::success('<strong> Éxito </strong> se ha actualizado la fecha <em>'.$dia->dia.'</em> correctamente.');
+
+        return redirect()->back();
     }
 
     public function store(Request $request)

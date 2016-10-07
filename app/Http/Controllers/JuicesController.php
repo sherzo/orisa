@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
 use App\Http\Requests;
+use App\Image;
+use App\Ingredients_type;
+use App\Juice;
+use Illuminate\Http\Request;
+use Laracasts\Flash\Flash;
 
 class JuicesController extends Controller
 {
@@ -15,7 +18,12 @@ class JuicesController extends Controller
      */
     public function index()
     {
-        //
+        $juices = Juice::all();
+        $juices->each(function($juices){
+            $juices->image;
+        });
+        return view('admin.jugos.index')
+            ->with('juices', $juices);
     }
 
     /**
@@ -24,8 +32,10 @@ class JuicesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        //
+    {   
+        $ingredients_types = Ingredients_type::lists('tipo_ingrediente', 'id');
+
+        return view('admin.jugos.create', compact('ingredients_types'));  
     }
 
     /**
@@ -35,61 +45,42 @@ class JuicesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-                //--  Manipulando la imagen 
+    {   
+        //--  Manipulando la imagen 
+
         if($request->file('image'))
         {
             $file = $request->file('image');
             $name = 'orisa_' . time() . '.' . $file->getClientOriginalExtension();
-            $path = public_path() . '/img/drinks/';
+            $path = public_path() . '/img/juices/';
             $file->move($path, $name);
 
             $image = new Image();
             $image->imagen = $name;
             $image->save();
         }
-    //--  Guardando datos de la bebida
-        $drink = new Drink($request->all());
-        $drink->image_id = $image->id;
-        $drink->save();
 
-        // Guardando los ingredientes
-        if ($request->id_ingredientes) {
-    
-            foreach ($request->id_ingredientes as $key => $value) {
-                
-                $receta = new Drinks_has_ingredient();
+        //--  Guardando datos del plato
+        $jugo = new Juice($request->all()); 
+        $jugo->image_id = $image->id;
+        $jugo->save();
 
-                $receta->bebida_id = $drink->id;
-                $receta->ingrediente_id = $request->id_ingredientes[$key];
-                $receta->cantidad_ingrediente = $request->cantidades_i[$key];
-                $receta->unidad_id = $request->unidades_i[$key];
+        foreach ($request->id_ingredientes as $key => $ingredient) {
 
-                $receta->save();   
+            $jugo->ingredients()->attach([$ingredient => ['cantidad_ingrediente' => $request->cantidades_i[$key], 'unit_id' => $request->unidades_i[$key]]]);
 
-            }         
+            // $receta = new Juices_has_ingredient();
+            // $receta->juice_id = $plate->id;
+            // $receta->ingredient_id = $request->id_ingredientes[$key];
+            // $receta->cantidad_ingrediente = $request->cantidades_i[$key];
+            // $receta->unit_id = $request->unidades_i[$key];
+
+            // $receta->save();   
         }
 
+        Flash::success('<strong>Exito </strong> el jugo '. $jugo->jugo .' se creo correctamente.');
 
-        //-- Guardando los licores
-        if ($request->id_licores) {
-            
-            foreach ($request->id_licores as $key => $value) {
-            
-                $receta = new Drinks_has_liqueur();
-
-                $receta->bebida_id = $drink->id;
-                $receta->licor_id = $request->id_licores[$key];
-                $receta->cantidad_licor = $request->cantidades_l[$key];
-                $receta->unidad_id = $request->unidades_l[$key];
-
-                $receta->save();            
-            }
-        }
-
-        Flash::success('<strong>Exito </strong> La bebida '. $drink->bebida .' se creo correctamente.');
-
-        return redirect('admin/bebidas');
+        return redirect('admin/jugos');
     }
 
     /**

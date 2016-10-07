@@ -57,7 +57,7 @@ class BeveragesController extends Controller
         {
             $file = $request->file('image');
             $name = 'berevage_' . time() . '.' . $file->getClientOriginalExtension();
-            $path = public_path() . '/img/tragos/';
+            $path = public_path() . '/img/beverages/';
             $file->move($path, $name);
 
             $image = new Image();

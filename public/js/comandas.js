@@ -15,21 +15,21 @@ $(document).ready(function(){
 					
 					}else if(typeObj.trago != undefined){
 
-						var img = 'tragos/'+typeObj['image'].imagen; //Tragos
+						var img = 'beverages/'+typeObj['image'].imagen; //Tragos
 						var nombre = typeObj.trago;
 
 					}else if(typeObj.bebida != undefined){
 
-						var img = 'bebidas/'+typeObj['image'].imagen; //Bebidas
+						var img = 'drinks/cocacola.png'; //Bebidas
 						var nombre = typeObj.bebida;
 
-					}else if(typeObj.bebida != undefined){
+					}else if(typeObj.jugo != undefined){
 
-						var img = 'jugos/'+typeObj['image'].imagen; // Jugos
+						var img = 'juices/'+typeObj['image'].imagen; // Jugos
 						var nombre = typeObj.jugo;
 
 					}else {
-						$('#tablero').empty();
+
 					}
 
 					var render = '<div class="col-md-3"><div class="panel panel-default">'+
@@ -39,7 +39,10 @@ $(document).ready(function(){
 								'</div></div></div>';
 					$('#tablero').append(render);
 				});
-			}
+			}else {
+						$('#tablero').empty();
+						$('#tablero').html('<h4 class="text-center">No se encontraron resustaldos</h4>');
+					}
 		});
 	});
 });

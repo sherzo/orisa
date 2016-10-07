@@ -26,7 +26,7 @@
               <div class="col-md-4">
                 <div class="panel panel-default">
                   <div class="panel-body">
-                    <img src="../img/tragos/{{ $beverage->image->imagen }}" alt="" class="img-responsive">
+                    <img src="../img/beverages/{{ $beverage->image->imagen }}" alt="" class="img-responsive">
 
                   </div>
                   <div class="panel-footer">

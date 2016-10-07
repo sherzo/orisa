@@ -183,6 +183,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
 	Route::resource('sauces', 'SaucesController');
 	Route::resource('bebidas', 'DrinksController');
 	Route::resource('tragos', 'BeveragesController');
+	Route::resource('jugos', 'JuicesController');	
 	Route::resource('comandas', 'CommandsController');
 	Route::get('comandas/create/eleccion/{eleccion}', function($eleccion){
 		if($eleccion == 1){
@@ -200,14 +201,24 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
 			});
 
 			return Response::json($tragos);
-		}elseif ($eleccion == 3) {
-			
-			$jugos = App\Juices::all();
 
-		}elseif($eleccion == 4
+		}elseif($eleccion == 3
 			){
+			
 			$bebidas = App\Drink::all();
-			dd($bebidas);
+			
+			return Response::json($bebidas);
+
+
+		}elseif ($eleccion == 4) {
+			
+			$jugos = App\Juice::all();
+			$jugos->each(function($jugos){
+				$jugos->image;
+			});
+
+			return Response::json($jugos);
+
 		}
 	});
 	//LICORES BEBIDAS
@@ -253,6 +264,21 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
 
 		return Response::json(array('ingredient' => $ingredient, 'units' => $units));
 	});
+
+	//INGREDIENTES SALSAS
+	
+	Route::get('jugos/create/ingredients/{type}',  function($type){
+		$ingredients = App\Ingredient::where('id_type', $type)->get();
+		return Response::json($ingredients);
+	});			
+	Route::get('jugos/create/addingredient/{id_i}', function($id_i){
+		$ingredient = App\Ingredient::where('id', $id_i)->get();
+
+		$units = App\Unit::all();
+
+		return Response::json(array('ingredient' => $ingredient, 'units' => $units));
+	});
+
 
 	// INGREDIENTES PLATOS
 	Route::get('platos/create/ingredients/{type}',  function($type){

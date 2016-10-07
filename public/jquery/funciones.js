@@ -96,7 +96,7 @@ $('#types_liqueurs').on('change', function(e){
                 $('#list_liqueurs').append(
                     '<tr><td>'+ typeObj.id +'</td>'+
                     '<td>'+ typeObj.licor + '</td>'+
-                    '<td align="center"><a class="agregar_l btn btn-success btn-sm pull-center"'+
+                    '<td align="center"><a class="agregar_l btn btn-success btn-xs pull-center"'+
                     'type="'+ typeObj.id+'" title="Agregar">'+
                     '<span class="glyphicon glyphicon-plus"></span></a>'+
                     '</td></tr>'

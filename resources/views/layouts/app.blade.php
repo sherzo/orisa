@@ -109,7 +109,7 @@
                             <li><a href="#"> Menú<span class="fa arrow"></span></a>
                                 <ul class="nav nav-third-level">
                                     <li><a href="{{ url('admin/platos') }}">Platos</a></li>
-                                    <li><a href="#">Jugos</a></li>
+                                    <li><a href="{{ url('admin/jugos') }}">Jugos</a></li>
                                     <li><a href="{{ url('admin/sauces') }}">Salsas</a></li>
                                     <li><a href="{{ url('admin/tragos') }}">Bebidas Alcoholicas</a></li>
                                 </ul>

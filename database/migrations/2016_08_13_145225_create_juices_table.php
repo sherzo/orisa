@@ -17,6 +17,8 @@ class CreateJuicesTable extends Migration
             $table->string('jugo', 15);
             $table->text('descripcion');
             $table->double('precio', 10,2);
+            $table->integer('image_id') ->unsigned();
+            $table->foreign('image_id') ->references('id')->on('images');
             $table->timestamps();
         });
     }

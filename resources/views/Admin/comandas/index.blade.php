@@ -36,7 +36,7 @@
 	@endforeach
 </div>
 <div class="row">
-	<div class="col-lg-12 text-center" ><button class="btn btn-default btn-sm" type="submit" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Siguiente"><span class="glyphicon glyphicon-circle-arrow-right"></span></button></div>
+	<div class="col-lg-12 text-center" ><button class="btn btn-default btn-sm" type="submit" data-toggle="tooltip" data-placement="top" title="" data-original-title="Siguiente"><span class="glyphicon glyphicon-circle-arrow-right"></span></button></div>
 </div>
 {!! Form::close() !!}
 

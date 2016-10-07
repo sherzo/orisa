@@ -1,9 +1,22 @@
 <div class="alert alert-danger hidden">
 	<p class="text-danger">Corriga los errores antes de guardar</p>
 </div>
-{!! Form::label('salsa', 'Nombre de la salsa', ['id' => 'salsa_label']) !!}
+<div class="row"><div class="col-xs-6 col-md-3">
+    				<a href="#" class="thumbnail">
+     		 			<img src="../../img/ingresar.jpg" alt="...">
+    				</a>
+  				</div>
 
-{!! Form::text('salsa', null, ['class' => 'form-control', 'placeholder' => 'Salsa de tomate', 'id' => 'salsa'])!!}
+				<div class="form-group">
+				
+					{!! Form::label('image', 'Imagen del jugo') !!}
+
+					{!!  Form::file('image'); !!}
+				</div>
+			</div>
+{!! Form::label('jugo', 'Nombre del jugo', ['id' => 'salsa_label']) !!}
+
+{!! Form::text('jugo', null, ['class' => 'form-control', 'placeholder' => 'Lechoza', 'id' => 'salsa'])!!}
 
 <br><hr>
 <div class="row">
@@ -44,12 +57,11 @@
 				</div>
 			</div>
 
-<div class="row"><br><br><br>
-	<div class="col-md-12" id="espacio_boton">
-		<center>
-			<button class="btn btn-sm btn-success">
-				<span class="fa fa-save fa-2x"></span>
-			</button>
-		</center>
-	</div>
+
+<div class="row">
+	<div class="form-group tooltip-demo text-center">
+		<button class="btn btn-default btn-sm" type="submit" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Guardar"><span class="glyphicon glyphicon-floppy-saved fa-2x"></span></button>
+		<button class="btn btn-default btn-sm" type="reset" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Borrar"><span class="glyphicon glyphicon-floppy-remove fa-2x"></span></button>
+	    <br>
+	</div> 
 </div>

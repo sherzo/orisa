@@ -14,11 +14,13 @@ class CreateJuicesHasIngredientsTable extends Migration
     {
         Schema::create('juices_has_ingredients', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('jugo_id')->unsigned();
-            $table->foreign('jugo_id')->references('id')->on('juices')->onDelete('Cascade');
-            $table->integer('ingrediente_id')->unsigned();
-            $table->foreign('ingrediente_id')->references('id')->on('ingredients')->onDelete('Cascade');
-            $table->integer('cantidad_fruta');
+            $table->integer('juice_id')->unsigned();
+            $table->foreign('juice_id')->references('id')->on('juices')->onDelete('Cascade');
+            $table->integer('ingredient_id')->unsigned();
+            $table->foreign('ingredient_id')->references('id')->on('ingredients')->onDelete('Cascade');
+            $table->integer('cantidad_ingrediente');
+            $table->integer('unit_id')->unsigned();
+            $table->foreign('unit_id')->references('id')->on('units')->onDelete('Cascade');
             $table->timestamps();
         });
     }

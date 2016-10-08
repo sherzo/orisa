@@ -18,7 +18,7 @@ class CreateCommandsTable extends Migration
             $table->integer('table_id')->unsigned();
             $table->foreign('table_id')->references('id')->on('tables');
             $table->integer('employee_id')->unsigned();
-            $table->foreign('emplyee_id')->references('id')->on('employees');
+            $table->foreign('employee_id')->references('id')->on('employees');
             $table->timestamps();
         });
     }

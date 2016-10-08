@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Command;
 use App\Http\Requests;
 use App\Reservation;
 use App\Table;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CommandsController extends Controller
 {
@@ -77,7 +79,9 @@ class CommandsController extends Controller
     public function store(Request $request)
     {
        
-        dd($request->all());
+        $comanda = new Command($request->all());
+        $comanda->employee_id = Auth::user()->id;
+
         // foreach ($request->cantidad as $key => $value) {
             
         //     if($request->tipo == 1){
@@ -94,7 +98,7 @@ class CommandsController extends Controller
      */
     public function show($id)
     {
-        //
+        
     }
 
     /**

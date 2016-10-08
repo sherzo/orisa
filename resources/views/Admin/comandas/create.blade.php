@@ -20,7 +20,7 @@
 <div class="media">
   <div class="media-body">
     <h4 class="media-heading">Comanda</h4>
-    Mesa <input type="hidden" name="mesa_id" value="{{ $mesa[0] }}">
+    Mesa <input type="hidden" name="table_id" value="{{ $mesa[0] }}">
   </div>
   <div class="media-right">
     <a href="#">

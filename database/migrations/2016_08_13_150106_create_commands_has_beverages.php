@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCommandsHasDrinksTable extends Migration
+class CreateCommandsHasBeverages extends Migration
 {
     /**
      * Run the migrations.
@@ -12,12 +12,12 @@ class CreateCommandsHasDrinksTable extends Migration
      */
     public function up()
     {
-        Schema::create('commands_has_drinks', function (Blueprint $table) {
+        Schema::create('commands_has_beverages', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('command_id')->unsigned();
             $table->foreign('command_id')->references('id')->on('commands')->onDelete('Cascade');
-            $table->integer('drink_id')->unsigned();
-            $table->foreign('drink_id')->references('id')->on('drinks')->onDelete('Cascade');
+            $table->integer('beverage_id')->unsigned();
+            $table->foreign('beverage_id')->references('id')->on('beverages')->onDelete('Cascade');
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ class CreateCommandsHasDrinksTable extends Migration
      */
     public function down()
     {
-        Schema::drop('commands_has_drinks');
+        Schema::drop('commands_has_beverages');
     }
 }

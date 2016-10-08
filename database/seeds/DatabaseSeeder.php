@@ -33,6 +33,14 @@ class DatabaseSeeder extends Seeder
         $this->call(UsersModulesActionsTableSeeder::class);
         $this->call(TablesTableSeeder::class);
         $this->call(ReservationsTableSeeder::class);
-
+        $this->call(SaucesTableSeeder::class);
+        $this->call(SaucesIngredientsTableSeeder::class);
+        $this->call(ImagesTableSeeder::class);
+        $this->call(PlatesTableSeeder::class);
+        $this->call(PlatesIngredientsTableSeeder::class);
+        $this->call(BeveragesTableSeeder::class);
+        $this->call(BeveragesLiqueursTableSeeder::class);
+        $this->call(JuicesTableSeeder::class);
+        $this->call(JuicesIngredientsTableSeeder::class);
     }
 }

@@ -15,10 +15,10 @@ class CreateCommandsTable extends Migration
         Schema::create('commands', function (Blueprint $table) {
             $table->increments('id');
             $table->string('estatus', 10);
-            $table->integer('mesa_id')->unsigned();
-            $table->foreign('mesa_id')->references('id')->on('tables');
-            $table->integer('empleado_id')->unsigned();
-            $table->foreign('empleado_id')->references('id')->on('employees');
+            $table->integer('table_id')->unsigned();
+            $table->foreign('table_id')->references('id')->on('tables');
+            $table->integer('employee_id')->unsigned();
+            $table->foreign('emplyee_id')->references('id')->on('employees');
             $table->timestamps();
         });
     }

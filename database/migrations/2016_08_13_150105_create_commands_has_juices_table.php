@@ -14,10 +14,10 @@ class CreateCommandsHasJuicesTable extends Migration
     {
         Schema::create('commands_has_juices', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('comanda_id')->unsigned();
-            $table->foreign('comanda_id')->references('id')->on('commands')->onDelete('Cascade');
-            $table->integer('jugo_id')->unsigned();
-            $table->foreign('jugo_id')->references('id')->on('juices')->onDelete('Cascade');
+            $table->integer('command_id')->unsigned();
+            $table->foreign('command_id')->references('id')->on('commands')->onDelete('Cascade');
+            $table->integer('juice_id')->unsigned();
+            $table->foreign('juice_id')->references('id')->on('juices')->onDelete('Cascade');
         });
     }
 

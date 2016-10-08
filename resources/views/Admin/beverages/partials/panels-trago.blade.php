@@ -49,18 +49,14 @@
 				</div>
 			</div>
 		</div>
-		<div class="row">
-			<div class="col-md-12"><br>
-				<center>
-					<button class="btn btn-primary btn-sm" title="Borrar">
-						<span class="fa fa-refresh fa-2x"></span>
-					</button>
-					<button id="registrar" class="btn btn-success btn-sm" title="Guardar">
-						<span class="fa fa-save fa-2x"></span>
-					</button>
-                </center>
-			</div>
-		</div>
+		
+<div class="row">
+	<div class="form-group tooltip-demo text-center">
+		<button class="btn btn-default btn-sm" type="submit" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Guardar"><span class="glyphicon glyphicon-floppy-saved fa-2x"></span></button>
+		<button class="btn btn-default btn-sm" type="reset" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Borrar"><span class="glyphicon glyphicon-floppy-remove fa-2x"></span></button>
+	    <br>
+	</div> 
+</div>
 
 	</div>
 </div>

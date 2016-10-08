@@ -14,10 +14,10 @@ class CreateCommandsHasPlatesTable extends Migration
     {
         Schema::create('commands_has_plates', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('comanda_id')->unsigned();
-            $table->foreign('comanda_id')->references('id')->on('commands')->onDelete('Cascade');
-            $table->integer('plato_id')->unsigned();
-            $table->foreign('plato_id')->references('id')->on('plates')->onDelete('Cascade');
+            $table->integer('command_id')->unsigned();
+            $table->foreign('command_id')->references('id')->on('commands')->onDelete('Cascade');
+            $table->integer('plate_id')->unsigned();
+            $table->foreign('plate_id')->references('id')->on('plates')->onDelete('Cascade');
         });
     }
 

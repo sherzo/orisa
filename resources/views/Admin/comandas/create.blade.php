@@ -1,14 +1,15 @@
-@extends('layouts.app')
+@extends('layouts.panel-comandas')
 
 @section('contenido')
 <div class="row">
     <div class="col-lg-12">
-        <h5 class="page-header"></h5>
+        <br>
     </div>
     <div class="col-lg-12">
         <ol class="breadcrumb">
             <li><a href="{{ url('admin') }}"><span class="glyphicon glyphicon-home"></span></a></li>
-            <li class="active">Nueva comanda</li>
+            <li><a href="{{ route('admin.comandas.index') }}">Nueva comanda</a></li>
+            <li class="active">Panel de comandas</li>
         </ol>
     </div>
     </div>
@@ -19,7 +20,7 @@
 <div class="media">
   <div class="media-body">
     <h4 class="media-heading">Comanda</h4>
-    Mesa
+    Mesa <input type="hidden" name="mesa_id" value="{{ $mesa[0] }}">
   </div>
   <div class="media-right">
     <a href="#">
@@ -43,6 +44,20 @@
 <br>
 
 <div class="row bg-danger" id="tablero">
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 </div>
 
 

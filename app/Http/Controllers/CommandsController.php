@@ -63,8 +63,9 @@ class CommandsController extends Controller
      */
     public function create(Request $request)
     {   
+        $mesa = $request->mesa_id;
         
-        return view('admin.comandas.create', compact('mesas'));
+        return view('admin.comandas.create', compact('mesa'));
     }
 
     /**
@@ -75,7 +76,14 @@ class CommandsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       
+        dd($request->all());
+        // foreach ($request->cantidad as $key => $value) {
+            
+        //     if($request->tipo == 1){
+
+        //     }
+        // }
     }
 
     /**

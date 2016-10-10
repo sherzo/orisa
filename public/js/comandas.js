@@ -70,7 +70,7 @@ $(document).ready(function(){
      		 	}
             	
                 var tr = '<tr><td>'+producto+'<input type="hidden" value="'+id_i+'" name="producto[]"></td>'+
-                '<td><select class="form-control input-sm" name="cantidad[]">'+
+                '<td><select class="form-control input-sm" name="cantidades[]">'+
                 option+'</select><input type="hidden" value="'+tipo+'" name="tipo[]">'+
                 '</td><td class="unitario">'+precio+'</td><td>'+
                 '<a class="btn btn-xs remove" data="'+precio+'"><span class="fa fa-trash"></span></a></td></tr>';
@@ -96,4 +96,23 @@ $(document).ready(function(){
             });
 		});
 	});
-});
+
+
+		// Funcion procesar comanda
+
+		$('.procesar').on('click', function(){
+			var comanda = $(this).attr('type');
+			var boton = $(this);
+			boton.remove();
+			$.get('en-espera/procesar/' + comanda, function(data){
+				
+			});
+		});
+
+
+		//Funcion para actualizar las comandas
+		function Comandas(){
+			
+		}
+	
+});// Fin de la funcion jQuery

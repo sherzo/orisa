@@ -20,4 +20,30 @@ class Command extends Model
      *
      * @var array
      */
+
+    public function table()
+    {
+        return $this->belongsTo('App\Table');
+    }
+
+    public function plates()
+    {
+        return $this->belongsToMany('App\Plate', 'commands_has_plates');
+    }
+
+    public function beverages()
+    {
+        return $this->belongsToMany('App\Beverage', 'commands_has_beverages');
+    }
+
+    public function drinks()
+    {
+        return $this->belongsToMany('App\Drink', 'commands_has_drinks');
+    }
+
+    public function juices()
+    {
+        return $this->belongsToMany('App\Juice', 'commands_has_juices');
+    }
+
 }

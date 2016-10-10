@@ -183,7 +183,20 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
 	Route::resource('sauces', 'SaucesController');
 	Route::resource('bebidas', 'DrinksController');
 	Route::resource('tragos', 'BeveragesController');
-	Route::resource('jugos', 'JuicesController');	
+	Route::resource('jugos', 'JuicesController');
+	Route::get('comandas/en-espera', ['uses' => 'CommandsController@hold', 'as' => 'admin.proveedores.en-espera']);
+	Route::get('comandas/en-espera/procesar/{comanda}', function($comanda){
+		$command = App\Command::find($comanda);
+		$command->estatus = 'Lista';
+		$command->save();
+
+		return Response::json($command);
+	});
+	Route::get('comandas/en-espera/actualizar', function(){
+		$command = App\Command::all();
+
+		return Response::json($command);
+	});
 	Route::resource('comandas', 'CommandsController');
 	Route::get('comandas/create/eleccion/{eleccion}', function($eleccion){
 		if($eleccion == 1){

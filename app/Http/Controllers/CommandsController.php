@@ -78,16 +78,52 @@ class CommandsController extends Controller
      */
     public function store(Request $request)
     {
-       
+    	$mesa = Table::find($request->table_id);
+    	$mesa->estatus = 'Ocupada';
+    	$mesa->save();
         $comanda = new Command($request->all());
-        $comanda->employee_id = Auth::user()->id;
+        $comanda->employee_id = "10";
+        $comanda->save();
 
-        // foreach ($request->cantidad as $key => $value) {
+        foreach ($request->cantidades as $key => $cantidad) {
             
-        //     if($request->tipo == 1){
+            // Recorro segun la cantidad
+            for ($i=1; $i <= $cantidad; $i++) { 
+     
+	            if($request->tipo[$key] == 1){ #Platos
 
-        //     }
-        // }
+	             	$comanda->plates()->attach($request->producto[$key]);
+
+	            }else if ($request->tipo[$key] == 2) { #Tragos
+	            	
+	            	$comanda->beverages()->attach($request->producto[$key]);
+
+	            }else if($request->tipo[$key] == 3){ # Bebidas
+
+	            	$comanda->drinks()->attach($request->producto[$key]);
+
+	            }else if($request->tipo[$key] == 4){ # Jugos
+
+	            	$comanda->juices()->attach($request->producto[$key]);
+
+	            }
+        	}
+        }
+
+        return redirect('admin/comandas/en-espera');
+    }
+
+    public function hold()
+    {	
+    	$commands = Command::all();
+    	$commands->each(function($commands){
+    		$commands->plates;
+    		$commands->beverages;
+    		$commands->drinks;
+    		$commands->juices;
+    	});
+
+    	return view('admin.comandas.commands-waiting', compact('commands'));
     }
 
     /**

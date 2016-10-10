@@ -43,8 +43,8 @@
                     <li>
                         <a href="#">
                             <div>
-                                <i class="fa fa-comment fa-fw"></i> New Comment
-                                <span class="pull-right text-muted small">4 minutes ago</span>
+                                <i class="fa fa-bell-o fa-fw text-success"></i> Comanda mesa 2 lista
+                                <span class="pull-right text-muted small">Ahora mismo</span>
                             </div>
                         </a>
                     </li>
@@ -52,8 +52,8 @@
                     <li>
                         <a href="#">
                             <div>
-                                <i class="fa fa-envelope fa-fw"></i> Message Sent
-                                <span class="pull-right text-muted small">4 minutes ago</span>
+                                <i class="fa fa-bell-o fa-fw text-success"></i> Comanda mesa 2 lista
+                                <span class="pull-right text-muted small">Hace 1 minuto</span>
                             </div>
                         </a>
                     </li>
@@ -77,8 +77,8 @@
                     </li>
                     <li class="divider"></li>
                     <li>
-                        <a class="text-center" href="#">
-                            <strong>See All Alerts</strong>
+                        <a class="text-center" href="{{ url('admin/comandas/en-espera') }}">
+                            <strong>Ver todas</strong>
                             <i class="fa fa-angle-right"></i>
                         </a>
                     </li>
@@ -117,7 +117,7 @@
                             <li><a href="#"> Comandas<span class="fa arrow"></span></a>
                                 <ul class="nav nav-third-level">
                                     <li><a href="{{ url('admin/comandas') }}">Nueva</a></li>
-                                    <li><a href="#">En espera</a></li>
+                                    <li><a href="{{ url('admin/comandas/en-espera') }}">En espera</a></li>
                                     <li><a href="{{ url('admin/sauces') }}">Procesadas</a></li>
                                 </ul>
                             </li>
@@ -203,6 +203,7 @@
     <script src="{{ asset('bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.js') }}"></script>
     <script src="{{ asset('jquery/funciones.js') }}"></script>
     <script src="{{ asset('js/comandas.js') }}"></script>
+    <script src="{{ asset('js/update-commands.js') }}"></script>
     <script src="{{ asset('chosen/chosen.jquery.min.js') }}"></script>
 
         @yield('js')

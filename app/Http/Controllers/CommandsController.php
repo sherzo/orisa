@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Client;
 use App\Command;
 use App\Http\Requests;
 use App\Reservation;
@@ -9,6 +10,7 @@ use App\Table;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Laracasts\Flash\Flash;
 
 class CommandsController extends Controller
 {
@@ -128,6 +130,22 @@ class CommandsController extends Controller
 
     public function invoice(Request $request)
     {
+        if($request->rif){
+
+        $rif = $request->literal.$request->rif;
+        $exist = Client::where('dni_cedula', $rif)->exists();
+
+        if($exist)
+        {
+            $client = Client::where('dni_cedula', $rif)->get();
+            Flash::success('<strong> Perfecto </strong> cliente <strong>'. $rif .'</strong> fue encontrado.');
+
+            return redirect()->back()->with('client', $client);
+        }else{
+
+        }
+
+        }else {
         $comanda = Command::find($request->command);
         
         $platos = $comanda->plates()->get();
@@ -135,7 +153,33 @@ class CommandsController extends Controller
         $bebidas = $comanda->drinks()->get();
         $jugos = $comanda->juices()->get();
 
-        return view('admin.comandas.invoice', compact('comanda', 'platos', 'tragos', 'bebidas', 'jugos'));
+        $total_p = 0;
+        $total_j = 0;
+        $total_b = 0;
+        $total_t = 0;
+        foreach ($platos as $key => $value) {
+            $total_p = $value->precio+$total_p;
+        }
+
+        foreach ($tragos as $key => $value) {
+            $total_t = $value->precio+$total_t;
+        }
+
+        foreach ($bebidas as $key => $value) {
+            $total_b = $value->precio+$total_b;
+        }
+
+        foreach ($jugos as $key => $value) {
+            $total_j = $value->precio+$total_j;
+        }
+        $subtotal = $total_t + $total_j + $total_p + $total_b;
+        $iva = $subtotal * 0.12;
+        $servicio = $subtotal * 0.05;
+        $date = new Carbon($comanda->create_at);
+        $total = $subtotal + $iva + $servicio;
+        
+        return view('admin.comandas.invoice', compact('comanda', 'platos', 'tragos', 'bebidas', 'jugos', 'date', 'subtotal', 'iva', 'servicio', 'total'));
+        }
     }
 
     /**

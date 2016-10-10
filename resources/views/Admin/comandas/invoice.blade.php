@@ -28,13 +28,15 @@
             </div>
             <div class="panel-body">
             <form class="form-inline">
+            @if(!session()->has('client'))
    <div class="text-center">  
 	<div class="form-group">
 		<label for="rif">Buscar Cliente </label>
 		<div class="input-group">
 			<div class="form-group{{ $errors->has('rif') ? ' has-error' : '' }}">
-				{!! Form::select('literal', ['J-' => 'J', 'C-' => 'C', 'G-' => 'G'], null, ['class' => 'form-control']) !!}
+				{!! Form::select('literal', ['V-' => 'V', 'E-' => 'E', 'J-' => 'J' , 'C-' => 'C' , 'G-' => 'G'], null, ['class' => 'form-control']) !!}
           
+				<input type="hidden" name="comanda_id" value="{{$comanda->id}}">
 
 				{!! Form::text('rif', null, ['class' => 'form-control', 'title' => 'Introduzca su número de Rif.', 'placeholder' => '00006372-9', 'id' => 'rif']) !!}
 
@@ -55,6 +57,7 @@
 	</div>	
 </div>
 </form>
+ @endif
             	<div class="dataTable_wrapper">
                 	@include('admin.comandas.partials.field-view')
                 </div>

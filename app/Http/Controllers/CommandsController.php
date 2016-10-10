@@ -126,6 +126,18 @@ class CommandsController extends Controller
     	return view('admin.comandas.commands-waiting', compact('commands'));
     }
 
+    public function invoice(Request $request)
+    {
+        $comanda = Command::find($request->command);
+        
+        $platos = $comanda->plates()->get();
+        $tragos = $comanda->beverages()->get();
+        $bebidas = $comanda->drinks()->get();
+        $jugos = $comanda->juices()->get();
+
+        return view('admin.comandas.invoice', compact('comanda', 'platos', 'tragos', 'bebidas', 'jugos'));
+    }
+
     /**
      * Display the specified resource.
      *

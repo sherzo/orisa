@@ -184,7 +184,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
 	Route::resource('bebidas', 'DrinksController');
 	Route::resource('tragos', 'BeveragesController');
 	Route::resource('jugos', 'JuicesController');
-	Route::get('comandas/en-espera', ['uses' => 'CommandsController@hold', 'as' => 'admin.proveedores.en-espera']);
+	Route::get('comandas/en-espera', ['uses' => 'CommandsController@hold', 'as' => 'admin.comandas.en-espera']);
+	Route::get('comandas/facturar', ['uses' => 'CommandsController@invoice', 'as' => 'admin.comandas.facturar']);
 	Route::get('comandas/en-espera/procesar/{comanda}', function($comanda){
 		$command = App\Command::find($comanda);
 		$command->estatus = 'Lista';

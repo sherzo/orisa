@@ -108,7 +108,7 @@ class ProvidersController extends Controller
         $provider->fill($request->all());
         $provider->save();
 
-        Flash::success('<strong> Perfecto </strong> se ha actualizado el proveedor <em>'.$provider->razon_social.'</em>correctamente.');
+        Flash::success('<strong> Perfecto </strong> se ha actualizado el proveedor <em>'.$provider->razon_social.'</em> correctamente.');
 
 
         return redirect()->back();
@@ -117,8 +117,7 @@ class ProvidersController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  int  $id     * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {

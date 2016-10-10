@@ -170,8 +170,13 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
 	Route::resource('ingredientes', 'IngredientsController');
 		Route::get('ingredientes/{id}/destroy', [
 			'uses' => 'IngredientsController@destroy',
-			'as' => 'admin.ingredientes.destroy'
+			'as'   => 'admin.ingredientes.destroy'
 		]);	
+	Route::resource('bebidas', 'DrinksController');
+		Route::get('bebidas/{id}/destroy', [
+			'uses' => 'DrinksController@destroy',
+			'as'   => 'admin.bebidas.destroy'
+			]);
 	/*
 	|	
 	|	RUTAS SAUL
@@ -181,7 +186,6 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
 	Route::resource('clientes', 'ClientsController');
 	Route::resource('platos', 'PlatesController');
 	Route::resource('sauces', 'SaucesController');
-	Route::resource('bebidas', 'DrinksController');
 	Route::resource('tragos', 'BeveragesController');
 	Route::resource('jugos', 'JuicesController');
 	Route::get('comandas/en-espera', ['uses' => 'CommandsController@hold', 'as' => 'admin.comandas.en-espera']);

@@ -7,7 +7,9 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Employee;
 use App\Planning;
+use App\Holiday;
 use App\Payroll;
+use App\Days_planning;
 use App\Day_attendance;
 use Laracasts\Flash\Flash;
 
@@ -41,6 +43,8 @@ class PayrollController extends Controller
     public function create(Request $request)
     {
         $fecha = $request->año.'-'.$request->mes;
+        
+        $employees = Employee::get();
 
         $payroll = Payroll::where([
             ['year', $request->año],
@@ -56,13 +60,16 @@ class PayrollController extends Controller
 
         }else{
 
+            //$variable = Days_planning::all();
+
             if($request->quincena == 1)
             {
 
                 $i = $fecha.'-01'; 
                 $f = $fecha.'-15';
 
-                $date = Day_attendance::whereBetween('fecha', [$i,$f])->get();
+                $dates = Days_planning::whereBetween('dia', [$i,$f])->get();
+                $assistances = Day_attendance::whereBetween('fecha', [$i,$f])->get();
 
             }else{
 
@@ -75,7 +82,8 @@ class PayrollController extends Controller
                     $i = $fecha.'-16'; 
                     $f = $fecha.'-31';
 
-                    $date = Day_attendance::whereBetween('fecha', [$i,$f])->get();
+                    $dates = Days_planning::whereBetween('dia', [$i,$f])->get();
+                    $assistances = Day_attendance::whereBetween('fecha', [$i,$f])->get();
 
                 }else{
 
@@ -84,21 +92,54 @@ class PayrollController extends Controller
                         $i = $fecha.'-16'; 
                         $f = $fecha.'-29';
 
-                        $date = Day_attendance::whereBetween('fecha', [$i,$f])->get();
+                        $dates = Days_planning::whereBetween('dia', [$i,$f])->get();
+                        $assistances = Day_attendance::whereBetween('fecha', [$i,$f])->get();
 
                     }else{
 
                         $i = $fecha.'-16'; 
                         $f = $fecha.'-30';
 
-                        $date = Day_attendance::whereBetween('fecha', [$i,$f])->get();
+                        $dates = Days_planning::whereBetween('dia', [$i,$f])->get();
+                        $assistances = Day_attendance::whereBetween('fecha', [$i,$f])->get();
                     }
                 }
             }
 
+            $count = count($dates);
+
+            $employees = Employee::all();
+
+            /*
+            *       Dias que labora el empleado en una planificación de la quincena $count
+            */
+
+            foreach ($employees as $employee) 
+            {
+                $employee_id[] = $employee->id;
+            }
+
+            foreach ($assistances as $assistance) 
+            {
+                $fechas[] = $assistance->attendance;
+
+                foreach ($employee_id as $employee) 
+                {
+                    $empleados[] = Employee::find($employee)->hoem;
+                }    
+            }
+
+
+            
+         
+
+            //dd($employees2);
+
+
+
         }
 
-        return view('admin.payroll.create');
+        return view('admin.payroll.create', compact('employees', 'fechas', 'i', 'f'));
     }
 
     /**

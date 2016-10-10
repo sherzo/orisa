@@ -113,6 +113,11 @@ class DrinksController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $drinks = Drink::find($id);
+        $drinks->delete();
+
+        Flash::success('<strong>Exito </strong> la bebida <em>'. $drinks->bebida .'</em> se eliminó correctamente.');
+
+        return redirect('admin/ingredientes');
     }
 }

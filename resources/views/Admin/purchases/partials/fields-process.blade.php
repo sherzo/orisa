@@ -1,5 +1,5 @@
 {!! Form::open(['route' => 'admin.compra.save', 'method' => 'POST']) !!} {{ csrf_field() }}
-
+	{{ Form::hidden('id_compra', $order->id) }}
 	<div class="row">
 		<div class="col-md-10 col-md-offset-1">
 		<hr>

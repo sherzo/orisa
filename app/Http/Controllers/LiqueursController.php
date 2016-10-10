@@ -122,7 +122,7 @@ class LiqueursController extends Controller
         $liqueur = Liqueur::find($id);
         $liqueur->delete();
 
-        Flash::success('Exito el ingrediente '. $liqueur->licor .' se eliminó correctamente');
+        Flash::success('<strong> Exito </strong> el licor '. $liqueur->licor .' se eliminó correctamente');
 
         return redirect('admin/licores');
     }

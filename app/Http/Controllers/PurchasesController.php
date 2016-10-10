@@ -218,7 +218,7 @@ class PurchasesController extends Controller
             $liqueurs = Purchase::find($id)->liqueur;
             $drinks = Purchase::find($id)->drink;
 
-            return view('admin.purchases.process', compact('ingredients', 'liqueurs', 'drinks'));
+            return view('admin.purchases.process', compact('ingredients', 'liqueurs', 'drinks', 'order'));
 
         }else{
 
@@ -232,8 +232,8 @@ class PurchasesController extends Controller
     public function saved(Request $request)
     {
         $order = Purchase::find($request->id_compra);
-
-        //dd($request->all());
+        //dd($request->id_compra);
+        //dd($order);
 
         if($order->estatus == '0')
         {
@@ -242,26 +242,35 @@ class PurchasesController extends Controller
 
             if ($request->ingredients or $request->liqueurs or $request->drinks) 
             {
-
-                foreach ($request->ingredients as $key => $ingredient) 
+                if($request->ingredients)
                 {
-                    $i = Ingredient::find($ingredient);
-                    $i->stock += $request->cantidad_ingredient[$key];
-                    $i->save();
+                    foreach ($request->ingredients as $key => $ingredient) 
+                    {
+                        $i = Ingredient::find($ingredient);
+                        $i->stock += $request->cantidad_ingredient[$key];
+                        $i->save();
+                    }
+
                 }
-
-                foreach ($request->liqueurs as $key => $liqueur) 
+                
+                if($request->liqueurs)
                 {
-                    $l = Liqueur::find($liqueur);
-                    $l->stock += $request->cantidad_liqueur[$key];
-                    $l->save();
+                    foreach ($request->liqueurs as $key => $liqueur) 
+                    {
+                        $l = Liqueur::find($liqueur);
+                        $l->stock += $request->cantidad_liqueur[$key];
+                        $l->save();
+                    }
                 }
-
-                foreach ($request->drinks as $key => $drink) 
-                {
-                    $d = Drink::find($drink);
-                    $d->stock += $request->cantidad_drink[$key];
-                    $d->save();
+                
+                if($request->drinks)
+                {                  
+                    foreach ($request->drinks as $key => $drink) 
+                    {
+                        $d = Drink::find($drink);
+                        $d->stock += $request->cantidad_drink[$key];
+                        $d->save();
+                    }
                 }
 
                 Flash::success('<strong> Perfecto </strong> se ha incrementado la existencia de los productos en el inventario correctamente.');

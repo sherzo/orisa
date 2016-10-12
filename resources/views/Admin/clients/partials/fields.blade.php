@@ -1,5 +1,6 @@
 <div class="col-lg-6">
 	@if($dni_cedula)
+	<input type="hidden" name="comanda_id" value="{{ $comanda_id }}">
 		<div class="form-group{{ $errors->has('cedula') ? ' has-error' : '' }}">
 			{!! Form::label('cedula', 'Cédula') !!}   
 			{!! Form::text('cedula', $dni_cedula, ['class' => 'form-control', 'title' => 'Número de cedula', 'disabled']) !!}

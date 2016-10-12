@@ -38,7 +38,7 @@
 	    		    	<ul class="list-group">
 	    		    	<!-- PLATOS -->
 	    		    	@if($comanda->plates)
-	    		    		<li class="list-group-item"><span class="fa fa-cutlery"></span><em>Platos</em></li>
+	    		    		<li class="list-group-item"><em>Platos </em><span class="fa fa-cutlery"></span></li>
 	    		    		@foreach($comanda->plates as $key2 => $plate)
 		    		       		<li class="list-group-item text-center">{{ $plate->plato }}</li>
 		    		        @endforeach
@@ -54,7 +54,7 @@
 
 						<!-- BEBIDAS -->
 	    		    	@if($comanda->drinks)
-	    		    		<li class="list-group-item "><em>Bebidas</em></li>
+	    		    		<li class="list-group-item "><em>Bebidas</em><span class="fa fa-coffee"></span></li>
 	    		    		@foreach($comanda->drinks as $key2 => $bebida)
 		    		       		<li class="list-group-item text-center">{{ $bebida->bebida }}</li>
 		    		        @endforeach

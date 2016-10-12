@@ -26,13 +26,13 @@
             <center>¿No tiene una cuenta? <a href="" class="text-info" data-target="#registro_vip" data-dismiss="modal" data-toggle="modal">Cree una.</a><br><br>
             <a href="" class="text-info">Olvido mi contraseña.</a>
             </center>
-    <button>enviar</button>
+
       </div>
     
       <div class="modal-footer">
       <center>
         <button type="submit" class="btn btn-default" data-target="registro_vip" data-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-primary">Entrar</button>
+        <button type="submit" class="btn btn-primary">Entrar</button>
       </center>
 
       </div>

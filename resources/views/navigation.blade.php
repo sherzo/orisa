@@ -34,16 +34,9 @@
                     </li>
                     @if(Auth::guest())
                     <li>
-                        <a class="page-scroll" data-toggle="modal" data-target="#iniciar-sesion">VIP</a>
+                        <a class="page-scroll" data-toggle="modal" data-target="#iniciar-sesion">ENTRAR</a>
                     </li>
                     
-                    @endif
-                    @if (Auth::guest())
-                    <li>
-                        <a class="page-scroll" href="{{ url('iniciar-sesion') }}">
-                        <span class="fa fa-sign-out"></span>
-                        </a>
-                    </li>
                     @else 
                     <li>
                         <a class="page-scroll" href="{{ url('/admin') }}" title="Entrar">

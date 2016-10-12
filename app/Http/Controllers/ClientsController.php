@@ -62,13 +62,27 @@ class ClientsController extends Controller
      */
     public function store(Request $request)
     {
-        $client = new Client($request->all());
+        
+        if($request->comanda_id){
 
-        $client->save();
+            $client = new Client($request->all());
 
-        Flash::success('<strong>Exito! </strong> Se ha registrado el cliente '. $client->nombre. ' correctamente');
+            $client->save();
 
-        return redirect('admin/clientes');
+            return redirect('admin/comandas/facturar')->with('client', $client)->with('comanda_id', $request->comanda_id);
+
+
+        }else{
+
+            $client = new Client($request->all());
+
+            $client->save();
+
+            Flash::success('<strong>Exito! </strong> Se ha registrado el cliente '. $client->nombre. ' correctamente');
+
+            return redirect('admin/clientes');
+
+        }
 
     }
 

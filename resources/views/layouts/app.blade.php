@@ -118,7 +118,7 @@
                                 <ul class="nav nav-third-level">
                                     <li><a href="{{ url('admin/comandas') }}">Nueva</a></li>
                                     <li><a href="{{ url('admin/comandas/en-espera') }}">En espera</a></li>
-                                    <li><a href="{{ url('admin/sauces') }}">Procesadas</a></li>
+                                    <li><a href="#">Procesadas</a></li>
                                 </ul>
                             </li>
 

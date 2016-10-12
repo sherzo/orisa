@@ -25,6 +25,8 @@ class CommandsController extends Controller
 
         $fecha = Carbon::now()->format('Y-m-d');
         $reservations = Reservation::where('fecha_reservacion', $fecha)->get();
+        $mesas2 = Table::all();
+        
 
     $mesas = array('1' => null,
                    '2' => null,
@@ -57,7 +59,7 @@ class CommandsController extends Controller
         }
     }
 
-        return view('admin.comandas.index', compact('mesas'));
+        return view('admin.comandas.index', compact('mesas', 'mesas2'));
     }
 
     /**
@@ -132,6 +134,7 @@ class CommandsController extends Controller
     {
         if($request->rif){
 
+        //$comanda_id = $request->comanda_id;
         $rif = $request->literal.$request->rif;
         $exist = Client::where('dni_cedula', $rif)->exists();
 
@@ -141,13 +144,19 @@ class CommandsController extends Controller
             Flash::success('<strong> Perfecto </strong> cliente <strong>'. $rif .'</strong> fue encontrado.');
 
             return redirect()->back()->with('client', $client);
+
         }else{
+
+           
+            $dni_cedula = $rif;
+            return view('admin.clients.create', compact('dni_cedula', 'comanda_id'));
 
         }
 
         }else {
+
         $comanda = Command::find($request->command);
-        
+
         $platos = $comanda->plates()->get();
         $tragos = $comanda->beverages()->get();
         $bebidas = $comanda->drinks()->get();

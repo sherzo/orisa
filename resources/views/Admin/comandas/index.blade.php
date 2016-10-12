@@ -15,11 +15,12 @@
       {!! Form::open(['route' => 'admin.comandas.create', 'method' => 'GET']) !!}
 
 <div class="row">
+<?php  $contador = 0; ?>
 	@foreach($mesas as $key => $mesa)
 	           <div class="col-md-2">
                 <div class="panel panel-default">
                   <div class="panel-body">
-                    <img src="@if($mesa)
+                    <img src="@if($mesa || $mesas2[$contador]->estatus == 'Ocupada')
                     			{{ asset('img/mesa-ocupada.png') }}
                     		  @else 
                     		  {{ asset('img/mesa.png') }}
@@ -29,10 +30,11 @@
                   <div class="panel-footer">
                   # {{ $key }}
                     
-                    <input type="checkbox" class="check" name="mesa_id[]" @if($mesa) disabled="" @endif value="{{ $key }}">
+                    <input type="checkbox" class="check" name="mesa_id[]" @if($mesa || ($mesas2[$contador]->estatus) == 'Ocupada') disabled="" @endif value="{{ $key }}">
                   </div>
                 </div>
               </div>
+              <?php $contador++; ?>
 	@endforeach
 </div>
 <div class="row">

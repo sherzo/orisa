@@ -20,7 +20,7 @@ $(document).ready(function(){
 					$(".boton").text('Listo');
 					$(".boton").attr('title', 'Crear cuenta')
 					$("#datos").empty();
-					$("#datos").append('<div class="alert alert-success" role="alert">Bienvenido <strong>'+typeObj.nombres+' '+typeObj.apellidos+'</strong> ya puedes crear tu cuenta</div>'+
+					$("#datos").append('<div class="alert alert-success" role="alert">Bienvenido <strong>'+typeObj.nombre+'</strong> ya puedes crear tu cuenta</div>'+
 										'<div class="form-group"><label for="usuario">Usuario</label>'+
 										'<input type="text" class="form-control" name="user"></div>'+
 										'<div class="form-group"><label for="contrasena">Contraseña</label>'+

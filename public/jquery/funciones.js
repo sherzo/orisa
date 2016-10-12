@@ -38,7 +38,7 @@ $('#types').on('change', function(e){
                 $('#Tagregados').append(
                     '<tr class="nuevo success" ><td><input type="hidden" name="id_ingredientes[]" value="'+data['ingredient'][0].id +'">'+ data['ingredient'][0].id +
                     '</td><td>' + data['ingredient'][0].ingrediente + 
-                    '</td><td><input type="text" name="cantidades_i[]" class="form-control"></td><td>'+
+                    '</td><td><input type="number" name="cantidades_i[]" class="form-control" ></td><td>'+
                     '<select class="form-control" name="unidades_i[]"><option value="'+ data['units'][0].id +' ">'+ data['units'][0].unidad +'</option> '+
                     '<option value="'+ data['units'][1].id +' ">'+ data['units'][1].unidad +
                     '</option> '+
@@ -114,7 +114,7 @@ $('#types_liqueurs').on('change', function(e){
                 $('#licores_agregados').append(
                     '<tr class="nuevo success" ><td><input type="hidden" name="id_licores[]" value="'+data['liqueur'][0].id+'">'+ data['liqueur'][0].id +
                     '</td><td>' + data['liqueur'][0].licor + 
-                    '</td><td><input type="text" name="cantidades_l[]" class="form-control"></td><td>'+
+                    '</td><td><input type="number" name="cantidades_l[]" class="form-control" pattern="^[9|8|7|6]\d{8}$"></td><td>'+
                     '<select name="unidades_l[]" class="form-control"><option value="'+ data['units'][0].id +' ">'+ data['units'][0].unidad +'</option> '+
                     '<option value="'+ data['units'][1].id +' ">'+ data['units'][1].unidad +
                     '</option> '+

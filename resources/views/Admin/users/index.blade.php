@@ -2,12 +2,10 @@
 
 @section('contenido')
 
- <!-- Page Content -->
+
 <div class="row">
     <div class="col-lg-12">
-        <h5 class="page-header"></h5>
-    </div>
-    <div class="col-lg-12">
+        <h1 class="page-header"></h1>
         <ol class="breadcrumb">
             <li><a href="{{ url('admin') }}"><span class="glyphicon glyphicon-home"></span></a></li>
             <li class="active">Usuarios</li>
@@ -16,25 +14,28 @@
 </div>
 <div class="row">
     <div class="col-lg-4">
-        <a  href="{{ url('admin/usuarios/create') }}" class="btn btn-primary">
-            <span class="fa fa-plus"></span>
+        <a href="{{ url('admin/usuarios/create') }}">
+            <button type="button" class="btn btn-primary"><span class="fa fa-plus"></span></button>
         </a>
     </div>
 </div>
-          <!--  CIERRE DEL ROW -->
-
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="table-responsive">
-                        <p>Existen {{ $users->total() }} usuarios registrados</p>
-                        
-                          @include('admin.users.partials.table')
-
-                            {!! $users->render() !!}
-                        </div>
-                    </div>
-               </div>
+<br>
+<div>
+    @include('flash::message')
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <em>Registro de Usuarios</em>
+            </div>
+            <div class="panel-body">
+                <div class="dataTable_wrapper">
+                    @include('admin.users.partials.table')
+                </div>
+            </div>
+        </div>
     </div>
+</div>
 
-
-  @endsection
+@endsection

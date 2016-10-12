@@ -1,30 +1,28 @@
-<div class="col-lg-5 col-lg-offset-1">
-    <div class="form-group{{ $errors->has('fecha_inicio') ? ' has-error' : '' }}">
-        {!! Form::label('inicio', 'Inicio') !!} <strong><span class="text-danger">*</span></strong>
-        {!! Form::date('fecha_inicio', null,['class' => 'form-control', 'title' => 'Fecha inicio de la planificacíon']) !!}
 
-        @if($errors->has('fecha_inicio'))
-            <span class="help-block">
-                <em>{{ $errors->first('fecha_inicio') }}</em>
-            </span>
-        @endif
-    </div>
+<div class="form-group{{ $errors->has('fecha_inicio') ? ' has-error' : '' }}">
+    {!! Form::label('inicio', 'Inicio') !!}
+    {!! Form::date('fecha_inicio', null,['class' => 'form-control', 'title' => 'Fecha inicio de la planificacíon']) !!}
+
+    @if($errors->has('fecha_inicio'))
+        <span class="help-block">
+            <em>{{ $errors->first('fecha_inicio') }}</em>
+        </span>
+    @endif
 </div>
 
-<div class="col-lg-5">
-    <div class="form-group{{ $errors->has('fecha_final') ? ' has-error' : '' }}">
-        {!! Form::label('final', 'Final') !!} <strong><span class="text-danger">*</span></strong>
-        {!! Form::date('fecha_final', null,['class' => 'form-control', 'title' => 'Fecha final de la planificacíon']) !!}
-        
-        @if($errors->has('fecha_final'))
-            <span class="help-block">
-                <em>{{ $errors->first('fecha_final') }}</em>
-            </span>
-        @endif
+<div class="form-group{{ $errors->has('fecha_final') ? ' has-error' : '' }}">
+    {!! Form::label('final', 'Final') !!}
+    {!! Form::date('fecha_final', null,['class' => 'form-control', 'title' => 'Fecha final de la planificacíon']) !!}
+    
+    @if($errors->has('fecha_final'))
+        <span class="help-block">
+            <em>{{ $errors->first('fecha_final') }}</em>
+        </span>
+    @endif
 
-        {!! Form::hidden('estatus', 'Creada') !!}
-    </div>
+    {!! Form::hidden('estatus', 'Creada') !!}
 </div>
+
 <div class="col-lg-12">
     <br>
     <div class="form-group tooltip-demo text-center">

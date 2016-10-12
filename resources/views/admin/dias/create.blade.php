@@ -22,7 +22,7 @@
     <div class="col-lg-12">
         <div class="panel panel-default">
             <div class="panel-heading">
-                Planificación: {{ $planificacion->fechas }}
+                <em>Planificación: {{ $planificacion->fechas }}</em>
             </div>
                 {!! Form::open(['route' => 'admin.planificaciones.administrar.dias.store', 'method' => 'POST', 'name' => 'form']) !!}
                     {{ csrf_field() }}  @include('admin.dias.partials.fields_create')

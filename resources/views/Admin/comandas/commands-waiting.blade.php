@@ -17,14 +17,15 @@
     <div class="row" id="comandas">
     	
     	@foreach($commands as $key => $comanda)
-    
-    	<div class="col-md-4">
+    		<?php $contador++; ?>
+    	<div class="col-md-6">
     		<div class="panel-group" role="tablist">
     		 	<div class="panel panel-default">
     		  		<div class="panel-heading" role="tab" id="collapseListGroupHeading{{$comanda->id}}">
     		   			<h4 class="panel-title">
-    		    			<a href="#collapseListGroup{{$comanda->id}}" class="collapsed" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="collapseListGroup{{$comanda->id}}" data-parent="#accordion">Mesa:</a>&nbsp;
-    		    			<img src="{{ asset('img/mesa.png') }}" width="25px" height="25px">
+    		    			<a href="#collapseListGroup{{$comanda->id}}" class="collapsed" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="collapseListGroup{{$comanda->id}}" data-parent="#accordion">Comanda #{{$contador}}</a>&nbsp;
+    		    			Mesa:
+    		    			<img src="{{ asset('img/mesas/mesa-') }}{{ $comanda->table_id.'.png'}}" width="25px" height="25px">
 							<span class="label  @if($comanda->estatus == 'En espera')
 												label-warning
 												@endif() 
@@ -36,6 +37,7 @@
     		     	</div> 
     		    	<div class="collapse panel-collapse" role="tabpanel" id="collapseListGroup{{$comanda->id}}" aria-labelledby="collapseListGroupHeading{{$comanda->id}}">
 	    		    	<ul class="list-group">
+	    		    	<li class="list-group-item"></li>
 	    		    	<!-- PLATOS -->
 	    		    	@if($comanda->plates)
 	    		    		<li class="list-group-item"><em>Platos </em><span class="fa fa-cutlery"></span></li>

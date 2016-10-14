@@ -119,15 +119,17 @@ class CommandsController extends Controller
 
     public function hold()
     {	
-    	$commands = Command::all();
+        $date = Carbon::now()->format('Y-m-d');
+    	$commands = Command::where('created_at', 'LIKE', $date." %")->orWhere('estatus', 'En espera')->get();
+
     	$commands->each(function($commands){
     		$commands->plates;
     		$commands->beverages;
     		$commands->drinks;
     		$commands->juices;
     	});
-
-    	return view('admin.comandas.commands-waiting', compact('commands'));
+        $contador = 0;
+    	return view('admin.comandas.commands-waiting', compact('commands', 'contador'));
     }
 
     public function invoice(Request $request)
@@ -166,6 +168,7 @@ class CommandsController extends Controller
         $total_j = 0;
         $total_b = 0;
         $total_t = 0;
+
         foreach ($platos as $key => $value) {
             $total_p = $value->precio+$total_p;
         }

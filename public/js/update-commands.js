@@ -1,4 +1,5 @@
 $(document).ready(function(){
+
 var label = $('.estatus1').text();
 console.log(label);
 	function ActualizarComandas(){
@@ -16,8 +17,8 @@ console.log(label);
 
 		});
 	}
-if(label != ''){
+
 	setInterval(ActualizarComandas, 1000);
 	console.log(label);
-}
+
 });

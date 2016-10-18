@@ -128,7 +128,9 @@ class CommandsController extends Controller
     		$commands->drinks;
     		$commands->juices;
     	});
+
         $contador = 0;
+
     	return view('admin.comandas.commands-waiting', compact('commands', 'contador'));
     }
 

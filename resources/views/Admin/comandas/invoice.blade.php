@@ -54,12 +54,51 @@
 			
 			</div>
 		</div>
-	</div>	
-</div>
+	 </div>	
+	</div>
 </form>
  @endif
             	<div class="dataTable_wrapper">
-                	@include('admin.comandas.partials.field-view')
+                	<div class="col-md-10 col-md-offset-1">
+						<hr>
+						<p>Mesa : {{ $comanda->table_id }}</p>
+						<p>Fecha : {{ $comanda->created_at }}</p>
+						<p>Empleado: {{ $comanda->employe_id }}</p>
+						<p>CI o Rif cliente: @if(session()->has('client')) V-25607793 @endif</p>
+						<p>Nombre cliente: @if(session()->has('client')) Saul Florez @endif</p>
+						
+						
+						<div class="col-md-1"></div>
+						<br>
+						<div class="col-md-14 center-block">
+							<table class="table table-bordered table-hover table-condensed">
+								<thead>
+									<tr>
+										<th>Producto</th>
+										<th>Cantidad</th>
+										<th>Precio unitario</th>
+										<th>Importe</th>
+									</tr>
+								</thead>
+								<tbody>
+								@include('admin.comandas.partials.invoice.plates')
+								@include('admin.comandas.partials.invoice.beverages')
+								@include('admin.comandas.partials.invoice.drinks')
+								@include('admin.comandas.partials.invoice.juices')
+								
+								@include('admin.comandas.partials.invoice.footer')
+								</tbody>
+							</table>
+
+							<div class="row">
+								<div class="col-md-12 tooltip-demo text-center">
+								<br>
+									<a class="btn btn-default btn-sm " type="button" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="@if(!session()->has('client'))Primero busque al cliente @else Facturar @endif" href="{{ route('admin.comandas.facturar', [$comanda->id]) }}" @if(!session()->has('client'))disabled="true" @endif><span class="glyphicon glyphicon-copy fa-2x" ></span></a>
+									<a class="btn btn-default btn-sm " type="button" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="PDF" href=""><span class="glyphicon glyphicon-print fa-2x"></span></a>
+									</div>
+							</div>
+						</div>
+					</div>
                 </div>
             </div>
         </div>

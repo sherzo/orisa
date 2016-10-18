@@ -21,16 +21,16 @@
                 <div class="panel panel-default">
                   <div class="panel-body">
                     <img src="@if($mesa || $mesas2[$contador]->estatus == 'Ocupada')
-                    			{{ asset('img/mesa-ocupada.png') }}
+                    			{{ asset('img/tables/mesa-ocupada.png') }}
                     		  @else 
-                    		  {{ asset('img/mesa.png') }}
+                    		  {{ asset('img/tables/mesa.png') }}
                     		  @endif"
                      alt="" class="img-responsive">
                   </div>
                   <div class="panel-footer">
                   # {{ $key }}
                     
-                    <input type="checkbox" class="check" name="mesa_id[]" @if($mesa || ($mesas2[$contador]->estatus) == 'Ocupada') disabled="" @endif value="{{ $key }}">
+                    <input type="radio" class="check" name="mesa_id" @if($mesa || ($mesas2[$contador]->estatus) == 'Ocupada') disabled="" @endif value="{{ $key }}">
                   </div>
                 </div>
               </div>

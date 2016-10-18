@@ -20,11 +20,11 @@
 <div class="media">
   <div class="media-body">
     <h4 class="media-heading">Comanda</h4>
-    Mesa <input type="hidden" name="table_id" value="{{ $mesa[0] }}">
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mesa <input type="hidden" name="table_id" value="{{ $mesa }}">
   </div>
   <div class="media-right">
     <a href="#">
-      <img class="media-object" src="{{ asset('img/mesa.png')}}" alt="..." width="60" height="60">
+      <img class="media-object" src="{{ asset('img/tables/mesa-') }}{{ $mesa.'.png'}}" alt="..." width="50" height="50">
     </a>
   </div>
 </div>

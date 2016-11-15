@@ -9,6 +9,7 @@ use App\Assistance;
 use App\Day_attendance;
 use App\Days_planning;
 use App\Employee;
+use App\Holiday;
 use Laracasts\Flash\Flash;
 
 class AssistsController extends Controller
@@ -32,10 +33,9 @@ class AssistsController extends Controller
 
         if ($day) 
         {
-            $exists = Day_attendance::where('fecha', $request->fecha)->first();
-
+            $dia = Days_planning::where('dia', $request->fecha)->first();
+            $empleados = Holiday::where('dia_id', $dia->id)->get();
             $fecha = $request->fecha;
-            $empleados = Employee::orderBy('nombres')->get();
 
             return view('admin.asistencias.create', compact('fecha', 'empleados'));
 

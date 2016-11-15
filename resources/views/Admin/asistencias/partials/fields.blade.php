@@ -14,20 +14,20 @@
 		@foreach($empleados as $key => $empleado)
 			<tr>
 				<td class="text-center">
-					<input type="checkbox" name="empleados[]" value="{{ $empleado->id }}" onchange="desbloquear()">
+					<input type="checkbox" name="empleados[]" value="{{ $empleado->ems->id }}" onchange="desbloquear()">
 					{!! Form::hidden('fecha', $fecha) !!}
 				</td>
 				<td> 
-					{{ $empleado->full_name }} 
+					{{ $empleado->ems->full_name }} 
 				</td>
 				<td> 
-					{{ $empleado->turno->turno }}
+					{{ $empleado->ems->turno->turno }}
 				</td>
 				<td class="text-center"> 
-					{!! Form::time('hora_entrada[]', $empleado->turno->hora_entrada, array('disabled' => 'disabled')) !!}
+					{!! Form::time('hora_entrada[]', $empleado->ems->turno->hora_entrada, array('disabled' => 'disabled')) !!}
 				</td>
 				<td class="text-center">  
-					{!! Form::time('hora_salida[]', $empleado->turno->hora_salida, array('disabled' => 'disabled')) !!}
+					{!! Form::time('hora_salida[]', $empleado->ems->turno->hora_salida, array('disabled' => 'disabled')) !!}
 				</td>
 			</tr>
 		@endforeach

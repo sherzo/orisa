@@ -9,6 +9,7 @@ use App\Employee;
 use App\Planning;
 use App\Holiday;
 use App\Payroll;
+use App\Assistance;
 use App\Days_planning;
 use App\Day_attendance;
 use Laracasts\Flash\Flash;
@@ -108,38 +109,43 @@ class PayrollController extends Controller
 
             $count = count($dates);
 
-            $employees = Employee::all();
-
             /*
             *       Dias que labora el empleado en una planificación de la quincena $count
             */
 
             foreach ($employees as $employee) 
             {
-                $employee_id[] = $employee->id;
-            }
-
-            foreach ($assistances as $assistance) 
-            {
-                $fechas[] = $assistance->attendance;
-
-                foreach ($employee_id as $employee) 
+                foreach ($assistances as $key => $assistance) 
                 {
-                    $empleados[] = Employee::find($employee)->hoem;
-                }    
+                    $worked[$employee->id][] = Assistance::where([['empleado_id', $employee->id],['asistencia_id', $assistance->id]])->count();
+                }
             }
 
+            /*
+            *       Contando cuantos dias laboro en la quincena 
+            */
 
-            
-         
+            foreach ($worked as $worked) 
+            {
+                $l = 0;
+                
+                foreach ($worked as $worked_days) 
+                {
+                    $l += $worked_days;
+                }
 
-            //dd($employees2);
+                $laborados[] = $l;
 
+            }
 
+            //dd($laborados);
 
+            /*
+            *     Calculando Horas extras de los empleados
+            */
         }
 
-        return view('admin.payroll.create', compact('employees', 'fechas', 'i', 'f'));
+        return view('admin.payroll.create', compact('employees', 'fechas', 'i', 'f', 'laborados'));
     }
 
     /**

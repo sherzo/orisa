@@ -11,9 +11,10 @@ class Position extends Model
     protected $fillable = [
         'codigo', 'nombre', 'salario'
     ];
+
     public function em()
     {
         return $this->belongsTo('App\Employee', 'id');
     }
- 
+
 }

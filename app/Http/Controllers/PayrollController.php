@@ -5,9 +5,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use Carbon\Carbon;
+use App\Deduction;
 use App\Employee;
+use App\ExtraHour;
 use App\Planning;
 use App\Holiday;
+use App\PayrollMade;
 use App\Payroll;
 use App\Assistance;
 use App\Days_planning;
@@ -23,7 +27,9 @@ class PayrollController extends Controller
      */
     public function index()
     {
-        return view('admin.payroll.index');
+        $payrollMade = PayrollMade::all();
+
+        return view('admin.payroll.index', compact('payrollMade'));
     }
 
     /**
@@ -44,8 +50,13 @@ class PayrollController extends Controller
     public function create(Request $request)
     {
         $fecha = $request->año.'-'.$request->mes;
-        
-        $employees = Employee::get();
+
+        $quincena = $request->quincena;
+        $mes = $request->mes;
+        $year = $request->año;
+
+        $employees = Employee::all();
+        $deductions = Deduction::all();
 
         $payroll = Payroll::where([
             ['year', $request->año],
@@ -107,23 +118,16 @@ class PayrollController extends Controller
                 }
             }
 
-            $count = count($dates);
-
-            /*
-            *       Dias que labora el empleado en una planificación de la quincena $count
-            */
+            //$count = count($dates);
 
             foreach ($employees as $employee) 
             {
-                foreach ($assistances as $key => $assistance) 
+                foreach ($assistances as $assistance) 
                 {
                     $worked[$employee->id][] = Assistance::where([['empleado_id', $employee->id],['asistencia_id', $assistance->id]])->count();
+                    $extraHours[$employee->id][] = Assistance::where([['empleado_id', $employee->id],['asistencia_id', $assistance->id]])->get();
                 }
             }
-
-            /*
-            *       Contando cuantos dias laboro en la quincena 
-            */
 
             foreach ($worked as $worked) 
             {
@@ -134,18 +138,111 @@ class PayrollController extends Controller
                     $l += $worked_days;
                 }
 
-                $laborados[] = $l;
+                $laborados[] = $l+4;
+
+            }
+            $t = 0;
+
+            foreach ($extraHours as $extraHour) 
+            {
+                
+                
+                foreach ($extraHour as $extraHourArray) 
+                {
+                
+                    foreach ($extraHourArray as $extraHourArrayCount) 
+                    {
+                        $dt = Carbon::parse($extraHourArrayCount->hora_entrada);
+                        $dt2 = Carbon::parse($extraHourArrayCount->hora_salida);
+                                
+                        $time = Carbon::createFromTime($dt->hour, $dt->minute, $dt->second);
+                        $time2 = Carbon::createFromTime($dt2->hour, $dt2->minute, $dt2->second);
+
+                        $timeForExtraCoding = $dt->diffInHours($dt2, false);
+                        //$minutesForExtraCoding = $dt->diffInMinutes($dt2, false);
+
+                        if($timeForExtraCoding > '8')
+                        {
+                            $extraHourEmployee[$t][] = $timeForExtraCoding-8;
+                            //dd($extraHourEmployee);
+                        } else {
+
+                            $extraHourEmployee[$t][] = 0;
+                        }
+                    }
+
+
+                }    
+
+                 $t++;
+            }
+            
+            //dd($extraHourEmployee);
+
+            foreach ($extraHourEmployee as $extraHourEmployee) 
+            {
+                $e = 0;
+
+
+                foreach ($extraHourEmployee as $extraHourEmployeeCount) 
+                {
+                    $e += $extraHourEmployeeCount;    
+                }
+
+                $hoursExtras[] = $e;
 
             }
 
-            //dd($laborados);
-
-            /*
-            *     Calculando Horas extras de los empleados
-            */
         }
 
-        return view('admin.payroll.create', compact('employees', 'fechas', 'i', 'f', 'laborados'));
+        //dd($hoursExtras);
+
+        foreach ($employees as $key => $employee) 
+        {
+            $k = 0;
+
+            foreach ($hoursExtras as $hoursCalculate) 
+            {
+                $horasExtras[] = $employee->turno->extraHours->valor_turno * $hoursCalculate;
+            }
+            
+            //dd($horasExtras);
+            $assignmentsTotal[] = $employee->cargo->salario/30 * $laborados[$key] + $horasExtras[$key]; 
+        
+            foreach ($deductions as $deduction) 
+            {
+                $fx = Carbon::parse($i);
+                $fx2 = Carbon::parse($f);
+
+                $dx = Carbon::create($fx->year, $fx->month, $fx->day);
+                $dx2 = Carbon::create($fx2->year, $fx2->month, $fx2->day);
+
+                $daysForExtraCoding = $dx->diffInDaysFiltered(function(Carbon $date) 
+                {
+
+                    return $date->isMonday();
+
+                }, $dx2);
+
+
+                $islr[] = 0.00;
+
+                $fdx = ($employee->cargo->salario * 12/52);
+                $fdt = ($assignmentsTotal[$key] * 0.005);
+                $fdy = $assignmentsTotal[$key];
+
+                //dd($fdt);
+                $sso[] = $fdx * 0.04 * $daysForExtraCoding;
+                $rpe[] = $fdt * $daysForExtraCoding;
+                $rpvh[] = $fdy * 0.01;
+                
+                $deductionsTotal[] = $sso[$key] + $rpe[$key] + $rpvh[$key];
+
+                $payments[] = $assignmentsTotal[$key] - $deductionsTotal[$key];
+            }
+        }
+
+        return view('admin.payroll.create', compact('employees', 'payments', 'quincena', 'mes', 'year', 'assignmentsTotal', 'deductionsTotal', 'sso', 'islr', 'rpe', 'rpvh', 'fechas', 'i', 'f', 'laborados', 'horasExtras'));
     }
 
     /**
@@ -156,7 +253,39 @@ class PayrollController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $user = auth()->user();
+
+        $fortnight = Payroll::create($request->all())->save();
+
+        foreach ($request->cedula as $key => $cedula) 
+        {
+
+            $payrollMade = new PayrollMade();
+
+                $payrollMade->usuario_id = $user->id;
+                $payrollMade->cedula = $cedula;
+                $payrollMade->nombre_completo = $request->nombre_completo[$key];
+                $payrollMade->cargo = $request->cargo[$key];
+                $payrollMade->salario_d = $request->salario_d[$key];
+                $payrollMade->salario_m = $request->salario_m[$key];
+                $payrollMade->islr = $request->islr[$key];
+                $payrollMade->sso = $request->sso[$key];
+                $payrollMade->rpe = $request->rpe[$key];
+                $payrollMade->rpvh = $request->rpvh[$key];
+                $payrollMade->laborados = $request->laborados[$key];
+                $payrollMade->no_laborados = '0';
+
+            $payrollMade->save();
+
+            $payrollMade->payroll()->attach($fortnight);
+
+        }
+        
+
+        Flash::success('<strong> Éxito </strong> se ha guardado la '.$request->quincena.' quincena del mes '.$request->mes.' del '.$request->year.' correctamente.');
+
+        return redirect('admin/nomina');
     }
 
     /**
@@ -165,9 +294,9 @@ class PayrollController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+        //
     public function show($id)
     {
-        //
     }
 
     /**

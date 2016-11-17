@@ -51,4 +51,9 @@ class User extends Authenticatable
             $this->attributes['password'] = bcrypt($value);
         }    
     }
+
+    public function payroll()
+    {
+        return $this->hasMany('App\PayrollMade', 'usuario_id', 'id');
+    }
 }

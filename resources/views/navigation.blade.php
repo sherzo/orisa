@@ -34,7 +34,7 @@
                     </li>
                     @if(Auth::guest())
                     <li>
-                        <a class="page-scroll" data-toggle="modal" data-target="#iniciar-sesion">ENTRAR</a>
+                        <a class="page-scroll" href="#" data-toggle="modal" data-target="#iniciar-sesion">ENTRAR</a>
                     </li>
                     
                     @else 

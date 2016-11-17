@@ -16,4 +16,10 @@ class Turn extends Model
    	{
     	return $this->belongsTo('App\Employee', 'id');
     }	
+
+    public function extraHours()
+    {
+    	return $this->hasOne('App\ExtraHour', 'turno_id', 'id');
+    }
+ 
 }

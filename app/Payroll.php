@@ -20,4 +20,9 @@ class Payroll extends Model
     *
     * @var array
     */
+
+    public function payroll()
+    {
+        return $this->belongsToMany('App\PayrollMade', 'payrolls', 'nominasaved_id', 'nominamade_id');
+    }
 }

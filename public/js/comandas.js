@@ -111,8 +111,5 @@ $(document).ready(function(){
 
 
 		//Funcion para actualizar las comandas
-		function Comandas(){
-			
-		}
 	
 });// Fin de la funcion jQuery

@@ -136,30 +136,11 @@ class CommandsController extends Controller
 
     public function invoice(Request $request)
     {
-        if($request->rif){
-
-        //$comanda_id = $request->comanda_id;
-        $rif = $request->literal.$request->rif;
-        $exist = Client::where('dni_cedula', $rif)->exists();
-
-        if($exist)
-        {
-            $client = Client::where('dni_cedula', $rif)->get();
-            Flash::success('<strong> Perfecto </strong> cliente <strong>'. $rif .'</strong> fue encontrado.');
-
-            return redirect()->back()->with('client', $client);
-
-        }else{
-
-           
-            $dni_cedula = $rif;
-            return view('admin.clients.create', compact('dni_cedula', 'comanda_id'));
-
-        }
-
-        }else {
-
         $comanda = Command::find($request->command);
+        $fecha = new Carbon($comanda->create_at);
+        $fecha = $fecha->format('d-m-Y');
+
+        $mesa = $comanda->table()->get();
 
         $platos = $comanda->plates()->get();
         $tragos = $comanda->beverages()->get();
@@ -192,8 +173,49 @@ class CommandsController extends Controller
         $date = new Carbon($comanda->create_at);
         $total = $subtotal + $iva + $servicio;
         
-        return view('admin.comandas.invoice', compact('comanda', 'platos', 'tragos', 'bebidas', 'jugos', 'date', 'subtotal', 'iva', 'servicio', 'total'));
-        }
+        return view('admin.comandas.invoice', compact('comanda', 'platos', 'tragos', 'bebidas', 'jugos', 'date', 'subtotal', 'iva', 'servicio', 'total', 'mesa', 'fecha'));
+        
+    }
+
+    public function process_invoice(Request $request){
+
+        $client = Client::find($request->client_id);
+
+        $comanda = Command::find($request->command_id);
+
+        $comanda->estatus = 'Procesada';
+        $comanda->save();
+
+        $client->commands()->attach([$request->command_id => ['subtotal' => $request->subtotal, 'total' => $request->total]]);
+
+        Flash::success('<strong>Exito! </strong> Se ha procesado la comanda correctamente');
+
+            return redirect('admin/comandas/procesadas');
+
+
+    }
+
+    public function process(){
+
+        $comandas = Command::where('estatus', 'Procesada')->get();
+        $comandas->each(function($comandas){
+            $comandas->client;
+        });
+
+
+        return view('admin.comandas.process_invoice', compact('comandas'));
+
+    }
+
+    public function client_new(Request $request){
+
+        $dni_cedula = $request->literal.$request->cedula;
+        $comanda = $request->comanda;
+
+        Flash::info('<strong> INFO </strong> búsqueda con número de cédula '. $dni_cedula .' no se encuentra en la base de datos, proceda a llenar los campos.');
+
+            return view('admin.clients.create', compact('dni_cedula', 'comanda'));
+
     }
 
     /**
@@ -204,7 +226,45 @@ class CommandsController extends Controller
      */
     public function show($id)
     {
+        $comanda = Command::find($id);
+        $fecha = new Carbon($comanda->create_at);
+        $fecha = $fecha->format('d-m-Y');
+
+        $cliente = $comanda->client;
+        $mesa = $comanda->table()->get();
+
+        $platos = $comanda->plates()->get();
+        $tragos = $comanda->beverages()->get();
+        $bebidas = $comanda->drinks()->get();
+        $jugos = $comanda->juices()->get();
+
+        $total_p = 0;
+        $total_j = 0;
+        $total_b = 0;
+        $total_t = 0;
+
+        foreach ($platos as $key => $value) {
+            $total_p = $value->precio+$total_p;
+        }
+
+        foreach ($tragos as $key => $value) {
+            $total_t = $value->precio+$total_t;
+        }
+
+        foreach ($bebidas as $key => $value) {
+            $total_b = $value->precio+$total_b;
+        }
+
+        foreach ($jugos as $key => $value) {
+            $total_j = $value->precio+$total_j;
+        }
+        $subtotal = $total_t + $total_j + $total_p + $total_b;
+        $iva = $subtotal * 0.12;
+        $servicio = $subtotal * 0.05;
+        $date = new Carbon($comanda->create_at);
+        $total = $subtotal + $iva + $servicio;
         
+        return view('admin.comandas.show', compact('comanda', 'platos', 'tragos', 'bebidas', 'jugos', 'date', 'subtotal', 'iva', 'servicio', 'total', 'mesa', 'fecha', 'cliente'));
     }
 
     /**

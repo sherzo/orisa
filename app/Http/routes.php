@@ -190,6 +190,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
 	Route::resource('jugos', 'JuicesController');
 	Route::get('comandas/en-espera', ['uses' => 'CommandsController@hold', 'as' => 'admin.comandas.en-espera']);
 	Route::get('comandas/facturar', ['uses' => 'CommandsController@invoice', 'as' => 'admin.comandas.facturar']);
+	Route::get('comandas/procesadas', ['uses' => 'CommandsController@process', 'as' => 'admin.comandas.procesadas']);
+	Route::get('comandas/cliente-nuevo', ['uses' => 'CommandsController@client_new', 'as' => 'admin.comandas.cliente-nuevo']);
 	Route::get('comandas/en-espera/procesar/{comanda}', function($comanda){
 		$command = App\Command::find($comanda);
 		$command->estatus = 'Lista';
@@ -239,6 +241,23 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
 
 		}
 	});
+	Route::get('comandas/facturar/cliente/{documento}', function($documento){
+		$client = App\Client::where('dni_cedula', $documento)->get();
+
+		return Response::json($client);
+		
+	});
+
+	Route::get('recibo/{id}',  ['as' => 'admin.recibo', function($id){
+
+		
+
+		return view('admin.comandas.recibo');
+		
+		}]);
+
+
+
 	//LICORES BEBIDAS
 
 	Route::get('tragos/create/liqueurs/{type}',  function($type){

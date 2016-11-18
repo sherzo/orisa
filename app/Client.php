@@ -12,7 +12,7 @@ class Client extends Model
      * @var array
      */
     protected $fillable = [
-     'dni_cedula', 'nombres', 'apellidos', 'direccion', 'operadora', 'telefono', 'tipo',
+     'dni_cedula', 'nombre', 'direccion', 'operadora', 'telefono', 'tipo',
     ];
 
     /**
@@ -22,6 +22,11 @@ class Client extends Model
      */
     
     protected $table = 'clients';
+
+    public function commands()
+    {
+        return $this->belongsToMany('App\Command', 'commands_has_clients')->withPivot('subtotal', 'total');
+    }
 
     public function user()
     {

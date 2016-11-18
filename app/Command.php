@@ -20,6 +20,10 @@ class Command extends Model
      *
      * @var array
      */
+    public function client()
+    {
+        return $this->belongsToMany('App\Client', 'commands_has_clients')->withPivot('subtotal', 'total');
+    }
 
     public function table()
     {

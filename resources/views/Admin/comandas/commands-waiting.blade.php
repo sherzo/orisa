@@ -31,7 +31,7 @@
 												@endif() 
 
 												@if($comanda->estatus == 'Lista')
-												label-success
+												label-primary
 												@endif pull-right estatus{{$comanda->id}}">{{ $comanda->estatus}}</span> 
     		     		</h4> 
     		     	</div> 
@@ -57,7 +57,5 @@
 @endsection
 
 @section('js')
-<script>
-	
-</script>
+<script src="{{ asset('js/update-commands.js') }}"></script>
 @endsection

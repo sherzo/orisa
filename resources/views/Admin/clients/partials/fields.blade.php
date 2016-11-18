@@ -1,6 +1,9 @@
 <div class="col-lg-6">
 	@if($dni_cedula)
-	<input type="hidden" name="comanda_id" value="{{ $comanda_id }}">
+
+		@if(isset($comanda))
+			<input type="hidden" name="comanda" value="{{ $comanda }}">
+		@endif
 		<div class="form-group{{ $errors->has('cedula') ? ' has-error' : '' }}">
 			{!! Form::label('cedula', 'Cédula') !!}   
 			{!! Form::text('cedula', $dni_cedula, ['class' => 'form-control', 'title' => 'Número de cedula', 'disabled']) !!}
@@ -30,7 +33,7 @@
 </div>
 <div class="col-lg-12">
 	<div class="form-group{{ $errors->has('nombre') ? ' has-error' : '' }}">
-		{!! Form::label('nombre', 'Nombres') !!} 
+		{!! Form::label('nombre', 'Nombre o Razon social') !!} 
 		{!! Form::text('nombre', null, ['class' => 'form-control', 'placeholder' => 'Alfredo Jesús', 'title' => 'Introduzca su nombre']) !!}
 
 		@if ($errors->has('nombre'))

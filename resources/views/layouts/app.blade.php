@@ -118,7 +118,7 @@
                                 <ul class="nav nav-third-level">
                                     <li><a href="{{ url('admin/comandas') }}">Nueva</a></li>
                                     <li><a href="{{ url('admin/comandas/en-espera') }}">En espera</a></li>
-                                    <li><a href="#">Procesadas</a></li>
+                                    <li><a href="{{ url('admin/comandas/procesadas')}}">Procesadas</a></li>
                                 </ul>
                             </li>
 
@@ -203,7 +203,6 @@
     <script src="{{ asset('bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.js') }}"></script>
     <script src="{{ asset('jquery/funciones.js') }}"></script>
     <script src="{{ asset('js/comandas.js') }}"></script>
-    <script src="{{ asset('js/update-commands.js') }}"></script>
     <script src="{{ asset('chosen/chosen.jquery.min.js') }}"></script>
 
         @yield('js')
@@ -242,7 +241,7 @@
     <script>
         $("#select_all").click(function(){
             $('input:checkbox').not(this).prop('checked', this.checked);
-        });;
+        });
     </script>
     <script>
     // tooltip demo

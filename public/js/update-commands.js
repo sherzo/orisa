@@ -1,7 +1,7 @@
 $(document).ready(function(){
 
-var label = $('.estatus1').text();
-console.log(label);
+var label = $('.estatus').text();
+
 	function ActualizarComandas(){
 		$.get('en-espera/actualizar', function(data){
 			
@@ -11,14 +11,14 @@ console.log(label);
 					$('.estatus'+typeObj.id).text(typeObj.estatus);
 					if(typeObj.estatus == 'Lista'){
 						$('.estatus'+typeObj.id).removeClass('label-warning');
-						$('.estatus'+typeObj.id).addClass('label-success');
+						$('.estatus'+typeObj.id).addClass('label-primary');
 					}
 				});
 
 		});
 	}
-
+	
 	setInterval(ActualizarComandas, 1000);
-	console.log(label);
+	
 
 });

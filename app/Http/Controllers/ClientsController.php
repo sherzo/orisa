@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
-use App\Http\Requests;
 use App\Client;
+use App\Command;
+use Carbon\Carbon;
+use App\Http\Requests;
+use Illuminate\Http\Request;
 use Laracasts\Flash\Flash;
 
 class ClientsController extends Controller
@@ -62,18 +63,50 @@ class ClientsController extends Controller
      */
     public function store(Request $request)
     {
-        
-        if($request->comanda_id){
-
+        if($request->comanda){
             $client = new Client($request->all());
-
             $client->save();
 
-            return redirect('admin/comandas/facturar')->with('client', $client)->with('comanda_id', $request->comanda_id);
+           $comanda = Command::find($request->comanda);
+            $fecha = new Carbon($comanda->create_at);
+            $fecha = $fecha->format('d-m-Y');
 
+            $mesa = $comanda->table()->get();
+
+            $platos = $comanda->plates()->get();
+            $tragos = $comanda->beverages()->get();
+            $bebidas = $comanda->drinks()->get();
+            $jugos = $comanda->juices()->get();
+
+            $total_p = 0;
+            $total_j = 0;
+            $total_b = 0;
+            $total_t = 0;
+
+            foreach ($platos as $key => $value) {
+                $total_p = $value->precio+$total_p;
+            }
+
+            foreach ($tragos as $key => $value) {
+                $total_t = $value->precio+$total_t;
+            }
+
+            foreach ($bebidas as $key => $value) {
+                $total_b = $value->precio+$total_b;
+            }
+
+            foreach ($jugos as $key => $value) {
+                $total_j = $value->precio+$total_j;
+            }
+            $subtotal = $total_t + $total_j + $total_p + $total_b;
+            $iva = $subtotal * 0.12;
+            $servicio = $subtotal * 0.05;
+            $date = new Carbon($comanda->create_at);
+            $total = $subtotal + $iva + $servicio;
+            
+            return view('admin.comandas.invoice-client', compact('comanda', 'platos', 'tragos', 'bebidas', 'jugos', 'date', 'subtotal', 'iva', 'servicio', 'total', 'mesa', 'fecha', 'client'));
 
         }else{
-
             $client = new Client($request->all());
 
             $client->save();

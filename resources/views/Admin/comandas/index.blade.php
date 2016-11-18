@@ -54,6 +54,7 @@
     }else {
 
     	$(this).parent('.panel-default').attr('class', 'panel panel-default')
+    }
 	});
 </script>
 @endsection

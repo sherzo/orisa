@@ -58,11 +58,7 @@ class PayrollController extends Controller
         $employees = Employee::all();
         $deductions = Deduction::all();
 
-        $payroll = Payroll::where([
-            ['year', $request->año],
-            ['mes', $request->mes],
-            ['quincena', $request->quincena]
-            ])->exists();
+        $payroll = Payroll::where([['year', $request->año],['mes', $request->mes],['quincena', $request->quincena]])->exists();
 
         if($payroll)
         {
@@ -72,7 +68,6 @@ class PayrollController extends Controller
 
         }else{
 
-            //$variable = Days_planning::all();
 
             if($request->quincena == 1)
             {
@@ -118,8 +113,6 @@ class PayrollController extends Controller
                 }
             }
 
-            //$count = count($dates);
-
             foreach ($employees as $employee) 
             {
                 foreach ($assistances as $assistance) 
@@ -129,120 +122,134 @@ class PayrollController extends Controller
                 }
             }
 
-            foreach ($worked as $worked) 
+            if (!empty($worked)) 
             {
-                $l = 0;
-                
-                foreach ($worked as $worked_days) 
+
+                foreach ($worked as $worked) 
                 {
-                    $l += $worked_days;
-                }
-
-                $laborados[] = $l+4;
-
-            }
-            $t = 0;
-
-            foreach ($extraHours as $extraHour) 
-            {
-                
-                
-                foreach ($extraHour as $extraHourArray) 
-                {
-                
-                    foreach ($extraHourArray as $extraHourArrayCount) 
+                    $l = 0;
+                    
+                    foreach ($worked as $worked_days) 
                     {
-                        $dt = Carbon::parse($extraHourArrayCount->hora_entrada);
-                        $dt2 = Carbon::parse($extraHourArrayCount->hora_salida);
-                                
-                        $time = Carbon::createFromTime($dt->hour, $dt->minute, $dt->second);
-                        $time2 = Carbon::createFromTime($dt2->hour, $dt2->minute, $dt2->second);
-
-                        $timeForExtraCoding = $dt->diffInHours($dt2, false);
-                        //$minutesForExtraCoding = $dt->diffInMinutes($dt2, false);
-
-                        if($timeForExtraCoding > '8')
-                        {
-                            $extraHourEmployee[$t][] = $timeForExtraCoding-8;
-                            //dd($extraHourEmployee);
-                        } else {
-
-                            $extraHourEmployee[$t][] = 0;
-                        }
+                        $l += $worked_days;
                     }
 
+                    $laborados[] = $l+4;
 
-                }    
-
-                 $t++;
-            }
-            
-            //dd($extraHourEmployee);
-
-            foreach ($extraHourEmployee as $extraHourEmployee) 
-            {
-                $e = 0;
-
-
-                foreach ($extraHourEmployee as $extraHourEmployeeCount) 
-                {
-                    $e += $extraHourEmployeeCount;    
                 }
 
-                $hoursExtras[] = $e;
+                $t = 0;
 
-            }
-
-        }
-
-        //dd($hoursExtras);
-
-        foreach ($employees as $key => $employee) 
-        {
-            $k = 0;
-
-            foreach ($hoursExtras as $hoursCalculate) 
-            {
-                $horasExtras[] = $employee->turno->extraHours->valor_turno * $hoursCalculate;
-            }
-            
-            //dd($horasExtras);
-            $assignmentsTotal[] = $employee->cargo->salario/30 * $laborados[$key] + $horasExtras[$key]; 
-        
-            foreach ($deductions as $deduction) 
-            {
-                $fx = Carbon::parse($i);
-                $fx2 = Carbon::parse($f);
-
-                $dx = Carbon::create($fx->year, $fx->month, $fx->day);
-                $dx2 = Carbon::create($fx2->year, $fx2->month, $fx2->day);
-
-                $daysForExtraCoding = $dx->diffInDaysFiltered(function(Carbon $date) 
+                if (!empty($worked)) 
                 {
+            
+                    foreach ($extraHours as $extraHour) 
+                    {
+                        
+                        foreach ($extraHour as $extraHourArray) 
+                        {
+                        
+                            foreach ($extraHourArray as $extraHourArrayCount) 
+                            {
+                                $dt = Carbon::parse($extraHourArrayCount->hora_entrada);
+                                $dt2 = Carbon::parse($extraHourArrayCount->hora_salida);
+                                        
+                                $time = Carbon::createFromTime($dt->hour, $dt->minute, $dt->second);
+                                $time2 = Carbon::createFromTime($dt2->hour, $dt2->minute, $dt2->second);
 
-                    return $date->isMonday();
+                                $timeForExtraCoding = $dt->diffInHours($dt2, false);
+                                //$minutesForExtraCoding = $dt->diffInMinutes($dt2, false);
 
-                }, $dx2);
+                                if($timeForExtraCoding > '8')
+                                {
+                                    $extraHourEmployee[$t][] = $timeForExtraCoding-8;
+         
+                                } else {
+
+                                    $extraHourEmployee[$t][] = 0;
+                                }
+                            }
 
 
-                $islr[] = 0.00;
+                        }    
 
-                $fdx = ($employee->cargo->salario * 12/52);
-                $fdt = ($assignmentsTotal[$key] * 0.005);
-                $fdy = $assignmentsTotal[$key];
+                         $t++;
+                    }
+                    
 
-                //dd($fdt);
-                $sso[] = $fdx * 0.04 * $daysForExtraCoding;
-                $rpe[] = $fdt * $daysForExtraCoding;
-                $rpvh[] = $fdy * 0.01;
+                    foreach ($extraHourEmployee as $extraHourEmployee) 
+                    {
+                        $e = 0;
+
+
+                        foreach ($extraHourEmployee as $extraHourEmployeeCount) 
+                        {
+                            $e += $extraHourEmployeeCount;    
+                        }
+
+                        $hoursExtras[] = $e;
+
+                    }
+
+                }else{
+
+                Flash::warning('<strong> Error </strong>');
+
+                return redirect()->back();
                 
-                $deductionsTotal[] = $sso[$key] + $rpe[$key] + $rpvh[$key];
+                }
 
-                $payments[] = $assignmentsTotal[$key] - $deductionsTotal[$key];
+                foreach ($employees as $key => $employee) 
+                {
+                    $k = 0;
+
+                    foreach ($hoursExtras as $hoursCalculate) 
+                    {
+                        $horasExtras[] = $employee->turno->extraHours->valor_turno * $hoursCalculate;
+                    }
+                    
+                    $assignmentsTotal[] = $employee->cargo->salario/30 * $laborados[$key] + $horasExtras[$key]; 
+                
+                
+                    $fx = Carbon::parse($i);
+                    $fx2 = Carbon::parse($f);
+
+                    $dx = Carbon::create($fx->year, $fx->month, $fx->day);
+                    $dx2 = Carbon::create($fx2->year, $fx2->month, $fx2->day);
+
+                    $daysForExtraCoding = $dx->diffInDaysFiltered(function(Carbon $date) 
+                    {
+
+                        return $date->isMonday();
+
+                    }, $dx2);
+
+
+                    $islr[] = 0.00;
+
+                    $fdx = ($employee->cargo->salario * 12/52);
+                    $fdt = ($assignmentsTotal[$key] * $deductions[0]->RPE);
+                    $fdy = $assignmentsTotal[$key];
+
+                    $sso[] = $fdx * $deductions[0]->SSO * $daysForExtraCoding;
+                    $rpe[] = $fdt * $daysForExtraCoding;
+                    $rpvh[] = $fdy * $deductions[0]->RPVH;
+                        
+                    $deductionsTotal[] = $sso[$key] + $rpe[$key] + $rpvh[$key];
+
+                    $payments[] = $assignmentsTotal[$key] - $deductionsTotal[$key];
+
+
+                    return view('admin.payroll.create', compact('employees', 'payments', 'quincena', 'mes', 'year', 'assignmentsTotal', 'deductionsTotal', 'sso', 'islr', 'rpe', 'rpvh', 'fechas', 'i', 'f', 'laborados', 'horasExtras'));
+                }
+
+            }else{
+
+                Flash::warning('<strong> Error </strong>');
+
+                return redirect()->back();
             }
-        }
-
-        return view('admin.payroll.create', compact('employees', 'payments', 'quincena', 'mes', 'year', 'assignmentsTotal', 'deductionsTotal', 'sso', 'islr', 'rpe', 'rpvh', 'fechas', 'i', 'f', 'laborados', 'horasExtras'));
+        }      
     }
 
     /**

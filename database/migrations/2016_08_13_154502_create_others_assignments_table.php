@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateOthersDeductionsTable extends Migration
+class CreateOthersAssignmentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,7 +12,7 @@ class CreateOthersDeductionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('others_deductions', function (Blueprint $table) {
+        Schema::create('others_assignments', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nombre');
             $table->double('valor', 15,2);
@@ -27,6 +27,6 @@ class CreateOthersDeductionsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('others_deductions');
+        Schema::drop('others_assignments');
     }
 }

@@ -13,9 +13,9 @@ class DeductionsTableSeeder extends Seeder
     {
         \DB::table('deductions')->insert(array (
             'ISLR' => '0.00',
-            'SSO'  => '4',
-        	'RPE'  => '0.5',
-        	'RPVH' => '1'
+            'SSO'  => '0.04',
+        	'RPE'  => '0.005',
+        	'RPVH' => '0.01'
         ));
     }
 }

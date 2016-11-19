@@ -247,8 +247,10 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
 		return Response::json($client);
 		
 	});
+	Route::post('comandas/procesar-factura', ['uses' => 'CommandsController@process_invoice','as' => 'admin.comandas.procesar-factura']);
 
 	Route::get('recibo/{id}',  ['as' => 'admin.recibo', function($id){
+
 
 		$comanda = App\Command::find($id);
         
@@ -285,14 +287,15 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
         $subtotal = $total_t + $total_j + $total_p + $total_b;
         $iva = $subtotal * 0.12;
         $servicio = $subtotal * 0.05;
-        
+
         $total = $subtotal + $iva + $servicio;
         
         $pdf = PDF::loadView('admin.comandas.recibo', ['comanda'=> $comanda, 'platos' => $platos, 'tragos' => $tragos, 'bebidas' => $bebidas, 'jugos' => $jugos, 'subtotal' => $subtotal, 'iva' => $iva, 'total' => $total, 'mesa' => $mesa, 'cliente' => $cliente, 'servicio' => $servicio]);
 
+        	return $pdf->download('recibo_n-0'.$comanda->id.'.pdf');
         // return view('admin.comandas.recibo', compact('comanda', 'platos', 'tragos', 'bebidas', 'jugos', 'subtotal', 'iva', 'servicio', 'total', 'mesa', 'cliente'));
 
-        return $pdf->download('recibo.pdf');
+
 		}]);
 
 

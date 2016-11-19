@@ -6,16 +6,14 @@
 		<h1 class="page-header"></h1>
 		<ol class="breadcrumb">
 			<li><a href="{{ url('admin') }}"><span class="glyphicon glyphicon-home"></span></a></li>
-			<li><a href="{{ url('admin/comandas/en-espera') }}">Comandas</a></li>
+			<li><a href="{{ url('admin/comandas/en-espera') }}">Comandas </a></li>
+			<li><a href="{{ url('admin/comandas/procesadas') }}">Procesadas</a></li>
 			<li class="active">Ver</li>
 		</ol>
 	</div>
 </div>
 <br>
-<div>
-    @include('flash::message')
 
-</div>
 <div class="row">
 	<div class="col-lg-12">
 		<div class="panel panel-default">
@@ -27,7 +25,10 @@
 				</span>
             </div>
             <div class="panel-body">
-            
+            <div>
+    @include('flash::message')
+
+</div>
 <div id="mensaje" class="col-md-10 col-md-offset-1"></div>
  
             	<div class="dataTable_wrapper">
@@ -70,7 +71,7 @@
 							<div class="row">
 								<div class="col-md-12 tooltip-demo text-center">
 								<br>
-									<button class="btn btn-default btn-sm " data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Imprimir recibo"><span class="glyphicon glyphicon-print fa-2x"></span></button>
+									<a class="btn btn-default btn-sm " href="{{ route('admin.recibo', $comanda->id)}}" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Generar PDF"><span class="glyphicon glyphicon-print fa-2x"></span></a>
 									</div>
 							</div>
 					</div>

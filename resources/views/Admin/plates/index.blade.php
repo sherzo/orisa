@@ -31,9 +31,9 @@
                   <div class="panel-footer">
                     {{ $plate->plato }}
                     
-                    <a href="#" class="btn btn-default btn-xs pull-right "> <span class="fa fa-trash-o fa-2x"></span> </a> &nbsp;&nbsp;
+                    <!-- <a href="#" class="btn btn-default btn-xs pull-right "> <span class="fa fa-pencil fa-2x"></span> </a> &nbsp;&nbsp; -->
                 
-                    <a href="#" class="btn btn-default btn-xs pull-right "> <span class="fa fa-pencil fa-2x"></span> </a>
+                    <!-- <a href="{{route('admin.platos.show', $plate->id)}}" class="btn btn-default btn-xs pull-right "> <span class="fa fa-eye fa-2x"></span> </a> -->
                   </div>
                 </div>
               </div>

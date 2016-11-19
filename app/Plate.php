@@ -30,4 +30,11 @@ class Plate extends Model
         return $this->belongsTo('App\Image');
     }
 
+    public function Ingredientes()
+    {
+        return $this->belongsTo('App\Ingredient', 'Plates_has_ingredients')->withPivot('cantidad'); 
+    }
+
+
+
 }

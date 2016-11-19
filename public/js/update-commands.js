@@ -12,13 +12,16 @@ var label = $('.estatus').text();
 					if(typeObj.estatus == 'Lista'){
 						$('.estatus'+typeObj.id).removeClass('label-warning');
 						$('.estatus'+typeObj.id).addClass('label-primary');
+						$('#contenedor'+typeObj.id).empty();
+						$('#contenedor'+typeObj.id).append('<button class="btn btn-primary btn-xs"><span class="fa fa-money fa-2x"></span></button>')
+
 					}
 				});
 
 		});
 	}
 	
-	setInterval(ActualizarComandas, 1000);
+	setInterval(ActualizarComandas, 2000);
 	
 
 });

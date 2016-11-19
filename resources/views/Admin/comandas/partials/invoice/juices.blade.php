@@ -15,7 +15,7 @@ $cantidad = 1; #Cantidad de platos
 			<td>{{ $jugo->jugo }} </td>
 			<td>{{ $cantidad }}</td>
 			<td>{{ $jugo->precio }} bs</td>
-			<td>{{ $cantidad*$jugo->precio }} bs</td>
+			<td>{{ $cantidad*$jugo->precio }}</td>
 			
 		</tr>
 			<?php $cantidad = 1; #Restablesco la cantidad a 1 
@@ -27,7 +27,7 @@ $cantidad = 1; #Cantidad de platos
 			<td>{{ $jugo->jugo }} </td>
 			<td>{{ $cantidad }}</td>
 			<td>{{ $jugo->precio }} bs</td>
-			<td>{{ $cantidad*$jugo->precio }} bs</td>
+			<td>{{ $cantidad*$jugo->precio }}</td>
 		</tr>
 		@endif
 @endforeach

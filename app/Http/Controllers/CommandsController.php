@@ -120,7 +120,7 @@ class CommandsController extends Controller
     public function hold()
     {	
         $date = Carbon::now()->format('Y-m-d');
-    	$commands = Command::where('created_at', 'LIKE', $date." %")->orWhere('estatus', 'En espera')->get();
+    	$commands = Command::where('created_at', 'LIKE', $date." %")->whereBetween('estatus', ['En espera', 'Lista'])->get();
 
     	$commands->each(function($commands){
     		$commands->plates;
@@ -137,7 +137,7 @@ class CommandsController extends Controller
     public function invoice(Request $request)
     {
         $comanda = Command::find($request->command);
-        $fecha = new Carbon($comanda->create_at);
+        $fecha = new Carbon($comanda->created_at);
         $fecha = $fecha->format('d-m-Y');
 
         $mesa = $comanda->table()->get();
@@ -170,7 +170,7 @@ class CommandsController extends Controller
         $subtotal = $total_t + $total_j + $total_p + $total_b;
         $iva = $subtotal * 0.12;
         $servicio = $subtotal * 0.05;
-        $date = new Carbon($comanda->create_at);
+        
         $total = $subtotal + $iva + $servicio;
         
         return view('admin.comandas.invoice', compact('comanda', 'platos', 'tragos', 'bebidas', 'jugos', 'date', 'subtotal', 'iva', 'servicio', 'total', 'mesa', 'fecha'));
@@ -186,11 +186,15 @@ class CommandsController extends Controller
         $comanda->estatus = 'Procesada';
         $comanda->save();
 
+        $mesa = $comanda->table;
+        $mesa->estatus = 'Disponible';
+        $mesa->save();
+
         $client->commands()->attach([$request->command_id => ['subtotal' => $request->subtotal, 'total' => $request->total]]);
 
         Flash::success('<strong>Exito! </strong> Se ha procesado la comanda correctamente');
 
-            return redirect('admin/comandas/procesadas');
+            return redirect('admin/comandas/'.$comanda->id);
 
 
     }
@@ -227,7 +231,7 @@ class CommandsController extends Controller
     public function show($id)
     {
         $comanda = Command::find($id);
-        $fecha = new Carbon($comanda->create_at);
+        $fecha = new Carbon($comanda->created_at);
         $fecha = $fecha->format('d-m-Y');
 
         $cliente = $comanda->client;

@@ -136,8 +136,12 @@ class PlatesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
-        //
+    {   
+        $plate = Plate::find($id);
+
+        $ingredientes = $plate->ingredientes()->get();
+        dd($ingredientes);
+       return view('admin.plates.show', compact('plate', 'ingredientes'));
     }
 
     /**

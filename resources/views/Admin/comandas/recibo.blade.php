@@ -7,40 +7,55 @@
 </head>
 <body>
     <div class="container-fluid">
+
+    
         <div class="row">
             <div class="col-md-12">
-                <img src="{{ asset('img/logo/isotipo.png') }}" width="80" height="110" class="img-resposive">
-                 <h3>Recibo N° 12234-0{{ $comanda->id}}</h3>
+                <img src="{{ asset('img/logo/isotipo.png') }}" width="90" height="120" class="img-resposive">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;
+                 <span style="font-size: 28px;">Recibo N° 0320-0{{ $comanda->id}}</span>
             </div>
             
-               
             
             </div>
-            <div class="row">
-            <div class="col-md-4"><strong>Mesa: </strong> {{ $mesa[0]->id }} </div>
+               <div class="row">
+               <div class="col-md-10">  
+                   <table class="table ">
+        <tr>
+            <td><span style="font-size: 16px;"><strong>Mesa:</strong> #{{ $mesa[0]->id }}</span></td>
+            <td><span style="font-size: 16px;"><strong>Fecha:</strong> {{ $comanda->created_at }}</span></td>
+        </tr>
+        <tr>
+            <td><span style="font-size: 16px;"><strong>Cliente:</strong> {{ $cliente[0]->nombre }}</span></td>
+            <td><span style="font-size: 16px;"><strong>Cedula O Rif:</strong> {{ $cliente[0]->dni_cedula }}</span></td>
+        </tr>
+        <tr><td>    </td>
+        <td></td></tr>
+    </table></div>
+               </div>
+            
+ 
 
-                        <div class="col-md-4"><strong>Fecha:</strong> {{ $comanda->created_at}} </div>
-                        <br><br>
-
-                        <div class="col-md-4"><strong>Cliente:</strong> {{ $cliente[0]->nombre }} </div>
-                        <div class="col-md-4"><strong>Cedula o Rif:</strong> {{ $cliente[0]->dni_cedula }} </div>
-
-                
-            </div>
             <div class="row">
             <div class="col-md-10">
                 <table class="table table-bordered">
                     <thead>
-                        <th>#</th>
+                    <tr>
                         <th>Producto</th>
                         <th>Cantidad</th>
-                        <th>Precio</th>
+                        <th>Precio unitario (bs)</th>
+                        <th>Importe (bs)</th>
+                        </tr>
                     </thead>
                     <tbody>
                                 @include('admin.comandas.partials.invoice.plates')
 
                                 @include('admin.comandas.partials.invoice.beverages')
+
                                 @include('admin.comandas.partials.invoice.drinks')
+                                
                                 @include('admin.comandas.partials.invoice.juices')
                                 
                                 @include('admin.comandas.partials.invoice.footer')

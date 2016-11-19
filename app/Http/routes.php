@@ -250,10 +250,49 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
 
 	Route::get('recibo/{id}',  ['as' => 'admin.recibo', function($id){
 
-		
+		$comanda = App\Command::find($id);
+        
+        $cliente = $comanda->client;
+        
 
-		return view('admin.comandas.recibo');
-		
+        $mesa = $comanda->table()->get();
+
+        $platos = $comanda->plates()->get();
+        $tragos = $comanda->beverages()->get();
+        $bebidas = $comanda->drinks()->get();
+        $jugos = $comanda->juices()->get();
+
+        $total_p = 0;
+        $total_j = 0;
+        $total_b = 0;
+        $total_t = 0;
+
+        foreach ($platos as $key => $value) {
+            $total_p = $value->precio+$total_p;
+        }
+
+        foreach ($tragos as $key => $value) {
+            $total_t = $value->precio+$total_t;
+        }
+
+        foreach ($bebidas as $key => $value) {
+            $total_b = $value->precio+$total_b;
+        }
+
+        foreach ($jugos as $key => $value) {
+            $total_j = $value->precio+$total_j;
+        }
+        $subtotal = $total_t + $total_j + $total_p + $total_b;
+        $iva = $subtotal * 0.12;
+        $servicio = $subtotal * 0.05;
+        
+        $total = $subtotal + $iva + $servicio;
+        
+        $pdf = PDF::loadView('admin.comandas.recibo', ['comanda'=> $comanda, 'platos' => $platos, 'tragos' => $tragos, 'bebidas' => $bebidas, 'jugos' => $jugos, 'subtotal' => $subtotal, 'iva' => $iva, 'total' => $total, 'mesa' => $mesa, 'cliente' => $cliente, 'servicio' => $servicio]);
+
+        // return view('admin.comandas.recibo', compact('comanda', 'platos', 'tragos', 'bebidas', 'jugos', 'subtotal', 'iva', 'servicio', 'total', 'mesa', 'cliente'));
+
+        return $pdf->download('recibo.pdf');
 		}]);
 
 

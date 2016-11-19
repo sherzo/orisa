@@ -12,6 +12,7 @@
             <li><a href="{{ url('admin') }}"><span class="glyphicon glyphicon-home"></span></a></li>
             <li class="active">Platos</li>
         </ol>
+        
     </div>
 
     <div class="col-lg-4">

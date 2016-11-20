@@ -8,7 +8,7 @@
 		<ol class="breadcrumb">
 			<li><a href="{{ url('admin') }}"><span class="glyphicon glyphicon-home"></span></a></li>
 			<li class="active">Prenómina</li>
-			<li class="active">Select</li>
+			<li class="active">Quincena</li>
 		</ol>
 	</div>
 </div>
@@ -22,10 +22,11 @@
 		<div class="col-lg-12">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-		            <em>Planificaciones</em>
+		            <em>Busqueda de quincena</em>
 		        </div>
 		        <div class="panel-body">
 		        	<div class="col-lg-4">
+		        		<div class="form-group"> Año </div>
 						<div class="form-group">
 							{!! Form::select('año', array(
 								'2016' => '2016', 
@@ -33,10 +34,11 @@
 								'2018' => '2018',
 								'2019' => '2019',
 								'2020' => '2020'), null, 
-							['placeholder' => 'Año', 'class' => 'form-control', 'title' => 'Año de la quincena']) !!}
+							['placeholder' => '', 'class' => 'form-control', 'title' => 'Año']) !!}
 						</div>
 					</div>
 					<div class="col-lg-4">
+						<div class="form-group"> Mes </div>
 						<div class="form-group">
 							{!! Form::select('mes', array(
 								'01' => 'Enero', 
@@ -51,21 +53,22 @@
 								'10' => 'Octubre',
 								'11' => 'Noviembre',
 								'12' => 'Diciembre'), null, 
-							['placeholder' => 'Mes', 'class' => 'form-control', 'title' => 'Mes de la quincena']) !!}
+							['placeholder' => '', 'class' => 'form-control', 'title' => 'Mes']) !!}
 						</div>
 					</div>
 					<div class="col-lg-4">
+						<div class="form-group"> Quincena </div>
 						<div class="form-group">
 							{!! Form::select('quincena', array(
 								'1' => '1', 
 								'2' => '2'), null, 
-							['placeholder' => 'Quincena', 'class' => 'form-control', 'title' => 'Período de la quincena']) !!}
+							['placeholder' => '', 'class' => 'form-control', 'title' => 'Quincena']) !!}
 						</div>
 					</div>
 					<div class="col-lg-12">
 						<hr>	
 					</div>
-					<br>
+					{!! Form::hidden('deductionsExtra', '0') !!}
 					<div class="form-group tooltip-demo text-right">
 						<button class="btn btn-default btn-sm" type="submit" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Siguiente"><span class="glyphicon glyphicon-circle-arrow-right"></span></button>
 					</div> 

@@ -15,7 +15,7 @@ class CreatePayrollDeductionsTable extends Migration
         Schema::create('payroll_deductions', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('nomina_id')->unsigned();
-            $table->foreign('nomina_id')->references('id')->on('payrolls');
+            $table->foreign('nomina_id')->references('id')->on('payrolls_made');
             $table->integer('deduccionesExtras_id')->unsigned();
             $table->foreign('deduccionesExtras_id')->references('id')->on('others_deductions');
         });

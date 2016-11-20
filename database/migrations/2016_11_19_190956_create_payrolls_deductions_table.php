@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePayrollsAssignmentsTable extends Migration
+class CreatePayrollsDeductionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,12 +12,12 @@ class CreatePayrollsAssignmentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('payrolls_assignments', function(Blueprint $table) {
+        Schema::create('payrolls_deductions', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('nomina_id')->unsigned();
             $table->foreign('nomina_id')->references('id')->on('payrolls_made');
-            $table->integer('asignacionesExtras_id')->unsigned();
-            $table->foreign('asignacionesExtras_id')->references('id')->on('others_assignments');
+            $table->integer('deducciones_id')->unsigned();
+            $table->foreign('deducciones_id')->references('id')->on('deductions');
         });
     }
 
@@ -28,6 +28,6 @@ class CreatePayrollsAssignmentsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('payrolls_assignments');
+        Schema::drop('payrolls_deductions');
     }
 }

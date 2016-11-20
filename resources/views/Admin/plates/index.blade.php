@@ -16,7 +16,7 @@
     </div>
 
     <div class="col-lg-4">
-        <a  href="{{ url('admin/platos/create') }}" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Nuevo Plato"">
+        <a  href="{{ url('admin/platos/create') }}" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Nuevo Plato">
             <span class="fa fa-plus"></span>
         </a>
     </div><br>

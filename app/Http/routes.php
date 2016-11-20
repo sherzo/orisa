@@ -125,6 +125,9 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
 	*/
 	Route::resource('asistencias', 'AssistsController');
 	Route::resource('deducciones', 'DeductionsController');
+	Route::resource('asignaciones', 'AssignmentsController');
+	Route::resource('asignaciones_extras', 'AssignmentsExtrasController');
+	Route::resource('deducciones_extras', 'DeductionsExtrasController');
 	Route::get('nomina/select', ['uses' =>'PayrollController@select', 'as' => 'admin.payroll.select']);
 	Route::resource('nomina', 'PayrollController');
 	/*

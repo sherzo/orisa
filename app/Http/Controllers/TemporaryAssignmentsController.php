@@ -5,12 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-use App\Turn;
 use App\Assignment;
 use App\Employee;
 use Laracasts\Flash\Flash;
 
-class AssignmentsController extends Controller
+class TemporaryAssignmentsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,9 +18,7 @@ class AssignmentsController extends Controller
      */
     public function index()
     {
-        $turns = Turn::all();
-
-        return view('admin.assignments.index', compact('turns'));
+        //
     }
 
     /**
@@ -31,7 +28,7 @@ class AssignmentsController extends Controller
      */
     public function create()
     {
-        
+        //
     }
 
     /**
@@ -42,7 +39,32 @@ class AssignmentsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $año = $request->year;
+        $mes = $request->mes;
+        $quincena = $request->quincena;
+
+        if (!empty($request->empleado_id)) 
+        {
+            foreach ($request->empleado_id as $key => $employees) 
+            {
+                $employee = Employee::find($key);
+
+                foreach ($employees as $assignments) 
+                {
+                    $employee->assignmentsTemporary()->attach($assignments);
+                }
+            }
+
+            Flash::success('<strong> Éxito </strong> se han creado nuevas asignaciones para los empleados correctamente.');
+
+            return redirect()->action('PayrollController@create', compact('año', 'mes', 'quincena'));
+
+        }else{
+
+            Flash::warning('<strong> Error </strong> debe seleccionar alguna opción.');
+
+            return redirect()->back();
+        }
     }
 
     /**
@@ -64,9 +86,7 @@ class AssignmentsController extends Controller
      */
     public function edit($id)
     {
-        $turns = Turn::find($id);
-
-        return view('admin.assignments.edit', compact('turns'));
+        //
     }
 
     /**
@@ -78,16 +98,7 @@ class AssignmentsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $turns = Turn::find($id);
-        $turns->fill($request->all())->save();
-
-        $extraHours = $turns->extraHours;
-        $extraHours->fill($request->all())->save();
-
-        Flash::success('<strong> Éxito </strong> se ha actualizado el turno <em>'.$turns->turno.'</em> correctamente.');
-
-        return redirect()->back();
-
+        //
     }
 
     /**
@@ -99,15 +110,5 @@ class AssignmentsController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-    public function assignmentsExtras(Request $request)
-    {
-        $employees = Employee::all();
-        $others_assignments = Assignment::all();
-
-        
-        
-        return view('admin.payroll.news', compact('employees'));
     }
 }

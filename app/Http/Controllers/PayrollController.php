@@ -14,6 +14,8 @@ use App\Holiday;
 use App\PayrollMade;
 use App\Payroll;
 use App\Assistance;
+use App\Assignment;
+use App\DeductionExtra;
 use App\Days_planning;
 use App\Day_attendance;
 use Laracasts\Flash\Flash;
@@ -51,8 +53,16 @@ class PayrollController extends Controller
     {
         $fecha = $request->año.'-'.$request->mes;
 
+        $mes = $request->mes;
+        $year = $request->año;
+        $quincena = $request->quincena;
+        
         $employees = Employee::all();
         $deductions = Deduction::all();
+        $assignments = Assignment::all();
+        $deductions_extra = DeductionExtra::all();
+
+        $count = count($employees);
 
         $payroll = Payroll::where([['year', $request->año],['mes', $request->mes],['quincena', $request->quincena]])->exists();
 
@@ -108,15 +118,6 @@ class PayrollController extends Controller
                     }
                 }
             }
-
-            if($request->deductionsExtras == 0)
-            {
-
-
-
-            }else{
-
-
 
             foreach ($employees as $employee) 
             {
@@ -233,9 +234,25 @@ class PayrollController extends Controller
 
                         $payments[] = $assignmentsTotal[$key] - $deductionsTotal[$key];
 
+
+                        $others_assignments_pivot = Employee::find($employee->id);
+                        
+                        foreach ($others_assignments_pivot->assignmentsTemporary as $others_assignments_pivot) 
+                        {
+                            $others_assignments[] = $others_assignments_pivot->pivot; 
+                        }
+
+                        $others_deductions_pivot = Employee::find($employee->id);
+                        
+                        foreach ($others_deductions_pivot->deductionsTemporary as $others_deductions_pivot) 
+                        {
+                            $others_deductions[] = $others_deductions_pivot->pivot; 
+                        }
+
                     }
 
-            return view('admin.payroll.create', compact('employees', 'payments', 'quincena', 'mes', 'year', 'assignmentsTotal', 'deductionsTotal', 'sso', 'islr', 'rpe', 'rpvh', 'fechas', 'i', 'f', 'laborados', 'horasExtras'));
+
+            return view('admin.payroll.create', compact('employees', 'assignments', 'deductions_extra', 'others_assignments', 'others_deductions', 'count', 'payments', 'mes', 'year', 'quincena', 'assignmentsTotal', 'deductionsTotal', 'sso', 'islr', 'rpe', 'rpvh', 'fechas', 'i', 'f', 'laborados', 'horasExtras'));
 
             }else{
 
@@ -243,7 +260,6 @@ class PayrollController extends Controller
 
                 return redirect()->back();
             }
-        }
         }      
     }
 

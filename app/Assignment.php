@@ -14,4 +14,9 @@ class Assignment extends Model
     {
     	return $this->belongsToMany('App\PayrollMade', 'payrolls_assignments', 'asignacionesExtras_id', 'nomina_id');
     }
+
+    public function temporaryEmployee()
+    {
+    	return $this->belongsToMany('App\Employee', 'temporary_assignments', 'asignacion_id', 'empleado_id');
+    }
 }

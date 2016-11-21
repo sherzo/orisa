@@ -125,8 +125,29 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
 	*/
 	Route::resource('asistencias', 'AssistsController');
 	Route::resource('deducciones', 'DeductionsController');
+	Route::get('agregar_asignaciones/{year}/{mes}/{quincena}', function ($year,$mes,$quincena) {
+		
+		$others_assignments = App\Assignment::all();
+		$count = count($others_assignments);
+
+		$employees = App\Employee::all();
+
+		return view('admin.payroll.news_assignments', compact('others_assignments', 'count', 'employees', 'year', 'mes', 'quincena'));
+	});
+
+	Route::resource('temporary_assigments', 'TemporaryAssignmentsController');
 	Route::resource('asignaciones', 'AssignmentsController');
 	Route::resource('asignaciones_extras', 'AssignmentsExtrasController');
+	Route::get('agregar_deducciones/{year}/{mes}/{quincena}', function ($year,$mes,$quincena) {
+		
+		$others_deductions = App\DeductionExtra::all();
+		$count = count($others_deductions);
+
+		$employees = App\Employee::all();
+
+		return view('admin.payroll.news_deductions', compact('others_deductions', 'count', 'employees', 'year', 'mes', 'quincena'));
+	});
+	Route::resource('temporary_deductions', 'TemporaryDeductionsController');
 	Route::resource('deducciones_extras', 'DeductionsExtrasController');
 	Route::get('nomina/select', ['uses' =>'PayrollController@select', 'as' => 'admin.payroll.select']);
 	Route::resource('nomina', 'PayrollController');

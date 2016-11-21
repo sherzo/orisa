@@ -22,6 +22,16 @@ class Employee extends Model
         return $this->hasOne('App\Data_employee', 'empleado_id', 'id');
     } 
 
+    public function assignmentsTemporary()
+    {
+        return $this->belongsToMany('App\Assignment', 'temporary_assignments', 'empleado_id', 'asignacion_id');
+    }
+
+    public function deductionsTemporary()
+    {
+        return $this->belongsToMany('App\DeductionExtra', 'temporary_deductions', 'empleado_id', 'deduccion_id');
+    }
+
     public function attendance() #Attendances
     {
         return $this->hasMany('App\Assistance', 'empleado_id', 'id');

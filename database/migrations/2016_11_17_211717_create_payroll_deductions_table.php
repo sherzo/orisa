@@ -28,6 +28,6 @@ class CreatePayrollDeductionsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('payrolls_deductions');
+        Schema::drop('payroll_deductions');
     }
 }

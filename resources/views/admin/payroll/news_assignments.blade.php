@@ -8,7 +8,7 @@
 		<ol class="breadcrumb">
 			<li><a href="{{ url('admin') }}"><span class="glyphicon glyphicon-home"></span></a></li>
 			<li class="active">Prenómina</li>
-			<li class="active">Nuevo</li>
+			<li class="active">Asignaciones</li>
 		</ol>
 	</div>
 </div>
@@ -16,15 +16,16 @@
 <div>
     @include('flash::message')
 </div>
-{!! Form::open(['route' => 'admin.nomina.store', 'method' => 'POST']) !!}
+{!! Form::open(['route' => 'admin.temporary_assigments.store', 'method' => 'POST']) !!}
+	{{ csrf_field() }}
 	<div class="row">
 		<div class="col-lg-12">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-		            <em>Prenómina</em>
+		            <em>Asignaciones Extras</em>
 		        </div>
 		        <div class="panel-body">
-		            @include('admin.payroll.partials.fields')
+		         	@include('admin.payroll.partials.fields-assignments')
 		        </div>
 		    </div>
 		</div>

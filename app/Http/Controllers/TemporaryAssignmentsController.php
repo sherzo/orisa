@@ -43,16 +43,18 @@ class TemporaryAssignmentsController extends Controller
         $mes = $request->mes;
         $quincena = $request->quincena;
 
-        if (!empty($request->empleado_id)) 
+
+        if (!empty($request->empleado_id))
         {
-            foreach ($request->empleado_id as $key => $employees) 
+            foreach ($request->empleado_id as $key => $employees)
             {
                 $employee = Employee::find($key);
 
-                foreach ($employees as $assignments) 
+                foreach ($employees as $assignments)
                 {
-                    $employee->assignmentsTemporary()->attach($assignments);
+                    $employee->assignmentsTemporary()->attach($assignments, ['estatus' => '0']);
                 }
+
             }
 
             Flash::success('<strong> Éxito </strong> se han creado nuevas asignaciones para los empleados correctamente.');

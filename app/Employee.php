@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 class Employee extends Model
-{   
+{
     /**
      * The attributes that are mass assignable.
      *
@@ -20,22 +20,22 @@ class Employee extends Model
     public function info() #info
     {
         return $this->hasOne('App\Data_employee', 'empleado_id', 'id');
-    } 
+    }
 
     public function assignmentsTemporary()
     {
-        return $this->belongsToMany('App\Assignment', 'temporary_assignments', 'empleado_id', 'asignacion_id');
+        return $this->belongsToMany('App\Assignment', 'temporary_assignments', 'empleado_id', 'asignacion_id')->withPivot('estatus');
     }
 
     public function deductionsTemporary()
     {
-        return $this->belongsToMany('App\DeductionExtra', 'temporary_deductions', 'empleado_id', 'deduccion_id');
+        return $this->belongsToMany('App\DeductionExtra', 'temporary_deductions', 'empleado_id', 'deduccion_id')->withPivot('estatus');
     }
 
     public function attendance() #Attendances
     {
         return $this->hasMany('App\Assistance', 'empleado_id', 'id');
-    } 
+    }
 
     public function hoem() #Holiday
     {

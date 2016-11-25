@@ -17,6 +17,6 @@ class Assignment extends Model
 
     public function temporaryEmployee()
     {
-    	return $this->belongsToMany('App\Employee', 'temporary_assignments', 'asignacion_id', 'empleado_id');
+    	return $this->belongsToMany('App\Employee', 'temporary_assignments', 'asignacion_id', 'empleado_id')->withPivot('estatus');
     }
 }

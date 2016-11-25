@@ -17,6 +17,6 @@ class DeductionExtra extends Model
 
     public function temporaryDeductions()
     {
-    	return $this->belongsToMany('App\Employee', 'temporary_deductions', 'deduccion_id', 'empleado_id');
+    	return $this->belongsToMany('App\Employee', 'temporary_deductions', 'deduccion_id', 'empleado_id')->withPivot('estatus');
     }
 }

@@ -43,15 +43,15 @@ class TemporaryDeductionsController extends Controller
         $mes = $request->mes;
         $quincena = $request->quincena;
 
-        if (!empty($request->empleado_id)) 
+        if (!empty($request->empleado_id))
         {
-            foreach ($request->empleado_id as $key => $employees) 
+            foreach ($request->empleado_id as $key => $employees)
             {
                 $employee = Employee::find($key);
 
-                foreach ($employees as $deductions) 
+                foreach ($employees as $deductions)
                 {
-                    $employee->deductionsTemporary()->attach($deductions);
+                    $employee->deductionsTemporary()->attach($deductions, ['estatus' => '0']);
                 }
             }
 

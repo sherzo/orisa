@@ -1,47 +1,60 @@
 $(document).ready(function(){
 
-	$('#sigin').submit(function(){
+	$('#reload').click(function() {
+			location.reload();
+	});
 
-		if($("#datos").is(':empty')) {
+	$('#sigin').submit( function(){
 
-				var nacionalidad = $("#nacionalidad").val();
-				var dni = $("#cedula").val();
-				var busqueda = nacionalidad+'-'+dni;
+			if($("#datos").is(':empty')){
 
-				$("#contenido").empty();
-				$("#contenido").append('<center><img src="img/cargando.gif"></center>');
-				$("#sigin").attr('class', '');
-
-			$.get("search/" + busqueda, function(data){
+					var nacionalidad = $('#nacionalidad').val();
+					var documento = $('#cedula').val();
 
 
-				$.each(data, function(index, typeObj){
 					$("#contenido").empty();
-					$(".boton").text('Listo');
-					$(".boton").attr('title', 'Crear cuenta')
-					$("#datos").empty();
-					$("#datos").append('<div class="alert alert-success" role="alert">Bienvenido <strong>'+typeObj.nombre+'</strong> ya puedes crear tu cuenta</div>'+
-										'<div class="form-group"><label for="usuario">Usuario</label>'+
-										'<input type="text" class="form-control" name="user"></div>'+
-										'<div class="form-group"><label for="contrasena">Contraseña</label>'+
-										'<input type="password" class="form-control" name="password"></div>'+
-										'<input type="hidden" value="'+typeObj.id+'" name="id_client">'+
-										'<input type="hidden" value="1" name="roles_id">')
+					$("#sigin").attr('class', '');
 
-				});// EACH
+					$("#contenido").append('<center><img src="img/cargando.gif"></center>');
 
-				$(function () {
-	  				$('[data-toggle="tooltip"]').tooltip()
-				});
+					$.get("/search/"+nacionalidad+documento+"", function(data){
 
-			});// AJAX
+							$("#contenido").css("display", "none");
 
-			return false;
+							if($(data).length)
+							{
+								$.each(data, function(index, typeObj){
 
-		}// IF
+												$("#contenido").empty();
 
-	});// SUBMIT FORM
+												$(".boton").text('CREAR');
 
+												$("#datos").empty();
+												$("#datos").append('<div class="alert alert-success" role="alert">Bienvenido <strong>'+typeObj.nombre+'</strong> proceda a crear su cuenta.</div>'+
+																	'<div class="form-group"><label for="usuario">Usuario</label>'+
+																	'<input type="text" class="form-control" name="user"></div>'+
+																	'<div class="form-group"><label for="contrasena">Contraseña</label>'+
+																	'<input type="password" class="form-control" name="password"></div>'+
+																	'<input type="hidden" value="'+typeObj.id+'" name="id_client">'+
+																	'<input type="hidden" value="1" name="roles_id">')
+									});
+
+							}else{
+
+								$('.boton').attr("disabled", true);
+								$('#datos').append('<div class="alert alert-warning">'+
+											 '<em>'+
+											 'No se encontraron resultados coincidentes para '+nacionalidad+documento+' usuario no existe en nuestra base de datos.'+
+											 '</em>'+
+											 '</div>')
+
+							}
+
+					});
+
+					return false;
+			}
+	});
 
 /*
 *	Función para reservaciones

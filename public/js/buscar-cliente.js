@@ -5,7 +5,7 @@ $(document).ready(function(){
 		var documento = $('#documento').val();
 
 		$.get('facturar/cliente/' + nacionalidad+documento, function(data){
-			if(data == ''){	
+			if(data == ''){
 				$('#nombre').text('');
 				$('#cedula').text('');
 				$('#cliente').val('');
@@ -30,7 +30,7 @@ $(document).ready(function(){
 				$('#boton_procesar').attr('data-original-title', 'Procesar Factura');
 			}
 		$('div.alert').not('.alert-important').delay(5000).fadeOut(350);
-			
+
 		});
 
 

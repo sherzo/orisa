@@ -18,9 +18,10 @@ Route::get('/', function()
 	return View::make('welcome');
 });
 
-Route::get('/search/{cedula}', function($cedula){
-	$client = App\Client::where('dni_cedula', $cedula)->get();
-	return Response::json($client);
+Route::get('search/{cedula}', function($cedula){
+		$client = App\Client::where('dni_cedula', $cedula)->get();
+		
+		return Response::json($client);
 });
 
 Route::get('/solicitud-reservacion/{fecha}/{hora}', function($fecha, $hora){
@@ -173,7 +174,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
 					 		$boleean->pivot->estatus = '1';
 							$boleean->pivot->save();
 					}
-					
+
 					foreach ($others_deductions_pivot->deductionsTemporary as $others_deductions_pivot)
 					{
 							$others_deductions_dx[] = $others_deductions_pivot;

@@ -111,30 +111,7 @@
 						</div>
 						@endif
 
-						@if($salsas != '[]')
-						<div class="row">
-							<div class="col-md-8">
-								<h4>Lista de Salsas</h4>
-								<table class="table table-bordered table-condensed">
-									<thead>
-										<tr>
-											<th>#</th>
-											<th>Salsa</th>
-										</tr>
-
-									</thead>
-									<tbody>
-											@foreach($salsas as $key => $salsa)
-											<tr>
-												<td>{{ $key + 1 }}</td>
-												<td>{{ $salsa->salsa }}</td>
-											</tr>
-											@endforeach
-									</tbody>
-								</table>
-							</div>
-						</div>
-						@endif
+						
 
 						<div class="row hide">
 							<div class="col-md-12">

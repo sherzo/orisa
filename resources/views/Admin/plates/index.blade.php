@@ -12,7 +12,7 @@
             <li><a href="{{ url('admin') }}"><span class="glyphicon glyphicon-home"></span></a></li>
             <li class="active">Platos</li>
         </ol>
-        
+
     </div>
 
     <div class="col-lg-4">
@@ -21,7 +21,7 @@
         </a>
     </div><br>
 </div>
-                   
+
           <div class="row">
             @foreach($plates as $plate)
               <div class="col-md-4">
@@ -31,15 +31,15 @@
                   </div>
                   <div class="panel-footer">
                     {{ $plate->plato }}
-                    
+
                     <!-- <a href="#" class="btn btn-default btn-xs pull-right "> <span class="fa fa-pencil fa-2x"></span> </a> &nbsp;&nbsp; -->
-                
-                    <!-- <a href="{{route('admin.platos.show', $plate->id)}}" class="btn btn-default btn-xs pull-right "> <span class="fa fa-eye fa-2x"></span> </a> -->
+
+                    <a href="{{route('admin.platos.show', $plate->id)}}" class="btn btn-default btn-xs pull-right "> <span class="fa fa-eye fa-2x"></span> </a>
                   </div>
                 </div>
               </div>
             @endforeach
           </div>
-    
+
 
   @endsection

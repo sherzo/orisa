@@ -35,25 +35,25 @@ Route::get('/solicitud-reservacion/{fecha}/{hora}', function($fecha, $hora){
 				   '4' => null,
 				   '5' => null,
 				   '6' => null,
-				   '7' => null,				   
-				   '8' => null,			
+				   '7' => null,
+				   '8' => null,
 				   '9' => null,
 				   '10' => null,
 				   '11' => null,
-				   '12' => null);  
+				   '12' => null);
 
 	foreach ($reservations as $key => $reservation) {
-		
+
 		foreach ($tables as $key2 => $table) {
-			
+
 			if($reservation->table_id == $table->id) {
-				
+
 				foreach ($mesas as $key3 => $mesa) {
 
 					if($key3 == $table->id){
-						
+
 						$mesas[$key3] = true;
-					
+
 					}
 				}
 			}
@@ -76,7 +76,7 @@ Route::group(['prefix' => '/', 'middleware' => 'guest', 'namespace' => 'Auth'], 
 	Route::get('registrar', 'AuthController@showRegistrationForm');
     Route::post('registrar', 'AuthController@register');
 });
-Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){ 
+Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
 	/*
 	|	RUTAS GENERALES
 	|
@@ -88,7 +88,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
 		'as' => 'admin.usuarios.destroy'
 		]);
 	/*
-	|	
+	|
 	|	Rutas Jesús Matute
 	|
 	*/
@@ -98,7 +98,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
  		'uses' =>'EmployeesController@search',
  		'as'   => 'admin.empleados.search'
  		]);
- 	
+
  	Route::resource('empleados', 'EmployeesController');
  	Route::get('employees/{id}/destroy', [
  		'uses' => 'EmployeesController@destroy',
@@ -165,13 +165,13 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
 	Route::resource('planificaciones/administrar/dias/turnos', 'TurnsController');
 	Route::resource('planificaciones/administrar/dias', 'Planning_DaysController');
 	/*
-	|	
+	|
 	|	RUTAS OLIVER
 	|
 	*/
 	Route::get('proveedores/search', ['uses' => 'ProvidersController@search', 'as' => 'admin.proveedores.search']);
 	Route::resource('proveedores', 'ProvidersController');
-		
+
 	Route::get('proveedores/{id}/destroy', [
 			'uses' => 'ProvidersController@destroy',
 			'as' => 'admin.proveedores.destroy'
@@ -183,26 +183,26 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
 	Route::post('compra/save', ['uses' => 'PurchasesController@saved','as' => 'admin.compra.save']);
 	Route::get('compra/{id}/procesar', ['uses' => 'PurchasesController@process','as' => 'admin.compra.procesar']);
 	Route::resource('compra', 'PurchasesController');
-		
-	
-	
+
+
+
 	Route::resource('licores', 'LiqueursController');
 		Route::get('licores/{id}/destroy', [
 			'uses' => 'LiqueursController@destroy',
 			'as' => 'admin.licores.destroy'
-		]);	
+		]);
 	Route::resource('ingredientes', 'IngredientsController');
 		Route::get('ingredientes/{id}/destroy', [
 			'uses' => 'IngredientsController@destroy',
 			'as'   => 'admin.ingredientes.destroy'
-		]);	
+		]);
 	Route::resource('bebidas', 'DrinksController');
 		Route::get('bebidas/{id}/destroy', [
 			'uses' => 'DrinksController@destroy',
 			'as'   => 'admin.bebidas.destroy'
 			]);
 	/*
-	|	
+	|
 	|	RUTAS SAUL
 	|
 	*/
@@ -235,7 +235,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
 			$platos->each(function($platos){
 				$platos->image;
 			});
-			
+
 			return Response::json($platos);
 
 		}elseif ($eleccion == 2) {
@@ -248,14 +248,14 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
 
 		}elseif($eleccion == 3
 			){
-			
+
 			$bebidas = App\Drink::all();
-			
+
 			return Response::json($bebidas);
 
 
 		}elseif ($eleccion == 4) {
-			
+
 			$jugos = App\Juice::all();
 			$jugos->each(function($jugos){
 				$jugos->image;
@@ -269,7 +269,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
 		$client = App\Client::where('dni_cedula', $documento)->get();
 
 		return Response::json($client);
-		
+
 	});
 	Route::post('comandas/procesar-factura', ['uses' => 'CommandsController@process_invoice','as' => 'admin.comandas.procesar-factura']);
 
@@ -277,9 +277,9 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
 
 
 		$comanda = App\Command::find($id);
-        
+
         $cliente = $comanda->client;
-        
+
 
         $mesa = $comanda->table()->get();
 
@@ -313,7 +313,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
         $servicio = $subtotal * 0.05;
 
         $total = $subtotal + $iva + $servicio;
-        
+
         $pdf = PDF::loadView('admin.comandas.recibo', ['comanda'=> $comanda, 'platos' => $platos, 'tragos' => $tragos, 'bebidas' => $bebidas, 'jugos' => $jugos, 'subtotal' => $subtotal, 'iva' => $iva, 'total' => $total, 'mesa' => $mesa, 'cliente' => $cliente, 'servicio' => $servicio]);
 
         	return $pdf->download('recibo_n-0'.$comanda->id.'.pdf');
@@ -321,6 +321,47 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
 
 
 		}]);
+
+		Route::get('comandas/agregar/{id}', [
+			'uses' => 'CommandsController@add',
+			'as'   => 'admin.comandas.add'
+		]);
+		Route::get('comandas/agregar/create/eleccion/{eleccion}', function($eleccion){
+			if($eleccion == 1){
+				$platos = App\Plate::all();
+				$platos->each(function($platos){
+					$platos->image;
+				});
+
+				return Response::json($platos);
+
+			}elseif ($eleccion == 2) {
+				$tragos = App\Beverage::all();
+				$tragos->each(function($tragos){
+					$tragos->image;
+				});
+
+				return Response::json($tragos);
+
+			}elseif($eleccion == 3
+				){
+
+				$bebidas = App\Drink::all();
+
+				return Response::json($bebidas);
+
+
+			}elseif ($eleccion == 4) {
+
+				$jugos = App\Juice::all();
+				$jugos->each(function($jugos){
+					$jugos->image;
+				});
+
+				return Response::json($jugos);
+
+			}
+		});
 
 
 
@@ -344,7 +385,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
 	Route::get('tragos/create/ingredients/{type}',  function($type){
 		$ingredients = App\Ingredient::where('id_type', $type)->get();
 		return Response::json($ingredients);
-	});			
+	});
 	Route::get('tragos/create/addingredient/{id_i}', function($id_i){
 		$ingredient = App\Ingredient::where('id', $id_i)->get();
 
@@ -355,11 +396,11 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
 
 
 	//INGREDIENTES SALSAS
-	
+
 	Route::get('sauces/create/ingredients/{type}',  function($type){
 		$ingredients = App\Ingredient::where('id_type', $type)->get();
 		return Response::json($ingredients);
-	});			
+	});
 	Route::get('sauces/create/addingredient/{id_i}', function($id_i){
 		$ingredient = App\Ingredient::where('id', $id_i)->get();
 
@@ -369,11 +410,11 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
 	});
 
 	//INGREDIENTES SALSAS
-	
+
 	Route::get('jugos/create/ingredients/{type}',  function($type){
 		$ingredients = App\Ingredient::where('id_type', $type)->get();
 		return Response::json($ingredients);
-	});			
+	});
 	Route::get('jugos/create/addingredient/{id_i}', function($id_i){
 		$ingredient = App\Ingredient::where('id', $id_i)->get();
 
@@ -387,7 +428,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
 	Route::get('platos/create/ingredients/{type}',  function($type){
 		$ingredients = App\Ingredient::where('id_type', $type)->get();
 		return Response::json($ingredients);
-	});			
+	});
 	Route::get('platos/create/addingredient/{id_i}', function($id_i){
 		$ingredient = App\Ingredient::where('id', $id_i)->get();
 

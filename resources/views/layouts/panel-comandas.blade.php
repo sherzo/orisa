@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <title>Restaurant sefardí</title>
-    
+
     <link rel="stylesheet" type="text/css" href="{{ asset('bower_components/bootstrap/dist/css/bootstrap.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('bower_components/metisMenu/dist/metisMenu.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('dist/css/timeline.css') }}">
@@ -96,6 +96,10 @@
             </li>
         </ul>
     {!! Form::open(['route' => 'admin.comandas.store', 'method' => 'POST']) !!}
+        @if(isset($comanda))
+        <input type="hidden" name="comanda_id" value="{{$comanda->id}}">
+        @endif
+        <input type="hidden" value="{{asset('img')}}" id="direccion">
         <div class="navbar-default sidebar" role="navigation">
             <div class="sidebar-nav navbar-collapse collapse in" aria-expanded="true">
                 <ul class="nav" id="side-menu">
@@ -111,7 +115,7 @@
                 </thead>
                 <tbody id="productos"></tbody>
                 <tfoot>
-                    <th><button class="btn btn-primary">Enviar <span class="fa fa-send"></span></button></th>   
+                    <th><button class="btn btn-primary">Enviar <span class="fa fa-send"></span></button></th>
                     <th><strong>Total: </strong></th>
                     <th id="total" colspan="2"></th>
                 </tfoot>
@@ -134,7 +138,7 @@
     <script src="{{ asset('chosen/chosen.jquery.min.js') }}"></script>
 
         @yield('js')
-    
+
     <script>
         $('div.alert').not('.alert-important').delay(5000).fadeOut(350);
     </script>
@@ -146,8 +150,8 @@
     });
     </script>
     <script type="text/javascript">
-    function desbloquear() 
-    {    
+    function desbloquear()
+    {
         hora_entrada = document.form1['hora_entrada[]'];
         hora_salida = document.form1['hora_salida[]'];
 

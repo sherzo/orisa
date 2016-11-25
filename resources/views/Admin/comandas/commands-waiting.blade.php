@@ -15,7 +15,7 @@
     </div>
 
     <div class="row" id="comandas">
-    	
+
     	@foreach($commands as $key => $comanda)
     		<?php $contador++; ?>
     	<div class="col-md-12">
@@ -28,31 +28,36 @@
     		    			<img src="{{ asset('img/tables/mesa-') }}{{ $comanda->table_id.'.png'}}" width="25px" height="25px">
 							<span class="label  @if($comanda->estatus == 'En espera')
 												label-warning
-												@endif() 
+												@endif()
 
 												@if($comanda->estatus == 'Lista')
 												label-primary
-												@endif pull-right estatus{{$comanda->id}}">{{ $comanda->estatus}}</span> 
-    		     		</h4> 
-    		     	</div> 
+												@endif pull-right estatus{{$comanda->id}}">{{ $comanda->estatus}}</span>
+    		     		</h4>
+                @if($comanda->estatus == 'En espera')
+                <a class="btn btn-success btn-xs" href="{{ route('admin.comandas.add', $comanda->id) }}">
+                  <span class="fa fa-plus">
+                </a>
+                @endif
+    		     	</div>
                         <div class="collapse panel-collapse" role="tabpanel" id="collapseListGroup{{$comanda->id}}" aria-labelledby="collapseListGroupHeading{{$comanda->id}}">
                         <ul class="list-group">
         		    	        @include('admin.comandas.partials.details.plates')
 
                                 @include('admin.comandas.partials.details.beverages')
-                                
+
                                 @include('admin.comandas.partials.details.drinks')
-                                
+
                                 @include('admin.comandas.partials.details.juices')
                         </ul>
-                                @include('admin.comandas.partials.details.footer')                                                    
+                                @include('admin.comandas.partials.details.footer')
     		</div>
         </div>
     </div>
     </div>
-    
+
 		@endforeach
-		
+
 	</div>
 @endsection
 

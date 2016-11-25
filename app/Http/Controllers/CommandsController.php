@@ -20,13 +20,13 @@ class CommandsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {   
+    {
         $tables = Table::all();
 
         $fecha = Carbon::now()->format('Y-m-d');
         $reservations = Reservation::where('fecha_reservacion', $fecha)->get();
         $mesas2 = Table::all();
-        
+
 
     $mesas = array('1' => null,
                    '2' => null,
@@ -34,25 +34,25 @@ class CommandsController extends Controller
                    '4' => null,
                    '5' => null,
                    '6' => null,
-                   '7' => null,                
-                   '8' => null,         
+                   '7' => null,
+                   '8' => null,
                    '9' => null,
                    '10' => null,
                    '11' => null,
-                   '12' => null);  
+                   '12' => null);
 
     foreach ($reservations as $key => $reservation) {
-        
+
         foreach ($tables as $key2 => $table) {
-            
+
             if($reservation->table_id == $table->id) {
-                
+
                 foreach ($mesas as $key3 => $mesa) {
 
                     if($key3 == $table->id){
-                        
+
                         $mesas[$key3] = true;
-                    
+
                     }
                 }
             }
@@ -68,9 +68,9 @@ class CommandsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create(Request $request)
-    {   
+    {
         $mesa = $request->mesa_id;
-        
+
         return view('admin.comandas.create', compact('mesa'));
     }
 
@@ -82,24 +82,29 @@ class CommandsController extends Controller
      */
     public function store(Request $request)
     {
-    	$mesa = Table::find($request->table_id);
-    	$mesa->estatus = 'Ocupada';
-    	$mesa->save();
-        $comanda = new Command($request->all());
-        $comanda->employee_id = "10";
-        $comanda->save();
+      if($request->comanda_id){
+        $comanda = Command::find($request->comanda_id);
+      }else{
+        $mesa = Table::find($request->table_id);
+      	$mesa->estatus = 'Ocupada';
+      	$mesa->save();
+          $comanda = new Command($request->all());
+          $comanda->employee_id = "10";
+          $comanda->save();
+      }
+
 
         foreach ($request->cantidades as $key => $cantidad) {
-            
+
             // Recorro segun la cantidad
-            for ($i=1; $i <= $cantidad; $i++) { 
-     
+            for ($i=1; $i <= $cantidad; $i++) {
+
 	            if($request->tipo[$key] == 1){ #Platos
 
 	             	$comanda->plates()->attach($request->producto[$key]);
 
 	            }else if ($request->tipo[$key] == 2) { #Tragos
-	            	
+
 	            	$comanda->beverages()->attach($request->producto[$key]);
 
 	            }else if($request->tipo[$key] == 3){ # Bebidas
@@ -117,8 +122,16 @@ class CommandsController extends Controller
         return redirect('admin/comandas/en-espera');
     }
 
+    public function add($id)
+    {
+      $comanda = Command::find($id);
+      $mesa = $comanda->table->id;
+
+      return view('admin.comandas.create', compact('mesa', 'comanda'));
+    }
+
     public function hold()
-    {	
+    {
         $date = Carbon::now()->format('Y-m-d');
     	$commands = Command::where('created_at', 'LIKE', $date." %")->whereBetween('estatus', ['En espera', 'Lista'])->get();
 
@@ -170,11 +183,11 @@ class CommandsController extends Controller
         $subtotal = $total_t + $total_j + $total_p + $total_b;
         $iva = $subtotal * 0.12;
         $servicio = $subtotal * 0.05;
-        
+
         $total = $subtotal + $iva + $servicio;
-        
+
         return view('admin.comandas.invoice', compact('comanda', 'platos', 'tragos', 'bebidas', 'jugos', 'date', 'subtotal', 'iva', 'servicio', 'total', 'mesa', 'fecha'));
-        
+
     }
 
     public function process_invoice(Request $request){
@@ -267,7 +280,7 @@ class CommandsController extends Controller
         $servicio = $subtotal * 0.05;
         $date = new Carbon($comanda->create_at);
         $total = $subtotal + $iva + $servicio;
-        
+
         return view('admin.comandas.show', compact('comanda', 'platos', 'tragos', 'bebidas', 'jugos', 'date', 'subtotal', 'iva', 'servicio', 'total', 'mesa', 'fecha', 'cliente'));
     }
 

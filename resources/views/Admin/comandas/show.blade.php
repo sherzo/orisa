@@ -20,7 +20,7 @@
 
 			<div class="panel-heading">
                 <em>Comandas Nº <strong>{{ $comanda->id }}</strong> </em>
-                <span class="label label-primary pull-right">
+                <span class="label label-success pull-right">
 					{{ $comanda->estatus }}
 				</span>
             </div>
@@ -30,7 +30,7 @@
 
 </div>
 <div id="mensaje" class="col-md-10 col-md-offset-1"></div>
- 
+
             	<div class="dataTable_wrapper">
 						<hr>
 						<div class="col-md-3 col-md-offset-1"><strong>Mesa: </strong> {{ $mesa[0]->id }}</div>
@@ -41,14 +41,14 @@
 
             			<div class="col-md-6 col-md-offset-1"><strong>Nombre o Razón social:</strong> {{ $cliente[0]->nombre }} <span id="nombre"></span> </div>
             			<div class="col-md-5"><strong>Cedula o Rif:</strong> {{ $cliente[0]->dni_cedula }}</div>
-            			
-					{!! Form::open(['route' => 'admin.comandas.procesar-factura', 'method' => 'POST']) !!}	
+
+					{!! Form::open(['route' => 'admin.comandas.procesar-factura', 'method' => 'POST']) !!}
 					<input type="hidden" name="command_id" value="{{ $comanda->id }}">
 					<input type="hidden" name="client_id" id="cliente">
 						<div class="col-md-10 col-md-offset-1">
 						<div class="col-md-1"></div>
 						<br>
-						
+
 							<table class="table table-bordered table-hover table-condensed">
 								<thead>
 									<tr>
@@ -63,7 +63,7 @@
 								@include('admin.comandas.partials.invoice.beverages')
 								@include('admin.comandas.partials.invoice.drinks')
 								@include('admin.comandas.partials.invoice.juices')
-								
+
 								@include('admin.comandas.partials.invoice.footer')
 								</tbody>
 							</table>

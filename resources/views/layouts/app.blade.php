@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <title>Restaurant sefardí</title>
-    
+
     <link rel="stylesheet" type="text/css" href="{{ asset('bower_components/bootstrap/dist/css/bootstrap.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('bower_components/metisMenu/dist/metisMenu.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('dist/css/timeline.css') }}">
@@ -96,16 +96,17 @@
                 </ul>
             </li>
         </ul>
-        
+
         <div class="navbar-default sidebar" role="navigation">
             <div class="sidebar-nav navbar-collapse collapse in" aria-expanded="true">
                 <ul class="nav" id="side-menu">
                     <li><a href="{{ url('admin') }}"><i class="fa fa-fw fa-home"></i> Inicio</a></li>
+@if((Auth::user()->roles_id)!='2')
                     <li><a href="#"><i class="fa fa-fw fa-cutlery"></i> Servicios<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
-@if((Auth::user()->roles_id)=='1' || (Auth::user()->roles_id)=='2' || (Auth::user()->roles_id)=='4' || (Auth::user()->roles_id)=='5')                  
-                            
-@endif                  
+@if((Auth::user()->roles_id)=='1' || (Auth::user()->roles_id)=='4' || (Auth::user()->roles_id)=='5')
+
+@endif
                             <li><a href="#"> Menú<span class="fa arrow"></span></a>
                                 <ul class="nav nav-third-level">
                                     <li><a href="{{ url('admin/platos') }}">Platos</a></li>
@@ -116,21 +117,26 @@
                             </li>
                             <li><a href="#"> Comandas<span class="fa arrow"></span></a>
                                 <ul class="nav nav-third-level">
+                                  @if((Auth::user()->roles_id)=='1' || (Auth::user()->roles_id)=='2' || (Auth::user()->roles_id)=='4' || (Auth::user()->roles_id)=='6')
+
                                     <li><a href="{{ url('admin/comandas') }}">Nueva</a></li>
+                                  @endif
                                     <li><a href="{{ url('admin/comandas/en-espera') }}">En espera</a></li>
                                     <li><a href="{{ url('admin/comandas/procesadas')}}">Procesadas</a></li>
                                 </ul>
                             </li>
+                            @if((Auth::user()->roles_id)=='1' || (Auth::user()->roles_id)=='2' || (Auth::user()->roles_id)=='4' || (Auth::user()->roles_id)=='5')
 
                             <li><a href="{{ url('admin/clientes') }}">Clientes</a></li>
-                            
-@if((Auth::user()->roles_id)=='1' || (Auth::user()->roles_id)=='2' || (Auth::user()->roles_id)=='4' || (Auth::user()->roles_id)=='5')    
-                            <li><a href="platos.html">Recibos</a></li>
+                            @endif
+@if((Auth::user()->roles_id)=='1'  || (Auth::user()->roles_id)=='4' || (Auth::user()->roles_id)=='5')
+
 @endif
                             <li><a href="{{ url('admin/reservaciones') }}">Reservaciones</a></li>
                         </ul>
                     </li>
-@if((Auth::user()->roles_id)=='1' || (Auth::user()->roles_id)=='2' || (Auth::user()->roles_id)=='3' )
+@endif
+@if((Auth::user()->roles_id)=='1' || (Auth::user()->roles_id)=='3' )
                     <li><a href="#"  ><i class="fa fa-fw fa-male"></i> Empleados<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li><a href="{{ url('admin/empleados') }}"> Personal </a></li>
@@ -148,27 +154,29 @@
                                     <li><a href="{{ url('admin/planificaciones') }}"> Fechas</a></li>
                                     <li><a href="{{ url('admin/planificaciones/administrar/dias') }}"> Días</a></li>
                                     <li><a href="{{ url('admin/planificaciones/administrar/dias/turnos') }}"> Planificación</a></li>
-                                </ul> 
-                            </li>  
+                                </ul>
+                            </li>
                         </ul>
                     </li>
 @endif
 
-@if((Auth::user()->roles_id)=='1' || (Auth::user()->roles_id)=='2' || (Auth::user()->roles_id)=='3' )
+@if((Auth::user()->roles_id)=='1' || (Auth::user()->roles_id)=='3' )
                     <li><a href="#" ><i class="fa fa-fw fa-shopping-cart"></i> Compra<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li><a href="{{ url('admin/compra') }}">Orden de Compra</a></li>
-                            <li><a href="{{ url('admin/proveedores')}}">Proveedores</a></li> 
+                            <li><a href="{{ url('admin/proveedores')}}">Proveedores</a></li>
                             <li><a href="#"> Inventario<span class="fa arrow"></span></a>
                                 <ul class="nav nav-third-level">
-                                    <li><a href="{{ url('admin/ingredientes') }}">Ingredientes</a></li>                     
+                                    <li><a href="{{ url('admin/ingredientes') }}">Ingredientes</a></li>
                                     <li><a href="{{ url('admin/licores') }}">Licores</a></li>
                                     <li><a href="{{ url('admin/bebidas') }}">Bebidas</a></li>
                                 </ul>
-                            </li> 
+                            </li>
                         </ul>
                     </li>
 @endif
+
+
 
 @if((Auth::user()->roles_id)=='1' || (Auth::user()->roles_id)=='2')
                     <li><a href="#"><i class="fa fa-fw fa-wrench"></i> Mantenimiento<span class="fa arrow"></span></a>
@@ -184,7 +192,7 @@
             </div>
          </div>
     </nav>
-               
+
   </div>
     <!-- <footer class="footer">
       <div class="container">
@@ -207,7 +215,7 @@
     <script src="{{ asset('chosen/chosen.jquery.min.js') }}"></script>
 
         @yield('js')
-    
+
     <script>
         $('div.alert').not('.alert-important').delay(5000).fadeOut(350);
     </script>
@@ -219,8 +227,8 @@
     });
     </script>
     <script type="text/javascript">
-    function desbloquear() 
-    {    
+    function desbloquear()
+    {
         hora_entrada = document.form1['hora_entrada[]'];
         hora_salida = document.form1['hora_salida[]'];
 

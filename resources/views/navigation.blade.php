@@ -16,9 +16,11 @@
                         <a href="#page-top"></a>
                     </li>
                     @if(!Auth::guest())
+                    @if(!Auth::user()->roles_id) == '7')
                     <li>
                         <a class="page-scroll" href="#reservations">Reservaciones</a>
                     </li>
+                    @endif
                     @endif
                     <li>
                         <a class="page-scroll" href="#services">Servicios</a>
@@ -36,14 +38,27 @@
                     <li>
                         <a class="page-scroll" href="#" data-toggle="modal" data-target="#iniciar-sesion">Entrar</a>
                     </li>
-                    
-                    @else 
+
+                    @endif
+                    @if(!Auth::guest())
+                    @if(!Auth::user()->roles_id) == '7')
                     <li>
                         <a class="page-scroll" href="{{ url('/admin') }}" title="Entrar">
                         <span class="fa fa-sign-out"></span> {{ Auth::user()->name }}
-                        
+
                         </a>
+
                     </li>
+                    @endif
+
+                    <li>
+                        <a class="page-scroll" href="{{ url('/admin/salir') }}" title="Entrar">
+                        <span class="fa fa-power-off"></span> Salir
+
+                        </a>
+
+                    </li>
+
                     @endif
                 </ul>
             </div>

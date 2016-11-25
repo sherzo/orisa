@@ -6,6 +6,7 @@ $(document).ready(function(){
 		$.get('create/eleccion/' + eleccion, function(data){
 			$('#tablero').empty();
 			$('#tablero').append('<br>');
+			var asset = $('#direccion').val();
 			if(data!= ''){
 				$.each(data, function(index, typeObj){
 
@@ -13,7 +14,7 @@ $(document).ready(function(){
 						var img = 'plates/'+typeObj['image'].imagen; //Platos
 						var nombre = typeObj.plato;
 						var tipo = 1;
-					
+
 					}else if(typeObj.trago != undefined){
 
 						var img = 'beverages/'+typeObj['image'].imagen; //Tragos
@@ -37,8 +38,7 @@ $(document).ready(function(){
 					}
 
 					var render = '<div class="col-md-3"><div class="panel panel-default">'+
-								'<div class="panel-body"><img src="../../img/'+img+
-								'" alt="" class="img-responsive"></div><div class="panel-footer">'+
+								'<div class="panel-body"><img src="'+asset+'/'+img+'" alt="" class="img-responsive"></div><div class="panel-footer">'+
 								nombre+'<button type="'+typeObj.id+'" class="btn btn-xs btn-success pull-right agregar" data="'
 								+nombre+'" data2="'+typeObj.precio+ '" tipo="'+tipo+'"><span class="fa fa-plus" ></span></button>'+
 								'</div></div></div>';
@@ -48,10 +48,10 @@ $(document).ready(function(){
 						$('#tablero').empty();
 						$('#tablero').html('<h4 class="text-center">No se encontraron resustaldos</h4>');
 					}
-		
+
 					// FUNCION AGREGAR
 			$('.agregar').on('click', function(){
-                    
+
                 var id_i = $(this).attr('type');
                 var producto = $(this).attr('data');
                 var precio = $(this).attr('data2');
@@ -63,33 +63,33 @@ $(document).ready(function(){
             	}else{
             		total = parseInt(total) + parseInt(precio);
             	}
-     			
+
      		 	for (var i = 1; i <= 10; i++) {
      		 		var ayuda = '<option>'+i+'</option>';
      		 		var option = option+ayuda;
      		 	}
-            	
+
                 var tr = '<tr><td>'+producto+'<input type="hidden" value="'+id_i+'" name="producto[]"></td>'+
                 '<td><select class="form-control input-sm" name="cantidades[]">'+
                 option+'</select><input type="hidden" value="'+tipo+'" name="tipo[]">'+
                 '</td><td class="unitario">'+precio+'</td><td>'+
                 '<a class="btn btn-xs remove" data="'+precio+'"><span class="fa fa-trash"></span></a></td></tr>';
-            	
+
             	$('#productos').append(tr);
             	$('#total').text(total);
-            	
+
 
             	$('.remove').on('click', function(){
             		$(this).parents('tr').first().remove();
-            			if($('#productos').is(':empty')){ 
+            			if($('#productos').is(':empty')){
             				total = 0;
             				}else{
             				var unitario = $(this).attr('data');
             				var total = $('#total').text();
 
             				var total = parseInt(total) - parseInt(unitario);
-                            
-                            
+
+
                         }
                     $('#total').text(total);
                 });
@@ -105,11 +105,11 @@ $(document).ready(function(){
 			var boton = $(this);
 			boton.remove();
 			$.get('en-espera/procesar/' + comanda, function(data){
-				
+
 			});
 		});
 
 
 		//Funcion para actualizar las comandas
-	
+
 });// Fin de la funcion jQuery

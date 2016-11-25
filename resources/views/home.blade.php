@@ -4,9 +4,9 @@
 
 <div class="row">
     <div class="col-lg-12">
-        <h1 class="page-header">Tablero</h1>                    
+        <h1 class="page-header">Tablero</h1>
     </div>
-</div>     
+</div>
 <div class="row">
     <a href="">
         @if((Auth::user()->roles_id)=='6')
@@ -22,16 +22,16 @@
                              <div>Panel de servicios</div>
                         </div>
                     </div>
-                </div> 
-                <div class="panel-footer">   
+                </div>
+                <div class="panel-footer">
                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                     <div class="clearfix"></div>
-                </div>         
+                </div>
             </div>
         </div>
         @endif
     </a>
-    <a href="">            
+    <a href="">
         @if((Auth::user()->roles_id)=='1' || (Auth::user()->roles_id)=='2' || (Auth::user()->roles_id)=='3' || (Auth::user()->roles_id)=='4' || (Auth::user()->roles_id)=='5' || (Auth::user()->roles_id)=='6')
         <div class="col-lg-3 col-md-6">
             <div class="panel panel-primary">
@@ -50,12 +50,12 @@
                     <span class="pull-left"></span>
                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                     <div class="clearfix"></div>
-                </div>   
+                </div>
             </div>
         </div>
         @endif
     </a>
-    <a href="">           
+    <a href="">
         @if((Auth::user()->roles_id)=='1' || (Auth::user()->roles_id)=='2' || (Auth::user()->roles_id)=='3')
         <div class="col-lg-3 col-md-6">
             <div class="panel panel-green">
@@ -70,15 +70,15 @@
                         </div>
                     </div>
                 </div>
-                <div class="panel-footer">                             
+                <div class="panel-footer">
                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                     <div class="clearfix"></div>
                 </div>
             </div>
-        </div> 
+        </div>
         @endif
-    </a>   
-    <a href="{{ url('admin/compra/ordenes') }}">
+    </a>
+    <a href="{{ url('admin/compra¬') }}">
         @if((Auth::user()->roles_id)=='1' || (Auth::user()->roles_id)=='2' || (Auth::user()->roles_id)=='3')
         <div class="col-lg-3 col-md-6">
             <div class="panel panel-yellow">
@@ -122,6 +122,6 @@
         </div>
         @endif
     </a>
-</div>    
+</div>
 
 @endsection

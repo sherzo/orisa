@@ -1,13 +1,13 @@
 $(document).ready(function(){
 
 	$('#sigin').submit(function(){
-		
+
 		if($("#datos").is(':empty')) {
 
 				var nacionalidad = $("#nacionalidad").val();
 				var dni = $("#cedula").val();
 				var busqueda = nacionalidad+'-'+dni;
-				
+
 				$("#contenido").empty();
 				$("#contenido").append('<center><img src="img/cargando.gif"></center>');
 				$("#sigin").attr('class', '');
@@ -29,17 +29,17 @@ $(document).ready(function(){
 										'<input type="hidden" value="1" name="roles_id">')
 
 				});// EACH
-			
+
 				$(function () {
 	  				$('[data-toggle="tooltip"]').tooltip()
-				});	
+				});
 
 			});// AJAX
-			
+
 			return false;
-	
+
 		}// IF
-	
+
 	});// SUBMIT FORM
 
 
@@ -69,21 +69,21 @@ $("#hora").on('change', function(e){
 				var render = '<div class="col-md-2 col-sm-6 portfolio-item" id="seleccionado">'+
 							'<a href="#" class="portfolio-link seleccionado" data-toggle="modal">'+
 							'<div class="portfolio-hover '+ status +'"><div class="portfolio-hover-content">'+
-							'<i class="fa fa-plus fa-3x"></i></div></div><img src="img/'+image+'.png"'+
+							'<i class="fa fa-plus fa-3x"></i></div></div><img src="img/tables/'+image+'.png"'+
 							'class="img-responsive" alt=""></a><div class="portfolio-caption">'+
 							'<em><p class="text-muted"> #'+ index + ' '+ status +'</p><em>'+checkbox+'</div></div>';
 				$('#contenedor').append(render);
 			});
-			
+
 			$(".portfolio-seleccionado").on('click', function(){
 				if(!$(this).hasClass('Ocupada')){
 				$(this).attr('class', 'portfolio-hover');
 			}
-			
+
 			});
 
-			
-		 
+
+
 		});
 
 	}// if

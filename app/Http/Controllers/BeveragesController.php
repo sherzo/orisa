@@ -51,8 +51,8 @@ class BeveragesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {   
-        //--  Manipulando la imagen 
+    {
+        //--  Manipulando la imagen
         if($request->file('image'))
         {
             $file = $request->file('image');
@@ -67,9 +67,9 @@ class BeveragesController extends Controller
         $beverage = new Beverage($request->all());
         $beverage->image_id = $image->id;
         $beverage->save();
-    
+
         foreach ($request->id_ingredientes as $key => $ingrediente) {
-            
+
             $receta = new Beverages_has_ingredient();
 
             $receta->beverage_id = $beverage->id;
@@ -77,13 +77,13 @@ class BeveragesController extends Controller
             $receta->cantidad_ingrediente = $request->cantidades_i[$key];
             $receta->unit_id = $request->unidades_i[$key];
 
-            $receta->save();            
+            $receta->save();
         }
 
         if($request->id_licores){
-            
+
             foreach ($request->id_licores as $key => $licor) {
-                
+
                 $receta = new Beverages_has_liqueur();
 
                 $receta->beverage_id = $beverage->id;
@@ -91,8 +91,8 @@ class BeveragesController extends Controller
                 $receta->cantidad_licor = $request->cantidades_l[$key];
                 $receta->unit_id = $request->unidades_l[$key];
 
-                $receta->save();            
-            } 
+                $receta->save();
+            }
         }
 
         Flash::success('<strong>Perfecto </strong> el trago '. $beverage->trago .' se creo correctamente.');
@@ -109,7 +109,15 @@ class BeveragesController extends Controller
      */
     public function show($id)
     {
-        //
+      $beverage = Beverage::find($id);
+
+      $ingredientes = $beverage->Ingredientes()->get();
+      $licores = $beverage->Licores()->get();
+      $unidades_licores = $beverage->UnidadesLicores()->get();
+      $unidades_ingredientes = $beverage->UnidadesIngredientes()->get();
+
+     return view('admin.beverages.show', compact('beverage', 'ingredientes', 'licores', 'unidades_licores', 'unidades_ingredientes'));
+
     }
 
     /**
@@ -123,7 +131,7 @@ class BeveragesController extends Controller
         $beverage = Beverage::find($id);
         $beverage->each(function($beverage){
             $beverage->ingredients;
-            $beverage->receta;           
+            $beverage->receta;
         });
         return view('admin.beverages.edit')->with('berevage', $beverage);
     }
@@ -137,7 +145,22 @@ class BeveragesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+      $beverage = Beverage::findOrFail($id);
+      $ingredientes = $beverage->Ingredientes()->get();
+      $licores = $beverage->Licores()->get();
+      $beverage->Ingredientes()->detach();
+      $beverage->Licores()->detach();
+      foreach($ingredientes as $key => $ingrediente)
+      {
+        $beverage->Ingredientes()->attach([$ingrediente->id => ['cantidad_ingrediente' => $request->cantidad_i[$key], 'unidad_id' => $request->units[$key]]]);
+      }
+
+      if($request->cantidad_l){
+        foreach($licores as $key => $licor)
+        {
+          $beverage->Licores()->attach([$licor->id => ['cantidad_licor' => $request->cantidad_l[$key], 'unit_id' => $request->units_l[$key]]]);
+        }
+      }
     }
 
     /**

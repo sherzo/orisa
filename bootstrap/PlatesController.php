@@ -109,9 +109,16 @@ class PlatesController extends Controller
         //-- Guardando los licores
         if ($request->id_licores) {
 
-            foreach ($request->id_licores as $key => $licor) {
+            foreach ($request->id_licores as $key => $value) {
 
-              $plate->licores()->attach([$licor => ['cantidad_liqueur' => $request->cantidades_l[$key], 'unit_id' => $request->unidades_l[$key]]]);
+                $receta = new Plates_has_liqueur();
+
+                $receta->plato_id = $plate->id;
+                $receta->licor_id = $request->id_licores[$key];
+                $receta->cantidad_licor = $request->cantidades_l[$key];
+                $receta->unidad_id = $request->unidades_l[$key];
+
+                $receta->save();
             }
         }
 
@@ -133,12 +140,9 @@ class PlatesController extends Controller
         $plate = Plate::find($id);
 
         $ingredientes = $plate->ingredientes()->get();
-        $licores = $plate->licores()->get();
-        $unidades_licores = $plate->UnidadesLicores()->get();
-        $unidades_ingredientes = $plate->UnidadesIngredientes()->get();
-        $salsas = $plate->salsas()->get();
+        
 
-       return view('admin.plates.show', compact('plate', 'ingredientes', 'licores', 'unidades_licores', 'unidades_ingredientes', 'salsas'));
+       return view('admin.plates.show', compact('plate', 'ingredientes'));
     }
 
     /**
@@ -161,23 +165,7 @@ class PlatesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $plate = Plate::findOrFail($id);
-
-        $ingredientes = $plate->Ingredientes()->get();
-        $licores = $plate->Licores()->get();
-        $plate->Ingredientes()->detach();
-        $plate->Licores()->detach();
-        foreach($ingredientes as $key => $ingrediente)
-        {
-          $plate->Ingredientes()->attach([$ingrediente->id => ['cantidad_ingrediente' => $request->cantidad_i[$key], 'unidad_id' => $request->units[$key]]]);
-        }
-
-        if($request->cantidad_l){
-          foreach($licores as $key => $licor)
-          {
-            $plate->Licores()->attach([$licor->id => ['cantidad_liqueur' => $request->cantidad_l[$key], 'unit_id' => $request->units_l[$key]]]);
-          }
-        }
+        //
     }
 
     /**

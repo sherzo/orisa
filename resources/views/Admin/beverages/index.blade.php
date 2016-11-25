@@ -20,7 +20,7 @@
         </a>
     </div><br>
 </div>
-          <!--  CIERRE DEL ROW -->            
+          <!--  CIERRE DEL ROW -->
           <div class="row">
             @foreach($beverages as $beverage)
               <div class="col-md-4">
@@ -31,13 +31,13 @@
                   </div>
                   <div class="panel-footer">
                     {{ $beverage->trago }}
-                    
+
                     <!-- <a href="#" class="btn btn-default btn-xs pull-right "> <span class="fa fa-trash-o fa-2x"></span> </a> &nbsp;&nbsp; -->
-                    
+
 
                     <a href="{{ route('admin.tragos.edit', $beverage->id) }}" class="btn btn-default btn-xs pull-right "> <span class="fa fa-pencil fa-2x"></span> </a>
-                    
-                    <a href="#" class="btn btn-default btn-xs pull-right "> <span class="fa fa-eye fa-2x"></span> </a>
+
+                    <a href="{{ route('admin.tragos.show', $beverage->id)}}" class="btn btn-default btn-xs pull-right "> <span class="fa fa-eye fa-2x"></span> </a>
 
                   </div>
                 </div>

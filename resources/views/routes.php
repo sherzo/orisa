@@ -21,10 +21,9 @@ Route::get('/', function()
 	return View::make('welcome', compact('platos'));
 });
 
-Route::get('search/{cedula}', function($cedula){
-		$client = App\Client::where('dni_cedula', $cedula)->get();
-		
-		return Response::json($client);
+Route::get('/search/{cedula}', function($cedula){
+	$client = App\Client::where('dni_cedula', $cedula)->get();
+	return Response::json($client);
 });
 
 Route::get('/solicitud-reservacion/{fecha}/{hora}', function($fecha, $hora){
@@ -136,25 +135,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
 
 		$employees = App\Employee::all();
 
-		foreach ($employees as $key => $employee)
-		{
-				  $others_assignments_pivot = App\Employee::find($employee->id);
-					$boleean = App\Employee::find($employee->id)->assignmentsTemporary;
-
-					foreach ($boleean as $boleean)
-					{
-					 		$boleean->pivot->estatus = '1';
-							$boleean->pivot->save();
-					}
-
-					foreach ($others_assignments_pivot->assignmentsTemporary as $others_assignments_pivot)
-					{
-
-							$others_assignments_dx[] = $others_assignments_pivot;
-					}
-		}
-
-		return view('admin.payroll.news_assignments', compact('others_assignments', 'others_assignments_dx', 'count', 'employees', 'year', 'mes', 'quincena'));
+		return view('admin.payroll.news_assignments', compact('others_assignments', 'count', 'employees', 'year', 'mes', 'quincena'));
 	});
 
 	Route::resource('temporary_assigments', 'TemporaryAssignmentsController');
@@ -167,24 +148,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
 
 		$employees = App\Employee::all();
 
-		foreach ($employees as $key => $employee)
-		{
-				  $others_deductions_pivot = App\Employee::find($employee->id);
-					$boleean = App\Employee::find($employee->id)->deductionsTemporary;
-
-					foreach ($boleean as $boleean)
-					{
-					 		$boleean->pivot->estatus = '1';
-							$boleean->pivot->save();
-					}
-
-					foreach ($others_deductions_pivot->deductionsTemporary as $others_deductions_pivot)
-					{
-							$others_deductions_dx[] = $others_deductions_pivot;
-					}
-		}
-
-		return view('admin.payroll.news_deductions', compact('others_deductions', 'others_deductions_dx', 'count', 'employees', 'year', 'mes', 'quincena'));
+		return view('admin.payroll.news_deductions', compact('others_deductions', 'count', 'employees', 'year', 'mes', 'quincena'));
 	});
 	Route::resource('temporary_deductions', 'TemporaryDeductionsController');
 	Route::resource('deducciones_extras', 'DeductionsExtrasController');

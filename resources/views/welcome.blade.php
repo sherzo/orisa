@@ -29,7 +29,7 @@
 </head>
 
 <body id="page-top" class="index">
-    
+
     <!-- Navegacion -->
 
     @include('navigation')
@@ -47,7 +47,7 @@
     @endif
         @include('section-services')
 
-        @include('section-portafolio')
+        @include('section-platos-del-dia')
 
         @include('section-about')
 
@@ -87,10 +87,10 @@
             </div>
         </div>
     </footer>
-    
+
     <!-- Vista de portafolio -->
 
-    @include('modals-portafolio')
+    @include('modals-platos-del-dia')
 
     @include('login')
     @include('sigin')
@@ -106,7 +106,7 @@
     <script>
         $(function () {
                     $('[data-toggle="tooltip"]').tooltip()
-                }); 
+                });
     </script>
 </body>
 </html>

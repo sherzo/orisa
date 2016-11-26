@@ -143,6 +143,7 @@
 
 @endif
                             <li><a href="{{ url('admin/reservaciones') }}">Reservaciones</a></li>
+                            <li><a href="{{ url('admin/platos-del-dia') }}">Plato del día</a></li>
                         </ul>
                     </li>
 @endif

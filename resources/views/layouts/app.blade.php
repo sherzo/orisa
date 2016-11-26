@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
+
     <title>Restaurant sefardí</title>
 
     <link rel="stylesheet" type="text/css" href="{{ asset('bower_components/bootstrap/dist/css/bootstrap.css') }}">
@@ -30,10 +31,8 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="{{ url('admin') }}"><img alt="Brand" src="{{ asset('img/logo/Orisa6.png') }}" width="28" height="27"></a>
-            <a href="{{ url('admin') }}" class="navbar-brand">Orisa</a>
+            <a class="navbar-brand" href="{{ url('admin') }}"><img alt="Brand" src="{{ asset('img/logo/Orisa6.png') }}" width="30" height="30"></a>
         </div>
-
         <ul class="nav navbar-top-links navbar-right">
             <li class="dropdown">
                 <a class="dropdown-toggle color" data-toggle="dropdown" href="#">
@@ -100,6 +99,17 @@
         <div class="navbar-default sidebar" role="navigation">
             <div class="sidebar-nav navbar-collapse collapse in" aria-expanded="true">
                 <ul class="nav" id="side-menu">
+                  <li class="sidebar-search">
+                          <div class="input-group custom-search-form">
+                              <input type="text" class="form-control" placeholder="Buscar...">
+                              <span class="input-group-btn">
+                              <button class="btn btn-default" type="button">
+                                  <i class="fa fa-search"></i>
+                              </button>
+                              </span>
+                          </div>
+                          <!-- /input-group -->
+                      </li>
                     <li><a href="{{ url('admin') }}"><i class="fa fa-fw fa-home"></i> Inicio</a></li>
 @if((Auth::user()->roles_id)!='2')
                     <li><a href="#"><i class="fa fa-fw fa-cutlery"></i> Servicios<span class="fa arrow"></span></a>

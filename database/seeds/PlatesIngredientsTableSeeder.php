@@ -11,13 +11,13 @@ class PlatesIngredientsTableSeeder extends Seeder
      */
     public function run()
     {
-		for ($i=1; $i <= 13; $i++) { 
-    	
+		for ($i=1; $i <= 13; $i++) {
+
 	        \DB::table('plates_has_ingredients')->insert(array (
 	            'plato_id' => $i,
 	            'ingrediente_id' => '1',
 	            'cantidad_ingrediente' => $i.'0',
-	            'unidad_id' => '1',
+	            'unidad_id' => '2',
 	        ));
 
     	}

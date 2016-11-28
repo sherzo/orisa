@@ -1,10 +1,13 @@
-
-
-						<div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
+<div class="checkbox form-group">
+    <label>
+      <input type="checkbox" id="empleado"> Empleado
+    </label>
+  </div>
+						<div class="form-group{{ $errors->has('name') ? ' has-error' : '' }} nombre">
 							{!! Form::label('name', 'Nombre') !!}
 
 							{!! Form::text('name', null, ['class' => 'form-control', 'placeholder' => 'Saul', 'title' => 'Ingrese su nombre']) !!}
-							
+
 							@if($errors->has('name'))
                                    	<span class="help-block">
                                         <strong>{{ $errors->first('name') }}</strong>
@@ -12,7 +15,7 @@
                             @endif
 						</div>
 						<div class="form-group{{ $errors->has('user') ? ' has-error' : '' }}">
-							{!! Form::label('user', 'Usuario') !!} 
+							{!! Form::label('user', 'Usuario') !!}
 
 							{!! Form::text('user', null, ['class' => 'form-control', 'placeholder' => 'Sherzo', 'title' => 'Ingrese su usuario']) !!}
 
@@ -33,9 +36,9 @@
                                     </span>
                              @endif
 						</div>
-						<div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}"> 
+						<div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
 							{!! Form::label('email', 'Correo Electronico') !!}
-							
+
 							{!! Form::text('email', null, ['class' => 'form-control', 'placeholder' => 'ejemplo@gmail.com']) !!}
 						@if ($errors->has('email'))
                                     <span class="help-block">
@@ -43,7 +46,7 @@
                                     </span>
                                 @endif
 						</div>
-						
+
 						<div class="form-group">
 						    {!! Form::label('type', 'Tipo de usuario') !!}
 

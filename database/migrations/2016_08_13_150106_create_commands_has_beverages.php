@@ -18,6 +18,7 @@ class CreateCommandsHasBeverages extends Migration
             $table->foreign('command_id')->references('id')->on('commands')->onDelete('Cascade');
             $table->integer('beverage_id')->unsigned();
             $table->foreign('beverage_id')->references('id')->on('beverages')->onDelete('Cascade');
+            $table->boolean('estatus')->default(false);
             $table->timestamps();
         });
     }

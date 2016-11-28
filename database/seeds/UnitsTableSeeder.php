@@ -19,10 +19,6 @@ class UnitsTableSeeder extends Seeder
             'unidad' => 'G'
         ));
 
-           \DB::table('units')->insert(array (
-        	'unidad' => 'MG'
-        ));
-
        \DB::table('units')->insert(array (
         	'unidad' => 'L'
         ));
@@ -32,4 +28,3 @@ class UnitsTableSeeder extends Seeder
         ));
     }
 }
-

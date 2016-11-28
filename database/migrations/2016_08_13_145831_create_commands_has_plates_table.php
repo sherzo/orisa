@@ -18,6 +18,7 @@ class CreateCommandsHasPlatesTable extends Migration
             $table->foreign('command_id')->references('id')->on('commands')->onDelete('Cascade');
             $table->integer('plate_id')->unsigned();
             $table->foreign('plate_id')->references('id')->on('plates')->onDelete('Cascade');
+            $table->boolean('estatus')->default(false);
             $table->timestamps();
         });
     }
@@ -32,4 +33,3 @@ class CreateCommandsHasPlatesTable extends Migration
         Schema::drop('commands_has_plates');
     }
 }
-

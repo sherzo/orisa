@@ -4,9 +4,9 @@ error_reporting(E_ALL);
 /**
  * Define database parameters here
  */
-define("DB_USER", 'admin');
-define("DB_PASSWORD", 'test_passwd');
-define("DB_NAME", 'database_name');
+define("DB_USER", 'root');
+define("DB_PASSWORD", '');
+define("DB_NAME", 'orisa');
 define("DB_HOST", 'localhost');
 define("OUTPUT_DIR", 'cache');
 define("TABLES", '*');
@@ -117,12 +117,12 @@ class Backup_Database {
                 $row2 = mysql_fetch_row(mysql_query('SHOW CREATE TABLE '.$table));
                 $sql.= "\n\n".$row2[1].";\n\n";
 
-                for ($i = 0; $i < $numFields; $i++) 
+                for ($i = 0; $i < $numFields; $i++)
                 {
                     while($row = mysql_fetch_row($result))
                     {
                         $sql .= 'INSERT INTO '.$table.' VALUES(';
-                        for($j=0; $j<$numFields; $j++) 
+                        for($j=0; $j<$numFields; $j++)
                         {
                             $row[$j] = addslashes($row[$j]);
                             $row[$j] = ereg_replace("\n","\\n",$row[$j]);

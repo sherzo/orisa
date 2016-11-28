@@ -17,13 +17,13 @@ Route::get('/', function()
 {
 	$portal = App\Portal::where('estatus', true)->first();
 	$platos = $portal->plates()->get();
-	
+
 	return View::make('welcome', compact('platos'));
 });
 
 Route::get('search/{cedula}', function($cedula){
 		$client = App\Client::where('dni_cedula', $cedula)->get();
-		
+
 		return Response::json($client);
 });
 
@@ -251,6 +251,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
 	Route::resource('sauces', 'SaucesController');
 	Route::resource('tragos', 'BeveragesController');
 	Route::resource('jugos', 'JuicesController');
+	Route::resource('reservaciones', 'ReservationsController');
 	Route::get('comandas/en-espera', ['uses' => 'CommandsController@hold', 'as' => 'admin.comandas.en-espera']);
 	Route::get('comandas/facturar', ['uses' => 'CommandsController@invoice', 'as' => 'admin.comandas.facturar']);
 	Route::get('comandas/procesadas', ['uses' => 'CommandsController@process', 'as' => 'admin.comandas.procesadas']);
@@ -402,6 +403,10 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
 
 			}
 		});
+		Route::get('comandas/{id}/lista', [
+			'uses' => 'CommandsController@ready',
+			'as' => 'admin.comandas.lista'
+			]);
 		Route::get('platos-del-dia', [
 			'uses' => 'PortalController@index',
 			'as'   => 'admin.platos-del-dia'

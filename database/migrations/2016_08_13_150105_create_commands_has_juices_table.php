@@ -18,6 +18,7 @@ class CreateCommandsHasJuicesTable extends Migration
             $table->foreign('command_id')->references('id')->on('commands')->onDelete('Cascade');
             $table->integer('juice_id')->unsigned();
             $table->foreign('juice_id')->references('id')->on('juices')->onDelete('Cascade');
+            $table->boolean('estatus')->default(false);
             $table->timestamps();
         });
     }

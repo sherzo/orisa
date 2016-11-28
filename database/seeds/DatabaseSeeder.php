@@ -17,8 +17,8 @@ class DatabaseSeeder extends Seeder
         $this->call(UsersTableSeeder::class);
         $this->call(UnitsTableSeeder::class);
         $this->call(LiqueursTypeTableSeeder::class);
-        $this->call(IngredientsTypesTableSeeder::class);       
-        $this->call(PositionsTableSeeder::class);         
+        $this->call(IngredientsTypesTableSeeder::class);
+        $this->call(PositionsTableSeeder::class);
         $this->call(ProvidersTableSeeder::class);
         $this->call(DrinksTableSeeder::class);
         $this->call(LiqueursTableSeeder::class);
@@ -42,5 +42,6 @@ class DatabaseSeeder extends Seeder
         $this->call(BeveragesLiqueursTableSeeder::class);
         $this->call(JuicesTableSeeder::class);
         $this->call(JuicesIngredientsTableSeeder::class);
+        $this->call(PortalTableSeeder::class);
     }
 }

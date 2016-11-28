@@ -1,41 +1,40 @@
 @extends('layouts.app')
 
 @section('contenido')
-	
-<div class="row">		
-    <div class="col-lg-12">
-        <ol class="breadcrumb">
-            <li><a href="{{ url('admin') }}"><span class="glyphicon glyphicon-home"></span></a></li>
-            <li class="active">Reservaciones </li>
-        </ol>
-    </div>
-    <div class="col-lg-12 ">
-				<h1 class="page-header">Reservaciones</h1>
+
+<div class="row">
+	<div class="col-lg-12">
+		<h1 class="page-header"></h1>
+		<ol class="breadcrumb">
+			<li><a href="{{ url('admin') }}"><span class="glyphicon glyphicon-home"></span></a></li>
+			<li class="active">Reservaciones</li>
+		</ol>
 	</div>
 </div>
-
-<div class="row bg-success">
-<a href="#" id="">
-	<div class="col-md-2 col-md-offset-2">
-		<img class="img-responsive" src="{{ asset('img/mesa-ocupado.png') }}">
+<div class="row">
+	<div class="col-lg-4">
+		<a href="{{ url('admin/reservaciones/create') }}">
+			<button type="button" class="btn btn-primary"><span class="fa fa-plus"></span></button>
+		</a>
 	</div>
-</a>
-	<div class="col-md-2 "><img src="{{ asset('img/mesa-disponible.png') }}" alt="" class="img-responsive"></div>
-	<div class="col-md-2 "><img src="{{ asset('img/mesa-disponible.png') }}" alt="" class="img-responsive"></div>
-<a href="" class="disabled" disabled>
-	<div class="col-md-2 "><img src="{{ asset('img/mesa-ocupado.png') }}" alt="" class="img-responsive">
-	</div>
-</a>
-	<div class="col-md-2 col-md-offset-2 "><img src="{{ asset('img/mesa.png') }}" alt="" class="img-responsive"></div>
-
-	<div class="col-md-2 "><img src="{{ asset('img/mesa.png') }}" alt="" class="img-responsive"></div>
-
-	<div class="col-md-2"><img src="{{ asset('img/mesa-disponible.png') }}" alt="" class="img-responsive"></div>
-
-	<div class="col-md-2"><img src="{{ asset('img/mesa.png') }}" alt="" class="img-responsive"></div>
-	<div class="col-md-2 col-md-offset-2"><img src="{{ asset('img/mesa.png') }}" alt="" class="img-responsive"></div>
-	<div class="col-md-2"><img src="{{ asset('img/mesa.png') }}" alt="" class="img-responsive"></div>
-	<div class="col-md-2"><img src="{{ asset('img/mesa.png') }}" alt="" class="img-responsive"></div>
-	<div class="col-md-2"><img src="{{ asset('img/mesa.png') }}" alt="" class="img-responsive"></div>
+</div>
+<br>
+<div>
+    @include('flash::message')
+</div>
+<div class="row">
+	<div class="col-lg-12">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+                <em>Listado de reservaciones</em>
+            </div>
+            <div class="panel-body">
+            	<div class="dataTable_wrapper">
+                	@include('admin.reservations.partials.table')
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 @endsection

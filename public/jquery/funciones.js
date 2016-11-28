@@ -46,8 +46,7 @@ $('#types').on('change', function(e){
                     '</option> '+
                     '<option value="'+ data['units'][3].id +' ">'+ data['units'][3].unidad +
                     '</option> '+
-                    '<option value="'+ data['units'][4].id +' ">'+ data['units'][4].unidad +
-                    '</option> '+
+
                     '</td><td align="center"><a class="btn btn-sm btn-danger remove" title="Remover">'+
                     '<span class="fa fa-times"></span></a>'
                 );
@@ -121,8 +120,6 @@ $('#types_liqueurs').on('change', function(e){
                     '<option value="'+ data['units'][2].id +' ">'+ data['units'][2].unidad +
                     '</option> '+
                     '<option value="'+ data['units'][3].id +' ">'+ data['units'][3].unidad +
-                    '</option> '+
-                    '<option value="'+ data['units'][4].id +' ">'+ data['units'][4].unidad +
                     '</option> '+
                     '</td><td align="center"><a class="btn btn-sm btn-danger remove_l" title="Remover">'+
                     '<span class="fa fa-times"></span></a>'

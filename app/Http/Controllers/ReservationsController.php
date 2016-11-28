@@ -18,7 +18,9 @@ class ReservationsController extends Controller
      */
     public function index()
     {
-        return view('admin.reservations.index');
+      $reservaciones = Reservation::all();
+      
+      return view('admin.reservations.index', compact('reservaciones'));
     }
 
     /**
@@ -38,7 +40,7 @@ class ReservationsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {   
+    {
        foreach ($request->mesas_reservadas as $key => $mesa) {
 
             $reservation = new Reservation($request->all());
@@ -53,8 +55,8 @@ class ReservationsController extends Controller
     return redirect()->back();
 
     }
-       
-        
+
+
 
     /**
      * Display the specified resource.

@@ -15,10 +15,13 @@ class Reservation extends Model
 
     protected $table = 'reservations';
 
-	public function table()
-	    {
-	    	return $this->belongsTo('App\Table');
-	    }
+	  public function table()
+	  {
+      return $this->belongsTo('App\Table');
+	  }
 
+    public function client()
+	  {
+      return $this->belongsTo('App\Client');
+	  }
 }
-

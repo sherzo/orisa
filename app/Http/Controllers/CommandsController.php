@@ -122,6 +122,35 @@ class CommandsController extends Controller
         return redirect('admin/comandas/en-espera');
     }
 
+    public function ready($id)
+    {
+      $comanda = Command::find($id);
+      $comanda->estatus = 'Lista';
+      $comanda->save();
+
+      $platos = $comanda->plates()->get();
+
+        function transformarUnidad($unidad, $valor)
+        {
+            if($unidad == 1 OR $unidad == 3)
+            {
+              $valor = $valor * 1000;
+              return $valor;
+            }else {
+              return $valor;
+            }
+        }
+
+      foreach ($platos as $key => $plato) {
+
+        $ingredientes = $plato->Ingredientes()->get();
+        foreach ($ingredientes as $key => $ingrediente) {
+              $ingrediente->stock = transformarUnidad($ingrediente->id_unit, $ingrediente->stock) - transformarUnidad($ingrediente->pivot->unidad_id, $ingrediente->pivot->cantidad_ingrediente);
+              $ingrediente->save();
+          }// ingredientes
+      }// platos
+    }//Ready
+
     public function add($id)
     {
       $comanda = Command::find($id);
@@ -218,7 +247,6 @@ class CommandsController extends Controller
         $comandas->each(function($comandas){
             $comandas->client;
         });
-
 
         return view('admin.comandas.process_invoice', compact('comandas'));
 

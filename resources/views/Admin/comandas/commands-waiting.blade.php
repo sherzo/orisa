@@ -34,11 +34,6 @@
 												label-primary
 												@endif pull-right estatus{{$comanda->id}}">{{ $comanda->estatus}}</span>
     		     		</h4>
-                @if($comanda->estatus == 'En espera')
-                <a class="btn btn-success btn-xs" href="{{ route('admin.comandas.add', $comanda->id) }}">
-                  <span class="fa fa-plus">
-                </a>
-                @endif
     		     	</div>
                         <div class="collapse panel-collapse" role="tabpanel" id="collapseListGroup{{$comanda->id}}" aria-labelledby="collapseListGroupHeading{{$comanda->id}}">
                         <ul class="list-group">

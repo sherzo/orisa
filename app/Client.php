@@ -11,9 +11,7 @@ class Client extends Model
      *
      * @var array
      */
-    protected $fillable = [
-     'dni_cedula', 'nombre', 'direccion', 'operadora', 'telefono', 'tipo',
-    ];
+    protected $fillable = ['dni_cedula', 'nombre', 'direccion', 'operadora', 'telefono', 'tipo'];
 
     /**
      * The attributes that should be hidden for arrays.

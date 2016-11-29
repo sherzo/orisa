@@ -13,6 +13,7 @@ use App\Planning;
 use App\Holiday;
 use App\PayrollMade;
 use App\Payroll;
+use App\Cestaticket;
 use App\Assistance;
 use App\Assignment;
 use App\DeductionExtra;
@@ -220,6 +221,15 @@ class PayrollController extends Controller
                             return $date->isMonday();
 
                         }, $dx2);
+
+                        if($employee->info->cestaticket == 'Si')
+                        {
+                            $cestaticket[] = 
+
+                        }else{
+
+                            $cestaticket[] = '0';
+                        }
 
 
                         $islr[] = 0.00;

@@ -65,6 +65,7 @@ class PayrollController extends Controller
         $deductions = Deduction::all();
         $assignments = Assignment::all();
         $deductions_extra = DeductionExtra::all();
+        $cestaticket = Cestaticket::all();
 
         $count = count($employees);
 
@@ -129,6 +130,26 @@ class PayrollController extends Controller
                 {
                     $worked[$employee->id][] = Assistance::where([['empleado_id', $employee->id],['asistencia_id', $assistance->id],['motivo', 'Asistio']])->count();
                     $extraHours[$employee->id][] = Assistance::where([['empleado_id', $employee->id],['asistencia_id', $assistance->id],['motivo', 'Asistio']])->get();
+                    $not_worked[$employee->id][] = Assistance::where([['empleado_id', $employee->id],['asistencia_id', $assistance->id],['motivo', 'No Asistio']])->count();
+                }
+            }
+
+            if(!empty($not_worked))
+            {
+                $n = 0;
+
+            foreach ($not_worked as $not_worke)
+            {
+                $n = 0;
+
+                foreach ($not_worke as $not_worke)
+                {
+                    $n += $not_worke;
+
+                }
+
+                $no_laborados[] = $n;
+
                 }
             }
 
@@ -224,13 +245,21 @@ class PayrollController extends Controller
 
                         if($employee->info->cestaticket == 'Si')
                         {
-                            $cestaticket[] = 
+                            $calculo_ces = ($cestaticket[0]->unidad_tributaria * $cestaticket[0]->cantidad);
+                            $cestaticket_em[] = $calculo_ces * $laborados[$key];
 
                         }else{
 
-                            $cestaticket[] = '0';
+                            $cestaticket_em[] = '0.00';
                         }
 
+                        foreach ($cestaticket_em as $cestaticket_em2) 
+                        {
+                            $deductionCestaticket = ($cestaticket_em2 / 15);
+
+                            $cestaticket_des[] = $deductionCestaticket * $no_laborados[$key];
+                        }
+                        
 
                         $islr[] = 0.00;
 
@@ -302,7 +331,7 @@ class PayrollController extends Controller
 
                     }
 
-            return view('admin.payroll.create', compact('employees', 'assignments', 'totalAllpayments', 'totalAllassignments', 'deductions_extra', 'others_assignments', 'others_deductions', 'count', 'payments', 'mes', 'year', 'quincena', 'assignmentsTotal', 'deductionsTotal', 'sso', 'islr', 'rpe', 'rpvh', 'fechas', 'i', 'f', 'laborados', 'horasExtras'));
+            return view('admin.payroll.create', compact('employees', 'assignments', 'totalAllpayments', 'totalAllassignments', 'deductions_extra', 'others_assignments', 'others_deductions', 'count', 'payments', 'mes', 'year', 'quincena', 'assignmentsTotal', 'deductionsTotal', 'sso', 'islr', 'rpe', 'rpvh', 'fechas', 'i', 'f', 'laborados', 'horasExtras', 'cestaticket', 'cestaticket_em', 'no_laborados','cestaticket_des'));
 
             }else{
 

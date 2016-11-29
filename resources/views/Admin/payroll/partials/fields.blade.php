@@ -225,19 +225,36 @@
     <div class="tab-pane fade" id="cestaticket">
         <div class="table-responsive">
             <table class="table table-striped table-bordered table-hover">
-                  <thead>
-                      <tr>
-                          <th>EMPLEADO</th>
-                          <th>UNIDAD TRIBUTARIA</th>
-                          <th>FALTAS</th>
-                          <th>TOTAL DESCUENTO</th>
-                      </tr>
-                  </thead>
-                  <tbody>
-                      @foreach($employees as $key => $employee)
-
-                      @endforeach
-                  </tbody>
+                <thead>
+                    <tr>
+                        <th>EMPLEADO</th>
+                        <th>UNIDAD TRIBUTARIA</th>
+                        <th>CESTATICKET</th>
+                        <th>FALTAS</th>
+                        <th>TOTAL DESCUENTO</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($employees as $key => $employee)
+                        <tr>
+                            <td>
+                                {{ $employee->full_name }}
+                            </td>
+                            <td>
+                                {{ number_format($cestaticket[0]->unidad_tributaria, 2, ',', ' ') }}
+                            </td>
+                            <td>
+                                {{ number_format($cestaticket_em[$key], 2, ',', ' ') }}
+                            </td>
+                            <td>
+                                {{ $no_laborados[$key] }}
+                            </td>
+                            <td>
+                                {{ number_format($cestaticket_des[$key], 2, ',', ' ') }}
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
             </table>
         </div>
     </div>

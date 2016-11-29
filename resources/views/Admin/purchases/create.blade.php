@@ -20,7 +20,7 @@
 	<div class="col-lg-12">
 		<div class="panel panel-default">
 			<div class="panel-heading">
-	            Basic Form Elements
+	            <em>Proveedores</em>
 	        </div>
 	        <div class="panel-body">
 	            @include('admin.purchases.partials.fields')

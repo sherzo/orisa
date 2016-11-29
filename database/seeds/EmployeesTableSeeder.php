@@ -20,7 +20,6 @@ public function run()
         \DB::table('employees')->insert(array (
             'cargo_id'         => $faker->randomElement($array = array('1','2')),
             'turno_id'         => $faker->randomElement($array = array('1','2')),
-            'url'              => $faker->imageUrl($width = 640, $height = 480),
         	'dni_cedula'       => $faker->randomElement($array = array('V','E')).'-'.$faker->randomNumber($nbDigits = 8),
             'nombres'          => $faker->firstName,
             'apellidos'        => $faker->lastName,

@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDaysWithAssistancesTable extends Migration
+class CreateCestaticketTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,9 +12,10 @@ class CreateDaysWithAssistancesTable extends Migration
      */
     public function up()
     {
-        Schema::create('days_with_assistances', function (Blueprint $table) {
+        Schema::create('cestaticket', function (Blueprint $table){
             $table->increments('id');
-            $table->date('fecha')->unique();
+            $table->double('unidad_tributaria', 10,2);
+            $table->integer('cantidad');
         });
     }
 
@@ -25,6 +26,6 @@ class CreateDaysWithAssistancesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('days_with_assistances');
+        Schema::drop('cestaticket');
     }
 }

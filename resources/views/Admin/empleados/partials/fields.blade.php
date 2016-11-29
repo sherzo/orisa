@@ -130,15 +130,26 @@
                 </span>
             @endif
         </div>
-        <div class="form-group{{ $errors->has('cargo') ? ' has-error' : '' }}">
-            {!! Form::label('cargo_id', 'Cargo') !!}
-            {!! Form::select('cargo_id', $cargos, null, ['class' => 'form-control']) !!}
+         <div class="form-group{{ $errors->has('contrato') ? ' has-error' : '' }}">
+            {!! Form::label('contract_status', 'Contrato') !!}
+            {!! Form::select('contrato', array('' => 'Seleccione', 'Determinado' => 'Determinado', 'Indeterminado' => 'Indeterminado'), $value = $empleado->info->contrato, ['class' => 'form-control', 'id' => 'contrato']) !!}
 
-            @if ($errors->has('cargo'))
+            @if ($errors->has('contrato'))
                 <span class="help-block">
-                    <small>{{ $errors->first('cargo') }}</small>
+                    <small>{{ $errors->first('contrato') }}</small>
                 </span>
             @endif
+        </div>
+
+        <div class="form-group{{ $errors->has('duracion') ? ' has-error' : '' }}">
+            {!! Form::label('duracion', 'Duración') !!}
+            {!! Form::number('duracion', $empleado->info->duracion, ['placeholder' => '30', 'class' => 'form-control', 'id' => 'duracion', 'disabled' => 'disabled']) !!}
+
+            @if ($errors->has('duracion'))
+                <span class="help-block">
+                    <small>{{ $errors->first('duracion') }}</small>
+                </span>
+             @endif
         </div>
     </div>
 
@@ -175,13 +186,13 @@
                 </span>
             @endif
         </div> 
-        <div class="form-group{{ $errors->has('contrato') ? ' has-error' : '' }}">
-            {!! Form::label('contract_status', 'Contrato') !!}
-            {!! Form::select('contrato', array('' => 'Seleccione', 'Determinado' => 'Determinado', 'Indeterminado' => 'Indeterminado'), $value = $empleado->info->contrato, ['class' => 'form-control']) !!}
+        <div class="form-group{{ $errors->has('cargo') ? ' has-error' : '' }}">
+            {!! Form::label('cargo_id', 'Cargo') !!}
+            {!! Form::select('cargo_id', $cargos, null, ['class' => 'form-control']) !!}
 
-            @if ($errors->has('contrato'))
+            @if ($errors->has('cargo'))
                 <span class="help-block">
-                    <small>{{ $errors->first('contrato') }}</small>
+                    <small>{{ $errors->first('cargo') }}</small>
                 </span>
             @endif
         </div>
@@ -221,16 +232,27 @@
                 </span>
             @endif
         </div>
-        
+
+        <div class="form-group{{ $errors->has('contrato') ? ' has-error' : '' }}">
+            {!! Form::label('contract_status', 'Contrato') !!}
+            {!! Form::select('contrato', array('' => 'Seleccione', 'Determinado' => 'Determinado', 'Indeterminado' => 'Indeterminado'), null, ['class' => 'form-control', 'id' => 'contrato']) !!}
+
+            @if ($errors->has('contrato'))
+                <span class="help-block">
+                    <small>{{ $errors->first('contrato') }}</small>
+                </span>
+            @endif
+        </div>
+
         <div class="form-group{{ $errors->has('cargo') ? ' has-error' : '' }}">
-            {!! Form::label('cargo_id', 'Cargo') !!}
-            {!! Form::select('cargo_id', $cargos, null, ['placeholder' => 'Seleccione','class' => 'form-control']) !!}
+            {!! Form::label('duracion', 'Duración') !!}
+            {!! Form::number('duracion', null, ['placeholder' => '30', 'class' => 'form-control', 'id' => 'duracion', 'disabled' => 'disabled']) !!}
 
             @if ($errors->has('cargo'))
                 <span class="help-block">
                     <small>{{ $errors->first('cargo') }}</small>
                 </span>
-            @endif
+             @endif
         </div>
     </div>
 
@@ -268,15 +290,15 @@
                 </span>
             @endif
         </div> 
-        <div class="form-group{{ $errors->has('contrato') ? ' has-error' : '' }}">
-            {!! Form::label('contract_status', 'Contrato') !!}
-            {!! Form::select('contrato', array('' => 'Seleccione', 'Determinado' => 'Determinado', 'Indeterminado' => 'Indeterminado'), null, ['class' => 'form-control']) !!}
+        <div class="form-group{{ $errors->has('cargo') ? ' has-error' : '' }}">
+            {!! Form::label('cargo_id', 'Cargo') !!}
+            {!! Form::select('cargo_id', $cargos, null, ['placeholder' => 'Seleccione','class' => 'form-control']) !!}
 
-            @if ($errors->has('contrato'))
+            @if ($errors->has('cargo'))
                 <span class="help-block">
-                    <small>{{ $errors->first('contrato') }}</small>
+                    <small>{{ $errors->first('cargo') }}</small>
                 </span>
-            @endif
+             @endif
         </div>
     </div>
                     
@@ -303,7 +325,6 @@
             {!! Form::text('cuenta_numero', null, ['class' => 'form-control', 'placeholder' => '2034 4505 73 1000034682']) !!}
         </div>
     </div>
-
 @endif
 
 <div class="col-lg-12">
@@ -315,3 +336,6 @@
     <br> 
 </div>
          
+@section('js')
+    <script src="{{ asset('js/funciones.js') }}"></script>
+@endsection

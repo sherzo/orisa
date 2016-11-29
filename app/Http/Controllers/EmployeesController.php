@@ -59,9 +59,11 @@ class EmployeesController extends Controller
         return redirect('admin/empleados');
     }
 
-    public function show()
+    public function show($id)
     {
-        #
+        $employee = Employee::find($id);
+
+        return view('admin.empleados.show', compact('employee'));
     }
 
     public function edit($id)

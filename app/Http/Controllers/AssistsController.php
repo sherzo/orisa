@@ -35,33 +35,79 @@ class AssistsController extends Controller
         {
             $dia = Days_planning::where('dia', $request->fecha)->first();
             $empleados = Holiday::where('dia_id', $dia->id)->get();
-            $fecha = $request->fecha;
-
-            return view('admin.asistencias.create', compact('fecha', 'empleados'));
-
-
+            $day_exists = Day_attendance::where('fecha', $request->fecha)->first();
+            
         }else{
 
             Flash::warning('<strong> Alerta </strong> no existen resultados coincidentes <strong>'. $request->fecha .'</strong> proceda a crear una planificación.');
 
-            return view('admin.planificaciones.create');
+            return redirect()->back();
+        }
+
+        if (!empty($day_exists)) 
+        {
+            return view('admin.asistencias.create', compact('day_exists', 'empleados'));
+
+        }else{
+
+            $fecha = $request->fecha;
+
+            return view('admin.asistencias.create', compact('fecha', 'empleados'));
+
         }
     }
 
     public function store(Request $request)
     {
-        $asistencia = Day_attendance::create($request->all());
-
-        foreach ($request->empleados as $key => $empleado) 
+        if(isset($request->id_asistencia))
         {
-           $asistencias = new Assistance;
-           $asistencias->empleado_id = $empleado;
-           $asistencias->asistencia_id = $asistencia->id;
-           $asistencias->hora_entrada = $request->hora_entrada[$key];
-           $asistencias->hora_salida = $request->hora_salida[$key];
-           $asistencias->save();
-        }
+            $fecha = Day_attendance::find($request->id_asistencia);
 
+        }else{
+
+            $asistencia = Day_attendance::create($request->all());
+
+            foreach ($request->empleados as $key => $empleado) 
+            {
+                $asistencias = new Assistance;
+                $asistencias->empleado_id = $empleado;
+                $asistencias->asistencia_id = $asistencia->id;
+                $asistencias->hora_entrada = $request->hora_entrada[$key];
+                $asistencias->hora_salida = $request->hora_salida[$key];
+                $asistencias->motivo = 'Asistio';
+                $asistencias->save();
+            }
+        }
+        
+        if(isset($fecha->exists))
+        {
+
+            foreach ($request->empleados as $key => $empleado) 
+            {
+                $empleado_as = Assistance::where('empleado_id', $empleado)->exists();
+                
+                if ($empleado_as) 
+                {
+
+                    Flash::error('<strong> ¡Error! </strong> algunos empleados ya se encuentran asistentes.');
+
+                    return redirect('admin/asistencias');
+                    
+                }else{
+
+                $asistencias = new Assistance;
+                $asistencias->empleado_id = $empleado;
+                $asistencias->asistencia_id = $fecha->id;
+                $asistencias->hora_entrada = $request->hora_entrada[$key];
+                $asistencias->hora_salida = $request->hora_salida[$key];
+                $asistencias->motivo = 'Asistio';
+                $asistencias->save();
+
+                }
+            }
+
+        }
+        
         Flash::success('<strong> Éxito </strong> se han creado nuevas asistencias para la fecha <strong>'. $request->fecha .'</strong>.');
 
         return redirect('admin/asistencias');

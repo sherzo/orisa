@@ -15,7 +15,7 @@ class Data_employee extends Model
      */
 
     protected $fillable = [
-        'empleado_id', 'codigo', 'fecha_de_admision', 'account_em', 'contrato', 'cestaticket', 'duracion', 'banco', 'cuenta_tipo', 'cuenta_numero'
+        'empleado_id', 'codigo', 'fecha_de_admision', 'account_em', 'contrato', 'duracion', 'cestaticket', 'duracion', 'banco', 'cuenta_tipo', 'cuenta_numero'
     ];
 
     public $timestamps = false;

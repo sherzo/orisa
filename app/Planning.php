@@ -8,15 +8,7 @@ class Planning extends Model
 {
 	protected $table = 'plannings';
 
-	/**
-	* The attributes that are mass assignable.
-	*
-	* @var array
-	*/
-
-	protected $fillable = [
-		'fecha_inicio', 'fecha_final', 'fechas', 'estatus',
-	];
+	protected $fillable = ['fecha_inicio', 'fecha_final', 'fechas', 'estatus'];
 
 	public function dias() 
 	{
@@ -26,6 +18,11 @@ class Planning extends Model
 	public function pldays() 
 	{
 		return $this->hasMany('App\Holiday', 'planificacion_id', 'id');
+	}
+
+	public function getFullDatesAttribute()
+	{
+		return $this->fecha_inicio . ' - ' . $this->fecha_final;
 	}
 
 }

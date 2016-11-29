@@ -8,6 +8,7 @@
         <li><a href="#assignments" data-toggle="tab">ASIGNACIONES EXTRAS</a></li>
         <li><a href="#deductions" data-toggle="tab">DEDUCCIONES EXTRAS</a></li>
         <li><a href="#payments" data-toggle="tab">SALARIOS</a></li>
+        <li><a href="#cestaticket" data-toggle="tab">CESTATICKET</a></li>
     </ul>
     <br>
 
@@ -18,7 +19,7 @@
                     <thead>
                     	<tr>
                     		<th colspan="2"></th>
-                    		<th colspan="4" class="text-center">ASIGNACIONES</th>
+                    		<th colspan="3" class="text-center">ASIGNACIONES</th>
                     		<th colspan="4" class="text-center">DEDUCCIONES</th>
                     		<th></th>
                     	</tr>
@@ -28,7 +29,6 @@
                             <th>TIEMPO ORDINAR.</th>
                             <th>HORAS EXTRA</th>
                             <th>TOTAL ASIG.</th>
-                            <th>ISLR</th>
                             <th>SSO</th>
                             <th>RPE</th>
                             <th>RPVH</th>
@@ -63,11 +63,7 @@
                             	<td>
                             		{{ number_format($assignmentsTotal[$key], 2, ',', ' ') }}
                             	</td>
-
-                            	<td>
-                            		{{ number_format($islr[$key], 2, ',', ' ') }} {!! Form::hidden('islr[]', $islr[$key]) !!}
-                            	</td>
-
+                                    {!! Form::hidden('islr[]', $islr[$key]) !!}
                             	<td>
                             		{{ number_format($sso[$key], 2, ',', ' ') }} {!! Form::hidden('sso[]', $sso[$key]) !!}
                             	</td>
@@ -90,7 +86,7 @@
                         	<tr>
                         		<td colspan="4"></td>
                         		<td>TOTAL: {{ number_format($totalAllassignments, 2, ',', ' ') }}</td>
-                        		<td colspan="5"></td>
+                        		<td colspan="4"></td>
                         		<td> TOTAL: {{ number_format($totalAllpayments, 2, ',', ' ') }}</td>
                         	</tr>
                     </tbody>
@@ -221,6 +217,25 @@
                                   {{ number_format($employee->cargo->salario/30, 2, ',', ' ') }} {!! Form::hidden('salario_d[]', $employee->cargo->salario/30) !!}
                               </td>
                           </tr>
+                      @endforeach
+                  </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="tab-pane fade" id="cestaticket">
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered table-hover">
+                  <thead>
+                      <tr>
+                          <th>EMPLEADO</th>
+                          <th>UNIDAD TRIBUTARIA</th>
+                          <th>FALTAS</th>
+                          <th>TOTAL DESCUENTO</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      @foreach($employees as $key => $employee)
+
                       @endforeach
                   </tbody>
             </table>

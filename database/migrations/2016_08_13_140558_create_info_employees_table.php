@@ -19,6 +19,7 @@ class CreateInfoEmployeesTable extends Migration
             $table->string('codigo', 45)->unique();
             $table->date('fecha_de_admision');
             $table->string('contrato', 45);
+            $table->integer('duracion');
             $table->string('cestaticket', 15);
             $table->string('banco', 35);
             $table->string('cuenta_tipo', 20);

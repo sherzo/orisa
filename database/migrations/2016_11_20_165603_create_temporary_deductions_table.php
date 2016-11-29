@@ -18,6 +18,7 @@ class CreateTemporaryDeductionsTable extends Migration
             $table->foreign('empleado_id')->references('id')->on('employees');
             $table->integer('deduccion_id')->unsigned();
             $table->foreign('deduccion_id')->references('id')->on('others_deductions');
+            $table->boolean('estatus');
         });
     }
 

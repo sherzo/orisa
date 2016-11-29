@@ -153,18 +153,18 @@
                             <li><a href="{{ url('admin/empleados') }}"> Personal </a></li>
                             <li><a href="{{ url('admin/cargos') }}"> Cargo </a></li>
                             <li><a href="{{ url ('admin/asistencias') }}"> Asistencia </a></li>
+                            <li><a href="#"> Planificaciones<span class="fa arrow"></span></a>
+                                <ul class="nav nav-third-level">
+                                    <li><a href="{{ url('admin/planificaciones') }}"> Fechas</a></li>
+                                    <li><a href="{{ url('admin/planificaciones/administrar/dias') }}"> Días</a></li>
+                                    <li><a href="{{ url('admin/planificaciones/administrar/dias/turnos') }}"> Planificación</a></li>
+                                </ul>
+                            </li>
                             <li><a href="#"> Prenóminas<span class="fa arrow"></span></a>
                                 <ul class="nav nav-third-level">
                                     <li><a href="{{ url('admin/nomina') }}"> Cálculo</a></li>
                                     <li><a href="{{ url('admin/deducciones') }}"> Deducción </a></li>
                                     <li><a href="{{ url('admin/asignaciones') }}"> Asignación </a></li>
-                                </ul>
-                            </li>
-                            <li><a href="#"> Planificación<span class="fa arrow"></span></a>
-                                <ul class="nav nav-third-level">
-                                    <li><a href="{{ url('admin/planificaciones') }}"> Fechas</a></li>
-                                    <li><a href="{{ url('admin/planificaciones/administrar/dias') }}"> Días</a></li>
-                                    <li><a href="{{ url('admin/planificaciones/administrar/dias/turnos') }}"> Planificación</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -211,8 +211,10 @@
       </div>
     </footer>
 -->
-    <div id="page-wrapper">
-        @yield('contenido')
+    <div id="page-wrapper" style="min-height: 365px;">
+        <div class="row">
+            @yield('contenido')
+        </div>
     </div>
 
     <script src="{{ asset('bower_components/jquery/dist/jquery.js') }}"></script>

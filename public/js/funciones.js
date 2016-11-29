@@ -57,6 +57,28 @@ $(document).ready(function(){
 	});
 
 /*
+*	Función para empleado
+*/
+$(document).ready(function(){
+
+	$("#contrato").on('change', function(e) {
+
+		var contrato = e.target.value;
+		
+		if(contrato == 'Determinado'){
+
+			$("#duracion").removeAttr('disabled');
+
+		}else{
+
+			$("#duracion").attr('disabled','disabled');
+			$('#duracion').val("0");
+
+			return false;
+		}
+	});
+});
+/*
 *	Función para reservaciones
 */
 

@@ -18,7 +18,6 @@ class CreateEmployeesTable extends Migration
             $table->foreign('cargo_id')->references('id')->on('positions');
             $table->integer('turno_id')->unsigned();
             $table->foreign('turno_id')->references('id')->on('turns');
-            $table->string('url', 255)->unique();
             $table->string('dni_cedula', 15)->unique();
             $table->string('nombres', 45);
             $table->string('apellidos', 45);

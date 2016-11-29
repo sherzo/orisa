@@ -15,7 +15,11 @@
 			<tr>
 				<td class="text-center">
 					<input type="checkbox" name="empleados[]" value="{{ $empleado->ems->id }}" onchange="desbloquear()">
-					{!! Form::hidden('fecha', $fecha) !!}
+					@if(isset($day_exists))
+						{!! Form::hidden('id_asistencia', $day_exists->id) !!}
+					@else
+						{!! Form::hidden('fecha', $fecha) !!}
+					@endif	
 				</td>
 				<td> 
 					{{ $empleado->ems->full_name }} 

@@ -6,51 +6,39 @@
             <th>Turno</th>
             <th>Cargo</th>
             <th>Planificación</th>
-            <th>Acciones</th>
         </tr>
     </thead>
     <tbody> 
-    @foreach($planificaciones as $planificacion)
-
-        <?php 
-            $empleado = $planificacion->ems;
-            $dias = $planificacion->day;
-            $planif = $dias->planif;
-            $cargo = $empleado->cargo;
-            $turno = $empleado->turno;
-        ?>
+    @foreach($planning_em as $key => $planificacion)
+        @foreach($planificacion as $planning_list)
             <tr>
                 <td class="col-md-1">
-                    <a href="{{ route('admin.empleados.edit', [$planificacion->id]) }}">
-                        {{ $planificacion->id }}
+                    <a href="{{ route('admin.empleados.edit', [$planificacion[$key]->id]) }}">
+                        {{ $indice = $indice+1 }}
                     </a>
                 </td>
                 <td class="col-md-3"> 
-                    <a href="{{ route('admin.empleados.edit', [$planificacion->id]) }}">
-                        {{ $empleado->full_name }}
+                    <a href="{{ route('admin.empleados.edit', [$planificacion[$key]->id]) }}">
+                        {{ $planning_list->ems->full_name }}
                     </a>
                 </td>
                 <td class="col-md-2"> 
-                    <a href="{{ route('admin.empleados.edit', [$planificacion->id]) }}">
-                        {{ $turno->turno }}
+                    <a href="{{ route('admin.empleados.edit', [$planificacion[$key]->id]) }}">
+                        {{ $planning_list->ems->turno->turno }}
                     </a>
                 </td>
                 <td class="col-md-2"> 
-                    <a href="{{ route('admin.empleados.edit', [$planificacion->id]) }}">
-                        {{ $cargo->nombre }}
+                    <a href="{{ route('admin.empleados.edit', [$planificacion[$key]->id]) }}">
+                        {{ $planning_list->ems->cargo->nombre }}
                     </a>
                 </td>
                 <td class="col-md-2"> 
-                    <a href="{{ route('admin.empleados.edit', [$planificacion->id]) }}">
-                        {{ $planif->fechas }}
+                    <a href="{{ route('admin.empleados.edit', [$planificacion[$key]->id]) }}">
+                        {{ $planning_list->planning->full_dates }}
                     </a>
                 </td>
-                <td class="text-center tooltip-demo">                     
-                    <a class="btn btn-default btn-xs" href="" type="button" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Ver"><span class="glyphicon glyphicon-eye-open fa-2x"></span></a>
-                    <a class="btn btn-default btn-xs" href="{{ route('admin.planificaciones.administrar.dias.turnos.edit', [$planificacion->id]) }}" type="button" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Editar"><span class="glyphicon glyphicon-pencil fa-2x"></span></a>
-                    <a href="{{ route('admin.empleados.destroy', [$planificacion->id]) }}" class="btn btn-default btn-xs" type="button" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Eliminar"><span class="glyphicon glyphicon-trash fa-2x"></span></a>
-                </td>
-            </tr> 
+            </tr>
+        @endforeach 
     @endforeach
     </tbody>
 </table>                                    

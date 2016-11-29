@@ -23,7 +23,7 @@
     <div class="col-lg-12"><br>
         <div class="panel panel-default">
             <div class="panel-heading">
-                Empleados
+                <em>Planificaciones</em>
             </div>
             <div class="panel-body">
                 <div class="dataTable_wrapper">

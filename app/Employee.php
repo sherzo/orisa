@@ -14,7 +14,7 @@ class Employee extends Model
     protected $table = 'employees';
 
     protected $fillable = [
-        'cargo_id', 'turno_id', 'url', 'dni_cedula', 'nombres', 'apellidos', 'fecha_nacimiento', 'estado_civil', 'direccion', 'operadora', 'telefono', 'genero'
+        'cargo_id', 'turno_id', 'dni_cedula', 'nombres', 'apellidos', 'fecha_nacimiento', 'estado_civil', 'direccion', 'operadora', 'telefono', 'genero'
     ];
 
     public function info() #info

@@ -126,8 +126,8 @@ class PayrollController extends Controller
             {
                 foreach ($assistances as $assistance)
                 {
-                    $worked[$employee->id][] = Assistance::where([['empleado_id', $employee->id],['asistencia_id', $assistance->id]])->count();
-                    $extraHours[$employee->id][] = Assistance::where([['empleado_id', $employee->id],['asistencia_id', $assistance->id]])->get();
+                    $worked[$employee->id][] = Assistance::where([['empleado_id', $employee->id],['asistencia_id', $assistance->id],['motivo', 'Asistio']])->count();
+                    $extraHours[$employee->id][] = Assistance::where([['empleado_id', $employee->id],['asistencia_id', $assistance->id],['motivo', 'Asistio']])->get();
                 }
             }
 

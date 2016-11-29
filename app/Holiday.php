@@ -13,9 +13,7 @@ class Holiday extends Model
      */
     protected $table = 'employees_has_days';
 
-    protected $fillable = [
-        'empleado_id', 'dia_id', 'planificacion_id', 
-    ];
+    protected $fillable = ['empleado_id', 'dia_id', 'planificacion_id'];
 
     public $timestamps = false;
 

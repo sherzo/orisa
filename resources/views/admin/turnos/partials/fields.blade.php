@@ -3,7 +3,7 @@
 {{-- */$count_employees=count($empleados);/* --}}
 {{-- */$empleado_id = array();/* --}}
 
-<table class="table table-striped table-responsive">
+<table class="table table-striped table-bordered table-hover">
 	<tr>
 		<td class="text-center">
 			{!! Form::checkbox('select_all', 'select_all', false,['id' => 'select_all', 'class' => 'form-group']) !!}
@@ -12,12 +12,9 @@
 
 	@for($i=$planificacion->fecha_inicio; $i<=$planificacion->fecha_final ; $i = date('Y-m-d', strtotime($i ."+ 1 days")))
 		<td class="text-center"> 
-
-			{{ $i }} 
-
-			<p class="text-info"> 
+			<span type="button" data-toggle="tooltip" data-placement="top" title="" data-original-title="{{ $i }}"><p class="text-info"> 
 				{{ $planificacion->dias[$k]->estatus }} 
-			</p> 
+			</p></span>
 		</td>
 
 			{{-- */$dia_id[$k]=$planificacion->dias[$k]->id;/* --}}
@@ -27,7 +24,7 @@
 		</tr>
 	@foreach($empleados as $empleado)
 		<tr>
-			<td> {{ $empleado->nombres }} </td>
+			<td> {{ $empleado->full_name }} </td>
 		@for($m=0;$m<$k;$m++)
 			<td class="text-center"> 
 				<input type="checkbox" name="empleado_id[<?=$empleado->id?>][]" value="{{$dia_id[$m]}}" title="Marqué la opción correspondiente al día laboral del empleado"> 
@@ -38,11 +35,3 @@
 	@endforeach
 </table>
 	
-<div class="col-lg-12">
-    <br>
-    <div class="form-group tooltip-demo text-center">
-        <button class="btn btn-default btn-sm" type="submit" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Guardar"><span class="glyphicon glyphicon-floppy-saved fa-2x"></span></button>
-        <!-- <button class="btn btn-default btn-sm" type="reset" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Cancelar"><span class="glyphicon glyphicon-floppy-remove fa-2x"></span></button> -->
-        <br>
-    </div>  
-</div>

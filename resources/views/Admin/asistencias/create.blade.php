@@ -21,7 +21,13 @@
         <div class="col-lg-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <em>Fecha: {{ $fecha }}</em>
+                    <em>Fecha: 
+                    @if(isset($day_exists) > 0)
+                        {{ $day_exists->fecha }}
+                    @else
+                        {{ $fecha }}
+                    @endif
+                    </em>
                 </div>
                 <div class="panel-body">
                     @include('admin.asistencias.partials.fields')

@@ -9,7 +9,7 @@
         <ol class="breadcrumb">
             <li><a href="{{ url('tablero') }}"><span class="glyphicon glyphicon-home"></span></a></li>
             <li><a href="{{ url('admin/planificaciones') }}"> Planificacíon</a></li>
-            <li class="active">Select</li>
+            <li class="active">Lista</li>
         </ol>
     </div>
 </div>
@@ -18,7 +18,7 @@
 	    <div class="col-lg-10 col-lg-offset-1">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					Datos de la Planificación	
+					<em>Datos de la Planificación</em>	
 				</div>
 				<div class="panel-body">
 					@include('admin.turnos.partials.list')

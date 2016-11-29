@@ -18,6 +18,7 @@ class CreateTemporaryAssignmentsTable extends Migration
             $table->foreign('empleado_id')->references('id')->on('employees');
             $table->integer('asignacion_id')->unsigned();
             $table->foreign('asignacion_id')->references('id')->on('others_assignments');
+            $table->boolean('estatus');
         });
     }
 

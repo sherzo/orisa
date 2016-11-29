@@ -19,7 +19,7 @@
     <div class="col-lg-12">
         <div class="panel panel-default">
             <div class="panel-heading">
-                Planificacion: {{ $id }} 
+                <em>Planificación: {{ $id }}</em>
             </div>
             {!! Form::open(['route' => ['admin.planificaciones.administrar.dias.turnos.update', $id], 'method' => 'PUT']) !!} 
             	{{ csrf_field() }} @include('admin.turnos.partials.edit-fields')

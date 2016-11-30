@@ -10,7 +10,7 @@ class IngredientsTableSeeder extends Seeder
      * @return void
      */
     public function run()
-    {
+    {   
       	\DB::table('ingredients')->insert(array (
             'id_type'        => '1',
             'id_unit'        => '1',

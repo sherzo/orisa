@@ -24,7 +24,7 @@ class UserRequest extends Request
     public function rules()
     {
         return [
-            'name' => 'required',
+            'employee' => 'required',
             'user' => 'required|unique:users',
             'email' => 'required|unique:users',
             'password' => 'required|string|min:6',

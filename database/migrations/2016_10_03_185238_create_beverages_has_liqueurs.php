@@ -18,7 +18,7 @@ class CreateBeveragesHasLiqueurs extends Migration
             $table->foreign('beverage_id')->references('id')->on('beverages')->onDelete('Cascade');
             $table->integer('liqueur_id')->unsigned();
             $table->foreign('liqueur_id')->references('id')->on('liqueurs')->onDelete('Cascade');
-            $table->integer('cantidad_licor');
+            $table->float('cantidad_licor');
             $table->integer('unit_id')->unsigned();
             $table->foreign('unit_id')->references('id')->on('units')->onDelete('Cascade');
             $table->timestamps();

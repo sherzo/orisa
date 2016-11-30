@@ -22,7 +22,7 @@
 		<div class="col-lg-12">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-		            <em>Usuarios Registrados</em>
+		            <em>Registro de usuario</em>
 		        </div>
 		        <div class="panel-body">
 		            @include('admin.users.partials.fields')

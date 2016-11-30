@@ -21,6 +21,11 @@
         </a>
     </div><br>
 </div>
+<div class="row">
+	<div class="col-md-12">
+		@include('flash::message')
+	</div>
+</div>
 
           <div class="row">
             @foreach($plates as $plate)
@@ -34,7 +39,7 @@
 
                     <!-- <a href="#" class="btn btn-default btn-xs pull-right "> <span class="fa fa-pencil fa-2x"></span> </a> &nbsp;&nbsp; -->
 
-                    <a href="{{route('admin.platos.show', $plate->id)}}" class="btn btn-default btn-xs pull-right "> <span class="fa fa-eye fa-2x"></span> </a>
+                    <a href="{{route('admin.platos.show', $plate->id)}}" class="btn btn-default btn-xs pull-right" data-toggle="tooltip" data-placement="top" title="" data-original-title="Ver"> <span class="fa fa-eye fa-2x"></span> </a>
                   </div>
                 </div>
               </div>

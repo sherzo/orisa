@@ -13,6 +13,11 @@
         </ol>
     </div>
     </div>
+    <div class="row">
+      <div class="col-md-12">
+        @include('flash::message')
+      </div>
+    </div>
 
     <div class="row" id="comandas">
 
@@ -23,16 +28,20 @@
     		 	<div class="panel panel-default">
     		  		<div class="panel-heading" role="tab" id="collapseListGroupHeading{{$comanda->id}}">
     		   			<h4 class="panel-title">
-    		    			<a href="#collapseListGroup{{$comanda->id}}" class="collapsed" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="collapseListGroup{{$comanda->id}}" data-parent="#accordion">Comanda #{{$contador}}</a>&nbsp;
+    		    			<a href="#collapseListGroup{{$comanda->id}}" class="collapsed" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="collapseListGroup{{$comanda->id}}" data-parent="#accordion" title="Ver detalles">Comanda #{{$contador}}</a>&nbsp;
     		    			Mesa:
     		    			<img src="{{ asset('img/tables/mesa-') }}{{ $comanda->table_id.'.png'}}" width="25px" height="25px">
-							<span class="label  @if($comanda->estatus == 'En espera')
+
+                  <?php list($fecha, $hora) = explode(' ', $comanda->created_at)  ?>&nbsp;&nbsp;&nbsp;
+                  <span style="font-size: 12px">  <strong>Hora:</strong> {{ $hora }} </span>
+             <span class="label  @if($comanda->estatus == 'En espera')
 												label-warning
 												@endif()
 
 												@if($comanda->estatus == 'Lista')
 												label-primary
 												@endif pull-right estatus{{$comanda->id}}">{{ $comanda->estatus}}</span>
+
     		     		</h4>
     		     	</div>
                         <div class="collapse panel-collapse" role="tabpanel" id="collapseListGroup{{$comanda->id}}" aria-labelledby="collapseListGroupHeading{{$comanda->id}}">

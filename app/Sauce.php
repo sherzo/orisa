@@ -13,8 +13,18 @@ class Sauce extends Model
      *
      * @var array
      */
-	
+
     protected $fillable = [
      'salsa',
     ];
+
+    public function Ingredientes()
+    {
+        return $this->belongsToMany('App\Ingredient', 'sauces_has_ingredients')->withPivot( 'cantidad_ingrediente', 'unit_id');
+    }
+
+    public function UnidadesIngredientes()
+    {
+       return $this->belongsToMany('App\Unit', 'sauces_has_ingredients');
+    }
 }

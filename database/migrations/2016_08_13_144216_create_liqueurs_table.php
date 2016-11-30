@@ -19,7 +19,7 @@ class CreateLiqueursTable extends Migration
             $table->integer('id_unit') ->unsigned();
             $table->foreign('id_unit') ->references('id')->on('units');
             $table->string('licor');
-            $table->integer('stock');
+            $table->float('stock');
             $table->string('caracteristica', 30);
             $table->integer('stock_min');
             $table->timestamps();

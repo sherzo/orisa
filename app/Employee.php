@@ -17,6 +17,11 @@ class Employee extends Model
         'cargo_id', 'turno_id', 'dni_cedula', 'nombres', 'apellidos', 'fecha_nacimiento', 'estado_civil', 'direccion', 'operadora', 'telefono', 'genero'
     ];
 
+    public function user()
+    {
+      return $this->belongsToMany('App\User', 'employee_user');
+    }
+
     public function info() #info
     {
         return $this->hasOne('App\Data_employee', 'empleado_id', 'id');

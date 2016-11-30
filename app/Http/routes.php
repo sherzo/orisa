@@ -256,13 +256,13 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
 	Route::get('comandas/facturar', ['uses' => 'CommandsController@invoice', 'as' => 'admin.comandas.facturar']);
 	Route::get('comandas/procesadas', ['uses' => 'CommandsController@process', 'as' => 'admin.comandas.procesadas']);
 	Route::get('comandas/cliente-nuevo', ['uses' => 'CommandsController@client_new', 'as' => 'admin.comandas.cliente-nuevo']);
-	Route::get('comandas/en-espera/procesar/{comanda}', function($comanda){
-		$command = App\Command::find($comanda);
-		$command->estatus = 'Lista';
-		$command->save();
-
-		return Response::json($command);
-	});
+	// Route::get('comandas/en-espera/procesar/{comanda}', function($comanda){
+	// 	$command = App\Command::find($comanda);
+	// 	$command->estatus = 'Lista';
+	// 	$command->save();
+	//
+	// 	return Response::json($command);
+	// });
 	Route::get('comandas/en-espera/actualizar', function(){
 		$command = App\Command::all();
 

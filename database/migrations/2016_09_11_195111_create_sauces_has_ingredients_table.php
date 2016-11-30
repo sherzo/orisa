@@ -18,9 +18,9 @@ class CreateSaucesHasIngredientsTable extends Migration
             $table->foreign('sauce_id')->references('id')->on('sauces')->onDelete('Cascade');
             $table->integer('ingredient_id')->unsigned();
             $table->foreign('ingredient_id')->references('id')->on('ingredients')->onDelete('Cascade');
-            $table->integer('cantidad_ingrediente');
-            $table->integer('unidad_id')->unsigned();
-            $table->foreign('unidad_id')->references('id')->on('units')->onDelete('Cascade');
+            $table->float('cantidad_ingrediente');
+            $table->integer('unit_id')->unsigned();
+            $table->foreign('unit_id')->references('id')->on('units')->onDelete('Cascade');
             $table->timestamps();
         });
     }

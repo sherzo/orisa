@@ -12,7 +12,7 @@ class Beverages_has_liqueur extends Model
      * @var array
      */
     protected $fillable = [
-     'beverage_id', 'liqueur_id', 'cantidad_licors', 'unit_id',  
+     'beverage_id', 'liqueur_id', 'cantidad_licor', 'unit_id',  
     ];
 
     /**

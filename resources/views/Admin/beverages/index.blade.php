@@ -10,15 +10,20 @@
     <div class="col-lg-12">
         <ol class="breadcrumb">
             <li><a href="{{ url('admin') }}"><span class="glyphicon glyphicon-home"></span></a></li>
-            <li class="active">Bebidas alcoholicas</li>
+            <li class="active">Tragos</li>
         </ol>
     </div>
 
     <div class="col-lg-4">
-        <a  href="{{ url('admin/tragos/create') }}" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Nueva Bebida alcoholica"">
+        <a  href="{{ url('admin/tragos/create') }}" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Nuevo Trago">
             <span class="fa fa-plus"></span>
         </a>
     </div><br>
+</div>
+<div class="row">
+	<div class="col-md-12">
+		@include('flash::message')
+	</div>
 </div>
           <!--  CIERRE DEL ROW -->
           <div class="row">
@@ -35,9 +40,8 @@
                     <!-- <a href="#" class="btn btn-default btn-xs pull-right "> <span class="fa fa-trash-o fa-2x"></span> </a> &nbsp;&nbsp; -->
 
 
-                    <a href="{{ route('admin.tragos.edit', $beverage->id) }}" class="btn btn-default btn-xs pull-right "> <span class="fa fa-pencil fa-2x"></span> </a>
-
-                    <a href="{{ route('admin.tragos.show', $beverage->id)}}" class="btn btn-default btn-xs pull-right "> <span class="fa fa-eye fa-2x"></span> </a>
+                    <a href="{{ route('admin.tragos.edit', $beverage->id) }}" class="btn btn-default btn-xs pull-right" data-toggle="tooltip" data-placement="top" title="" data-original-title="Editar"> <span class="fa fa-pencil fa-2x"></span> </a>
+                    <a href="{{ route('admin.tragos.show', $beverage->id)}}" class="btn btn-default btn-xs pull-right" data-toggle="tooltip" data-placement="top" title="" data-original-title="Ver"> <span class="fa fa-eye fa-2x"></span> </a>
 
                   </div>
                 </div>

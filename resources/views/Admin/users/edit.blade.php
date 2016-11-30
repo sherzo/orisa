@@ -21,8 +21,8 @@
 				<div class="panel-heading">Editar usuario: <span class="muted">{{ $user->name }}</span></div>
 					<div class="panel-body">
 					    {{ Form::model($user, array('route' => array('admin.usuarios.update', $user->id), 'method' => 'PUT')) }}
-						
-						
+
+
 						@include('admin.users.partials.fields')
 
 				<div class="form-group">
@@ -35,7 +35,7 @@
 						<span class="fa fa-save fa-2x"></span>
 					</button>
                 </center>
-                </div> 
+                </div>
 						{!! Form::close() !!}
 
 

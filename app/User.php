@@ -12,7 +12,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'roles_id', 'name', 'user', 'password', 'email', 'type',  
+        'roles_id', 'name', 'user', 'password', 'email',
     ];
 
     /**
@@ -23,6 +23,12 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function employee()
+    {
+      return $this->belongsToMany('App\Employee');
+    }
+
 
     public function roles()
     {
@@ -36,20 +42,20 @@ class User extends Authenticatable
 
     public function modules_actions()
     {
-       return $this->hasMany('App\Users_modules_action'); 
+       return $this->hasMany('App\Users_modules_action');
     }
-    
+
     public function is_role($hasRol)
     {
         # code...
     }
 
-    public function setPasswordAttribute($value) 
+    public function setPasswordAttribute($value)
     {
         if(!empty($value))
-        { 
+        {
             $this->attributes['password'] = bcrypt($value);
-        }    
+        }
     }
 
     public function payroll()

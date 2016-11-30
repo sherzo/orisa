@@ -22,14 +22,14 @@
                   <div class="panel-body">
                     <img src="@if($mesa || $mesas2[$contador]->estatus == 'Ocupada')
                     			{{ asset('img/tables/mesa-ocupada.png') }}
-                    		  @else 
+                    		  @else
                     		  {{ asset('img/tables/mesa.png') }}
                     		  @endif"
-                     alt="" class="img-responsive">
+                     alt="" class="img-responsive" data-toggle="tooltip" data-placement="top" title="{{ $mesas2[$contador]->estatus }}">
                   </div>
                   <div class="panel-footer">
                   # {{ $key }}
-                    
+
                     <input type="radio" class="check" name="mesa_id" @if($mesa || ($mesas2[$contador]->estatus) == 'Ocupada') disabled="" @endif value="{{ $key }}">
                   </div>
                 </div>

@@ -8,10 +8,11 @@
     </div>
 </div>
 <div class="row">
-    <a href="">
+      <a href="{{ url('admin/comandas') }}">
         @if((Auth::user()->roles_id)=='6')
         <div class="col-lg-3 col-md-6">
             <div class="panel panel-primary">
+
                 <div class="panel-heading">
                     <div class="row">
                         <div class="col-xs-3">
@@ -19,7 +20,7 @@
                         </div>
                         <div class="col-xs-9 text-right">
                             <div class="huge">2</div>
-                             <div>Panel de servicios</div>
+                             <div>Nueva Comanda</div>
                         </div>
                     </div>
                 </div>
@@ -27,22 +28,25 @@
                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                     <div class="clearfix"></div>
                 </div>
+
             </div>
         </div>
         @endif
-    </a>
-    <a href="">
+      </a>
+
+      <a href="{{ url('admin/reservaciones') }}">
         @if((Auth::user()->roles_id)=='1' || (Auth::user()->roles_id)=='2' || (Auth::user()->roles_id)=='3' || (Auth::user()->roles_id)=='4' || (Auth::user()->roles_id)=='5' || (Auth::user()->roles_id)=='6')
         <div class="col-lg-3 col-md-6">
             <div class="panel panel-primary">
+
                 <div class="panel-heading">
                     <div class="row">
                         <div class="col-xs-3">
                             <i class="fa fa-calendar fa-5x"></i>
                         </div>
                         <div class="col-xs-9 text-right">
-                            <div class="huge">1</div>
-                            <div>Reservaciones</div>
+                            <div class="huge">{{ $reservaciones->count() }} </div>
+                            <div>Reservaciones para hoy</div>
                         </div>
                     </div>
                 </div>
@@ -51,22 +55,25 @@
                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                     <div class="clearfix"></div>
                 </div>
+
             </div>
         </div>
         @endif
-    </a>
-    <a href="">
+      </a>
+
+
         @if((Auth::user()->roles_id)=='1' || (Auth::user()->roles_id)=='2' || (Auth::user()->roles_id)=='3')
         <div class="col-lg-3 col-md-6">
             <div class="panel panel-green">
+              <a href="{{ url('admin/ingredientes') }}">
                 <div class="panel-heading">
                     <div class="row">
                         <div class="col-xs-3">
-                            <i class="fa fa-cube fa-5x"></i>
+                            <i class="fa fa-money fa-5x"></i>
                         </div>
                         <div class="col-xs-9 text-right">
-                            <div class="huge">12</div>
-                            <div>Inventario</div>
+                            <div class="huge">{{ $facturas->count() }}</div>
+                            <div>Movimiento del día</div>
                         </div>
                     </div>
                 </div>
@@ -74,22 +81,24 @@
                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                     <div class="clearfix"></div>
                 </div>
+              </a>
             </div>
         </div>
         @endif
-    </a>
-    <a href="{{ url('admin/compra¬') }}">
+
+
         @if((Auth::user()->roles_id)=='1' || (Auth::user()->roles_id)=='2' || (Auth::user()->roles_id)=='3')
         <div class="col-lg-3 col-md-6">
             <div class="panel panel-yellow">
+              <a href="{{ url('admin/compra') }}">
                 <div class="panel-heading">
                     <div class="row">
                         <div class="col-xs-3">
                             <i class="fa fa-clipboard fa-5x"></i>
                         </div>
                         <div class="col-xs-9 text-right">
-                            <div class="huge">3</div>
-                            <div>Ordenes</div>
+                            <div class="huge">{{ $ordenes->count() }}</div>
+                            <div>Ordenes en espera</div>
                         </div>
                     </div>
                 </div>
@@ -97,12 +106,14 @@
                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                     <div class="clearfix"></div>
                 </div>
+              </a>
             </div>
         </div>
-    </a>
-    <a href="">
+
+
         <div class="col-lg-3 col-md-6">
             <div class="panel panel-red">
+              <a href="">
                 <div class="panel-heading">
                     <div class="row">
                         <div class="col-xs-3">
@@ -118,10 +129,10 @@
                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                     <div class="clearfix"></div>
                 </div>
+              </a>
             </div>
         </div>
         @endif
-    </a>
-</div>
 
+</div>
 @endsection

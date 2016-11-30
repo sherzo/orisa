@@ -18,9 +18,9 @@ class CreatePlatesHasIngredientsTable extends Migration
             $table->foreign('plato_id')->references('id')->on('plates')->onDelete('Cascade');
             $table->integer('ingrediente_id')->unsigned();
             $table->foreign('ingrediente_id')->references('id')->on('ingredients')->onDelete('Cascade');
-            $table->integer('cantidad_ingrediente');
-            $table->integer('unidad_id')->unsigned();
-            $table->foreign('unidad_id')->references('id')->on('units')->onDelete('Cascade');
+            $table->float('cantidad_ingrediente');
+            $table->integer('unit_id')->unsigned();
+            $table->foreign('unit_id')->references('id')->on('units')->onDelete('Cascade');
             $table->timestamps();
         });
     }

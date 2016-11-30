@@ -1,19 +1,15 @@
-<div class="checkbox form-group">
-    <label>
-      <input type="checkbox" id="empleado"> Empleado
-    </label>
-  </div>
-						<div class="form-group{{ $errors->has('name') ? ' has-error' : '' }} nombre">
-							{!! Form::label('name', 'Nombre') !!}
 
-							{!! Form::text('name', null, ['class' => 'form-control', 'placeholder' => 'Saul', 'title' => 'Ingrese su nombre']) !!}
+						<div class="form-group{{ $errors->has('employee') ? ' has-error' : '' }} nombre">
+							{!! Form::label('employee', 'Empleado') !!}
 
-							@if($errors->has('name'))
-                                   	<span class="help-block">
-                                        <strong>{{ $errors->first('name') }}</strong>
-                                    </span>
-                            @endif
+              {!! Form::select('employee', $empleados, null, ['class' => 'form-control'])!!}
+							@if($errors->has('employee'))
+               	<span class="help-block">
+                    <strong>{{ $errors->first('employee') }}</strong>
+                </span>
+              @endif
 						</div>
+
 						<div class="form-group{{ $errors->has('user') ? ' has-error' : '' }}">
 							{!! Form::label('user', 'Usuario') !!}
 
@@ -48,8 +44,14 @@
 						</div>
 
 						<div class="form-group">
-						    {!! Form::label('type', 'Tipo de usuario') !!}
+						    {!! Form::label('roles_id', 'Tipo de usuario') !!}
 
-							{!! Form::select('type', array('2' => 'Administrador(a)', '3' => 'Encargado(a)', '4' => 'Chef', '5' => 'Cajero(a)', '6' => 'Mesonero(a)', '7' => 'Cliente'), null, ['class' => 'form-control']);
+							{!! Form::select('roles_id', array('2' => 'Administrador(a)', '3' => 'Encargado(a)', '4' => 'Cocinero(a)', '5' => 'Cajero(a)', '6' => 'Mesonero(a)'), null, ['class' => 'form-control']);
 							!!}
 						</div>
+
+            <div class="form-group tooltip-demo text-center">
+          		<button class="btn btn-default btn-sm" type="submit" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Guardar"><span class="glyphicon glyphicon-floppy-saved fa-2x"></span></button>
+          		<button class="btn btn-default btn-sm" type="reset" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Borrar"><span class="glyphicon glyphicon-floppy-remove fa-2x"></span></button>
+          	    <br>
+          	</div>

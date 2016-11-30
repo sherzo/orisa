@@ -42,7 +42,7 @@
     @include('header')
 
     <!-- Secciones -->
-    @if(!Auth::guest())
+    @if(!Auth::guest() AND (Auth::user()->roles_id)=='7')
         @include('reservations')
     @endif
         @include('section-services')
@@ -64,7 +64,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-4">
-                    <span class="copyright">Todos lo derechos reservados &copy; Restaurant & SportBar Sefardí 2016</span>
+                    <span class="copyright">&copy; 2016 Todo los derechos reservados  Restaurant & SportBar Sefardí</span>
                 </div>
                 <div class="col-md-4">
                     <ul class="list-inline social-buttons">
@@ -78,9 +78,9 @@
                 </div>
                 <div class="col-md-4">
                     <ul class="list-inline quicklinks">
-                        <li><a href="#">Politicas de Privacidad</a>
+                        <li><a href="#">Política de Privacidad</a>
                         </li>
-                        <li><a href="#">Terminos de uso</a>
+                        <li><a href="#">Términos y condiciones de uso</a>
                         </li>
                     </ul>
                 </div>

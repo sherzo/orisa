@@ -129,8 +129,10 @@ class CommandsController extends Controller
       $comanda->save();
 
       $platos = $comanda->plates()->get();
-
-        function transformarUnidad($unidad, $valor)
+      $tragos = $comanda->beverages()->get();
+      $jugos = $comanda->juices()->get();
+        // Transforma la unidad a GRAMOS o MILILITROS para hacer la resta
+        function transformar($unidad, $valor)
         {
             if($unidad == 1 OR $unidad == 3)
             {
@@ -141,14 +143,67 @@ class CommandsController extends Controller
             }
         }
 
-      foreach ($platos as $key => $plato) {
+        function destransformar($unidad, $valor) //XD
+        {
+            if($unidad == 1 OR $unidad == 3)
+            {
+              $valor = $valor / 1000;
+              return $valor;
+            }else {
+              return $valor;
+            }
+        }
 
-        $ingredientes = $plato->Ingredientes()->get();
-        foreach ($ingredientes as $key => $ingrediente) {
-              $ingrediente->stock = transformarUnidad($ingrediente->id_unit, $ingrediente->stock) - transformarUnidad($ingrediente->pivot->unidad_id, $ingrediente->pivot->cantidad_ingrediente);
-              $ingrediente->save();
-          }// ingredientes
-      }// platos
+        function descontar($productos)
+        {
+          foreach ($productos as $key => $producto) {
+
+            $ingredientes = $producto->Ingredientes()->get();
+            foreach ($ingredientes as $key => $ingrediente) {
+                  $ingrediente->stock = transformar($ingrediente->id_unit, $ingrediente->stock) - transformar($ingrediente->pivot->unidad_id, $ingrediente->pivot->cantidad_ingrediente);
+                  $ingrediente->stock = destransformar($ingrediente->id_unit, $ingrediente->stock);
+                  $ingrediente->stock = round($ingrediente->stock, 2);
+                  $ingrediente->save();
+            }// ingredientes
+          }
+
+            if($producto->jugo == null){
+              $licores = $producto->Licores()->get();
+              foreach ($licores as $key => $licor) {
+                    $licor->stock = transformar($licor->id_unit, $licor->stock) - transformar($licor->pivot->unit_id, $licor->pivot->cantidad_licor);
+                    $licor->stock = destransformar($licor->id_unit, $licor->stock);
+                    $licor->save();
+                  }
+            }
+
+            if($producto->plato != null)
+            {
+              $salsas = $producto->salsas()->get();
+              foreach($salsas as $salsa)
+              {
+                $ingredientes = $salsa->ingredientes()->get();
+                foreach ($ingredientes as $key => $ingrediente) {
+
+                      $ingrediente->stock = transformar($ingrediente->id_unit, $ingrediente->stock) - transformar($ingrediente->pivot->unit_id, $ingrediente->pivot->cantidad_ingrediente);
+                      $ingrediente->id_unit == 1 ? $ingrediente->id_unit = 2 : '';
+                      $ingrediente->id_unit == 3 ? $ingrediente->id_unit = 4 : '';
+                      $ingrediente->save();
+                }
+              }
+            }
+
+          }
+        
+
+
+        descontar($platos);
+        descontar($tragos);
+        descontar($jugos);
+
+
+        Flash::success('<strong>Exito </strong> el plato comanda lista, el mesonero fue notificado.');
+
+        return redirect()->back();
     }//Ready
 
     public function add($id)

@@ -37,12 +37,12 @@ class Plate extends Model
 
     public function Licores()
     {
-        return $this->belongsToMany('App\Liqueur', 'plates_has_liqueurs')->withPivot( 'cantidad_liqueur', 'unit_id');
+        return $this->belongsToMany('App\Liqueur', 'plates_has_liqueurs')->withPivot( 'cantidad_licor', 'unit_id');
     }
 
     public function UnidadesIngredientes()
     {
-       return $this->belongsToMany('App\Unit', 'plates_has_ingredients', 'plato_id', 'unidad_id');
+       return $this->belongsToMany('App\Unit', 'plates_has_ingredients', 'plato_id', 'unit_id');
     }
 
     public function UnidadesLicores()

@@ -15,12 +15,10 @@
                     <li class="hidden">
                         <a href="#page-top"></a>
                     </li>
-                    @if(!Auth::guest())
-                    @if(!Auth::user()->roles_id) == '7')
+                    @if(!Auth::guest() AND (Auth::user()->roles_id)=='7')
                     <li>
                         <a class="page-scroll" href="#reservations">Reservaciones</a>
                     </li>
-                    @endif
                     @endif
                     <li>
                         <a class="page-scroll" href="#services">Servicios</a>

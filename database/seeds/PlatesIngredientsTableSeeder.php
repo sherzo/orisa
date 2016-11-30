@@ -17,7 +17,7 @@ class PlatesIngredientsTableSeeder extends Seeder
 	            'plato_id' => $i,
 	            'ingrediente_id' => '1',
 	            'cantidad_ingrediente' => $i.'0',
-	            'unidad_id' => '2',
+	            'unit_id' => '2',
 	        ));
 
     	}

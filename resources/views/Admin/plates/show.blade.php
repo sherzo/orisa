@@ -11,14 +11,18 @@
 		</ol>
 	</div>
 </div>
-
+<div class="row">
+	<div class="col-md-12">
+		@include('flash::message')
+	</div>
+</div>
 {{ Form::open(['route' => ['admin.platos.update', $plate->id], 'method' => 'PUT']) }}
 <div class="row">
 		<div class="col-lg-12">
 			<div class="panel panel-default">
 				<div class="panel-heading">
 		            <em>Plato: <strong>{{ $plate->plato}}</strong></em>
-								<a class="btn btn-default btn-xs editar pull-right" type="button" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Editar"><span class="glyphicon glyphicon-pencil fa-2x"></span></a>
+								<a href="" class="btn btn-default btn-xs pull-right editar" data-toggle="tooltip" data-placement="top" title="" data-original-title="Editar"> <span class="fa fa-pencil fa-2x"></span> </a>
 						</div>
 		        <div class="panel-body">
 		        <div class="row">
@@ -96,7 +100,7 @@
 											</td>
 											<td>
 												<div class="col-xs-5 input-group">
-													<input name="cantidad_l[]" class="cantidad form-control input-sm" disabled type="number" value="{{ $licor->pivot->cantidad_liqueur }}">
+													<input name="cantidad_l[]" class="cantidad form-control input-sm" disabled type="number" value="{{ $licor->pivot->cantidad_licor }}">
 
 													<span class="input-group-addon">
 														{{ $unidades_licores[$key]->unidad }}

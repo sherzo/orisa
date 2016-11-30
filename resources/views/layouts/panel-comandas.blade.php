@@ -115,7 +115,9 @@
                 </thead>
                 <tbody id="productos"></tbody>
                 <tfoot>
-                    <th><button class="btn btn-primary">Enviar <span class="fa fa-send"></span></button></th>
+                    <th><button class="btn btn-default btn-sm" data-toggle="tooltip" data-placement="right" title="En espera"><span class="fa fa-bell
+                       fa-2x
+                      "></span></button></th>
                     <th><strong>Total: </strong></th>
                     <th id="total" colspan="2"></th>
                 </tfoot>

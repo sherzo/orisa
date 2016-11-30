@@ -11,13 +11,13 @@ class BeveragesLiqueursTableSeeder extends Seeder
      */
     public function run()
     {
-        for ($i=1; $i <= 6; $i++) { 
-    	
+        for ($i=1; $i <= 6; $i++) {
+
 	        \DB::table('beverages_has_liqueurs')->insert(array (
 	            'beverage_id' => $i,
 	            'liqueur_id' => '1',
 	            'cantidad_licor' => $i.'0',
-	            'unit_id' => '1',
+	            'unit_id' => '4',
 	        ));
 
     	}

@@ -110,25 +110,45 @@
                           </div>
                           <!-- /input-group -->
                       </li>
+                    <!-- 1 = ROOT | 2 = ADMINISTRADOR | 3 = ENCARGADO
+                         4 = COCINERO | 5 = CAJERO | 6 = MESONERO |
+                         7 = CLIENTE
+                    -->
+
                     <li><a href="{{ url('admin') }}"><i class="fa fa-fw fa-home"></i> Inicio</a></li>
-@if((Auth::user()->roles_id)!='2')
+                    <!-- COMPRA -->
+                    @if((Auth::user()->roles_id)=='1' || (Auth::user()->roles_id)=='3' )
+                      <li><a href="#" ><i class="fa fa-fw fa-shopping-cart"></i> Compra<span class="fa arrow"></span></a>
+                          <ul class="nav nav-second-level">
+                              <li><a href="{{ url('admin/compra') }}">Orden de Compra</a></li>
+                              <li><a href="{{ url('admin/proveedores')}}">Proveedores</a></li>
+                              <li><a href="#"> Inventario<span class="fa arrow"></span></a>
+                                  <ul class="nav nav-third-level">
+                                      <li><a href="{{ url('admin/ingredientes') }}">Ingredientes</a></li>
+                                      <li><a href="{{ url('admin/licores') }}">Licores</a></li>
+                                      <li><a href="{{ url('admin/bebidas') }}">Bebidas</a></li>
+                                  </ul>
+                              </li>
+                          </ul>
+                      </li>
+                    @endif
+                    <!-- FIN COMPRA -->
+
+                    <!-- SERVICIOS -->
+                    @if((Auth::user()->roles_id)!='2')
                     <li><a href="#"><i class="fa fa-fw fa-cutlery"></i> Servicios<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
-@if((Auth::user()->roles_id)=='1' || (Auth::user()->roles_id)=='4' || (Auth::user()->roles_id)=='5')
-
-@endif
                             <li><a href="#"> Menú<span class="fa arrow"></span></a>
                                 <ul class="nav nav-third-level">
                                     <li><a href="{{ url('admin/platos') }}">Platos</a></li>
                                     <li><a href="{{ url('admin/jugos') }}">Jugos</a></li>
                                     <li><a href="{{ url('admin/sauces') }}">Salsas</a></li>
-                                    <li><a href="{{ url('admin/tragos') }}">Bebidas Alcoholicas</a></li>
+                                    <li><a href="{{ url('admin/tragos') }}">Tragos</a></li>
                                 </ul>
                             </li>
                             <li><a href="#"> Comandas<span class="fa arrow"></span></a>
                                 <ul class="nav nav-third-level">
                                   @if((Auth::user()->roles_id)=='1' || (Auth::user()->roles_id)=='2' || (Auth::user()->roles_id)=='4' || (Auth::user()->roles_id)=='6')
-
                                     <li><a href="{{ url('admin/comandas') }}">Nueva</a></li>
                                   @endif
                                     <li><a href="{{ url('admin/comandas/en-espera') }}">En espera</a></li>
@@ -136,18 +156,17 @@
                                 </ul>
                             </li>
                             @if((Auth::user()->roles_id)=='1' || (Auth::user()->roles_id)=='2' || (Auth::user()->roles_id)=='4' || (Auth::user()->roles_id)=='5')
-
                             <li><a href="{{ url('admin/clientes') }}">Clientes</a></li>
                             @endif
-@if((Auth::user()->roles_id)=='1'  || (Auth::user()->roles_id)=='4' || (Auth::user()->roles_id)=='5')
-
-@endif
                             <li><a href="{{ url('admin/reservaciones') }}">Reservaciones</a></li>
                             <li><a href="{{ url('admin/platos-del-dia') }}">Plato del día</a></li>
                         </ul>
                     </li>
-@endif
-@if((Auth::user()->roles_id)=='1' || (Auth::user()->roles_id)=='3' )
+                    @endif
+                    <!-- FIN SERVICIOS -->
+
+                    <!-- EMPLEADOS -->
+                    @if((Auth::user()->roles_id)=='1' || (Auth::user()->roles_id)=='3' )
                     <li><a href="#"  ><i class="fa fa-fw fa-male"></i> Empleados<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li><a href="{{ url('admin/empleados') }}"> Personal </a></li>
@@ -169,27 +188,11 @@
                             </li>
                         </ul>
                     </li>
-@endif
+                    @endif
+                    <!-- FIN EMPLEADOS -->
 
-@if((Auth::user()->roles_id)=='1' || (Auth::user()->roles_id)=='3' )
-                    <li><a href="#" ><i class="fa fa-fw fa-shopping-cart"></i> Compra<span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
-                            <li><a href="{{ url('admin/compra') }}">Orden de Compra</a></li>
-                            <li><a href="{{ url('admin/proveedores')}}">Proveedores</a></li>
-                            <li><a href="#"> Inventario<span class="fa arrow"></span></a>
-                                <ul class="nav nav-third-level">
-                                    <li><a href="{{ url('admin/ingredientes') }}">Ingredientes</a></li>
-                                    <li><a href="{{ url('admin/licores') }}">Licores</a></li>
-                                    <li><a href="{{ url('admin/bebidas') }}">Bebidas</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
-@endif
-
-
-
-@if((Auth::user()->roles_id)=='1' || (Auth::user()->roles_id)=='2')
+                    <!--  MATENIMIENTO -->
+                    @if((Auth::user()->roles_id)=='1' || (Auth::user()->roles_id)=='2')
                     <li><a href="#"><i class="fa fa-fw fa-wrench"></i> Mantenimiento<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li><a href="{{ url('admin/usuarios') }}">Usuarios</a></li>
@@ -198,12 +201,12 @@
                             <li><a href="#">Bítacora</a></li>
                         </ul>
                     </li>
-@endif
+                    @endif
+                    <!-- FIN MATENIMIENTO -->
                 </ul>
             </div>
          </div>
     </nav>
-
   </div>
     <!-- <footer class="footer">
       <div class="container">

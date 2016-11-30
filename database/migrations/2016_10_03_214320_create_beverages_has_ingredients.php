@@ -18,7 +18,7 @@ class CreateBeveragesHasIngredients extends Migration
             $table->foreign('beverage_id')->references('id')->on('beverages')->onDelete('Cascade');
             $table->integer('ingredient_id')->unsigned();
             $table->foreign('ingredient_id')->references('id')->on('ingredients')->onDelete('Cascade');
-            $table->integer('cantidad_ingrediente');
+            $table->float('cantidad_ingrediente');
             $table->integer('unit_id')->unsigned();
             $table->foreign('unit_id')->references('id')->on('units')->onDelete('Cascade');
             $table->timestamps();

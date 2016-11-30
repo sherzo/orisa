@@ -89,7 +89,7 @@ class PlatesController extends Controller
             $receta->plato_id = $plate->id;
             $receta->ingrediente_id = $request->id_ingredientes[$key];
             $receta->cantidad_ingrediente = $request->cantidades_i[$key];
-            $receta->unidad_id = $request->unidades_i[$key];
+            $receta->unit_id = $request->unidades_i[$key];
 
             $receta->save();
         }
@@ -111,7 +111,7 @@ class PlatesController extends Controller
 
             foreach ($request->id_licores as $key => $licor) {
 
-              $plate->licores()->attach([$licor => ['cantidad_liqueur' => $request->cantidades_l[$key], 'unit_id' => $request->unidades_l[$key]]]);
+              $plate->licores()->attach([$licor => ['cantidad_licor' => $request->cantidades_l[$key], 'unit_id' => $request->unidades_l[$key]]]);
             }
         }
 
@@ -178,6 +178,10 @@ class PlatesController extends Controller
             $plate->Licores()->attach([$licor->id => ['cantidad_liqueur' => $request->cantidad_l[$key], 'unit_id' => $request->units_l[$key]]]);
           }
         }
+
+        Flash::success('<strong>Exito </strong> el plato '. $plate->plato .' se modifico correctamente.');
+
+        return redirect()->back();
     }
 
     /**

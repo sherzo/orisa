@@ -27,9 +27,14 @@ class Juice extends Model
         return $this->belongsTo('App\Image');
     }
 
-    public function ingredients()
+    public function Ingredientes()
     {
-        return $this->belongsToMany('App\Ingredient', 'juices_has_ingredients');
+        return $this->belongsToMany('App\Ingredient', 'juices_has_ingredients')->withPivot('cantidad_ingrediente', 'unit_id');
+    }
+
+    public function UnidadesIngredientes()
+    {
+       return $this->belongsToMany('App\Unit', 'juices_has_ingredients');
     }
 
 }

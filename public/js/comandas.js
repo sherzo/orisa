@@ -38,11 +38,15 @@ $(document).ready(function(){
 					}
 
 					var render = '<div class="col-md-3"><div class="panel panel-default">'+
-								'<div class="panel-body"><img src="'+asset+'/'+img+'" alt="" class="img-responsive"></div><div class="panel-footer">'+
+								'<div class="panel-body"><img src="'+asset+'/'+img+'" alt="" class="img-responsive" data-toggle="tooltip" data-placement="top" title="'+typeObj.precio+' bs"></div><div class="panel-footer">'+
 								nombre+'<button type="'+typeObj.id+'" class="btn btn-xs btn-success pull-right agregar" data="'
-								+nombre+'" data2="'+typeObj.precio+ '" tipo="'+tipo+'"><span class="fa fa-plus" ></span></button>'+
+								+nombre+'" data2="'+typeObj.precio+ '" tipo="'+tipo+'" data-toggle="tooltip" data-placement="top" title="Agregar"><span class="fa fa-plus" ></span></button>'+
 								'</div></div></div>';
 					$('#tablero').append(render);
+
+					$(function () {
+			  $('[data-toggle="tooltip"]').tooltip()
+			});
 				});
 			}else {
 						$('#tablero').empty();
@@ -100,14 +104,14 @@ $(document).ready(function(){
 
 		// Funcion procesar comanda
 
-		$('.procesar').on('click', function(){
-			var comanda = $(this).attr('type');
-			var boton = $(this);
-			boton.remove();
-			$.get('en-espera/procesar/' + comanda, function(data){
-
-			});
-		});
+		// $('.procesar').on('click', function(){
+		// 	var comanda = $(this).attr('type');
+		// 	var boton = $(this);
+		// 	boton.remove();
+		// 	$.get('en-espera/procesar/' + comanda, function(data){
+		//
+		// 	});
+		// });
 
 
 		//Funcion para actualizar las comandas

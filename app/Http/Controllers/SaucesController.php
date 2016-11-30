@@ -17,7 +17,7 @@ class SaucesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {   
+    {
         $sauces = Sauce::paginate(5);
 
         return view('admin.sauces.index', compact('sauces'));
@@ -47,14 +47,14 @@ class SaucesController extends Controller
         $sauce->save();
 
         foreach ($request->id_ingredientes as $key => $value) {
-            
+
             $receta = new Sauces_has_ingredients();
 
             $receta->sauce_id = $sauce->id;
             $receta->ingredient_id = $request->id_ingredientes[$key];
             $receta->cantidad_ingrediente = $request->cantidades_i[$key];
             $receta->unidad_id = $request->unidades_i[$key];
-            $receta->save();            
+            $receta->save();
         }
 
         Flash::success('<strong>Exito! </strong> la salsa: '. $sauce->salsa .' se creo correctamente.');
@@ -71,7 +71,12 @@ class SaucesController extends Controller
      */
     public function show($id)
     {
-        //
+      $sauce = Sauce::find($id);
+
+      $ingredientes = $sauce->ingredientes()->get();
+      $unidades_ingredientes = $sauce->UnidadesIngredientes()->get();
+
+     return view('admin.sauces.show', compact('sauce', 'ingredientes', 'unidades_ingredientes'));
     }
 
     /**

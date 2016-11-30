@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Employee;
 use App\Http\Requests;
 use Laracasts\Flash\Flash;
 use App\Http\Requests\UserRequest;
@@ -17,9 +18,7 @@ class UsersController extends Controller
      */
     public function index()
     {
-        // 
-        $users = User::paginate(5);
-
+        $users = User::all();
         return view('admin.users.index', compact('users'));
     }
 
@@ -30,7 +29,8 @@ class UsersController extends Controller
      */
     public function create()
     {
-        return view('admin.users.create');
+        $empleados = Employee::lists('nombres', 'id');
+        return view('admin.users.create', compact('empleados'));
     }
 
     /**
@@ -41,10 +41,12 @@ class UsersController extends Controller
      */
     public function store(UserRequest $request)
     {
-        $user = User::create($request->all());
-        
+        $user = new User($request->all());
+        $employee = Employee::find($request->employee);
+        $user->name = $employee->nombres;
+        $user->save();
+        $user->employee()->attach([$request->employee]);
         return redirect('admin/usuarios');
-
     }
 
     /**
@@ -56,7 +58,7 @@ class UsersController extends Controller
     public function show($id)
     {
         $user = User::findOrFail($id);
-        
+
         return view('admin.users.show', compact('user'));
     }
 
@@ -67,7 +69,7 @@ class UsersController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {   
+    {
 
         $user = User::findOrFail($id);
 
@@ -83,9 +85,9 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
+
         $user = User::findOrFail($id);
-       
+
         $user->fill($request->all());
         $user->password = \Hash::make($request->password);
         $user->save();

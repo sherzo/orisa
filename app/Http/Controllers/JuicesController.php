@@ -32,10 +32,10 @@ class JuicesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {   
+    {
         $ingredients_types = Ingredients_type::lists('tipo_ingrediente', 'id');
 
-        return view('admin.jugos.create', compact('ingredients_types'));  
+        return view('admin.jugos.create', compact('ingredients_types'));
     }
 
     /**
@@ -45,8 +45,8 @@ class JuicesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {   
-        //--  Manipulando la imagen 
+    {
+        //--  Manipulando la imagen
 
         if($request->file('image'))
         {
@@ -61,7 +61,7 @@ class JuicesController extends Controller
         }
 
         //--  Guardando datos del plato
-        $jugo = new Juice($request->all()); 
+        $jugo = new Juice($request->all());
         $jugo->image_id = $image->id;
         $jugo->save();
 
@@ -69,13 +69,7 @@ class JuicesController extends Controller
 
             $jugo->ingredients()->attach([$ingredient => ['cantidad_ingrediente' => $request->cantidades_i[$key], 'unit_id' => $request->unidades_i[$key]]]);
 
-            // $receta = new Juices_has_ingredient();
-            // $receta->juice_id = $plate->id;
-            // $receta->ingredient_id = $request->id_ingredientes[$key];
-            // $receta->cantidad_ingrediente = $request->cantidades_i[$key];
-            // $receta->unit_id = $request->unidades_i[$key];
 
-            // $receta->save();   
         }
 
         Flash::success('<strong>Exito </strong> el jugo '. $jugo->jugo .' se creo correctamente.');
@@ -91,7 +85,12 @@ class JuicesController extends Controller
      */
     public function show($id)
     {
-        //
+      $juice = Juice::find($id);
+
+      $ingredientes = $juice->ingredientes()->get();
+      $unidades_ingredientes = $juice->UnidadesIngredientes()->get();
+
+     return view('admin.jugos.show', compact('juice', 'ingredientes', 'unidades_ingredientes'));
     }
 
     /**
@@ -114,7 +113,19 @@ class JuicesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+      $juice = Juice::findOrFail($id);
+
+      $ingredientes = $juice->Ingredientes()->get();
+      $juice->Ingredientes()->detach();
+
+      foreach($ingredientes as $key => $ingrediente)
+      {
+        $juice->Ingredientes()->attach([$ingrediente->id => ['cantidad_ingrediente' => $request->cantidad_i[$key], 'unit_id' => $request->units[$key]]]);
+      }
+
+      Flash::success('<strong>Exito </strong> el jugo '. $juice->jugo .' se modifico correctamente.');
+
+      return redirect()->back();
     }
 
     /**

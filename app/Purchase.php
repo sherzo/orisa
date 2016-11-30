@@ -29,16 +29,16 @@ class Purchase extends Model
 
     public function ingredient()
     {
-        return $this->belongsToMany('App\Ingredient', 'purchases_has_ingredients', 'compra_id', 'ingrediente_id')->withPivot('cantidad'); 
+        return $this->belongsToMany('App\Ingredient', 'purchases_has_ingredients', 'compra_id', 'ingrediente_id')->withPivot('cantidad', 'precio'); 
     }
 
     public function liqueur()
     {
-        return $this->belongsToMany('App\Liqueur', 'purchases_has_liqueurs', 'compra_id', 'licor_id')->withPivot( 'cantidad'); 
+        return $this->belongsToMany('App\Liqueur', 'purchases_has_liqueurs', 'compra_id', 'licor_id')->withPivot('cantidad', 'precio'); 
     }
 
     public function drink()
     {
-        return $this->belongsToMany('App\Drink', 'purchases_has_drinks', 'compra_id', 'bebida_id')->withPivot('cantidad'); 
+        return $this->belongsToMany('App\Drink', 'purchases_has_drinks', 'compra_id', 'bebida_id')->withPivot('cantidad', 'precio'); 
     }
 }

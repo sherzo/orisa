@@ -164,7 +164,7 @@
 					<td>
 					<div class="input-group">
 		
-						{!! Form::text('cantidad_ingredient[]', null, ['class' => 'form-control', 'placeholder' => 'Cantidad', 'title' => 'Ingrese la cantidad del ingrediente para la orden']) !!}
+						{!! Form::number('cantidad_ingredient[]', null, ['class' => 'form-control', 'placeholder' => 'Cantidad', 'title' => 'Ingrese la cantidad del ingrediente para la orden', 'required' => 'required']) !!}
 
 						<span class="input-group-addon">
 						@foreach($units_i as $key2 => $unit)
@@ -207,7 +207,7 @@
 					<td>
 					<div class="input-group">
 		
-						{!! Form::text('cantidad_liqueur[]', null, ['class' => 'form-control', 'placeholder' => 'Cantidad', 'title' => 'Ingrese la cantidad del licor para la orden']) !!}
+						{!! Form::number('cantidad_liqueur[]', null, ['class' => 'form-control', 'placeholder' => 'Cantidad', 'title' => 'Ingrese la cantidad del licor para la orden', 'required' => 'required']) !!}
 
 						<span class="input-group-addon">
 						@foreach($units_l as $key2 => $unit)
@@ -251,7 +251,7 @@
 							<td>
 								<div class="input-group">
 				
-									{!! Form::text('cantidad_drink[]', null, ['class' => 'form-control', 'placeholder' => 'Cantidad', 'title' => 'Ingrese la cantidad del licor para la orden']) !!}
+									{!! Form::number('cantidad_drink[]', null, ['class' => 'form-control', 'placeholder' => 'Cantidad', 'title' => 'Ingrese la cantidad del licor para la orden', 'required' => 'required']) !!}
 									<span class="input-group-addon">
 										@foreach($units_d as $key2 => $unit)
 											@if($key2 == $key)

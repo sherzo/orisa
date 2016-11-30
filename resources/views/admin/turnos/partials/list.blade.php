@@ -1,3 +1,4 @@
+@if(count($planificacion) > 1 OR count($planificacion) == 1)
 <div class="form-group">
 	<div class="input-group">
 		<div class="form-group">
@@ -10,3 +11,8 @@
         </span>
  	</div>
 </div>
+@else
+<div class="form-group">
+	<p class="text-danger text-center">No se encontraron resultados coincidentes</p>
+</div>
+@endif

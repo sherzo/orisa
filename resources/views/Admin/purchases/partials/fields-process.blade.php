@@ -12,7 +12,7 @@
 					<th>#</th>
 					<th>Producto</th>
 					<th>Cantidad</th>
-					<th></th>
+					<th style="width: 150px;">Precio</th>
 				</tr>
 			</thead>
 
@@ -30,7 +30,7 @@
 					<td>
 					<div class="input-group">
 		
-						{!! Form::text('cantidad_ingredient[]', $ingredient->pivot->cantidad, ['class' => 'form-control', 'placeholder' => 'Cantidad', 'title' => 'Ingrese la cantidad del ingrediente para la orden']) !!}
+						{!! Form::number('cantidad_ingredient[]', $ingredient->pivot->cantidad, ['class' => 'form-control', 'placeholder' => 'Cantidad', 'title' => 'Ingrese el precio total de la orden']) !!}
 
 						<span class="input-group-addon">
 							{{ $ingredient->unit->unidad }}
@@ -39,10 +39,7 @@
 					</td>
 				
 					<td class="text-center">
-						<a class=" btn btn-danger btn-sm center">
-							<span class="glyphicon glyphicon-remove
-							glyphicon "></span>
-						</a>
+						{!! Form::number('precio_i[]', null, ['class' => 'form-control', 'placeholder' => '2000.00', 'title' => 'Ingrese el precio total de ingredientes para la orden']) !!}
 					</td>
 					
 				</tr>
@@ -65,7 +62,7 @@
 					<td>
 					<div class="input-group">
 		
-						{!! Form::text('cantidad_liqueur[]', $liqueur->pivot->cantidad, ['class' => 'form-control', 'placeholder' => 'Cantidad', 'title' => 'Ingrese la cantidad del licor para la orden']) !!}
+						{!! Form::number('cantidad_liqueur[]', $liqueur->pivot->cantidad, ['class' => 'form-control', 'placeholder' => 'Cantidad', 'title' => 'Ingrese la cantidad del licores para la orden']) !!}
 
 						<span class="input-group-addon">
 							{{ $liqueur->unit->unidad }}
@@ -74,10 +71,7 @@
 					</td>
 				
 					<td class="text-center">
-						<a class=" btn btn-danger btn-sm center">
-							<span class="glyphicon glyphicon-remove
-							glyphicon "></span>
-						</a>
+						{!! Form::number('precio_l[]', null, ['class' => 'form-control', 'placeholder' => '2000.00', 'title' => 'Ingrese el precio total de licor para la orden']) !!}
 					</td>
 					
 				</tr>
@@ -101,7 +95,7 @@
 							<td>
 								<div class="input-group">
 				
-									{!! Form::text('cantidad_drink[]', $drink->pivot->cantidad, ['class' => 'form-control', 'placeholder' => 'Cantidad', 'title' => 'Ingrese la cantidad del licor para la orden']) !!}
+									{!! Form::number('cantidad_drink[]', $drink->pivot->cantidad, ['class' => 'form-control', 'placeholder' => 'Cantidad', 'title' => 'Ingrese la cantidad del licor para la orden']) !!}
 									<span class="input-group-addon">
 										{{ $drink->unit->unidad }}
 									</span>
@@ -109,10 +103,7 @@
 							</td>
 						
 							<td class="text-center">
-								<a class=" btn btn-danger btn-sm center">
-									<span class="glyphicon glyphicon-remove
-									glyphicon "></span>
-								</a>
+								{!! Form::number('precio_d[]', null, ['class' => 'form-control', 'placeholder' => '2000.00', 'title' => 'Ingrese el precio total de la bebidas para la orden']) !!}
 							</td>
 							
 						</tr>

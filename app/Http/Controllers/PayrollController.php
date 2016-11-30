@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use App\Http\Requests\PayrollRequest;
 use Carbon\Carbon;
 use App\Deduction;
 use App\Employee;
@@ -50,7 +51,7 @@ class PayrollController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request)
+    public function create(PayrollRequest $request)
     {
         $fecha = $request->año.'-'.$request->mes;
 

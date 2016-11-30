@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
 
-class PositionsRequest extends Request
+class PayrollRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,9 +24,9 @@ class PositionsRequest extends Request
     public function rules()
     {
         return [
-            'codigo'    => 'required|unique:positions|alpha_dash',
-            'nombre'    => 'required|unique:positions||regex:/^([a-zA-ZñÑáéíóúÁÉÍÓÚ_-])+((\s*)+([a-zA-ZñÑáéíóúÁÉÍÓÚ_-]*)*)+$/',
-            'salario'   =>  'required|digits_between:4,10',
+            'año' => 'required',
+            'mes' => 'required',
+            'quincena' => 'required'
         ];
     }
 }

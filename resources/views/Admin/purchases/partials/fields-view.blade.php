@@ -1,10 +1,10 @@
-<div class="col-md-10 col-md-offset-1">
-	<br>
+<div class="col-md-12">
+	<h2><em>Restaurat Sefardí</em></h2>
 	<hr>
-	<p>Rif : {{ $order->provider->rif }}</p>
-	<p>Razón Social : {{ $order->provider->razon_social }}</p>
-	<p>Teléfono : {{ $order->provider->full_phone }}</p>
-	<p>Fecha : {{ $order->fecha }}</p>
+	<p>{{ $order->provider->rif }}</p>
+	<p>{{ $order->provider->razon_social }}</p>
+	<p>{{ $order->provider->full_phone }}</p>
+	<p>{{ $order->fecha }}</p>
 	<hr>
 	<div class="col-md-1"></div>
 	<br>
@@ -49,7 +49,7 @@
 		</table>
 		<div class="row">
 			<div class="col-md-12 tooltip-demo text-center">
-			<br>
+			<hr>
 				<a class="btn btn-default btn-sm " type="button" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Procesar" href="{{ route('admin.compra.procesar', [$order->id]) }}"><span class="glyphicon glyphicon-copy fa-2x"></span></a>
 				<a class="btn btn-default btn-sm " type="button" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="PDF" href=""><span class="glyphicon glyphicon-print fa-2x"></span></a>
 			</div>

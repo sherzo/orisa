@@ -14,7 +14,7 @@
     </div>
 </div>
 <div class="col-lg-14">
- 	<a href="{{ url('admin/asignaciones_extras') }}"><button type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="bottom" title="Nuevo"><span class="fa fa-plus"></span></button></a>
+ 	<a href="{{ url('admin/asignaciones_extras') }}"><button type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="bottom" title="Asignaciones extras"><span class="fa fa-arrow-right"></span></button></a>
 </div>
 <div><br>
 	@include('flash::message')

@@ -128,7 +128,7 @@ class PurchasesController extends Controller
         
             foreach ($request->ingredients as $i => $ingredient) {
 
-                $order->ingredient()->attach([$ingredient => ['cantidad' => $request->cantidad_ingredient[$i]]]);
+                $order->ingredient()->attach([$ingredient => ['cantidad' => $request->cantidad_ingredient[$i], 'precio' => '0.00']]);
             }
         }
 
@@ -136,7 +136,7 @@ class PurchasesController extends Controller
         
             foreach ($request->liqueurs as $l => $liqueur) {
 
-                $order->liqueur()->attach([$liqueur => ['cantidad' => $request->cantidad_liqueur[$l]]]);
+                $order->liqueur()->attach([$liqueur => ['cantidad' => $request->cantidad_liqueur[$l], 'precio' => '0.00']]);
             }
         }
 
@@ -144,7 +144,7 @@ class PurchasesController extends Controller
         
             foreach ($request->drinks as $d => $drink) {
 
-                $order->drink()->attach([$drink => ['cantidad' => $request->cantidad_drink[$d]]]);
+                $order->drink()->attach([$drink => ['cantidad' => $request->cantidad_drink[$d], 'precio' => '0.00']]);
             }
         }
        
@@ -234,7 +234,7 @@ class PurchasesController extends Controller
         $order = Purchase::find($request->id_compra);
         //dd($request->id_compra);
         //dd($order);
-
+        //dd($request->all());
         if($order->estatus == '0')
         {
             $order->estatus = '1';
@@ -247,8 +247,12 @@ class PurchasesController extends Controller
                     foreach ($request->ingredients as $key => $ingredient) 
                     {
                         $i = Ingredient::find($ingredient);
-                        $i->stock += $request->cantidad_ingredient[$key];
+                        $i->stock = $i->stock += $request->cantidad_ingredient[$key];
                         $i->save();
+
+                        $order->ingredient[$key]->pivot->precio += $request->precio_i[$key];
+                        $order->save();
+                    
                     }
 
                 }
@@ -258,8 +262,11 @@ class PurchasesController extends Controller
                     foreach ($request->liqueurs as $key => $liqueur) 
                     {
                         $l = Liqueur::find($liqueur);
-                        $l->stock += $request->cantidad_liqueur[$key];
+                        $l->stock = $l->stock += $request->cantidad_liqueur[$key];
                         $l->save();
+
+                        $order->liqueur[$key]->pivot->precio += $request->precio_l[$key];
+                        $order->save();
                     }
                 }
                 
@@ -268,8 +275,11 @@ class PurchasesController extends Controller
                     foreach ($request->drinks as $key => $drink) 
                     {
                         $d = Drink::find($drink);
-                        $d->stock += $request->cantidad_drink[$key];
+                        $d->stock = $d->stock += $request->cantidad_drink[$key];
                         $d->save();
+
+                        $order->drink[$key]->pivot->precio += $request->precio_c[$key];
+                        $order->save();
                     }
                 }
 

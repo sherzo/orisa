@@ -35,6 +35,7 @@ class TurnsController extends Controller
         $planificacion = $planificaciones->lists('fechas', 'id');
 
         return view('admin.turnos.select', compact('planificacion'));
+
     }
 
     public function create(Request $request)

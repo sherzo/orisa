@@ -446,8 +446,10 @@ class PayrollController extends Controller
     public function show2(Request $request)
     {
         $payroll = Payroll::all();
+        $payroll_here = Payroll::find($request->id);
         $payroll_show = Payroll::find($request->id)->payroll;
         
-        return view('admin.payroll.view', compact('payroll', 'payroll_show'));
+        return view('admin.payroll.view', compact('payroll', 'payroll_show', 'payroll_here'));
     }
+
 }

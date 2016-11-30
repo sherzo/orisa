@@ -5,7 +5,6 @@
 			<th>Cedula</th>
 			<th>Nombres</th>
 			<th>Laborados</th>
-			<th>Acciones</th>
 		</tr>
 	</thead>
 
@@ -23,10 +22,6 @@
 			</td>
 			<td>
 				{{ $payrollMade->laborados }}
-			</td>
-			<td class="text-center tooltip-demo"> 					  
-				<a class="btn btn-default btn-xs" href="" type="button" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Ver"><span class="glyphicon glyphicon-eye-open fa-2x"></span></a>
-				<a href="" class="btn btn-default btn-xs" type="button" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Eliminar"><span class="glyphicon glyphicon-trash fa-2x"></span></a>
 			</td>
 		</tr>
 	@endforeach

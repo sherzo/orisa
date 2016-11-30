@@ -137,6 +137,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
  		'uses' =>'AssistsController@search',
  		'as'   => 'admin.asistencias.search'
  		]);
+	Route::get('asistencias/{id}/destroy', ['uses' => 'AssistsController@destroy', 'as' => 'admin.asistencia.destroy']);
 	/*
 	|
 	|	Rutas resource controladores de nómina
@@ -203,13 +204,17 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
 	});
 	Route::resource('temporary_deductions', 'TemporaryDeductionsController');
 	Route::resource('deducciones_extras', 'DeductionsExtrasController');
-	Route::get('nomina/select', ['uses' =>'PayrollController@select', 'as' => 'admin.payroll.select']);
+	Route::get('nomina/ver', ['uses' => 'PayrollController@view', 'as' => 'admin.payroll.view']);
+	Route::post('nomina/mostrar', ['uses' => 'PayrollController@show2', 'as' => 'admin.payroll.show']);
+	Route::get('nomina/select', ['uses' => 'PayrollController@select', 'as' => 'admin.payroll.select']);
 	Route::resource('nomina', 'PayrollController');
 	/*
 	|
 	|	Rutas resource controladores de planificación
 	|
 	*/
+	Route::get('planificaciones/{id}/destroy', ['uses' => 'PlanningsController@destroy','as' => 'admin.planificacion.destroy']);
+
 	Route::resource('planificaciones', 'PlanningsController');
 	Route::get('planificaciones/administrar/dias/turnos/seleccionar-planificacion', 'TurnsController@select');
 	Route::get('planificaciones/administrar/dias/turnos/ver-planificacion', [

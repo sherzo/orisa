@@ -24,7 +24,6 @@
             <div class="panel-body">
                 <ul class="nav nav-tabs">
                     <li class="active"><a href="#home" data-toggle="tab" aria-expanded="true">PERSONALES</a></li>
-                    <li class=""><a href="#messages" data-toggle="tab" aria-expanded="false">PRENÓMINAS</a></li>
                 </ul>
                 @include('admin.empleados.partials.show')
             </div>

@@ -41,7 +41,7 @@
                     	@foreach($employees as $key => $employee)
 
                     		{!! Form::hidden('mes', $mes) !!}
-                            {!! Form::hidden('quicena', $quincena) !!}
+                            {!! Form::hidden('quincena', $quincena) !!}
                     		{!! Form::hidden('year', $year) !!}
 
                         	<tr>
@@ -79,7 +79,7 @@
                             		{{ number_format($deductionsTotal[$key], 2, ',', ' ') }}
                             	</td>
                             	<td>
-                            		{{ number_format($payments[$key], 2, ',', ' ') }}
+                            		{{ number_format($payments[$key], 2, ',', ' ') }} {!! Form::hidden('salario_total[]', $payments[$key]) !!}
                             	</td>
                         	</tr>
                         @endforeach

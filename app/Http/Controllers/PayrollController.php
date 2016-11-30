@@ -351,7 +351,7 @@ class PayrollController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
+        //dd($request->all());
         $user = auth()->user();
 
         $fortnight = Payroll::create($request->all())->save();
@@ -372,17 +372,19 @@ class PayrollController extends Controller
                 $payrollMade->rpe = $request->rpe[$key];
                 $payrollMade->rpvh = $request->rpvh[$key];
                 $payrollMade->laborados = $request->laborados[$key];
-                $payrollMade->no_laborados = '0';
+                $payrollMade->no_laborados = $request->no_laborados[$key];
+                $payrollMade->cestaticket = $request->cestaticket[$key];
+                $payrollMade->cestaticket_des = $request->cestaticket_des[$key];
+                $payrollMade->salario_total = $request->salario_total[$key];
 
             $payrollMade->save();
 
             $payrollMade->payroll()->attach($fortnight);
 
-            $delete_dx = \DB::table('temporary_assignments')->truncate();
-            $delete_dy = \DB::table('temporary_deductions')->truncate();
-
         }
 
+        $delete_dx = \DB::table('temporary_assignments')->truncate();
+        $delete_dy = \DB::table('temporary_deductions')->truncate();
 
         Flash::success('<strong> Éxito </strong> se ha guardado la '.$request->quincena.' quincena del mes '.$request->mes.' del '.$request->year.' correctamente.');
 
@@ -432,5 +434,20 @@ class PayrollController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function view()
+    {
+        $payroll = Payroll::all();
+
+        return view('admin.payroll.view', compact('payroll'));
+    }
+
+    public function show2(Request $request)
+    {
+        $payroll = Payroll::all();
+        $payroll_show = Payroll::find($request->id)->payroll;
+        
+        return view('admin.payroll.view', compact('payroll', 'payroll_show'));
     }
 }

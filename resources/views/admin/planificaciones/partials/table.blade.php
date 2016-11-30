@@ -33,7 +33,7 @@
             </td>
             <td class="text-center tooltip-demo">                     
                 <a class="btn btn-default btn-xs" href="{{ route('admin.planificaciones.administrar', $planificacion->id) }}" type="button" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Administrar"><span class="glyphicon glyphicon-calendar fa-2x"></span></a>
-                <a href="{{ route('admin.planificaciones.destroy', $planificacion->id) }}" class="btn btn-default btn-xs" type="button" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Eliminar"><span class="glyphicon glyphicon-trash fa-2x"></span></a>
+                <a href="{{ route('admin.planificacion.destroy', $planificacion->id) }}" class="btn btn-default btn-xs" type="button" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Eliminar"><span class="glyphicon glyphicon-trash fa-2x"></span></a>
             </td>
 	   </tr>
         @endforeach           

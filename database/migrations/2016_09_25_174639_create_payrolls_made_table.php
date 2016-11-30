@@ -30,7 +30,8 @@ class CreatePayrollsMadeTable extends Migration
             $table->integer('laborados');
             $table->integer('no_laborados');
             $table->float('cestaticket', 20,2);
-             $table->float('cestaticket_des', 20,2);
+            $table->float('cestaticket_des', 20,2);
+            $table->float('salario_total', 20,2);
             $table->timestamps();
         });
     }

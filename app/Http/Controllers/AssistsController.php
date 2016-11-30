@@ -84,7 +84,7 @@ class AssistsController extends Controller
 
             foreach ($request->empleados as $key => $empleado) 
             {
-                $empleado_as = Assistance::where('empleado_id', $empleado)->exists();
+                $empleado_as = Assistance::where([['empleado_id', $empleado],['asistencia_id', $request->id_asistencia]])->exists();
                 
                 if ($empleado_as) 
                 {
@@ -138,6 +138,11 @@ class AssistsController extends Controller
 
     public function destroy($id)
     {
-    	//
+    	$asistencia = Assistance::find($id);
+        $asistencia->delete();
+
+        Flash::success('<strong> Exito </strong> la asistencia se eliminó correctamente');
+
+        return redirect('admin/asistencias');
     }
 }

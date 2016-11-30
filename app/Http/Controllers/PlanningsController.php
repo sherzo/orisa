@@ -65,4 +65,25 @@ class PlanningsController extends Controller
 			}
 			
 	}
+
+	public function destroy($id)
+	{
+
+		$planning = Planning::find($id);
+
+		if ($planning->estatus == 'Procesada') 
+		{
+			Flash::warning('<strong> Error </strong> la planificación tiene un estatus '.$planning->estatus.' no se puede eliminar.');
+
+			return redirect()->back();
+			
+		}else {
+
+        	$planning->delete();
+
+        	Flash::success('<strong> Exito </strong> la planificación '. $planning->full_dates .' se eliminó correctamente');
+
+        	return redirect('admin/planificaciones');
+    	}
+	}
 }

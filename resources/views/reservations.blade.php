@@ -19,7 +19,7 @@
                     <div class="col-md-4">
                         <div class="form-group">
                         <label>Fecha</label>
-                            <input type="date" class="form-control" placeholder="" id="fecha" required data-validation-required-message="Please enter your name." data-toggle="tooltip" data-placement="top" title="Fecha de la reservación" name="fecha_reservacion">
+                            <input type="text" class="form-control" placeholder="" id="datepicker" required data-validation-required-message="Please enter your name." data-toggle="tooltip" data-placement="top" title="Fecha de la reservación" name="fecha_reservacion">
                             <p class="help-block">Seleccione la Fecha</p>
                             <p class="help-block text-danger"></p>
                         </div>

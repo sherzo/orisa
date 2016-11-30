@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateBeveragesTable extends Migration
+class CreateBitacoraTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,13 +12,13 @@ class CreateBeveragesTable extends Migration
      */
     public function up()
     {
-        Schema::create('beverages', function (Blueprint $table) {
+        Schema::create('bitacora', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('trago', 15);
+            $table->integer('user_id') ->unsigned();
+            $table->foreign('user_id') ->references('id')->on('users')->onDelete('Cascade');;
             $table->text('descripcion');
-            $table->double('precio', 15,2);
-            $table->integer('image_id') ->unsigned();
-            $table->foreign('image_id') ->references('id')->on('images');        
+            $table->string('operacion');
+            $table->integer('operacion_id');
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ class CreateBeveragesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('beverages');
+
     }
 }

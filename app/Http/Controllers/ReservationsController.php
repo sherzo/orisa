@@ -45,15 +45,21 @@ class ReservationsController extends Controller
        foreach ($request->mesas_reservadas as $key => $mesa) {
             $cliente = Auth::user()->client[0]->id;
             $reservation = new Reservation($request->all());
-            $date = Carbon::now()->format('Y-m-d');
+            $date = Carbon::now()->format('d-m-Y');
             $reservation->fecha_solicitud = $date;
             $reservation->client_id = $cliente;
             $reservation->table_id = $mesa;
 
             $reservation->save();
          }
-
-         Flash::success('<strong>Exito </strong> ya solicito su resevacion para el día'. $reservation->fecha_reservacion .' se envio un correo para confirmar la reseración.');
+         $dias = array(1 => 'Domingo',2 => 'Lunes', 3 => 'Martes', 4 => 'Miercoles', 5 => 'Jueves', 6=> 'Viernes', 7 => 'Sabado');
+         $dia_r = new Carbon($reservation->fecha_reservacion);
+         foreach ($dias as $key => $value) {
+           if($key == $dia_r->dayOfWeek){
+             $dia = $value;
+           }
+         }
+         Flash::success('<h4><strong>Perfecto realizo un resrevacion para el día: '. $dia.' '.$reservation->fecha_reservacion .' ingrese a su correo para confirmar.</h5>');
 
          return redirect()->back();
 
@@ -106,7 +112,7 @@ class ReservationsController extends Controller
       $reservacion = Reservation::find($id);
       $reservacion->delete();
 
-      Flash::success('<strong>Exito </strong> Se cancelo la reservacion del día: '. $reservacion->fecha_reservacion);
+      Flash::success('<h4>Cancelo la reservacion del día: '. $reservacion->fecha_reservacion.'<h4>');
 
 
       return redirect()->back();

@@ -18,10 +18,10 @@ Route::get('/', function()
 	$portal = App\Portal::where('estatus', true)->first();
 	$platos = $portal->plates()->get();
 
-	if((Auth::user()->roles_id)=='7')
+	if(!Auth::guest() AND (Auth::user()->roles_id)=='7')
 	{
-		$usuario = Auth::user()->client[0]->id;
-		$reservaciones = App\Reservation::where('client_id', $usuario)->get();
+		$cliente = Auth::user()->client[0]->id;
+		$reservaciones = App\Reservation::where('client_id', $cliente)->get();
 	}else{
 		$reservaciones = 0;
 	}

@@ -164,36 +164,37 @@ class CommandsController extends Controller
                   $ingrediente->stock = destransformar($ingrediente->id_unit, $ingrediente->stock);
                   $ingrediente->stock = round($ingrediente->stock, 2);
                   $ingrediente->save();
-            }// ingredientes
-          }
-
-            if($producto->jugo == null){
-              $licores = $producto->Licores()->get();
-              foreach ($licores as $key => $licor) {
-                    $licor->stock = transformar($licor->id_unit, $licor->stock) - transformar($licor->pivot->unit_id, $licor->pivot->cantidad_licor);
-                    $licor->stock = destransformar($licor->id_unit, $licor->stock);
-                    $licor->save();
-                  }
             }
 
-            if($producto->plato != null)
-            {
-              $salsas = $producto->salsas()->get();
-              foreach($salsas as $salsa)
-              {
-                $ingredientes = $salsa->ingredientes()->get();
-                foreach ($ingredientes as $key => $ingrediente) {
 
-                      $ingrediente->stock = transformar($ingrediente->id_unit, $ingrediente->stock) - transformar($ingrediente->pivot->unit_id, $ingrediente->pivot->cantidad_ingrediente);
-                      $ingrediente->id_unit == 1 ? $ingrediente->id_unit = 2 : '';
-                      $ingrediente->id_unit == 3 ? $ingrediente->id_unit = 4 : '';
-                      $ingrediente->save();
+              if($producto->jugo == null){
+                $licores = $producto->Licores()->get();
+                foreach ($licores as $key => $licor) {
+                      $licor->stock = transformar($licor->id_unit, $licor->stock) - transformar($licor->pivot->unit_id, $licor->pivot->cantidad_licor);
+                      $licor->stock = destransformar($licor->id_unit, $licor->stock);
+                      $licor->save();
+                    }
+              }
+
+              if($producto->plato != null)
+              {
+                $salsas = $producto->salsas()->get();
+                foreach($salsas as $salsa)
+                {
+                  $ingredientes = $salsa->ingredientes()->get();
+                  foreach ($ingredientes as $key => $ingrediente) {
+
+                        $ingrediente->stock = transformar($ingrediente->id_unit, $ingrediente->stock) - transformar($ingrediente->pivot->unit_id, $ingrediente->pivot->cantidad_ingrediente);
+                        $ingrediente->id_unit == 1 ? $ingrediente->id_unit = 2 : '';
+                        $ingrediente->id_unit == 3 ? $ingrediente->id_unit = 4 : '';
+                        $ingrediente->save();
+                  }
                 }
               }
-            }
+          }//Foreach Producto
 
-          }
-        
+        }//Funcion Descontar
+
 
 
         descontar($platos);

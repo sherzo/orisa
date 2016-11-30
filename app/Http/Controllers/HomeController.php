@@ -8,6 +8,7 @@ use App\Reservation;
 use App\Command;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -28,6 +29,9 @@ class HomeController extends Controller
      */
     public function index()
     {
+        if(Auth::user()->roles_id == '7'){
+          return redirect('/');
+        }
         $date = Carbon::now()->format('Y-m-d');
         $reservaciones = Reservation::where('fecha_reservacion', $date)->get();
         $ordenes = Purchase::where('estatus', 'En espera')->get();

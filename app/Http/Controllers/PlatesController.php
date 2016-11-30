@@ -14,6 +14,8 @@ use App\Plates_has_liqueur;
 use App\Plates_has_sauce;
 use App\Image;
 use App\Sauce;
+use App\Bitacora;
+use Carbon\Carbon;
 
 use App\Http\Requests;
 
@@ -115,7 +117,7 @@ class PlatesController extends Controller
             }
         }
 
-
+        bitacora('Se registro el plato', $plate->plato, $plate->id);
 
         Flash::success('<strong>Exito </strong> el plato '. $plate->plato .' se creo correctamente.');
 

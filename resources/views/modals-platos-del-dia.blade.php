@@ -28,7 +28,7 @@
                                 <li>Client: Round Icons</li>
                                 <li>Category: Graphic Design</li>
                             </ul>
-                            <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Close Project</button>
+                            <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Salir</button>
                         </div>
                     </div>
                 </div>

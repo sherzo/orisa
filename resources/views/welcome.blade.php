@@ -18,6 +18,7 @@
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic">
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/agency.css') }}">
+    <link rel="stylesheet" href="{{ asset('jquery/jquery-ui-1.12.1.custom/jquery-ui.css')}}">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -107,6 +108,25 @@
         $(function () {
                     $('[data-toggle="tooltip"]').tooltip()
                 });
+    </script>
+    <script src="{{ asset('jquery/jquery-ui-1.12.1.custom/jquery-ui.js')}}"></script>
+    <script>
+    $( function() {
+      $( "#datepicker" ).datepicker({
+        monthNames: [ "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Augosto", "Septiembre", "Octubre", "Noviembre", "Diciembere" ],
+        dayNamesMin: [ "Do", "Lu", "Ma", "Mie", "Jue", "Vie", "Sab" ],
+        maxDate: "+15d",
+        minDate: "+1d",
+        dateFormat: 'yy-mm-dd', 
+      });
+    });
+    // $( "#datepicker" ).datepicker({
+    //
+    // });
+
+
+
+
     </script>
 </body>
 </html>

@@ -40,6 +40,11 @@ class User extends Authenticatable
         return $this->belongsToMany('App\Client', 'users_vip');
     }
 
+    public function bitacoras()
+    {
+       return $this->hasMany('App\Bitacora');
+    }
+
     public function modules_actions()
     {
        return $this->hasMany('App\Users_modules_action');

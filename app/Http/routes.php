@@ -18,14 +18,26 @@ Route::get('/', function()
 	$portal = App\Portal::where('estatus', true)->first();
 	$platos = $portal->plates()->get();
 
-	return View::make('welcome', compact('platos'));
+	if((Auth::user()->roles_id)=='7')
+	{
+		$usuario = Auth::user()->client[0]->id;
+		$reservaciones = App\Reservation::where('client_id', $usuario)->get();
+	}else{
+		$reservaciones = 0;
+	}
+	return View::make('welcome', compact('platos', 'reservaciones'));
 });
 
-Route::get('search/{cedula}', function($cedula){
+Route::get('/search/{cedula}', function($cedula){
 		$client = App\Client::where('dni_cedula', $cedula)->get();
 
 		return Response::json($client);
 });
+Route::resource('reservaciones', 'ReservationsController');
+Route::get('reservaciones/{id}/destroy', [
+	'uses' => 'ReservationsController@destroy',
+	'as' => 'reservaciones.destroy'
+	]);
 
 Route::get('/solicitud-reservacion/{fecha}/{hora}', function($fecha, $hora){
 
@@ -68,7 +80,6 @@ Route::get('/solicitud-reservacion/{fecha}/{hora}', function($fecha, $hora){
 });
 
 Route::resource('usuario-vip', 'TemporalController');
-Route::resource('reservaciones', 'ReservationsController');
 
 Route::group(['prefix' => '/', 'middleware' => 'guest', 'namespace' => 'Auth'], function() {
 	/*

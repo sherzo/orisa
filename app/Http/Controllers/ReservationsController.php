@@ -6,6 +6,7 @@ use App\Http\Requests;
 use App\Reservation;
 use App\User;
 use Carbon\Carbon;
+use Laracasts\Flash\Flash;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -19,7 +20,7 @@ class ReservationsController extends Controller
     public function index()
     {
       $reservaciones = Reservation::all();
-      
+
       return view('admin.reservations.index', compact('reservaciones'));
     }
 
@@ -42,17 +43,19 @@ class ReservationsController extends Controller
     public function store(Request $request)
     {
        foreach ($request->mesas_reservadas as $key => $mesa) {
-
+            $cliente = Auth::user()->client[0]->id;
             $reservation = new Reservation($request->all());
             $date = Carbon::now()->format('Y-m-d');
             $reservation->fecha_solicitud = $date;
-            $reservation->client_id = 11;
+            $reservation->client_id = $cliente;
             $reservation->table_id = $mesa;
 
             $reservation->save();
          }
 
-    return redirect()->back();
+         Flash::success('<strong>Exito </strong> ya solicito su resevacion para el día'. $reservation->fecha_reservacion .' se envio un correo para confirmar la reseración.');
+
+         return redirect()->back();
 
     }
 
@@ -66,7 +69,7 @@ class ReservationsController extends Controller
      */
     public function show($id)
     {
-        //
+
     }
 
     /**
@@ -100,6 +103,12 @@ class ReservationsController extends Controller
      */
     public function destroy($id)
     {
-        //
+      $reservacion = Reservation::find($id);
+      $reservacion->delete();
+
+      Flash::success('<strong>Exito </strong> Se cancelo la reservacion del día: '. $reservacion->fecha_reservacion);
+
+
+      return redirect()->back();
     }
 }

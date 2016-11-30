@@ -633,8 +633,8 @@ section#reservations .form-group input[type=date]{
 section#reservations .form-group input.form-control {
   height: auto;
 }
-section#reservation .form-control option {
-  color:#000;
+section#reservations .form-control option {
+  color: black;
 }
 section#reservations .form-group textarea.form-control {
   height: 220px;

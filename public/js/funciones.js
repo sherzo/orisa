@@ -17,7 +17,7 @@ $(document).ready(function(){
 
 					$("#contenido").append('<center><img src="img/cargando.gif"></center>');
 
-					$.get("/search/"+nacionalidad+documento+"", function(data){
+					$.get("search/"+nacionalidad+documento+"", function(data){
 
 							$("#contenido").css("display", "none");
 
@@ -64,7 +64,7 @@ $(document).ready(function(){
 	$("#contrato").on('change', function(e) {
 
 		var contrato = e.target.value;
-		
+
 		if(contrato == 'Determinado'){
 
 			$("#duracion").removeAttr('disabled');

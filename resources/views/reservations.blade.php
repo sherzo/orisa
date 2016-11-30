@@ -7,9 +7,15 @@
                     <h3 class="section-subheading text-muted">Información sobre sus reservaciones</h3>
                 </div>
             </div>
+            <div class="row">
+              <div class="col-md-12">
+                @include('flash::message')
+              </div>
+            </div>
+            @if($reservaciones->count() == 0)
             {!! Form::open(['route' => 'reservaciones.store', 'method' => 'POST', 'name' => 'sentMessage', 'novalidate']) !!}
              <div class="row">
-                    
+
                     <div class="col-md-4">
                         <div class="form-group">
                         <label>Fecha</label>
@@ -40,45 +46,52 @@
                         <label>Alguna especificación</label>
                             <textarea class="form-control" data-toggle="tooltip" data-placement="top" title="Algo en que podamos ayudarlo (Ej: dos mesas juntas)" name="especificacion"></textarea>
                         </div>
-                        
+
                             <button type="submit" class="btn btn-primary btn-xl" data-toggle="tooltip" data-placement="top" title="Realizar reservación" >
                                 Reservar
                             </button>
                         </div>
-                    
+
                     <div id="contenedor">
-                    </div>   
+                    </div>
         </div>
         {!! Form::close() !!}
+        @endif
+
+        @if($reservaciones != '[]')
         <div class="row">
         <div class="col-lg-12">
-            <h2 class="text-center section-heading">Mis reservaciones</h1>
+            <h2 class="text-center section-heading">Listado</h1>
         </div>
             <div class="col-lg-12">
                 <table class="table  table-bordered table-condensed table-hover">
                     <thead class="bg-yelow">
-                        <th><h3 class="none">Mesa</h3></th>
-                        <th><h3>Fecha</h3></th>
-                        <th><h3>Hora</h3></th>
-                        <th><h3>Estatus</h3></th>
+                      <tr>
+                        <th class="text-center"><h4 class="none">Mesa</h4></th>
+                        <th class="text-center"><h4>Fecha</h4></th>
+                        <th class="text-center"><h4>Hora</h4></th>
+                        <th class="text-center"><h4>Estatus</h4></th>
+                        <th class="text-center"></th>
+                      </tr>
                     </thead>
                     <tbody>
+                        @foreach($reservaciones as $reservacion)
                         <tr class="active">
-                            <td><h4>#2</h4></td>
-                            <td><h4>miercoles 30 de septiembre</h4></td>
-                            <td><h4>9:00 am</h4></td>
-                            <td><h4><span class="label label-danger" data-toggle="tooltip" data-placement="top" title="Ingrese a su correo para confirmar">Sin confirmar</span></h4></td>
-                        </tr >
-                                                <tr class="active">
-                            <td><h4>#3</h4></td>
-                            <td><h4>miercoles 30 de septiembre</h4></td>
-                            <td><h4>9:00 am</h4></td>
-                            <td><h4><span class="label label-success" data-toggle="tooltip" data-placement="top" title="Reservación confirmada">Confirmada</span></h4></td>
+                          <td class="text-center"><h5>
+                            #{{$reservacion->table->id }}</h5>
+                          </td>
+                          <td class="text-center"><h5>{{ $reservacion->fecha_reservacion }}</h5></td>
+                          <td class="text-center"><h5>{{ $reservacion->hora_reservacion }}</h5></td>
+                          <td class="text-center"><label class="label label-{{ $reservacion->estatus == 'Sin confirmar' ? 'warning' : 'success'}}">{{ $reservacion->estatus }}</label></td>
+                          <td class="text-center">
+                            <a class="btn btn-danger btn-xs" data-toggle="tooltop" title="Cancelar" href="{{ route('reservaciones.destroy', $reservacion->id)}}"><span class="fa fa-remove fa-2x"></span></a>
+                          </td>
                         </tr>
-
+                        @endforeach
                     </tbody>
                 </table>
             </div>
         </div>
+        @endif
     </div>
 </section>

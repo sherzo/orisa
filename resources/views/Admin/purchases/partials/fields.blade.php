@@ -34,7 +34,6 @@
 				</thead>
 				<tbody>
 				<input type="hidden" name="id_proveedor" value="{{ $id_proveedor }}">
-
 					@if(count($ingredients) == '0')
 						<tr>
 							<td class="text-center" colspan="2">
@@ -47,6 +46,7 @@
 						<tr>
 							<td>
 								{!! Form::checkbox('add_ingredients[]', $ingredient->id) !!}
+							
 							</td>
 							<td>{{ $ingredient->ingrediente }}</td>
 						</tr>		
@@ -180,12 +180,7 @@
 					</div>
 					</td>
 				
-					<td class="text-center">
-						<a class=" btn btn-danger btn-sm center">
-							<span class="glyphicon glyphicon-remove
-							glyphicon "></span>
-						</a>
-					</td>
+					
 					
 				</tr>
 					@endforeach
@@ -223,12 +218,7 @@
 					</div>
 					</td>
 				
-					<td class="text-center">
-						<a class=" btn btn-danger btn-sm center">
-							<span class="glyphicon glyphicon-remove
-							glyphicon "></span>
-						</a>
-					</td>
+					
 					
 				</tr>
 					@endforeach
@@ -266,12 +256,7 @@
 								</div>
 							</td>
 						
-							<td class="text-center">
-								<a class=" btn btn-danger btn-sm center">
-									<span class="glyphicon glyphicon-remove
-									glyphicon "></span>
-								</a>
-							</td>
+							
 							
 						</tr>
 					@endforeach

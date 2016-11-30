@@ -23,7 +23,7 @@ class Provider extends Model
 
     public function ingredients()
     {
-        return $this->belongsToMany('App\Ingredient', 'providers_has_ingredients', 'ingrediente_id', 'proveedor_id');
+        return $this->belongsToMany('App\Ingredient', 'providers_has_ingredients', 'proveedor_id', 'ingrediente_id');
     }
 
     public function liqueurs()

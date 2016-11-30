@@ -20,34 +20,8 @@
             </tr>
        	</thead>
         <tbody>
-		@foreach($payroll as $payroll_show)
-        	<tr>
-                <td>
-           	        {{ $payroll_show->cedula }}
-                </td>
-                <td>
-                    {{ $payroll_show->nombre_completo }}
-                </td>
-                <td>
-                    {{ $payroll_show->cargo }}
-                </td>
-                <td>
-                    {{ $payroll_show->asignaciones_ext }}
-                </td>
-                <td>
-                    {{ $payroll_show->deducciones_ext }}
-                </td>
-               	<td>
-               		{{ $payroll_show->laborados }}
-               	</td>
-               	<td>
-               		{{ $payroll_show->no_laborados }}
-               	</td>
-                <td>
-                    {{ $payroll_show->salario_total }}
-                </td>
-            </tr>
-		@endforeach
+
+       
 	 	</tbody>
     </table>
 </body>

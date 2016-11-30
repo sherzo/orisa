@@ -60,6 +60,8 @@ class IngredientsController extends Controller
             $ingredient->providers()->attach($provider);
         }
 
+        
+
         bitacora('Registro el ingrediente', $ingredient->ingrediente, $ingredient->id);
 
         Flash::success('<strong> Perfecto </strong> se ha registrado un nuevo ingrediente '.$ingredient->ingrediente .' correctamente.');

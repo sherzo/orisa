@@ -211,9 +211,9 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
 
 		$payroll = App\Payroll::find($id)->payroll;
 
-        $pdf = PDF::loadView('admin.payroll.invoice', ['payroll' => $payroll]);
+        $pdf = PDF::loadView('admin.payroll.invoice');
         return $pdf->download('recibo_n-0.pdf');
-        
+
 	}]);
 
 	Route::resource('nomina', 'PayrollController');

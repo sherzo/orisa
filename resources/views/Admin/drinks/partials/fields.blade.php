@@ -1,6 +1,6 @@
 @if($providers)
     <div class="form-group{{ $errors->has('id_providers') ? ' has-error' : '' }}">
-    	{!! Form::label('id_providers', 'Proveedores') !!}
+    	{!! Form::label('id_providers', 'Proveedores') !!} <small class="text-danger">*</small>
     	{!! Form::select('id_providers[]', $providers, null, ['class' => 'form-control select-providers form-control', 'multiple']) !!}
 
         @if ($errors->has('id_providers'))
@@ -13,7 +13,7 @@
 @endif
 
 <div class="form-group{{ $errors->has('bebida') ? ' has-error' : '' }}">
-	{!! Form::label('bebida', 'Nombre') !!}
+	{!! Form::label('bebida', 'Nombre') !!} <small class="text-danger">*</small>
 	{!! Form::text('bebida', null, ['class' => 'form-control', 'placeholder' => 'Yukery', 'title' => 'Ingrese el nombre de la bebida']) !!}
 
 	@if ($errors->has('bebida'))
@@ -23,7 +23,7 @@
     @endif
 </div>
 <div class="form-group{{ $errors->has('id_unit') ? ' has-error' : '' }}">
-	{!! Form::label('id_unit', 'Unidad de medida') !!}
+	{!! Form::label('id_unit', 'Unidad de medida') !!} <small class="text-danger">*</small>
 	{!! Form::select('id_unit', $units, null, ['placeholder' => 'Seleccione', 'class' => 'form-control']) !!}
 
 	@if ($errors->has('id_unit'))
@@ -33,7 +33,7 @@
     @endif
 </div>
 <div class="form-group{{ $errors->has('caracteristica') ? ' has-error' : '' }}">
-	{!! Form::label('caracteristica', 'Característica') !!}
+	{!! Form::label('caracteristica', 'Característica') !!} <small class="text-danger">*</small>
     {!! Form::text('caracteristica', null, ['class' => 'form-control', 'placeholder' => 'Jugos Yuky-Pak', 'title' => 'Introduzca una característica del producto']) !!} 
 
     @if ($errors->has('caracteristica'))

@@ -244,13 +244,13 @@
                                 {{ number_format($cestaticket[0]->unidad_tributaria, 2, ',', ' ') }}
                             </td>
                             <td>
-                                {{ number_format($cestaticket_em[$key], 2, ',', ' ') }}
+                                {{ number_format($cestaticket_em[$key], 2, ',', ' ') }} {!! Form::hidden('cestaticket[]', $cestaticket_em[$key]) !!}
                             </td>
                             <td>
-                                {{ $no_laborados[$key] }}
+                                {{ $no_laborados[$key] }} {!! Form::hidden('no_laborados[]', $no_laborados[$key]) !!}
                             </td>
                             <td>
-                                {{ number_format($cestaticket_des[$key], 2, ',', ' ') }}
+                                {{ number_format($cestaticket_des[$key], 2, ',', ' ') }} {!! Form::hidden('cestaticket_des[]', $cestaticket_des[$key]) !!}
                             </td>
                         </tr>
                     @endforeach

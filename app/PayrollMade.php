@@ -13,7 +13,7 @@ class PayrollMade extends Model
     */
 
     protected $table = 'payrolls_made';
-    protected $fillable = ['usuario_id', 'cedula', 'nombre_completo', 'cargo', 'salario_d', 'salario_m', 'islr', 'sso', 'rpe', 'rpvh', 'laborados', 'no_laborados'];
+    protected $fillable = ['usuario_id', 'cedula', 'nombre_completo', 'cargo', 'salario_d', 'salario_m', 'asignaciones_ext', 'deducciones_ext', 'islr', 'sso', 'rpe', 'rpvh', 'laborados', 'no_laborados', 'cestaticket'];
 
     /**
     * The attributes that should be hidden for arrays.

@@ -350,7 +350,7 @@ class PayrollController extends Controller
      */
     public function store(Request $request)
     {
-
+        dd($request->all());
         $user = auth()->user();
 
         $fortnight = Payroll::create($request->all())->save();

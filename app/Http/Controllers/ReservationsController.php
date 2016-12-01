@@ -59,7 +59,7 @@ class ReservationsController extends Controller
              $dia = $value;
            }
          }
-         Flash::success('<h4><strong>Perfecto realizo un resrevacion para el día: '. $dia.' '.$reservation->fecha_reservacion .' ingrese a su correo para confirmar.</h5>');
+         Flash::success('<h4><strong>Perfecto realizo un resrevacion para el día: '. fecha($reservation->fecha_reservacion).' ingrese a su correo para confirmar.</h5>');
 
          return redirect()->back();
 

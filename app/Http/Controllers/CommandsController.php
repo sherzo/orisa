@@ -7,6 +7,7 @@ use App\Command;
 use App\Http\Requests;
 use App\Reservation;
 use App\Table;
+use App\Invoice;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -293,6 +294,13 @@ class CommandsController extends Controller
         $mesa = $comanda->table;
         $mesa->estatus = 'Disponible';
         $mesa->save();
+
+        $invoice = new Invoice();
+        $invoice->client_id = $client->id;
+        $invoice->command_id = $comanda->id;
+        $invoice->subtotal = $request->subtotal;
+        $invoice->total = $request->total;
+        $invoice->save();
 
         $client->commands()->attach([$request->command_id => ['subtotal' => $request->subtotal, 'total' => $request->total]]);
 

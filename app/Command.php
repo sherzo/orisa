@@ -22,7 +22,7 @@ class Command extends Model
      */
     public function client()
     {
-        return $this->belongsToMany('App\Client', 'commands_has_clients')->withPivot('subtotal', 'total');
+        return $this->belongsToMany('App\Client', 'invoices')->withPivot('subtotal', 'total');
     }
 
     public function table()

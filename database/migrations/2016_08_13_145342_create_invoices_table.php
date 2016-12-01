@@ -14,14 +14,12 @@ class CreateInvoicesTable extends Migration
     {
         Schema::create('invoices', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('comanda_id')->unsigned();
-            $table->foreign('comanda_id')->references('id')->on('commands');
-            $table->integer('cliente_id')->unsigned();
-            $table->foreign('cliente_id')->references('id')->on('clients');
-            $table->integer('iva_id')->unsigned();
-            $table->foreign('iva_id')->references('id')->on('iva');
-            $table->double('subtotal', 10,2);
-            $table->double('total', 10,2);
+            $table->integer('command_id')->unsigned();
+            $table->foreign('command_id')->references('id')->on('commands');
+            $table->integer('client_id')->unsigned();
+            $table->foreign('client_id')->references('id')->on('clients');
+            $table->float('subtotal');
+            $table->float('total');
             $table->timestamps();
         });
     }

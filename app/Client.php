@@ -18,12 +18,12 @@ class Client extends Model
      *
      * @var array
      */
-    
+
     protected $table = 'clients';
 
     public function commands()
     {
-        return $this->belongsToMany('App\Command', 'commands_has_clients')->withPivot('subtotal', 'total');
+        return $this->belongsToMany('App\Command', 'invoices')->withPivot('subtotal', 'total');
     }
 
     public function user()

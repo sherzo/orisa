@@ -64,6 +64,7 @@
             <h2 class="text-center section-heading">Listado</h1>
         </div>
             <div class="col-lg-12">
+              <div class="table-responsive">
                 <table class="table  table-bordered table-condensed table-hover">
                     <thead class="bg-yelow">
                       <tr>
@@ -77,19 +78,50 @@
                     <tbody>
                         @foreach($reservaciones as $reservacion)
                         <tr class="active">
-                          <td class="text-center"><h5>
-                            #{{$reservacion->table->id }}</h5>
+                          <td class="text-center"><h4>
+                            #{{$reservacion->table->id }}</h4>
                           </td>
-                          <td class="text-center"><h5>{{ $reservacion->fecha_reservacion }}</h5></td>
-                          <td class="text-center"><h5>{{ $reservacion->hora_reservacion }}</h5></td>
-                          <td class="text-center"><label class="label label-{{ $reservacion->estatus == 'Sin confirmar' ? 'warning' : 'success'}}">{{ $reservacion->estatus }}</label></td>
+                          <td class="text-center"><h4>{{ fecha($reservacion->fecha_reservacion) }}</h4></td>
+                          <td class="text-center"><h4>{{ hora($reservacion->hora_reservacion) }}</h4></td>
                           <td class="text-center">
-                            <a class="btn btn-danger btn-xs" data-toggle="tooltop" title="Cancelar" href="{{ route('reservaciones.destroy', $reservacion->id)}}"><span class="fa fa-remove fa-2x"></span></a>
+                            <h4>
+                              <label class="label label-{{ $reservacion->estatus == 'Sin confirmar' ? 'warning' : 'success'}}">
+                                {{ $reservacion->estatus }}
+                              </label>
+                            </h4>
+                          </td>
+                          <td class="text-center">
+                            <a class="btn btn-danger btn-xs" data-toggle="modal" data-target=".bs-example-modal-sm{{ $reservacion->id }}">
+                              <span class="fa fa-remove fa-2x">
+                              </span>
+                            </a>
+
+                            <div class="modal fade bs-example-modal-sm{{ $reservacion->id }}" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+              							  <div class="modal-dialog" role="document">
+              								    <div class="modal-content">
+              								    <div class="modal-header bg-danger">
+              								        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              								        <center><h3 class="modal-title">Cancelar</h3></center>
+              								      </div>
+              								      <div class="modal-body">
+                                      <center><br><br>
+                                        <h4>¿Desea cancelar la reservacion del dia: <br>{{ fecha($reservacion->fecha_reservacion) }}?</h4><br><br><br>
+
+                                      <a href="{{ route('reservaciones.destroy', $reservacion->id)}}" class="btn btn-success pull-left">Cancelar</a>
+
+              								        <a href="" class="btn btn-danger " data-dismiss="modal" aria-label="Close"><span class="glyphicon glyphicon-remove"></span></a>
+                                    </center>
+
+                                    </div>
+              								    </div>
+              		  						</div>
+              							</div>
                           </td>
                         </tr>
                         @endforeach
                     </tbody>
                 </table>
+              </table>
             </div>
         </div>
         @endif

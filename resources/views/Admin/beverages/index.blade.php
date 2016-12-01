@@ -40,7 +40,6 @@
                     <!-- <a href="#" class="btn btn-default btn-xs pull-right "> <span class="fa fa-trash-o fa-2x"></span> </a> &nbsp;&nbsp; -->
 
 
-                    <a href="{{ route('admin.tragos.edit', $beverage->id) }}" class="btn btn-default btn-xs pull-right" data-toggle="tooltip" data-placement="top" title="" data-original-title="Editar"> <span class="fa fa-pencil fa-2x"></span> </a>
                     <a href="{{ route('admin.tragos.show', $beverage->id)}}" class="btn btn-default btn-xs pull-right" data-toggle="tooltip" data-placement="top" title="" data-original-title="Ver"> <span class="fa fa-eye fa-2x"></span> </a>
 
                   </div>

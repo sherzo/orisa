@@ -73,7 +73,7 @@ class UsersTableSeeder extends Seeder
             'roles_id' => '5',
             'name'     => 'Cajera',
             'user'     => 'cajera',
-            'password' => \Hash::make('cajera'),         
+            'password' => \Hash::make('cajera'),
             'email'    => 'sherzo-f@hotmail.com',
         ));
 
@@ -94,6 +94,8 @@ class UsersTableSeeder extends Seeder
             'password' => \Hash::make('cliente'),
             'email'    => 'sherzo-a@hotmail.com',
         ));
+
+      
 
     }
 }

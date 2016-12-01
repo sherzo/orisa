@@ -83,6 +83,7 @@ class CommandsController extends Controller
      */
     public function store(Request $request)
     {
+
       if($request->comanda_id){
         $comanda = Command::find($request->comanda_id);
       }else{
@@ -90,7 +91,7 @@ class CommandsController extends Controller
       	$mesa->estatus = 'Ocupada';
       	$mesa->save();
           $comanda = new Command($request->all());
-          $comanda->employee_id = "10";
+          $comanda->employee_id = Auth::user()->employee[0]->id;
           $comanda->save();
       }
 
@@ -224,7 +225,8 @@ class CommandsController extends Controller
 
     public function hold()
     {
-        $date = Carbon::now()->format('Y-m-d');
+
+      $date = Carbon::now()->format('Y-m-d');
     	$commands = Command::where('created_at', 'LIKE', $date." %")->whereBetween('estatus', ['En espera', 'Lista'])->get();
 
     	$commands->each(function($commands){
@@ -241,12 +243,13 @@ class CommandsController extends Controller
 
     public function invoice(Request $request)
     {
+
         $comanda = Command::find($request->command);
         $fecha = new Carbon($comanda->created_at);
         $fecha = $fecha->format('d-m-Y');
 
         $mesa = $comanda->table()->get();
-
+        
         $platos = $comanda->plates()->get();
         $tragos = $comanda->beverages()->get();
         $bebidas = $comanda->drinks()->get();

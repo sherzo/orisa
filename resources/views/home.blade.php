@@ -65,7 +65,7 @@
         @if((Auth::user()->roles_id)=='1' || (Auth::user()->roles_id)=='2' || (Auth::user()->roles_id)=='3')
         <div class="col-lg-3 col-md-6">
             <div class="panel panel-green">
-              <a href="{{ url('admin/ingredientes') }}">
+              <a href="{{ url('admin/recibos/movimiento') }}">
                 <div class="panel-heading">
                     <div class="row">
                         <div class="col-xs-3">

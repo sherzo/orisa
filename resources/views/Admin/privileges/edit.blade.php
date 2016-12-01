@@ -3,16 +3,17 @@
 @section('contenido')
 <!-- ./row -->
 
-	<div class="row">
+<div class="row">
 		<div class="col-lg-12">
-             <ol class="breadcrumb">
-                <li><a href="#"><span class="glyphicon glyphicon-home"></span></a></li>
-          		
-		        <li><a href="{{ route('admin.usuarios.index') }}">Usuarios</a></li>
-                    <li class="active">Editar provilegios</li>
-            </ol>
-
-    	</div>
+				<h5 class="page-header"></h5>
+		</div>
+		<div class="col-lg-12">
+				<ol class="breadcrumb">
+						<li><a href="{{ url('admin') }}"><span class="glyphicon glyphicon-home"></span></a></li>
+						<li class="active">Editar privilegios </li>
+				</ol>
+		</div>
+</div>
     	<div class="col-md-12"><h4>Panel de Privilegios <small>Usuario: {{ $user->name }}</small></h4>
     	</div>
     </div>
@@ -52,7 +53,7 @@
 		  	</li>
 		  	<li class="list-group-item">
 		  	@foreach($modules_actions as $modulo_accion)
-			  	@if($modulo_accion->modulo->id == $modulo->id)		
+			  	@if($modulo_accion->modulo->id == $modulo->id)
 					<div class="checkbox">
 						<label>
 							<input type="checkbox" name="privileges[]" class="{{ $modulo->modulo }}" value="{{ $modulo_accion->id }}"
@@ -86,19 +87,19 @@
 @section('js')
 <script>
 	$(document).ready(function() {
-		
+
 	$(".marcar-modulo").change(function () {
     if ($(this).is(':checked')) {
 
-        var modulo = $(this).attr('id'); 
+        var modulo = $(this).attr('id');
     	$('.'+modulo).prop('checked', true);
 
     }else {
 
-    	var modulo = $(this).attr('id'); 
+    	var modulo = $(this).attr('id');
     	$('.'+modulo).prop('checked', false);
 
-    } 
+    }
 });
 
 });

@@ -67,10 +67,12 @@ class JuicesController extends Controller
 
         foreach ($request->id_ingredientes as $key => $ingredient) {
 
-            $jugo->ingredients()->attach([$ingredient => ['cantidad_ingrediente' => $request->cantidades_i[$key], 'unit_id' => $request->unidades_i[$key]]]);
+            $jugo->ingredientes()->attach([$ingredient => ['cantidad_ingrediente' => $request->cantidades_i[$key], 'unit_id' => $request->unidades_i[$key]]]);
 
 
         }
+
+        bitacora('Registro el jugo',$jugo->jugo, $jugo->id);
 
         Flash::success('<strong>Exito </strong> el jugo '. $jugo->jugo .' se creo correctamente.');
 
@@ -122,6 +124,8 @@ class JuicesController extends Controller
       {
         $juice->Ingredientes()->attach([$ingrediente->id => ['cantidad_ingrediente' => $request->cantidad_i[$key], 'unit_id' => $request->units[$key]]]);
       }
+
+      bitacora('Edito el jugo',$jugo->jugo, $jugo->id);
 
       Flash::success('<strong>Exito </strong> el jugo '. $juice->jugo .' se modifico correctamente.');
 

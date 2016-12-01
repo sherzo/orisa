@@ -80,7 +80,7 @@ class UsersTableSeeder extends Seeder
 
         \DB::table('users')->insert(array (
             'roles_id' => '6',
-            'name'     => 'Mesonero',
+            'name'     => 'Carlos',
             'user'     => 'mesonero',
             'password' => \Hash::make('mesonero'),
             'email'    => 'sherzo-c@hotmail.com',
@@ -95,7 +95,7 @@ class UsersTableSeeder extends Seeder
             'email'    => 'sherzo-a@hotmail.com',
         ));
 
-      
+
 
     }
 }

@@ -50,4 +50,9 @@ class Command extends Model
         return $this->belongsToMany('App\Juice', 'commands_has_juices');
     }
 
+    public function empleado()
+    {
+      return $this->belongsTo('App\Employee');
+    }
+
 }

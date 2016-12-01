@@ -3,15 +3,16 @@
 </div>
 <div class="row"><div class="col-xs-6 col-md-3">
     				<a href="#" class="thumbnail">
-     		 			<img src="../../img/ingresar.jpg" alt="...">
+     		 			<img src="../../img/ingresar.jpg" alt="..." id="img_prev">
     				</a>
   				</div>
 
 				<div class="form-group">
-				
+
 					{!! Form::label('image', 'Imagen del jugo') !!}
 
-					{!!  Form::file('image'); !!}
+					<input type="file" name="image" onchange="readURL(this)">
+
 				</div>
 			</div>
 {!! Form::label('jugo', 'Nombre del jugo', ['id' => 'salsa_label']) !!}
@@ -28,7 +29,7 @@
 	<div class="col-md-4 col-md-offset-4">
 		<div class="form-group"><br>
 			<label for="tipo" id="tipo_label">Seleccione el tipo</label>
-				
+
 				{!! Form::select('ingredients_types', $ingredients_types, null, ['class' => 'form-control', 'id' => 'types']) !!}
 
 		</div>
@@ -63,5 +64,5 @@
 		<button class="btn btn-default btn-sm" type="submit" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Guardar"><span class="glyphicon glyphicon-floppy-saved fa-2x"></span></button>
 		<button class="btn btn-default btn-sm" type="reset" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Borrar"><span class="glyphicon glyphicon-floppy-remove fa-2x"></span></button>
 	    <br>
-	</div> 
+	</div>
 </div>

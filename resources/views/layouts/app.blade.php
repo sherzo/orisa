@@ -283,6 +283,17 @@
     $(function () {
   $('[data-toggle="tooltip"]').tooltip()
     })
+
+    function readURL(input) {
+      if (input.files && input.files[0]) {
+      var reader = new FileReader();
+      reader.onload = function (e) {
+      $('#img_prev')
+      .attr('src', e.target.result);   //  ACA ESPECIFICAN QUE TAMANO DE ALTO QUIEREN
+      };
+      reader.readAsDataURL(input.files[0]);
+      }
+      }
     </script>
 </body>
 </html>

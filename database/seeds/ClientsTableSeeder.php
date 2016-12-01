@@ -41,9 +41,17 @@ class ClientsTableSeeder extends Seeder
                 'telefono'   => '5899312',
         ));
 
+        \DB::table('clients')->insert(array (
+                'dni_cedula' => 'V-25607795',
+                'nombre'    => 'Carlos',
+                'direccion'  => 'Calle 5 marzo #30-11',
+                'operadora'  => '0424',
+                'telefono'   => '5899312',
+        ));
+
         \DB::table('users_vip')->insert(array (
-          'user_id' => '38',
-          'client_id' => '12'
+          'user_id' => '37',
+          'client_id' => '13'
         ));
     }
 }

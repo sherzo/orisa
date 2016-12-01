@@ -44,5 +44,6 @@ class DatabaseSeeder extends Seeder
         $this->call(JuicesIngredientsTableSeeder::class);
         $this->call(PortalTableSeeder::class);
         $this->call(CestaticketTableSeeder::class);
+        $this->call(InvoicesTableSeeder::class);
     }
 }

@@ -31,13 +31,13 @@
 	</div><!-- FIN PILLS INGREDIENTE -->
 
     <div role="tabpanel" class="tab-pane" id="licores">
-   		@include('admin.plates.partials.panels-liqueurs')    
+   		@include('admin.plates.partials.panels-liqueurs')
     </div><!-- FIN PILLS LICOR -->
 
     <div role="tabpanel" class="tab-pane" id="plato">
-   		@include('admin.plates.partials.panels-plate')        
+   		@include('admin.plates.partials.panels-plate')
     </div><!-- FIN PILLS PLATO -->
-  
+
 </div>
 
     {!! Form::close() !!}
@@ -55,5 +55,9 @@
       placeholder_text_single: 'Seleccione el tipo',
       no_results_text: 'No se encontraron tipo'
     });
+
+		
   </script>
+
+
 @endsection

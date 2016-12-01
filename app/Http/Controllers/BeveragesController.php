@@ -95,6 +95,8 @@ class BeveragesController extends Controller
             }
         }
 
+        bitacora('Registro el trago', $beverage->trago, $beverage->id);
+
         Flash::success('<strong>Perfecto </strong> el trago '. $beverage->trago .' se creo correctamente.');
 
         return redirect('admin/tragos');
@@ -152,7 +154,7 @@ class BeveragesController extends Controller
       $beverage->Licores()->detach();
       foreach($ingredientes as $key => $ingrediente)
       {
-        $beverage->Ingredientes()->attach([$ingrediente->id => ['cantidad_ingrediente' => $request->cantidad_i[$key], 'unidad_id' => $request->units[$key]]]);
+        $beverage->Ingredientes()->attach([$ingrediente->id => ['cantidad_ingrediente' => $request->cantidad_i[$key], 'unit_id' => $request->units[$key]]]);
       }
 
       if($request->cantidad_l){
@@ -161,6 +163,12 @@ class BeveragesController extends Controller
           $beverage->Licores()->attach([$licor->id => ['cantidad_licor' => $request->cantidad_l[$key], 'unit_id' => $request->units_l[$key]]]);
         }
       }
+
+      bitacora('Edito el trago', $beverage->trago, $id);
+      Flash::success('<strong>Exito </strong> el trago '. $beverage->trago .' se modifico correctamente.');
+
+      return redirect()->back();
+
     }
 
     /**

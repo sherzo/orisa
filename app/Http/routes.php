@@ -102,6 +102,10 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
 		'uses' => 'UsersController@destroy',
 		'as' => 'admin.usuarios.destroy'
 		]);
+	Route::get('bitacora', [
+		'uses' => 'BitacoraController@index',
+		'as' => 'admin.bitacora'
+	]);
 	/*
 	|
 	|	Rutas Jesús Matute

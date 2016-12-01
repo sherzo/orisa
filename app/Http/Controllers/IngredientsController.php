@@ -51,14 +51,16 @@ class IngredientsController extends Controller
      */
     public function store(IngredientRequest $request)
     {
-        
+
         $ingredient = Ingredient::create($request->all());
         $ingredient->save();
 
-        foreach($request->id_providers as $provider) 
+        foreach($request->id_providers as $provider)
         {
             $ingredient->providers()->attach($provider);
-        }   
+        }
+
+        bitacora('Registro el ingrediente', $ingredient->ingrediente, $ingredient->id);
 
         Flash::success('<strong> Perfecto </strong> se ha registrado un nuevo ingrediente '.$ingredient->ingrediente .' correctamente.');
 
@@ -89,6 +91,7 @@ class IngredientsController extends Controller
         $units = Unit::lists( 'unidad', 'id');
 
         $providers = false;
+        bitacora('Edito el ingrediente', $ingredient->ingrediente, $id);
 
         return view('admin.ingredients.edit', compact('ingredient', 'providers', 'ingredients_types', 'providers', 'units'));
     }
@@ -103,7 +106,7 @@ class IngredientsController extends Controller
     public function update(IngredientEditRequest $request, $id)
     {
         $ingredient = Ingredient::findOrFail($id);
-       
+
         $ingredient->fill($request->all());
         $ingredient->save();
 
@@ -121,9 +124,12 @@ class IngredientsController extends Controller
      */
     public function destroy($id)
     {
-        
+
         $ingredient = Ingredient::find($id);
         $ingredient->delete();
+
+        bitacora('Se elimino el ingrediente', $ingredient->ingrediente, $id);
+
 
         Flash::success('<strong>Exito </strong> el ingrediente '. $ingredient->ingrediente .' se eliminó correctamente.');
 

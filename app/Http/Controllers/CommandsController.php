@@ -119,6 +119,10 @@ class CommandsController extends Controller
         	}
         }
 
+        bitacora('Registro la comanda',$comanda->id, $comanda->id);
+
+        Flash::success('<strong>Exito </strong> se registro la comanda '.$comanda->id);
+
         return redirect('admin/comandas/en-espera');
     }
 
@@ -201,8 +205,10 @@ class CommandsController extends Controller
         descontar($tragos);
         descontar($jugos);
 
+        bitacora('Comanda lista', $comanda->id, $comanda->id);
 
-        Flash::success('<strong>Exito </strong> el plato comanda lista, el mesonero fue notificado.');
+
+        Flash::success('<strong>Exito </strong> el plato comanda'.$comanda->id.' esta lista, el mesonero fue notificado.');
 
         return redirect()->back();
     }//Ready
@@ -290,9 +296,11 @@ class CommandsController extends Controller
 
         $client->commands()->attach([$request->command_id => ['subtotal' => $request->subtotal, 'total' => $request->total]]);
 
+        bitacora('Facturo la comanda', $comanda->id, $comanda->id);
+
         Flash::success('<strong>Exito! </strong> Se ha procesado la comanda correctamente');
 
-            return redirect('admin/comandas/'.$comanda->id);
+        return redirect('admin/comandas/'.$comanda->id);
 
 
     }
@@ -315,7 +323,7 @@ class CommandsController extends Controller
 
         Flash::info('<strong> INFO </strong> búsqueda con número de cédula '. $dni_cedula .' no se encuentra en la base de datos, proceda a llenar los campos.');
 
-            return view('admin.clients.create', compact('dni_cedula', 'comanda'));
+        return view('admin.clients.create', compact('dni_cedula', 'comanda'));
 
     }
 

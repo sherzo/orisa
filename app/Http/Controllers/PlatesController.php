@@ -117,7 +117,7 @@ class PlatesController extends Controller
             }
         }
 
-        bitacora('Se registro el plato', $plate->plato, $plate->id);
+        bitacora('Registro el plato', $plate->plato, $plate->id);
 
         Flash::success('<strong>Exito </strong> el plato '. $plate->plato .' se creo correctamente.');
 
@@ -171,7 +171,7 @@ class PlatesController extends Controller
         $plate->Licores()->detach();
         foreach($ingredientes as $key => $ingrediente)
         {
-          $plate->Ingredientes()->attach([$ingrediente->id => ['cantidad_ingrediente' => $request->cantidad_i[$key], 'unidad_id' => $request->units[$key]]]);
+          $plate->Ingredientes()->attach([$ingrediente->id => ['cantidad_ingrediente' => $request->cantidad_i[$key], 'unit_id' => $request->units[$key]]]);
         }
 
         if($request->cantidad_l){
@@ -181,6 +181,7 @@ class PlatesController extends Controller
           }
         }
 
+        bitacora('Edito el plato', $plate->plato, $id);
         Flash::success('<strong>Exito </strong> el plato '. $plate->plato .' se modifico correctamente.');
 
         return redirect()->back();

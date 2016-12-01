@@ -29,16 +29,16 @@ class ClientsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create(Request $request)
-    {   
+    {
         $dni_cedula = $request->literal.$request->cedula;
 
         $exist = Client::where('dni_cedula', $dni_cedula)->exists();
 
-        if($exist) 
+        if($exist)
         {
             Flash::warning('<strong> Alerta </strong> busqueda con número de cédula <strong>'. $dni_cedula .'</strong> se encuentra en la base de datos.');
-            
-            return redirect()->back(); 
+
+            return redirect()->back();
 
         }else{
 
@@ -47,7 +47,7 @@ class ClientsController extends Controller
             return view('admin.clients.create', compact('dni_cedula'));
 
         }
-        
+
     }
 
     public function search(Request $request)
@@ -103,7 +103,7 @@ class ClientsController extends Controller
             $servicio = $subtotal * 0.05;
             $date = new Carbon($comanda->create_at);
             $total = $subtotal + $iva + $servicio;
-            
+
             return view('admin.comandas.invoice-client', compact('comanda', 'platos', 'tragos', 'bebidas', 'jugos', 'date', 'subtotal', 'iva', 'servicio', 'total', 'mesa', 'fecha', 'client'));
 
         }else{
@@ -111,6 +111,7 @@ class ClientsController extends Controller
 
             $client->save();
 
+            bitacora('Registro el cliente', $client->nombre, $client->id);
             Flash::success('<strong>Exito! </strong> Se ha registrado el cliente '. $client->nombre. ' correctamente');
 
             return redirect('admin/clientes');
@@ -153,9 +154,11 @@ class ClientsController extends Controller
     public function update(Request $request, $id)
     {
         $client = Client::findOrFail($id);
-       
+
         $client->fill($request->all());
         $client->save();
+
+        bitacora('Edito el cliente', $client->nombre, $client->id);
 
         Flash::success('<strong>Exito! </strong> '. $client->nombre. ' se modifico correctamente');
 

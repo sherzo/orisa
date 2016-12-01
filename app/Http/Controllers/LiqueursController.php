@@ -21,7 +21,7 @@ class LiqueursController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {   
+    {
         $liqueurs = Liqueur::all();
 
         return view('admin.liqueurs.index', compact('liqueurs'));
@@ -33,11 +33,12 @@ class LiqueursController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {   
-        
+    {
+
         $providers = Provider::lists('razon_social', 'id');
         $liqueurs_types = Liqueurs_type::lists('tipo_licor', 'id');
         $units = Unit::lists( 'unidad', 'id');
+
 
         return view('admin.liqueurs.create', compact('units', 'liqueurs_types', 'providers'));
     }
@@ -54,10 +55,12 @@ class LiqueursController extends Controller
         $liqueur = Liqueur::create($request->all());
         $liqueur->save();
 
-        foreach($request->id_providers as $provider) 
+        foreach($request->id_providers as $provider)
         {
             $liqueur->providers()->attach($provider);
-        }   
+        }
+
+        bitacora('Registro el licor', $liqueur->licor, $liqueur->id);
 
         Flash::success('<strong> Perfecto </strong> a registrado un nuevo licor <em>'.$liqueur->licor.'</em> correctamente.');
 
@@ -90,6 +93,7 @@ class LiqueursController extends Controller
 
         $providers = false;
 
+
         return view('admin.liqueurs.edit', compact('liqueur', 'providers', 'liqueurs_types', 'units'));
     }
 
@@ -103,8 +107,10 @@ class LiqueursController extends Controller
     public function update(LiqueurRequest $request, $id)
     {
         $liqueur = Liqueur::findOrFail($id);
-       
+
         $liqueur->fill($request->all())->save();
+
+        bitacora('Edito el licor', $liqueur->licor, $liqueur->id);
 
         Flash::success('<strong>Existo. El licor </strong> '. $liqueur->licor. ' se modifico correctamente');
 

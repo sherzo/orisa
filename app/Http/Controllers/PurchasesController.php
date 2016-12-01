@@ -38,55 +38,55 @@ class PurchasesController extends Controller
     {
 
         $providers = Provider::lists('razon_social', 'id');
-        
+
         $request->proveedor ? $ingredients = Provider::find($request->proveedor)->ingredients()->get() : $ingredients = false;
         $request->proveedor ? $liqueurs = Provider::find($request->proveedor)->liqueurs()->get() : $liqueurs = false;
         $request->proveedor ? $drinks = Provider::find($request->proveedor)->drinks()->get() : $drinks = false;
         $request->proveedor ? $id_proveedor = $request->proveedor : $id_proveedor = false;
-    
+
         if(isset($request->add_ingredients) || isset($request->add_liqueurs) || isset($request->add_drinks)){
-            
+
         $id_proveedor = $request->id_proveedor;
 
-            if(isset($request->add_ingredients)){ 
+            if(isset($request->add_ingredients)){
 
                 foreach ($request->add_ingredients as $key => $value) {
-            
+
                     $data_ingredient[$key] = Ingredient::find($value);
                     $units_i[$key] = Ingredient::find($value)->unit()->get();
 
                 }
-            
-            }else{      
+
+            }else{
 
                 $data_ingredient = false;
             }
 
             if(isset($request->add_liqueurs)){
 
-                foreach ($request->add_liqueurs as $key => $value) {   
-            
+                foreach ($request->add_liqueurs as $key => $value) {
+
                     $data_liqueur[$key] = Liqueur::find($value);
                     $units_l[$key] = Liqueur::find($value)->unit()->get();
-                   
-                    
+
+
                 }
-      
+
             }else {
 
                 $data_liqueur = false;
             }
 
-            if(isset($request->add_drinks)){ 
+            if(isset($request->add_drinks)){
 
                 foreach ($request->add_drinks as $key => $drink) {
-            
+
                     $data_drink[$key] = Drink::find($drink);
                     $units_d[$key] = Drink::find($value)->unit()->get();
 
                 }
-            
-            }else{     
+
+            }else{
 
                 $data_drink = false;
             }
@@ -95,14 +95,14 @@ class PurchasesController extends Controller
 
         return view('admin.purchases.create', compact('providers', 'ingredients', 'liqueurs', '$drinks', 'data_ingredient', 'data_liqueur', 'data_drink', 'units_d', 'units_i', 'units_l', 'id_proveedor'));
 
-        
+
         }else {
 
             $data_ingredient = false;
             $data_liqueur = false;
             $data_drink = false;
- 
-        
+
+
         }
 
         return view('admin.purchases.create', compact('providers', 'ingredients', 'liqueurs', 'drinks', 'data_ingredient', 'data_liqueur', 'data_drink', 'id_proveedor'));
@@ -115,41 +115,41 @@ class PurchasesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {   
+    {
         $date = Carbon::now('America/Caracas');
-
+        $provider = Provider::find($request->id_proveedor);
         $order = new Purchase;
         $order->proveedor_id = $request->id_proveedor;
         $order->estatus = '0';
         $order->fecha = $date;
         $order->save();
 
-        if(isset($request->ingredients)){ 
-        
+        if(isset($request->ingredients)){
+
             foreach ($request->ingredients as $i => $ingredient) {
 
                 $order->ingredient()->attach([$ingredient => ['cantidad' => $request->cantidad_ingredient[$i], 'precio' => '0.00']]);
             }
         }
 
-        if(isset($request->liqueurs)){ 
-        
+        if(isset($request->liqueurs)){
+
             foreach ($request->liqueurs as $l => $liqueur) {
 
                 $order->liqueur()->attach([$liqueur => ['cantidad' => $request->cantidad_liqueur[$l], 'precio' => '0.00']]);
             }
         }
 
-        if(isset($request->drinks)){ 
-        
+        if(isset($request->drinks)){
+
             foreach ($request->drinks as $d => $drink) {
 
                 $order->drink()->attach([$drink => ['cantidad' => $request->cantidad_drink[$d], 'precio' => '0.00']]);
             }
         }
-       
-    $url = route('admin.compra.show', $order->id);
 
+    $url = route('admin.compra.show', $order->id);
+    bitacora('Realizó orden de compra', $order->id, $order->id);
     Flash::success('<strong> Exito </strong> Se proceso la <strong><a href="'.$url.'" title="Ver orden">Orden de compra</a></strong> correctamente!');
 
     return redirect('admin/compra');
@@ -168,7 +168,7 @@ class PurchasesController extends Controller
         $ingredients = $order->ingredient()->get();
         $liqueurs = $order->liqueur()->get();
         $drinks = $order->drink()->get();
-      
+
         return view('admin.purchases.show', compact('order', 'ingredients', 'liqueurs', 'drinks'));
 
     }
@@ -210,7 +210,7 @@ class PurchasesController extends Controller
     public function process($id)
     {
         $order = Purchase::find($id);
-        
+
         if($order->estatus == '0')
         {
 
@@ -226,7 +226,7 @@ class PurchasesController extends Controller
 
             return redirect()->back();
         }
-        
+
     }
 
     public function saved(Request $request)
@@ -240,11 +240,11 @@ class PurchasesController extends Controller
             $order->estatus = '1';
             $order->save();
 
-            if ($request->ingredients or $request->liqueurs or $request->drinks) 
+            if ($request->ingredients or $request->liqueurs or $request->drinks)
             {
                 if($request->ingredients)
                 {
-                    foreach ($request->ingredients as $key => $ingredient) 
+                    foreach ($request->ingredients as $key => $ingredient)
                     {
                         $i = Ingredient::find($ingredient);
                         $i->stock = $i->stock += $request->cantidad_ingredient[$key];
@@ -252,14 +252,14 @@ class PurchasesController extends Controller
 
                         $order->ingredient[$key]->pivot->precio += $request->precio_i[$key];
                         $order->save();
-                    
+
                     }
 
                 }
-                
+
                 if($request->liqueurs)
                 {
-                    foreach ($request->liqueurs as $key => $liqueur) 
+                    foreach ($request->liqueurs as $key => $liqueur)
                     {
                         $l = Liqueur::find($liqueur);
                         $l->stock = $l->stock += $request->cantidad_liqueur[$key];
@@ -269,10 +269,10 @@ class PurchasesController extends Controller
                         $order->save();
                     }
                 }
-                
+
                 if($request->drinks)
-                {                  
-                    foreach ($request->drinks as $key => $drink) 
+                {
+                    foreach ($request->drinks as $key => $drink)
                     {
                         $d = Drink::find($drink);
                         $d->stock = $d->stock += $request->cantidad_drink[$key];

@@ -198,7 +198,7 @@
                             <li><a href="{{ url('admin/usuarios') }}">Usuarios</a></li>
                             <li><a href="#">Respaldo BD</a></li>
                             <li><a href="#">Restauranción BD</a></li>
-                            <li><a href="#">Bítacora</a></li>
+                            <li><a href="{{ url('admin/bitacora') }}">Bítacora</a></li>
                         </ul>
                     </li>
                     @endif

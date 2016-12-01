@@ -12,7 +12,11 @@
 		</ol>
 	</div>
 </div>
-
+<div class="row">
+	<div class="col-md-12">
+		@include('flash::message')
+	</div>
+</div>
 {{ Form::open(['route' => ['admin.tragos.update', $beverage->id], 'method' => 'PUT']) }}
 <div class="row">
 		<div class="col-lg-12">

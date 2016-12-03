@@ -68,8 +68,5 @@
             </tr>
 		@endforeach
 	 	</tbody>
-    </table>
-    <div class="col-lg-12 text-center">
-    	<a class="btn btn-default btn-xs" href="{{ route('admin.recibo.nomina', $payroll_here->id) }}" type="button" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Impirmir"><span class="glyphicon glyphicon-print fa-2x"></span></a>
-    </div>
+	</table>
 @endif

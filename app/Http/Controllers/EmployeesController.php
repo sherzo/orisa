@@ -54,7 +54,7 @@ class EmployeesController extends Controller
         $empleado = Employee::create($request->all());
         $empleado->info()->create($request->all());
 
-        bitacora('Registro el empleado',$empleado->nombres, $empleyado->id);
+        bitacora('Registro el empleado',$empleado->nombres, $empleado->id);
         Flash::success('<strong> Éxito </strong> se ha registrado el empleado '.$empleado->nombres.' correctamente.');
 
         return redirect('admin/empleados');

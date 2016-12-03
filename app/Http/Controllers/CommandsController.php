@@ -91,7 +91,7 @@ class CommandsController extends Controller
       	$mesa->estatus = 'Ocupada';
       	$mesa->save();
           $comanda = new Command($request->all());
-          $comanda->employee_id = Auth::user()->employee[0]->id;
+          $comanda->employee_id = 10;
           $comanda->save();
       }
 
@@ -249,7 +249,7 @@ class CommandsController extends Controller
         $fecha = $fecha->format('d-m-Y');
 
         $mesa = $comanda->table()->get();
-        
+
         $platos = $comanda->plates()->get();
         $tragos = $comanda->beverages()->get();
         $bebidas = $comanda->drinks()->get();

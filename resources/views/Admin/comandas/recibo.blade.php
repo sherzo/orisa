@@ -2,13 +2,10 @@
 <html>
 <head>
     <title>Recibo</title>
-    <link rel="stylesheet" type="text/css" href="">
-    <link rel="stylesheet" type="text/css" href="{{ asset('bootstrap/css/bootstrap.css') }}">
+    <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css">
 </head>
 <body>
     <div class="container-fluid">
-
-    
         <div class="row">
             <div class="col-md-12">
                 <img src="{{ asset('img/logo/isotipo.png') }}" width="90" height="120" class="img-resposive">

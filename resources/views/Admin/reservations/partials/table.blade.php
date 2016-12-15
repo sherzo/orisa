@@ -7,7 +7,6 @@
       <th>Fecha de Reservación</th>
 			<th>Hora</th>
 			<th>Estatus</th>
-			<th>Acciones</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -21,10 +20,6 @@
         <td>{{ $reservacion->fecha_reservacion }}</td>
         <td>{{ $reservacion->hora_reservacion }}</td>
         <td> <label class="label label-warning">{{ $reservacion->estatus }}</label></td>
-        <td>
-          <a
-           class="btn btn-default btn-xs" href="{{ route('admin.reservaciones.edit', $reservacion->id) }}" type="button" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Editar"><span class="glyphicon glyphicon-pencil fa-2x"></span></a>
-        </td>
       </tr>
     @endforeach
   </tbody>

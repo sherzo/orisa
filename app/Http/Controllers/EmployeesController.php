@@ -86,7 +86,7 @@ class EmployeesController extends Controller
         $info = $empleado->info;
         $info->fill($request->all())->save();
 
-        bitacora('Registro el empleado',$empleado->nombres, $empleyado->id);
+        bitacora('Registro el empleado',$empleado->nombres, $empleado->id);
         Flash::success('<strong> Éxito </strong> se ha actualizado el empleado <em>'.$empleado->full_name.'</em> correctamente.');
 
         return redirect()->back();

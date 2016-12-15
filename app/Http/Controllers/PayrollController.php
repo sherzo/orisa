@@ -447,9 +447,17 @@ class PayrollController extends Controller
     {
         $payroll = Payroll::all();
         $payroll_here = Payroll::find($request->id);
-        $payroll_show = Payroll::find($request->id)->payroll;
-        
-        return view('admin.payroll.view', compact('payroll', 'payroll_show', 'payroll_here'));
+        $payroll_list = Payroll::find($request->id);
+        $payroll_show = $payroll_list->payroll;
+
+        return view('admin.payroll.view', compact('payroll', 'payroll_show', 'payroll_here', 'payroll_list'));
+    }
+
+    public function pdf($id)
+    {
+        $payroll_show = Payroll::find($id)->payroll;
+        $pdf =  \PDF::loadView('admin.payroll.invoice', ['payroll_show' => $payroll_show]);
+        return $pdf->stream();
     }
 
 }

@@ -11,14 +11,6 @@
 		</ol>
 	</div>
 </div>
-<div class="row">
-	<div class="col-lg-4">
-		<a href="{{ url('admin/reservaciones/create') }}">
-			<button type="button" class="btn btn-primary"><span class="fa fa-plus"></span></button>
-		</a>
-	</div>
-</div>
-<br>
 <div>
     @include('flash::message')
 </div>

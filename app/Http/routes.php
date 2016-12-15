@@ -207,14 +207,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
 	Route::get('nomina/ver', ['uses' => 'PayrollController@view', 'as' => 'admin.payroll.view']);
 	Route::post('nomina/mostrar', ['uses' => 'PayrollController@show2', 'as' => 'admin.payroll.show']);
 	Route::get('nomina/select', ['uses' => 'PayrollController@select', 'as' => 'admin.payroll.select']);
-	Route::get('nomina/pdf/{id}', ['as' => 'admin.recibo.nomina', function($id){ 
-
-		$payroll = App\Payroll::find($id)->payroll;
-
-        $pdf = PDF::loadView('admin.payroll.invoice');
-        return $pdf->download('recibo_n-0.pdf');
-
-	}]);
+	Route::get('nomina/pdf/{id}', ['uses' => 'PayrollController@pdf', 'as' => 'admin.recibo.nomina']);
 
 	Route::resource('nomina', 'PayrollController');
 	/*

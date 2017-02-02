@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\database\Seeder;
-
+use Illuminate\Database\Seeder;
+use Illuminate\Database\Eloquent\Model;
 use Faker\Factory as Faker;
 
 class DatabaseSeeder extends Seeder

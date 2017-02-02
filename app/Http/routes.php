@@ -267,12 +267,14 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
 	|	RUTAS SAUL
 	|
 	*/
+	Route::get('backup/download/{file_name}', ['uses' => 'BackupController@download', 'as' => 'backup.download']);
 	Route::get('clientes/search', ['uses' => 'ClientsController@search', 'as' => 'admin.clientes.buscar']);
 	Route::resource('clientes', 'ClientsController');
 	Route::resource('platos', 'PlatesController');
 	Route::resource('sauces', 'SaucesController');
 	Route::resource('tragos', 'BeveragesController');
 	Route::resource('jugos', 'JuicesController');
+    Route::resource('backup', 'BackupController');
 	Route::resource('reservaciones', 'ReservationsController');
 	Route::get('comandas/en-espera', ['uses' => 'CommandsController@hold', 'as' => 'admin.comandas.en-espera']);
 	Route::get('comandas/facturar', ['uses' => 'CommandsController@invoice', 'as' => 'admin.comandas.facturar']);

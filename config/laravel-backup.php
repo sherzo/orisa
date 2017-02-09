@@ -19,7 +19,7 @@ return [
                  * specify individual files as well.
                  */
                 'include' => [
-                    base_path(),
+                    base_path('storage/laravel-backups'),
                 ],
 
                 /*
@@ -29,7 +29,6 @@ return [
                 'exclude' => [
                     base_path('vendor'),
                     base_path('node_modules'),
-                    storage_path(),
                 ],
 
                 /*
@@ -53,7 +52,7 @@ return [
              * The disk names on which the backups will be stored.
              */
             'disks' => [
-                'local',
+                'backup',
             ],
         ],
     ],

@@ -10,13 +10,14 @@ use Artisan;
 use Log;
 use Storage;
 use Laracasts\Flash\Flash;
+use Response;
 
 class BackupController extends Controller
 {
     function index(){
 
-        $disk = Storage::disk(config(''));
-        $files = $disk->allfiles(config('http---localhost'));
+        $disk = Storage::disk('backup');
+        $files = Storage::disk('backup')->allFiles();
 
         $backups = [];
 
@@ -25,7 +26,7 @@ class BackupController extends Controller
             if (substr($f, -4) == '.zip' && $disk->exists($f)) {
 
                 $e = explode('/', $f);
-
+        
                 $backups[] = [
                     'file_path' => $f,
                     'file_name' => $e[1],
@@ -64,21 +65,12 @@ class BackupController extends Controller
     }
 
     function download($file_name){
+     
+        if ($disk =  Storage::disk('backup')->exists('http---localhost/' . $file_name)) {
 
-        $file = storage_path() . '/app/http---localhost/' . $file_name;
-
-        if ($disk =  Storage::disk('local')->exists('/http---localhost/' . $file_name)) {
-
-            $fs = Storage::disk('local')->getDriver();
-            dd($fs->readStream($file));
-            $stream = $fs->readStream($file);
-            return \Response::stream(function () use ($stream) {
-                fpassthru($stream);
-            }, 200, [
-                "Content-Type" => $fs->getMimetype($file),
-                "Content-Length" => $fs->getSize($file),
-                "Content-disposition" => "attachment; filename=\"" . basename($file) . "\"",
-            ]);
+            $fs = "../storage/laravel-backups/http---localhost/" . $file_name;
+    
+            return response()->download($fs);
 
         } else {
 

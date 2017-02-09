@@ -53,9 +53,6 @@ return [
         ],
 
         'mysql' => [
-            //'dump_command_path' => '/path/to/the/binary', // only the path, so without 'mysqldump' or 'pg_dump'
-            //'dump_command_timeout' => 60 * 5, // 5 minute timeout
-            //'dump_using_single_transaction' => true, // perform dump using a single transaction
             'driver' => 'mysql',
             'host' => env('DB_HOST', 'localhost'),
             'port' => env('DB_PORT', '3306'),

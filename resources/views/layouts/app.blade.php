@@ -9,6 +9,7 @@
 
     <title>Restaurant sefardí</title>
 
+
     <link rel="stylesheet" type="text/css" href="{{ asset('bower_components/bootstrap/dist/css/bootstrap.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('bower_components/metisMenu/dist/metisMenu.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('dist/css/timeline.css') }}">
@@ -19,6 +20,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('bower_components/datatables-responsive/css/dataTables.responsive.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('chosen/bootstrap-chosen.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/nav-bar.css') }}">
 </head>
 
 <body>
@@ -31,7 +33,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="{{ url('admin') }}"><img alt="Brand" src="{{ asset('img/logo/Orisa6.png') }}" width="30" height="30"></a>
+            <a class="navbar-brand" href="{{ url('admin') }}"><img alt="Brand" src="{{ asset('img/logo/isotipo.png') }}" width="30" height="30"></a>
         </div>
         <ul class="nav navbar-top-links navbar-right">
             <li class="dropdown">
@@ -100,14 +102,14 @@
             <div class="sidebar-nav navbar-collapse collapse in" aria-expanded="true">
                 <ul class="nav" id="side-menu">
                   <li class="sidebar-search">
-                          <div class="input-group custom-search-form">
+                          <!-- <div class="input-group custom-search-form">
                               <input type="text" class="form-control" placeholder="Buscar...">
                               <span class="input-group-btn">
                               <button class="btn btn-default" type="button">
                                   <i class="fa fa-search"></i>
                               </button>
                               </span>
-                          </div>
+                          </div> -->
                           <!-- /input-group -->
                       </li>
                     <!-- 1 = ROOT | 2 = ADMINISTRADOR | 3 = ENCARGADO

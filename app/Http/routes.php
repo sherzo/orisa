@@ -13,33 +13,19 @@
 	|	RUTAS DE INICIO
 	|
 	*/
-Route::get('/', function()
-{
-	$portal = App\Portal::where('estatus', true)->first();
-	$platos = $portal->plates()->get();
 
-	if(!Auth::guest() AND (Auth::user()->roles_id)=='7')
-	{
-		$cliente = Auth::user()->client[0]->id;
-		$reservaciones = App\Reservation::where('client_id', $cliente)->get();
-	}else{
-		$reservaciones = 0;
-	}
-	return View::make('welcome', compact('platos', 'reservaciones'));
-});
-
-Route::get('/search/{cedula}', function($cedula){
+	Route::get('/search/{cedula}', function($cedula){
 		$client = App\Client::where('dni_cedula', $cedula)->get();
 
 		return Response::json($client);
-});
-Route::resource('reservaciones', 'ReservationsController');
-Route::get('reservaciones/{id}/destroy', [
+	});
+	Route::resource('reservaciones', 'ReservationsController');
+	Route::get('reservaciones/{id}/destroy', [
 	'uses' => 'ReservationsController@destroy',
 	'as' => 'reservaciones.destroy'
 	]);
 
-Route::get('/solicitud-reservacion/{fecha}/{hora}', function($fecha, $hora){
+	Route::get('/solicitud-reservacion/{fecha}/{hora}', function($fecha, $hora){
 
 	$tables = App\Table::all();
 
@@ -77,21 +63,32 @@ Route::get('/solicitud-reservacion/{fecha}/{hora}', function($fecha, $hora){
 	}
 
 	return Response::json($mesas);
-});
+	});
 
-Route::resource('usuario-vip', 'TemporalController');
+	Route::resource('usuario-vip', 'TemporalController');
 
-Route::group(['prefix' => '/', 'middleware' => 'guest', 'namespace' => 'Auth'], function() {
-	/*
-	|	RUTAS ANTES DE INICIAR SESIÓN NO MANDA ERROR 404
-	|
-	*/
-	Route::get('iniciar-sesion', 'AuthController@getLogin');
-	Route::post('iniciar-sesion', 'AuthController@login');
-	Route::get('registrar', 'AuthController@showRegistrationForm');
-    Route::post('registrar', 'AuthController@register');
-});
-Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
+	Route::group(['prefix' => '/', 'middleware' => 'guest'], function() {
+
+		Route::get('/', 'AuthenticateController@index');
+
+		// ROUT::GET
+
+		Route::get('registrarme', 'RegisterController@register');
+		Route::get('activarcuenta/{email}/{code}/', 'ActivationController@activate');
+
+		// ROUTE::POST
+		
+		Route::post('registrarme', 'RegisterController@postRegister');
+		Route::post('iniciarsesion', 'AuthenticateController@postLogin');
+
+		//Route::get('iniciar-sesion', 'AuthController@getLogin');
+		//Route::post('iniciar-sesion', 'AuthController@login');
+		//Route::get('registrar', 'AuthController@showRegistrationForm');
+	    //Route::post('registrar', 'AuthController@register');
+
+	});
+
+	Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
 	/*
 	|	RUTAS GENERALES
 	|
@@ -428,15 +425,15 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
 
 			}
 		});
-		Route::get('comandas/{id}/lista', [
+	Route::get('comandas/{id}/lista', [
 			'uses' => 'CommandsController@ready',
 			'as' => 'admin.comandas.lista'
 			]);
-		Route::get('platos-del-dia', [
+	Route::get('platos-del-dia', [
 			'uses' => 'PortalController@index',
 			'as'   => 'admin.platos-del-dia'
 		]);
-		Route::post('guardar-platos-dia', [
+	Route::post('guardar-platos-dia', [
 			'uses' => 'PortalController@save',
 			'as'   => 'admin.guardar-platos-dia'
 		]);

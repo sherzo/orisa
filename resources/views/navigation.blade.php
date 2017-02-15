@@ -15,7 +15,7 @@
                     <li class="hidden">
                         <a href="#page-top"></a>
                     </li>
-                    @if(!Auth::guest() AND (Auth::user()->roles_id)=='7')
+                    @if(!Auth::guest() AND (Auth::user()->roles_id) == '7')
                     <li>
                         <a class="page-scroll" href="#reservations">Reservaciones</a>
                     </li>
@@ -34,7 +34,7 @@
                     </li>
                     @if(Auth::guest())
                     <li>
-                        <a class="page-scroll" href="#" data-toggle="modal" data-target="#iniciar-sesion">Entrar</a>
+                        <a class="page-scroll login" href="#login">Iniciar sesión</a>
                     </li>
 
                     @endif

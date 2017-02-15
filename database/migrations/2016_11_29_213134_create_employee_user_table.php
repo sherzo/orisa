@@ -12,14 +12,14 @@ class CreateEmployeeUserTable extends Migration
      */
     public function up()
     {
-        Schema::create('employee_user', function (Blueprint $table) {
+        /*Schema::create('employee_user', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('employee_id')->unsigned();
             $table->foreign('employee_id')->references('id')->on('employees')->onDelete('Cascade');
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('Cascade');
             $table->timestamps();
-        });
+        });*/
     }
 
     /**
@@ -29,6 +29,6 @@ class CreateEmployeeUserTable extends Migration
      */
     public function down()
     {
-        Schema::drop('employee_user');
+        /*Schema::drop('employee_user');*/
     }
 }

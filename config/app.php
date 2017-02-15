@@ -164,6 +164,7 @@ return [
         Laracasts\Flash\FlashServiceProvider::class,
         Spatie\Backup\BackupServiceProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class,
+        Cartalyst\Sentinel\Laravel\SentinelServiceProvider::class,
 
     ],
 
@@ -217,6 +218,9 @@ return [
         'Html' => Collective\Html\HtmlFacade::class,
         'Flash' => Laracasts\Flash\Flash::class,
         'PDF' => Barryvdh\DomPDF\Facade::class,
+        'Activation' => Cartalyst\Sentinel\Laravel\Facades\Activation::class,
+        'Reminder'   => Cartalyst\Sentinel\Laravel\Facades\Reminder::class,
+        'Sentinel'   => Cartalyst\Sentinel\Laravel\Facades\Sentinel::class,
 
     ],
 

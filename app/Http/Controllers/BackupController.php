@@ -14,7 +14,7 @@ use Response;
 
 class BackupController extends Controller
 {
-    function index(){
+    public function index(){
 
         $disk = Storage::disk('backup');
         $files = Storage::disk('backup')->allFiles();
@@ -41,7 +41,7 @@ class BackupController extends Controller
         return view('admin.backups.index', compact('backups'));
     }
 
-    function create(){
+    public function create(){
 
         try {
 
@@ -64,7 +64,7 @@ class BackupController extends Controller
 
     }
 
-    function download($file_name){
+    public function download($file_name){
      
         if ($disk =  Storage::disk('backup')->exists('http---localhost/' . $file_name)) {
 
@@ -77,5 +77,10 @@ class BackupController extends Controller
             abort(404, "The backup file doesn't exist.");
         }
 
+    }
+
+    public function destroy(Request $request)
+    {
+        # code...
     }
 }

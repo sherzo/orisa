@@ -48,10 +48,5 @@ class ClientsTableSeeder extends Seeder
                 'operadora'  => '0424',
                 'telefono'   => '5899312',
         ));
-
-        \DB::table('users_vip')->insert(array (
-          'user_id' => '37',
-          'client_id' => '13'
-        ));
     }
 }

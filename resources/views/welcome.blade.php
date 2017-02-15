@@ -54,9 +54,7 @@
 
         @include('section-team')
 
-        @include('aside-client')
-
-        @include('section-contact')
+        @yield('content')
 
 
     <!-- Footer -->
@@ -123,10 +121,8 @@
     // $( "#datepicker" ).datepicker({
     //
     // });
-
-
-
-
     </script>
+
+    @yield('autoClick')
 </body>
 </html>

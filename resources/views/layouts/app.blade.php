@@ -88,7 +88,7 @@
                     <i class="fa fa-user fa-fw"></i><i class="fa fa-caret-down"></i>
                 </a>
                 <ul class="dropdown-menu dropdown-user">
-                    <li><a href="{{ url('admin/usuarios') }}/{{Auth::user()->id}}"></i>Perfil</a></li>
+                    <li><a href="{{ url('admin/usuarios') }}/{{Sentinel::getUser()->id}}"></i>Perfil</a></li>
                     <li><a href="#"></i>Opciones</a></li>
                     <li class="divider"></li>
                     <li><a href="{{ url('/admin/salir') }}">Salir</a></li>
@@ -117,7 +117,7 @@
 
                     <li><a href="{{ url('admin') }}"><i class="fa fa-fw fa-home"></i> Inicio</a></li>
                     <!-- COMPRA -->
-                    @if((Auth::user()->roles_id)=='1' || (Auth::user()->roles_id)=='3' )
+                    @if((Sentinel::getUser()->roles()->first()->slug)=='SuperSU' || (Sentinel::getUser()->roles()->first()->slug)=='Tipo 1')
                       <li><a href="#" ><i class="fa fa-fw fa-shopping-cart"></i> Compra<span class="fa arrow"></span></a>
                           <ul class="nav nav-second-level">
                               <li><a href="{{ url('admin/compra') }}">Orden de Compra</a></li>
@@ -135,7 +135,7 @@
                     <!-- FIN COMPRA -->
 
                     <!-- SERVICIOS -->
-                    @if((Auth::user()->roles_id)!='2')
+                    @if((Sentinel::getUser()->roles()->first()->slug)!='Admin')
                     <li><a href="#"><i class="fa fa-fw fa-cutlery"></i> Servicios<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li><a href="#"> Menú<span class="fa arrow"></span></a>
@@ -148,14 +148,14 @@
                             </li>
                             <li><a href="#"> Comandas<span class="fa arrow"></span></a>
                                 <ul class="nav nav-third-level">
-                                  @if((Auth::user()->roles_id)=='1' || (Auth::user()->roles_id)=='2' || (Auth::user()->roles_id)=='4' || (Auth::user()->roles_id)=='6')
+                                  @if((Sentinel::getUser()->roles()->first()->slug)=='SuperSU' || (Sentinel::getUser()->roles()->first()->slug)=='Admin' || (Sentinel::getUser()->roles()->first()->slug)=='Tipo 2' || (Sentinel::getUser()->roles()->first()->slug)=='Tipo 4')
                                     <li><a href="{{ url('admin/comandas') }}">Nueva</a></li>
                                   @endif
                                     <li><a href="{{ url('admin/comandas/en-espera') }}">En espera</a></li>
                                     <li><a href="{{ url('admin/comandas/procesadas')}}">Procesadas</a></li>
                                 </ul>
                             </li>
-                            @if((Auth::user()->roles_id)=='1' || (Auth::user()->roles_id)=='2' || (Auth::user()->roles_id)=='4' || (Auth::user()->roles_id)=='5')
+                            @if((Sentinel::getUser()->roles()->first()->slug)=='SuperSU' || (Sentinel::getUser()->roles()->first()->slug)=='Admin' || (Sentinel::getUser()->roles()->first()->slug)=='Tipo 2' || (Sentinel::getUser()->roles()->first()->slug)=='Tipo 3')
                             <li><a href="{{ url('admin/clientes') }}">Clientes</a></li>
                             @endif
                             <li><a href="{{ url('admin/reservaciones') }}">Reservaciones</a></li>
@@ -166,7 +166,7 @@
                     <!-- FIN SERVICIOS -->
 
                     <!-- EMPLEADOS -->
-                    @if((Auth::user()->roles_id)=='1' || (Auth::user()->roles_id)=='3' )
+                    @if((Sentinel::getUser()->roles()->first()->slug)=='SuperSU' || (Sentinel::getUser()->roles()->first()->slug)=='Tipo 1' )
                     <li><a href="#"  ><i class="fa fa-fw fa-male"></i> Empleados<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li><a href="{{ url('admin/empleados') }}"> Personal </a></li>
@@ -192,7 +192,7 @@
                     <!-- FIN EMPLEADOS -->
 
                     <!--  MATENIMIENTO -->
-                    @if((Auth::user()->roles_id)=='1' || (Auth::user()->roles_id)=='2')
+                    @if((Sentinel::getUser()->roles()->first()->slug)=='SuperSU' || (Sentinel::getUser()->roles()->first()->slug)=='Admin')
                     <li><a href="#"><i class="fa fa-fw fa-wrench"></i> Mantenimiento<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li><a href="{{ url('admin/usuarios') }}">Usuarios</a></li>

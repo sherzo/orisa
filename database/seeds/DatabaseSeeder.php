@@ -27,10 +27,10 @@ class DatabaseSeeder extends Seeder
         $this->call(TurnsTableSeeder::class);
         $this->call(EmployeesTableSeeder::class);
         $this->call(ClientsTableSeeder::class);
-        $this->call(ModulesTableSeeder::class);
-        $this->call(ActionsTableSeeder::class);
-        $this->call(ModulesActionsTableSeeder::class);
-        $this->call(UsersModulesActionsTableSeeder::class);
+        //$this->call(ModulesTableSeeder::class);
+        //$this->call(ActionsTableSeeder::class);
+        //$this->call(ModulesActionsTableSeeder::class);
+        //$this->call(UsersModulesActionsTableSeeder::class);
         $this->call(TablesTableSeeder::class);
         $this->call(ReservationsTableSeeder::class);
         $this->call(SaucesTableSeeder::class);

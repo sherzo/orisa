@@ -15,7 +15,7 @@ class UsersTableSeeder extends Seeder
 
     	$faker = Faker::create();
 
-        for($i=0; $i < 30; $i++)
+        /*for($i=0; $i < 30; $i++)
         {
 
             \DB::table('users')->insert(array (
@@ -25,74 +25,66 @@ class UsersTableSeeder extends Seeder
                 'password' => \Hash::make('123456'),
                 'email'    => $faker->unique()->email,
             ));
-        }
+        }*/
 
         \DB::table('users')->insert(array (
-            'roles_id' => '1',
-            'name'     => 'Saul',
-            'user'     => 'root',
-            'password' => \Hash::make('root'),
-            'email'    => 'sherzo-b@hotmail.com',
-        ));
-
-
-
-        \DB::table('users')->insert(array (
-            'roles_id' => '1',
-            'name'     => 'Jesus',
-            'user'     => 'admin',
-            'password' => \Hash::make('admin'),
-            'email'    => 'mtr_1101@hotmail.com',
+            'email'      => 'sherzo-b@hotmail.com',
+            'password'   => \Hash::make('root'),
+            'first_name' => 'SAUL EFRAIN',
+            'last_name'  => 'FLOREZ HERNANDEZ',
         ));
 
         \DB::table('users')->insert(array (
-            'roles_id' => '2',
-            'name'     => 'Admin',
-            'user'     => 'Aministrador',
-            'password' => \Hash::make('administrador'),
-            'email'    => 'sherzo-la@hotmail.com',
+            'email'      => 'mtr_1101@hotmail.com',
+            'password'   => \Hash::make('root'),
+            'first_name' => 'JESUS EDUARDO',
+            'last_name'  => 'MATUTE RANGEL',
         ));
 
         \DB::table('users')->insert(array (
-            'roles_id' => '3',
-            'name'     => 'Encargado',
-            'user'     => 'encargado',
-            'password' => \Hash::make('encargado'),
-            'email'    => 'sherzo-p@hotmail.com',
+            'email'      => 'administrador@sefardi.com',
+            'password'   => \Hash::make('administrador'),
+            'first_name' => $faker->name,
+            'last_name'  => $faker->lastName,
         ));
 
         \DB::table('users')->insert(array (
-            'roles_id' => '4',
-            'name'     => 'Cocinero',
-            'user'     => 'cocinero',
-            'password' => \Hash::make('cocinero'),
-            'email'    => 'sherzo-g@hotmail.com',
+            'email'      => 'encargado@sefardi.com',
+            'password'   => \Hash::make('encargado'),
+            'first_name' => $faker->name,
+            'last_name'  => $faker->lastName,
+            
         ));
 
         \DB::table('users')->insert(array (
-            'roles_id' => '5',
-            'name'     => 'Cajera',
-            'user'     => 'cajera',
-            'password' => \Hash::make('cajera'),
-            'email'    => 'sherzo-f@hotmail.com',
+            'email'      => 'cocinero@sefardi.com',
+            'password'   => \Hash::make('cocinero'),
+            'first_name' => $faker->name,
+            'last_name'  => $faker->lastName,
+            
+        ));
+
+        \DB::table('users')->insert(array (
+            'email'      => 'cajera@sefardi.com',
+            'password'   => \Hash::make('cajera'),
+            'first_name' => $faker->name,
+            'last_name'  => $faker->lastName,
         ));
 
 
         \DB::table('users')->insert(array (
-            'roles_id' => '6',
-            'name'     => 'Carlos',
-            'user'     => 'mesonero',
-            'password' => \Hash::make('mesonero'),
-            'email'    => 'sherzo-c@hotmail.com',
+            'email'      => 'mesonero@sefardi.com',
+            'password'   => \Hash::make('mesonero'),
+            'first_name' => $faker->name,
+            'last_name'  => $faker->lastName,
         ));
 
 
         \DB::table('users')->insert(array (
-            'roles_id' => '7',
-            'name'     => 'Cliente',
-            'user'     => 'cliente',
-            'password' => \Hash::make('cliente'),
-            'email'    => 'sherzo-a@hotmail.com',
+            'email'      => 'cliente@sefardi.com',
+            'password'   => \Hash::make('cliente'),
+            'first_name' => $faker->name,
+            'last_name'  => $faker->lastName,
         ));
 
 

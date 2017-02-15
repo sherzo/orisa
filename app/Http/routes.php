@@ -16,10 +16,11 @@
 
 	Route::group(['prefix' => '/', 'middleware' => 'guest'], function() {
 
-		Route::get('/', 'AuthenticateController@index');
 
 		// ROUT::GET
 
+		Route::get('/', 'AuthenticateController@index');
+		Route::get('iniciarsesion', 'AuthenticateController@getLogin');
 		Route::get('registrarme', 'RegisterController@register');
 		Route::get('activarcuenta/{email}/{code}/', 'ActivationController@activate');
 

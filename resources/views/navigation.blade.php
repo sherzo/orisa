@@ -34,7 +34,7 @@
                     </li>
                     @if(Auth::guest())
                     <li>
-                        <a class="page-scroll login" href="#login">Iniciar sesión</a>
+                        <a class="page-scroll login" href="{{ url('iniciarsesion') }}">Iniciar sesión</a>
                     </li>
 
                     @endif

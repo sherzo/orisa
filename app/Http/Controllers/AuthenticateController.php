@@ -53,9 +53,14 @@ class AuthenticateController extends Controller
 
             		return redirect('/admin');
             	}
+                
+            } else {
+
+                return redirect()->back()->withErrors(["errors" => "Estas credenciales son incorrectas"]);
             }
 
         } catch (ThrottlingException $e) {
+            dd($e);
         }
     }
 

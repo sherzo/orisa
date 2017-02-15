@@ -90,10 +90,13 @@
                     <i class="fa fa-user fa-fw"></i><i class="fa fa-caret-down"></i>
                 </a>
                 <ul class="dropdown-menu dropdown-user">
-                    <li><a href="{{ url('admin/usuarios') }}/{{Sentinel::getUser()->id}}"></i>Perfil</a></li>
-                    <li><a href="#"></i>Opciones</a></li>
+                    <li><a href="{{ url('admin/usuarios') }}/{{Sentinel::getUser()->id}}" class="text-muted">Perfil</a></li>
                     <li class="divider"></li>
-                    <li><a href="{{ url('/admin/salir') }}">Salir</a></li>
+                    <li>
+                        {!! Form::open(['action' => 'AuthenticateController@logout', 'method' => 'POST', 'id' => 'logout']) !!}
+                            {{ csrf_field() }} <a href="#" onclick="document.getElementById('logout').submit()" style="text-decoration: none;" class="text-muted samll">Salir</a>
+                        {!! Form::close() !!}
+                    </li>
                 </ul>
             </li>
         </ul>
@@ -101,17 +104,6 @@
         <div class="navbar-default sidebar" role="navigation">
             <div class="sidebar-nav navbar-collapse collapse in" aria-expanded="true">
                 <ul class="nav" id="side-menu">
-                  <li class="sidebar-search">
-                          <!-- <div class="input-group custom-search-form">
-                              <input type="text" class="form-control" placeholder="Buscar...">
-                              <span class="input-group-btn">
-                              <button class="btn btn-default" type="button">
-                                  <i class="fa fa-search"></i>
-                              </button>
-                              </span>
-                          </div> -->
-                          <!-- /input-group -->
-                      </li>
                     <!-- 1 = ROOT | 2 = ADMINISTRADOR | 3 = ENCARGADO
                          4 = COCINERO | 5 = CAJERO | 6 = MESONERO |
                          7 = CLIENTE

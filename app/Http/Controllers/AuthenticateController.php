@@ -77,4 +77,11 @@ class AuthenticateController extends Controller
         return property_exists($this, 'username') ? $this->username : 'email';
     }
 
+    public function logout()
+    {
+        Sentinel::logout();
+
+        return redirect('/');
+    }
+
 }

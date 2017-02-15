@@ -24,7 +24,7 @@
 		Route::get('activarcuenta/{email}/{code}/', 'ActivationController@activate');
 
 		// ROUTE::POST
-		
+
 		Route::post('registrarme', 'RegisterController@postRegister');
 		Route::post('iniciarsesion', 'AuthenticateController@postLogin');
 
@@ -35,6 +35,11 @@
 
 	});
 
+	Route::group(['middleware' => 'auth'], function () {
+
+		Route::post('salir', 'AuthenticateController@logout');
+
+	});
 
 	Route::get('/search/{cedula}', function($cedula){
 		$client = App\Client::where('dni_cedula', $cedula)->get();

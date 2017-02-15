@@ -17,11 +17,14 @@ class Authenticate
      */
     public function handle($request, Closure $next, $guard = null)
     {
-        //dd(Sentinel::guest());
+
         if (Sentinel::guest()) {
             if ($request->ajax() || $request->wantsJson()) {
+
                 return response('Unauthorized.', 401);
+
             } else {
+                
                 return redirect()->guest(action('AuthenticateController@index'));
             }
         }

@@ -33,7 +33,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="{{ url('admin') }}"><img alt="Brand" src="{{ asset('img/logo/isotipo.png') }}" width="30" height="30"></a>
+            <a class="navbar-brand" href="{{ url('/') }}"><img alt="Brand" src="{{ asset('img/logo/isologo2.png') }}" width="110" height="35"><span></span></a>
         </div>
         <ul class="nav navbar-top-links navbar-right">
             <li class="dropdown">

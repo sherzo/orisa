@@ -14,6 +14,28 @@
 	|
 	*/
 
+	Route::group(['prefix' => '/', 'middleware' => 'guest'], function() {
+
+		Route::get('/', 'AuthenticateController@index');
+
+		// ROUT::GET
+
+		Route::get('registrarme', 'RegisterController@register');
+		Route::get('activarcuenta/{email}/{code}/', 'ActivationController@activate');
+
+		// ROUTE::POST
+		
+		Route::post('registrarme', 'RegisterController@postRegister');
+		Route::post('iniciarsesion', 'AuthenticateController@postLogin');
+
+		//Route::get('iniciar-sesion', 'AuthController@getLogin');
+		//Route::post('iniciar-sesion', 'AuthController@login');
+		//Route::get('registrar', 'AuthController@showRegistrationForm');
+	    //Route::post('registrar', 'AuthController@register');
+
+	});
+
+
 	Route::get('/search/{cedula}', function($cedula){
 		$client = App\Client::where('dni_cedula', $cedula)->get();
 
@@ -67,32 +89,11 @@
 
 	Route::resource('usuario-vip', 'TemporalController');
 
-	Route::group(['prefix' => '/', 'middleware' => 'guest'], function() {
-
-		Route::get('/', 'AuthenticateController@index');
-
-		// ROUT::GET
-
-		Route::get('registrarme', 'RegisterController@register');
-		Route::get('activarcuenta/{email}/{code}/', 'ActivationController@activate');
-
-		// ROUTE::POST
-		
-		Route::post('registrarme', 'RegisterController@postRegister');
-		Route::post('iniciarsesion', 'AuthenticateController@postLogin');
-
-		//Route::get('iniciar-sesion', 'AuthController@getLogin');
-		//Route::post('iniciar-sesion', 'AuthController@login');
-		//Route::get('registrar', 'AuthController@showRegistrationForm');
-	    //Route::post('registrar', 'AuthController@register');
-
-	});
 
 	Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
-	/*
-	|	RUTAS GENERALES
-	|
-	*/
+
+ 	Route::resource('/', 'HomeController@index');
+
 	Route::resource('privilegios', 'PrivilegesController');
 	Route::resource('usuarios', 'UsersController');
 	Route::get('usuarios/{id}/destroy', [
@@ -108,7 +109,6 @@
 	|	Rutas Jesús Matute
 	|
 	*/
- 	Route::resource('/', 'HomeController@index');
  	Route::get('salir', 'Auth\AuthController@logout');
  	Route::get('empleados/buscar', [
  		'uses' =>'EmployeesController@search',
@@ -532,4 +532,4 @@
 		'as' => 'admin.clients.search'
 		]);
 
- 	});
+ });

@@ -30,7 +30,7 @@ class AuthenticateController extends Controller
 			$reservaciones = 0;
 		}
 
-		return View::make('auth.login', compact('platos', 'reservaciones'));
+		return View::make('welcome', compact('platos', 'reservaciones'));
     }
 
     public function postLogin(Request $request)
@@ -60,6 +60,7 @@ class AuthenticateController extends Controller
             }
 
         } catch (ThrottlingException $e) {
+            
             dd($e);
         }
     }
@@ -82,6 +83,12 @@ class AuthenticateController extends Controller
         Sentinel::logout();
 
         return redirect('/');
+    }
+
+    public function getLogin(){
+
+        return view('auth.login');
+
     }
 
 }

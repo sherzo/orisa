@@ -12,38 +12,43 @@ class RolesTableSeeder extends Seeder
     public function run()
     {
         \DB::table('roles')->insert(array (
-			'slug' => 'SuperSU',
+			'slug' => '1',
 			'name' => 'SuperUsuario',
         ));
 
         \DB::table('roles')->insert(array(
-            'slug' => 'Admin',
+            'slug' => '2',
         	'name' => 'Administrador',
         ));
 
         \DB::table('roles')->insert(array(
-        	'slug' => 'Tipo 1',
-			'name' => 'Usuario',
+        	'slug' => '3',
+			'name' => 'Encargado',
         ));
 
         \DB::table('roles')->insert(array(
-        	'slug' => 'Tipo 2',
-			'name' => 'Usuario',
+        	'slug' => '4',
+			'name' => 'Cocinero',
         ));
 
         \DB::table('roles')->insert(array(
-        	'slug' => 'Tipo 3',
-			'name' => 'Usuario',
+        	'slug' => '5',
+			'name' => 'Cajero',
         ));
 
         \DB::table('roles')->insert(array(
-        	'slug' => 'Tipo 4',
-			'name' => 'Usuario',
+        	'slug' => '6',
+			'name' => 'Mesonero',
         ));
 
         \DB::table('roles')->insert(array(
-            'slug' => 'Tipo 5',
-            'name' => 'Usuario',
+            'slug' => '7',
+            'name' => 'Cliente',
+        ));
+
+        \DB::table('roles')->insert(array(
+            'slug' => '8',
+            'name' => 'Chef',
         ));
     }
 }

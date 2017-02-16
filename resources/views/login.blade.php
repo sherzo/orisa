@@ -1,44 +1,27 @@
-<!-- Modal -->
-<form  role="form" method="POST" action="{{ url('/iniciar-sesion') }}">
-<div class="modal fade" id="iniciar-sesion" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog " role="document">
-  
-            {{ csrf_field() }}
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Iniciar Sesión</h4>
-      </div>
-      
-      <div class="modal-body">
-      
-            <div class="form-group input-group">
-                       <span class="input-group-addon"><i class="fa fa-user"></i>
-                        </span>
-                       <input class="form-control" name="user" placeholder="Usuario">
-            </div>
-            <br>
-            <div class="form-group input-group">
-                       <span class="input-group-addon"><i class="fa fa-lock"></i>
-                        </span>
-                       <input type="password" class="form-control" name="password" placeholder="Contraseña">
-            </div>
-            <center>¿No tiene una cuenta? <a href="" class="text-info" data-target="#registro_vip" data-dismiss="modal" data-toggle="modal">Cree una.</a><br><br>
-            <a href="" class="text-info">Olvido mi contraseña.</a>
-            </center>
+	<!-- Navigation -->
+	<nav class="navbar navbar-default navbar-custom navbar-fixed-top affix">
+		<div class="container">
+		<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header page-scroll">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+					<span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
+				</button>
+				<a class="navbar-brand page-scroll" href="#page-top">Restaurant Sefardí</a>
+			</div>
 
-      </div>
-    
-      <div class="modal-footer">
-      <center>
-        <button type="submit" class="btn btn-default" data-target="registro_vip" data-dismiss="modal">Cerrar</button>
-        <button type="submit" class="btn btn-primary">Entrar</button>
-      </center>
-
-      </div>
-      
-    </div>
-    
-  </div>
-</div>
-</form>
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav navbar-right">
+					<li class="hidden">
+						<a href="#page-top"></a>
+					</li>
+					<li>
+						<a class="page-scroll" href="{{ url('/') }}">Inicio</a>
+					</li>
+				</ul>
+			</div>
+		<!-- /.navbar-collapse -->
+		</div>
+		<!-- /.container-fluid -->
+	</nav>
+	<!-- End Navigation -->

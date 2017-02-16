@@ -23,12 +23,13 @@
 		Route::get('iniciarsesion', 'AuthenticateController@getLogin');
 		Route::get('registrarme', 'RegisterController@register');
 		Route::get('activarcuenta/{email}/{code}/', 'ActivationController@activate');
-		Route::get('activarcuenta/{email}/{code}/', 'ActivationController@activate');
+		Route::get('recuperarclave', 'ForgotPasswordController@forgotPassword');
 
 		// ROUTE::POST
 
 		Route::post('registrarme', 'RegisterController@postRegister');
 		Route::post('iniciarsesion', 'AuthenticateController@postLogin');
+		Route::post('recuperarclave', 'ForgotPasswordController@postForgotPassword');
 
 		//Route::get('iniciar-sesion', 'AuthController@getLogin');
 		//Route::post('iniciar-sesion', 'AuthController@login');
@@ -272,6 +273,7 @@
 	|
 	*/
 	Route::get('backup/download/{file_name}', ['uses' => 'BackupController@download', 'as' => 'backup.download']);
+	Route::get('backup/restore/{file_name}', ['uses' => 'BackupController@restore', 'as' => 'backup.restore']);
 	Route::get('clientes/search', ['uses' => 'ClientsController@search', 'as' => 'admin.clientes.buscar']);
 	Route::resource('clientes', 'ClientsController');
 	Route::resource('platos', 'PlatesController');

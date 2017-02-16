@@ -5,33 +5,35 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use Laracasts\Flash\Flash;
+use BackupManager\Filesystems\Destination;
+use Carbon\Carbon;
+
 use Alert;
 use Artisan;
 use Log;
 use Storage;
-use Laracasts\Flash\Flash;
 use Response;
 
 class BackupController extends Controller
 {
     public function index(){
 
-        $disk = Storage::disk('backup');
         $files = Storage::disk('backup')->allFiles();
+        $storage = Storage::disk('backup');
 
         $backups = [];
 
         foreach ($files as $k => $f) {
-
-            if (substr($f, -4) == '.zip' && $disk->exists($f)) {
+            if (substr($f, -3) == '.gz' && $storage->exists($f)) {
 
                 $e = explode('/', $f);
-        
+                
                 $backups[] = [
                     'file_path' => $f,
-                    'file_name' => $e[1],
-                    'file_size' => $disk->size($f),
-                    'last_modified' => $disk->lastModified($f),
+                    'file_name' => $e[0],
+                    'file_size' => $storage->size($f),
+                    'last_modified' => $storage->lastModified($f),
                 ];
             }
         }
@@ -43,21 +45,30 @@ class BackupController extends Controller
 
     public function create(){
 
+        $date = Carbon::now()->toW3cString();
+        $environment = env('APP_ENV');
+
         try {
 
-            Artisan::call("backup:run");
+            Artisan::call("db:backup", [
+                "--database"        => "mysql",
+                "--destination"     => "local",
+                "--destinationPath" => "/{$environment}/sefardi_{$environment}_{$date}",
+                "--compression"     => "gzip"
+ 
+            ]);
 
             $output = Artisan::output();
 
             Log::info("Backpack\BackupManager -- new backup started from admin interface \r\n" . $output);
 
-            Flash::success('<strong> Éxito </strong> se ha creado un nuevo respaldo correctamente.');
+            Flash::success('Se ha creado un nuevo respaldo correctamente.');
 
             return redirect()->back();
 
         } catch (Exception $e) {
 
-            Flash::warning('<strong> Alerta </strong> error al procesar la solicitud <strong>'. $e .'</strong> vuelva a intentarlo.');
+            Flash::warning('Error al crear nuevo respaldo.');
 
             return redirect()->back();
         }
@@ -66,9 +77,9 @@ class BackupController extends Controller
 
     public function download($file_name){
      
-        if ($disk =  Storage::disk('backup')->exists('http---localhost/' . $file_name)) {
+        if ($disk =  Storage::disk('backup')->exists($file_name)) {
 
-            $fs = "../storage/laravel-backups/http---localhost/" . $file_name;
+            $fs = "../storage/local/" . $file_name;
     
             return response()->download($fs);
 
@@ -80,7 +91,55 @@ class BackupController extends Controller
     }
 
     public function destroy(Request $request)
-    {
-        # code...
+    {       
+        if($disk =  Storage::disk('backup')->exists($request->file_name))
+        {
+            $delete = Storage::disk('backup')->delete($request->file_name);
+
+            if($delete){
+
+                Flash::success('Se ha eliminado el respaldo correctamente.');
+
+                return redirect()->back();  
+
+            } else {
+
+                Flash::warning('Error al eliminar el respaldo el archivo seleccionado no se encuentra.');
+
+                return redirect()->back();
+                
+            }
+
+        } else {
+
+            Flash::warning('message', 'Error al eliminar el respaldo el archivo seleccionado no se encuentra.');
+
+            return redirect()->back();
+            
+        }
+    }
+
+    public function restore($file_name){
+
+        if($disk = Storage::disk('backup')->exists($file_name)){
+
+            Artisan::call("db:restore", [
+                "--source"      => "s3",
+                "--sourcePath"  => $file_name,
+                "--database"    => "mysql",
+                "--compression" => "gzip"
+            ]);
+
+            Flash::success('Se ha restaurado la base de datos correctamente.');
+
+            return redirect()->back();
+
+        } else {
+
+            Flash::warning('message', 'Disculpe ha ocurrido un error al restaurar la base de datos, archivo corrupto intentelo nuevamente.');
+
+            return redirect()->back();
+        }
+        
     }
 }

@@ -10,8 +10,9 @@
         "laravelcollective/html": "^5.2",
         "laracasts/flash": "~1.3",
         "nesbot/carbon": "~1.21",
-        "spatie/laravel-backup": "^3.10",
-        "cartalyst/sentinel": "2.0.*"
+        "cartalyst/sentinel": "2.0.*",
+        "backup-manager/backup-manager": "^1.1",
+        "backup-manager/laravel": "^1.1"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

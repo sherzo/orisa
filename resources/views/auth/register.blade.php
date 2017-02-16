@@ -15,7 +15,7 @@
 
 <body id="page-top" class="index">
 
-    @include('login')
+    @include('navigationLogin')
 
 
 <section id="login">

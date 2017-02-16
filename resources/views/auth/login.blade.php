@@ -15,8 +15,8 @@
 
 <body id="page-top" class="index">
 
-    @include('login')
-
+    @include('navigationLogin')
+    
 <section id="login">
     <div class="container">
         <div class="row">
@@ -75,7 +75,7 @@
                                 
                                 <button class="btn btn-sm btn-primary btn-lg btn-block">Entrar</button><br>
                                 <p class="text-center">¿No tiene una cuenta? <a href="{{ url('registrarme') }}"> Registrarme.</a> </p>
-                                <p class="text-center"><a href="{{ url('/password/reset') }}">He olvidado mi contraseña </a></p>
+                                <p class="text-center"><a href="{{ url('recuperarclave') }}">He olvidado mi contraseña </a></p>
                                                             
                             </form>
                         </div>

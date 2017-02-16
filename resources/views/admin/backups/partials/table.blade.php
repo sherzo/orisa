@@ -21,6 +21,8 @@
             </td>
             <td class="text-center">
                 <a class="btn btn-default btn-xs" href="{{ route('backup.download', $backup['file_name']) }}" type="button" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Descargar"><span class="glyphicon glyphicon-download-alt fa-2x"></span></a>
+                <a class="btn btn-default btn-xs" href="{{ route('backup.restore', $backup['file_name']) }}" type="button" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Ver"><span class="glyphicon glyphicon-open fa-2x"></span></a>
+                <a href="{{ route('admin.backup.destroy', $backup['file_name']) }}" class="btn btn-default btn-xs" type="button" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Eliminar"><span class="glyphicon glyphicon-trash fa-2x"></span></a>
             </td>
         </tr>
     @endforeach

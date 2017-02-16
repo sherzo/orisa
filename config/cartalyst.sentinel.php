@@ -247,7 +247,7 @@ return [
 
             'interval' => 900,
 
-            'thresholds' => 5,
+            'thresholds' => 6,
 
         ],
 
@@ -255,7 +255,7 @@ return [
 
             'interval' => 900,
 
-            'thresholds' => 5,
+            'thresholds' => 3,
 
         ],
 

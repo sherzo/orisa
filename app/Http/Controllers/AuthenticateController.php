@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Cartalyst\Sentinel\Checkpoints\ThrottlingException;
 use Cartalyst\Sentinel\Checkpoints\CheckpointInterface;
+use Cartalyst\Sentinel\Users\UserInterface;
 
 use App\Http\Requests;
 
@@ -41,10 +42,9 @@ class AuthenticateController extends Controller
 
     	try {
 
-        	if(Sentinel::authenticate($request->all()))
+        	if($user = Sentinel::authenticate($request->all()))
             {
             	$slug = Sentinel::getUser()->roles()->first()->slug;
-            	//dd($slug);
             	if($slug == 'Tipo 5') {
 
             		return redirect('/');
@@ -53,15 +53,15 @@ class AuthenticateController extends Controller
 
             		return redirect('/admin');
             	}
-                
+
             } else {
 
                 return redirect()->back()->withErrors(["errors" => "Estas credenciales son incorrectas"]);
             }
 
         } catch (ThrottlingException $e) {
-            
-            dd($e);
+
+
         }
     }
 

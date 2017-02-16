@@ -32,3 +32,7 @@
 {!! Form::close() !!}
 
 @endsection
+
+@section('js')
+<script src="{{ asset('js/validaciones.js') }}"></script>
+@endsection

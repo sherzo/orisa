@@ -4,7 +4,7 @@ var label = $('.estatus').text();
 
 	function ActualizarComandas(){
 		$.get('en-espera/actualizar', function(data){
-			
+
 				$.each(data, function(index, typeObj){
 
 					$('.estatus'+typeObj.id).empty();
@@ -13,15 +13,19 @@ var label = $('.estatus').text();
 						$('.estatus'+typeObj.id).removeClass('label-warning');
 						$('.estatus'+typeObj.id).addClass('label-primary');
 						$('#contenedor'+typeObj.id).empty();
-						$('#contenedor'+typeObj.id).append('<button class="btn btn-primary btn-xs"><span class="fa fa-money fa-2x"></span></button>')
+						$('#contenedor'+typeObj.id).append('<button class="btn btn-primary btn-xs" data-toggle="tooltip" title="Facturar"><span class="fa fa-money fa-2x"></span></button>')
 
 					}
 				});
 
+				$(function () {
+			$('[data-toggle="tooltip"]').tooltip()
+		});
+
 		});
 	}
-	
+
 	setInterval(ActualizarComandas, 2000);
-	
+
 
 });

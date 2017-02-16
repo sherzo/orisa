@@ -11,12 +11,9 @@
     	{!! Form::open(['route' => 'admin.comandas.facturar', 'method' => 'GET']) !!}
 
         <div id="contenedor{{$comanda->id}}"></div>
-    	   <input type="hidden" name="command" value="{{$comanda->id}}">
+    	   <input type="hidden" name="command" value="{{$comanda->id}}" data-toggle="tooltip" title="Facturar">
 
       {!! Form::close()!!}
 
     @endif
-
-
-
 </div>

@@ -10,7 +10,7 @@
 <div class="row">
     <div class="col-md-12 text-center">
         <div class="img-responsive">
-            <img src="{{ asset('img/logo/fondo.png') }}">
+            <img src="{{ asset('img/logo/fondo.png') }}" width="400px" height="300px">
         </div>
     </div>
 </div>

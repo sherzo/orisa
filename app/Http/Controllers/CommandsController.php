@@ -84,7 +84,7 @@ class CommandsController extends Controller
     public function store(Request $request)
     {
 
-      if(!$request->cantidad)
+      if(!$request->cantidades)
       {
         return redirect()->back();
 
@@ -217,7 +217,7 @@ class CommandsController extends Controller
         bitacora('Comanda lista', $comanda->id, $comanda->id);
 
 
-        Flash::success('<strong>Exito </strong> el plato comanda'.$comanda->id.' esta lista, el mesonero fue notificado.');
+        Flash::success('<strong>Exito </strong> la comanda'.$comanda->id.' esta lista, el mesonero ya fue notificado.');
 
         return redirect()->back();
     }//Ready

@@ -71,9 +71,8 @@
     <!-- Vista de portafolio -->
 
     @include('modals-platos-del-dia')
-
+    @include('login')
     @include('scripts')
 
-    @yield('autoClick')
 </body>
 </html>

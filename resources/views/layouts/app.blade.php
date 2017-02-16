@@ -9,7 +9,6 @@
 
     <title>Restaurant sefardí</title>
 
-
     <link rel="stylesheet" type="text/css" href="{{ asset('bower_components/bootstrap/dist/css/bootstrap.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('bower_components/metisMenu/dist/metisMenu.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('dist/css/timeline.css') }}">
@@ -20,7 +19,6 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('bower_components/datatables-responsive/css/dataTables.responsive.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('chosen/bootstrap-chosen.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/nav-bar.css') }}">
 </head>
 
 <body>
@@ -36,58 +34,10 @@
             <a class="navbar-brand" href="{{ url('/') }}"><img alt="Brand" src="{{ asset('img/logo/isologo2.png') }}" width="110" height="35"><span>Restaurant & Spor Bar</span></a>
         </div>
         <ul class="nav navbar-top-links navbar-right">
+            
             <li class="dropdown">
                 <a class="dropdown-toggle color" data-toggle="dropdown" href="#">
-                    <i class="fa fa-bell fa-fw"></i> <i class="fa fa-caret-down"></i>
-                </a>
-                <ul class="dropdown-menu dropdown-alerts">
-                    <li>
-                        <a href="#">
-                            <div>
-                                <i class="fa fa-bell-o fa-fw text-success"></i> Comanda mesa 2 lista
-                                <span class="pull-right text-muted small">Ahora mismo</span>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="divider"></li>
-                    <li>
-                        <a href="#">
-                            <div>
-                                <i class="fa fa-bell-o fa-fw text-success"></i> Comanda mesa 2 lista
-                                <span class="pull-right text-muted small">Hace 1 minuto</span>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="divider"></li>
-                    <li>
-                        <a href="#">
-                            <div>
-                                <i class="fa fa-tasks fa-fw"></i> New Task
-                                <span class="pull-right text-muted small">4 minutes ago</span>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="divider"></li>
-                    <li>
-                        <a href="#">
-                            <div>
-                                <i class="fa fa-upload fa-fw"></i> Server Rebooted
-                                <span class="pull-right text-muted small">4 minutes ago</span>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="divider"></li>
-                    <li>
-                        <a class="text-center" href="{{ url('admin/comandas/en-espera') }}">
-                            <strong>Ver todas</strong>
-                            <i class="fa fa-angle-right"></i>
-                        </a>
-                    </li>
-                </ul>
-            </li>
-            <li class="dropdown">
-                <a class="dropdown-toggle color" data-toggle="dropdown" href="#">
-                  {{ Sentinel::getUser()->roles()->first()->name }}: 
+                  {{ Sentinel::getUser()->roles()->first()->name }}:
                     <i class="fa fa-user fa-fw"></i> {{ Sentinel::getUser()->first_name }}  <i class="fa fa-caret-down"></i>
                 </a>
                 <ul class="dropdown-menu dropdown-user">

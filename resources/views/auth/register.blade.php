@@ -17,78 +17,79 @@
 
     @include('login')
 
+
 <section id="login">
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Register</div>
-                <div class="panel-body">
-                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/register') }}">
-                        {{ csrf_field() }}
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h2 class="section-heading">CREAR UNA CUENTA</h2>
+                <h3 class="section-subheading text-muted">Registrate para reservar tu mesa, compartir con familiares y amigos.</h3>
+            </div>
+            <div class="col-md-8 col-md-offset-2">
+            
+                @include('flash::message')
 
-                        <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                            <label for="name" class="col-md-4 control-label">Name</label>
+                @if (count($errors) > 0)
+                <div class="alert alert-danger">
+                    <strong> Oops! </strong> Hay algunos problemas con su registro.<br><br>
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+                @endif
+            </div>
+            <div class="col-md-8 col-md-offset-2">
+                <div class="panel panel-default">
+                    <div class="panel-heading">REGISTRARME</div>
+                    <div class="panel-body">
+                        <div class="col-md-8 col-md-offset-2">
+                            <form role="form" method="POST" action="{{ url('registrarme') }}">
+                                {{ csrf_field() }}
+                                <div class="form-group{{ $errors->has('first_name') ? ' has-error' : '' }}">
+                                    <label>Nombre (s)</label>
+                                    <input id="name" type="text" class="form-control" name="first_name" value="{{ old('first_name') }}" placeholder="Ejm: Jesús Matute" title="Aquí debe introducir su nombre debe contener solo caracteres." required="required">
+                                    @if ($errors->has('first_name'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('first_name') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                                <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                                    <label>Correo Electrónico</label>
+                                    <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" placeholder="Ejm: ejemplo@hotmail.com" title="Aquí debe introducir su correo electrónico asociado al restaurant & sportbar sefardí">
 
-                            <div class="col-md-6">
-                                <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}">
+                                    @if ($errors->has('email'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('email') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
 
-                                @if ($errors->has('name'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('name') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
+                                <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+                                    <label for="password">Contraseña</label>
+                                    <input id="password" type="password" class="form-control" name="password" title="Aquí debe introducir su contraseña, debe tener 6 caracteres como mínimo, distingue mayúsculas de minúsculas." required="required">
 
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
+                                    @if ($errors->has('password'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('password') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
 
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}">
+                                <div class="form-group{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
+                                    <label for="password-confirm">Vuelve a escribir la contraseña</label>
+                                    <input id="password-confirm" type="password" class="form-control" name="password_confirmation" title="Aquí debe introducir la confirmacion de su contraseña." required="required">
 
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
+                                    @if ($errors->has('password_confirmation'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('password_confirmation') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
 
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="password" class="col-md-4 control-label">Password</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password">
-
-                                @if ($errors->has('password'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
-                            <label for="password-confirm" class="col-md-4 control-label">Confirm Password</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation">
-
-                                @if ($errors->has('password_confirmation'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password_confirmation') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    <i class="fa fa-btn fa-user"></i> Register
-                                </button>
-                            </div>
+                                <button class="btn btn-sm btn-primary btn-lg btn-block">Crear cuenta</button><br>
                         </div>
                     </form>
                 </div>

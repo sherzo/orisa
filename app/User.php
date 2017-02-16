@@ -2,69 +2,67 @@
 
 namespace App;
 
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use Cartalyst\Sentinel\Users\EloquentUser;
 
-class User extends Authenticatable
+class User extends EloquentUser
 {
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    protected $fillable = [
-        'roles_id', 'name', 'user', 'password', 'email',
-    ];
+	/**
+	 * The attributes that are mass assignable.
+	 *
+	 * @var array
+	 */
+	protected $fillable = ['email', 'password', 'permissions', 'last_login', 'first_name', 'last_name', 'attempts', 'status'];
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    protected $hidden = [
-        'password', 'remember_token',
-    ];
+	/**
+	 * The attributes that should be hidden for arrays.
+	 *
+	 * @var array
+	 */
+	protected $hidden = [
+		'password', 'remember_token',
+	];
 
-    public function employee()
-    {
-      return $this->belongsToMany('App\Employee');
-    }
+	/*public function employee()
+	{
+	  return $this->belongsToMany('App\Employee');
+	}
 
 
-    public function roles()
-    {
-        $this->hasMany('App\Rol', 'roles_id');
-    }
+	public function roles()
+	{
+		$this->hasMany('App\Rol', 'roles_id');
+	}
 
-    public function client()
-    {
-        return $this->belongsToMany('App\Client', 'users_vip');
-    }
+	public function client()
+	{
+		return $this->belongsToMany('App\Client', 'users_vip');
+	}
 
-    public function bitacoras()
-    {
-       return $this->hasMany('App\Bitacora');
-    }
+	public function bitacoras()
+	{
+	   return $this->hasMany('App\Bitacora');
+	}
 
-    public function modules_actions()
-    {
-       return $this->hasMany('App\Users_modules_action');
-    }
+	public function modules_actions()
+	{
+	   return $this->hasMany('App\Users_modules_action');
+	}
 
-    public function is_role($hasRol)
-    {
-        # code...
-    }
+	public function is_role($hasRol)
+	{
+		# code...
+	}
 
-    public function setPasswordAttribute($value)
-    {
-        if(!empty($value))
-        {
-            $this->attributes['password'] = bcrypt($value);
-        }
-    }
+	public function setPasswordAttribute($value)
+	{
+		if(!empty($value))
+		{
+			$this->attributes['password'] = bcrypt($value);
+		}
+	}
 
-    public function payroll()
-    {
-        return $this->hasMany('App\PayrollMade', 'usuario_id', 'id');
-    }
+	public function payroll()
+	{
+		return $this->hasMany('App\PayrollMade', 'usuario_id', 'id');
+	}*/
 }

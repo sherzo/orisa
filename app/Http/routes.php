@@ -23,6 +23,7 @@
 		Route::get('iniciarsesion', 'AuthenticateController@getLogin');
 		Route::get('registrarme', 'RegisterController@register');
 		Route::get('activarcuenta/{email}/{code}/', 'ActivationController@activate');
+		Route::get('activarcuenta/{email}/{code}/', 'ActivationController@activate');
 
 		// ROUTE::POST
 

@@ -5,12 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Cartalyst\Sentinel\Checkpoints\ThrottlingException;
 use Cartalyst\Sentinel\Checkpoints\CheckpointInterface;
+use Cartalyst\Sentinel\Activations\EloquentActivation;
 use Cartalyst\Sentinel\Users\UserInterface;
 use Cartalyst\Sentinel\Users\EloquentUser;
 
 use App\Http\Requests;
 
 use App\Portal;
+use App\User;
 use Sentinel;
 use Auth;
 use View;
@@ -41,10 +43,16 @@ class AuthenticateController extends Controller
     	$this->validateLogin($request);
 
     	try {
+            
+            $user = User::whereEmail($request->email)->first();
+   
+            if($activation = \Activation::completed($user))
+            {
 
         	if($user = Sentinel::authenticate($request->all()))
             {
-
+            
+            
             if($user->status != 0){
 
             	$slug = Sentinel::getUser()->roles()->first()->slug;
@@ -64,6 +72,7 @@ class AuthenticateController extends Controller
 
                 return redirect()->back()->withErrors(["errors" => "Se ha producido una actividad sospechosa y se le ha denegado el acceso, porfavor verifique su correo electrónico para activar su cuenta."]);
             }
+
 
             } else {
 
@@ -102,6 +111,11 @@ class AuthenticateController extends Controller
                 return redirect()->back()->withErrors(["errors" => "Estas credenciales son incorrectas"]);
             }
 
+            }
+
+            } else {
+
+                return redirect()->back()->withErrors(["errors" => "Disculpe para iniciar sesión primero debes activar tu cuenta."]);
             }
 
         } catch (ThrottlingException $e) {

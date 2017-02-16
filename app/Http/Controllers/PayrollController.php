@@ -21,6 +21,7 @@ use App\DeductionExtra;
 use App\Days_planning;
 use App\Day_attendance;
 use Laracasts\Flash\Flash;
+use Sentinel;
 
 class PayrollController extends Controller
 {
@@ -352,7 +353,7 @@ class PayrollController extends Controller
     public function store(Request $request)
     {
         //dd($request->all());
-        $user = auth()->user();
+        $user = Sentinel::getUser();
 
         $fortnight = Payroll::create($request->all())->save();
 

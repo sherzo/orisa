@@ -16,7 +16,7 @@
 <div>
     @include('flash::message')
 </div>
-{!! Form::open(['route' => 'admin.clientes.store', 'method' => 'POST']) !!}
+{!! Form::open(['route' => 'admin.clientes.store', 'method' => 'POST', 'id' => 'cliente']) !!}
 	<div class="row">
 		<div class="col-lg-12">
 			<div class="panel panel-default">

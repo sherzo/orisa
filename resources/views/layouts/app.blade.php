@@ -19,6 +19,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('bower_components/datatables-responsive/css/dataTables.responsive.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('chosen/bootstrap-chosen.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/nav-bar.css')}}">
 </head>
 
 <body>
@@ -31,10 +32,14 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="{{ url('/') }}"><img alt="Brand" src="{{ asset('img/logo/isologo2.png') }}" width="110" height="35"><span>Restaurant & Spor Bar</span></a>
+            <a class="navbar-brand" href="{{ url('/') }}">
+              <img alt="Brand" src="{{ asset('img/logo/isologo2.png') }}" width="110" height="35" class="logo">
+              <span class="heading">Restaurant & Spor Bar</span>
+            </a>
+
         </div>
         <ul class="nav navbar-top-links navbar-right">
-            
+
             <li class="dropdown">
                 <a class="dropdown-toggle color" data-toggle="dropdown" href="#">
                   {{ Sentinel::getUser()->roles()->first()->name }}:

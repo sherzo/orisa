@@ -34,7 +34,7 @@
 
 	<div class="form-group has-feedback">
 		{!! Form::label('nombre', 'Nombre o Razon social',['class' => 'control-label']) !!}
-		{!! Form::text('nombre', null, ['class' => 'form-control nombre', 'placeholder' => 'Ej. Alfredo Jesús', 'title' => 'Introduzca su nombre']) !!}
+		{!! Form::text('nombre', null, ['class' => 'form-control nombre requerido', 'placeholder' => 'Ej. Alfredo Jesús', 'title' => 'Introduzca su nombre']) !!}
 
 
             <span class="help-block">
@@ -42,12 +42,12 @@
            	</span>
 
 	</div>
-	<div class="form-group">
+	<div class="form-group has-feedback">
 		{!! Form::label('telefono', 'Teléfono') !!}
 		<div class="form-inline has-feedback form-group">
 			{!! Form::select('operadora', array('0412' => '0412', '0424' => '0424', '0416' => '0416', '0414' => '0414', '0426' => '0426'), null, ['class' => 'form-control']) !!}
 
-			{!! Form::text('telefono', null, [ 'maxlength' => '7', 'class' => 'form-control telefono awesome requerido', 'placeholder' => 'Ej. 4968557', 'size' => '53', 'title' => 'Introduzca su número de teléfono']) !!}
+			{!! Form::number('telefono', null, [ 'maxlength' => '7', 'class' => 'form-control telefono awesome requerido', 'placeholder' => 'Ej. 4968557', 'size' => '53', 'title' => 'Introduzca su número de teléfono']) !!}
 
 
 	            <span class="help-block">

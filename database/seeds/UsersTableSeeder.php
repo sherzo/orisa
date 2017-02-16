@@ -87,7 +87,27 @@ class UsersTableSeeder extends Seeder
             'last_name'  => $faker->lastName,
         ));
 
+        \DB::table('role_users')->insert([
+            'user_id' => 1,
+            'role_id' => 1
+        ]);
 
+        \DB::table('activations')->insert([
+            'user_id'   => 1,
+            'code'      => 'FMslNOp94SjdZ167mNqHRngR1Ex87a4V',
+            'completed' => 1
+        ]);
+
+        \DB::table('role_users')->insert([
+            'user_id' => 2,
+            'role_id' => 1
+        ]);
+
+        \DB::table('activations')->insert([
+            'user_id'   => 2,
+            'code'      => 'FMslNOp94SfdZ167mNqHRngR1Ex87a4V',
+            'completed' => 1
+        ]);
 
     }
 }

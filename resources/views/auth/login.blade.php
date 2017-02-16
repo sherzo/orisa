@@ -29,7 +29,7 @@
             <div class="col-md-4 col-md-offset-4">
                 @if (count($errors) > 0)
                 <div class="alert alert-danger">
-                    <strong>Whoops!</strong> Hay algunos problemas con su entrada.<br><br>
+                    <strong> Oops! </strong> Hay algunos problemas con su entrada.<br><br>
                     <ul>
                         @foreach ($errors->all() as $error)
                             <li>{{ $error }}</li>
@@ -46,7 +46,7 @@
                         {{ csrf_field() }}
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                         <label>Correo Electrónico</label>
-                            <input id="email" type="text" class="form-control" name="email" placeholder="Ejm: ejemplo@hotmail.com" value="{{ old('email') }}" title="Aquí debe introducir su correo asociado a su cuenta del restaurant">
+                            <input id="email" type="email" class="form-control" name="email" placeholder="Ejm: ejemplo@hotmail.com" value="{{ old('email') }}" title="Aquí debe introducir su correo asociado a su cuenta del restaurant" required="required">
 
                             @if ($errors->has('email'))
                                 <span class="help-block">
@@ -58,7 +58,7 @@
 
                         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                             <label>Contraseña</label>
-                            <input id="password" type="password" class="form-control" name="password" placeholder="Ejm: 123456" title="Aquí debe introducir su contraseña asociado a su cuenta del restaurant">
+                            <input id="password" type="password" class="form-control" name="password" placeholder="Ejm: 123456" title="Aquí debe introducir su contraseña asociado a su cuenta del restaurant" required="required">
                             @if ($errors->has('password'))
                                 <span class="help-block">
                                     <small>{{ $errors->first('password') }}</small>

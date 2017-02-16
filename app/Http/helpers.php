@@ -3,12 +3,12 @@ use Carbon\Carbon;
 
 function currentUser()
 {
-    return auth()->user();
+    return Sentinel::getUser();
 }
 
 function bitacora($descripcion, $operacion, $operacion_id){
   $bitacora = new App\Bitacora();
-  $bitacora->user_id = auth()->user()->id;
+  $bitacora->user_id = Sentinel::getUser()->id;
   $bitacora->descripcion = $descripcion;
   $bitacora->operacion = $operacion;
   $bitacora->operacion_id = $operacion_id;

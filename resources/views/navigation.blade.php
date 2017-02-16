@@ -15,7 +15,7 @@
                     <li class="hidden">
                         <a href="#page-top"></a>
                     </li>
-                    @if(!Auth::guest() AND (Auth::user()->roles_id) == '7')
+                    @if(!Sentinel::guest() AND (Sentinel::user()->roles()->first()->slug) == '7')
                     <li>
                         <a class="page-scroll" href="#reservations">Reservaciones</a>
                     </li>

@@ -84,6 +84,13 @@ class CommandsController extends Controller
     public function store(Request $request)
     {
 
+      if(!$request->cantidad)
+      {
+        return redirect()->back();
+
+        Flash::error('¡Cuidado! No ha agragado ningun producto');
+      }
+
       if($request->comanda_id){
         $comanda = Command::find($request->comanda_id);
       }else{

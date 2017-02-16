@@ -23,7 +23,7 @@ class AuthenticateController extends Controller
 
 		$platos = $portal->plates()->get();
 
-		if(!Sentinel::guest() AND (Sentinel::getUser()->roles()->first()->slug) == '5')
+		if(!Sentinel::guest() AND (Sentinel::getUser()->roles()->first()->slug) == '7')
 		{
 			$cliente = Sentinel::getUser()->client[0]->id;
 			$reservaciones = App\Reservation::where('client_id', $cliente)->get();
@@ -44,60 +44,64 @@ class AuthenticateController extends Controller
 
         	if($user = Sentinel::authenticate($request->all()))
             {
-                if($user->status != 0){
 
-                	$slug = Sentinel::getUser()->roles()->first()->slug;
+            if($user->status != 0){
 
-                	if($slug == 'Tipo 5') {
+            	$slug = Sentinel::getUser()->roles()->first()->slug;
 
-                		return redirect('/');
+            if($slug == '7') {
 
-                	} else {
-
-                		return redirect('/admin');
-                	}
-
-                } else {
-
-                    return redirect()->back()->withErrors(["errors" => "Se ha producido una actividad sospechosa y se le ha denegado el acceso, porfavor verifique su correo electrónico para activar su cuenta."]);
-                }
+            	return redirect('/');
 
             } else {
 
-                if(\DB::table('users')->where('email', $request->email)->exists())
-                {
-                    $credentials = EloquentUser::where('email', $request->email)->first();
+        	    $slug = Sentinel::getUser()->roles()->first()->slug;
+                	
+                return redirect('/admin');
+            }
 
-                    if($credentials->attempts != 0) {
+            } else {
 
-                        $credentials->attempts = $credentials->attempts-1;
-                        $credentials->save();
+                return redirect()->back()->withErrors(["errors" => "Se ha producido una actividad sospechosa y se le ha denegado el acceso, porfavor verifique su correo electrónico para activar su cuenta."]);
+            }
 
-                        if($credentials->attempts == 0){
+            } else {
 
-                            $credentials->status = 0;
-                            $credentials->save();
+            if(\DB::table('users')->where('email', $request->email)->exists())
+            {
+                $credentials = EloquentUser::where('email', $request->email)->first();
 
-                        }
+            if($credentials->attempts != 0) {
 
-                        if($credentials->attempts != 0) {
+                $credentials->attempts = $credentials->attempts-1;
+                $credentials->save();
 
-                            return redirect()->back()->withErrors(["errors" => "Estas credenciales son incorrectas, número de intentos restantes. " . $credentials->attempts]);
+            if($credentials->attempts == 0){
 
-                        } else {
+                $credentials->status = 0;
+                $credentials->save();
 
-                            return redirect()->back()->withErrors(["errors" => "Se ha producido una actividad sospechosa y se le ha denegado el acceso, porfavor verifique su correo electrónico para activar su cuenta."]);
-                        }
+            }
 
-                    } else {
+            if($credentials->attempts != 0) {
 
-                        return redirect()->back()->withErrors(["errors" => "Se ha producido una actividad sospechosa y se le ha denegado el acceso, porfavor verifique su correo electrónico para activar su cuenta."]);
-                    }   
+                return redirect()->back()->withErrors(["errors" => "Estas credenciales son incorrectas, número de intentos restantes. " . $credentials->attempts]);
 
-                } else {
+            } else {
 
-                    return redirect()->back()->withErrors(["errors" => "Estas credenciales son incorrectas"]);
-                }
+                return redirect()->back()->withErrors(["errors" => "Se ha producido una actividad sospechosa y se le ha denegado el acceso, porfavor verifique su correo electrónico para activar su cuenta."]);
+            }
+
+            } else {
+
+                return redirect()->back()->withErrors(["errors" => "Se ha producido una actividad sospechosa y se le ha denegado el acceso, porfavor verifique su correo electrónico para activar su cuenta."]);
+            }   
+
+            } else {
+
+                return redirect()->back()->withErrors(["errors" => "Estas credenciales son incorrectas"]);
+            }
+
             }
 
         } catch (ThrottlingException $e) {
@@ -105,6 +109,7 @@ class AuthenticateController extends Controller
             $delay = $e->getDelay();
 
             return redirect()->back()->withErrors(["errors" => "Se ha producido una actividad sospechosa y se le ha denegado el acceso, porfavor verifique su correo electrónico para activar su cuenta."]);
+
         }
     }
 

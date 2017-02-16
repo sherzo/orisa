@@ -538,4 +538,4 @@
 		'as' => 'admin.clients.search'
 		]);
 
- });
+});

@@ -33,12 +33,12 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="{{ url('/') }}"><img alt="Brand" src="{{ asset('img/logo/isologo2.png') }}" width="110" height="35"><span></span></a>
+            <a class="navbar-brand" href="{{ url('/') }}"><img alt="Brand" src="{{ asset('img/logo/isologo2.png') }}" width="110" height="35"><span>Restaurant & Spor Bar</span></a>
         </div>
         <ul class="nav navbar-top-links navbar-right">
             <li class="dropdown">
                 <a class="dropdown-toggle color" data-toggle="dropdown" href="#">
-                    <i class="fa fa-bell fa-fw"></i>  <i class="fa fa-caret-down"></i>
+                    <i class="fa fa-bell fa-fw"></i> <i class="fa fa-caret-down"></i>
                 </a>
                 <ul class="dropdown-menu dropdown-alerts">
                     <li>
@@ -87,7 +87,8 @@
             </li>
             <li class="dropdown">
                 <a class="dropdown-toggle color" data-toggle="dropdown" href="#">
-                    <i class="fa fa-user fa-fw"></i><i class="fa fa-caret-down"></i>
+                  {{ Sentinel::getUser()->roles()->first()->name }}: 
+                    <i class="fa fa-user fa-fw"></i> {{ Sentinel::getUser()->first_name }}  <i class="fa fa-caret-down"></i>
                 </a>
                 <ul class="dropdown-menu dropdown-user">
                     <li><a href="{{ url('admin/usuarios') }}/{{Sentinel::getUser()->id}}" class="text-muted">Perfil</a></li>
@@ -111,7 +112,7 @@
 
                     <li><a href="{{ url('admin') }}"><i class="fa fa-fw fa-home"></i> Inicio</a></li>
                     <!-- COMPRA -->
-                    @if((Sentinel::getUser()->roles()->first()->slug)=='SuperSU' || (Sentinel::getUser()->roles()->first()->slug)=='Tipo 1')
+                    @if((Sentinel::getUser()->roles()->first()->slug)=='1' || (Sentinel::getUser()->roles()->first()->slug)=='3')
                       <li><a href="#" ><i class="fa fa-fw fa-shopping-cart"></i> Compra<span class="fa arrow"></span></a>
                           <ul class="nav nav-second-level">
                               <li><a href="{{ url('admin/compra') }}">Orden de Compra</a></li>
@@ -129,7 +130,7 @@
                     <!-- FIN COMPRA -->
 
                     <!-- SERVICIOS -->
-                    @if((Sentinel::getUser()->roles()->first()->slug)!='Admin')
+                    @if((Sentinel::getUser()->roles()->first()->slug)!='2')
                     <li><a href="#"><i class="fa fa-fw fa-cutlery"></i> Servicios<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li><a href="#"> Menú<span class="fa arrow"></span></a>
@@ -142,14 +143,14 @@
                             </li>
                             <li><a href="#"> Comandas<span class="fa arrow"></span></a>
                                 <ul class="nav nav-third-level">
-                                  @if((Sentinel::getUser()->roles()->first()->slug)=='SuperSU' || (Sentinel::getUser()->roles()->first()->slug)=='Admin' || (Sentinel::getUser()->roles()->first()->slug)=='Tipo 2' || (Sentinel::getUser()->roles()->first()->slug)=='Tipo 4')
+                                  @if((Sentinel::getUser()->roles()->first()->slug)=='1' || (Sentinel::getUser()->roles()->first()->slug)=='2' || (Sentinel::getUser()->roles()->first()->slug)=='4' || (Sentinel::getUser()->roles()->first()->slug)=='6')
                                     <li><a href="{{ url('admin/comandas') }}">Nueva</a></li>
                                   @endif
                                     <li><a href="{{ url('admin/comandas/en-espera') }}">En espera</a></li>
                                     <li><a href="{{ url('admin/comandas/procesadas')}}">Procesadas</a></li>
                                 </ul>
                             </li>
-                            @if((Sentinel::getUser()->roles()->first()->slug)=='SuperSU' || (Sentinel::getUser()->roles()->first()->slug)=='Admin' || (Sentinel::getUser()->roles()->first()->slug)=='Tipo 2' || (Sentinel::getUser()->roles()->first()->slug)=='Tipo 3')
+                            @if((Sentinel::getUser()->roles()->first()->slug)=='1' || (Sentinel::getUser()->roles()->first()->slug)=='2' || (Sentinel::getUser()->roles()->first()->slug)=='4' || (Sentinel::getUser()->roles()->first()->slug)=='3')
                             <li><a href="{{ url('admin/clientes') }}">Clientes</a></li>
                             @endif
                             <li><a href="{{ url('admin/reservaciones') }}">Reservaciones</a></li>
@@ -160,7 +161,7 @@
                     <!-- FIN SERVICIOS -->
 
                     <!-- EMPLEADOS -->
-                    @if((Sentinel::getUser()->roles()->first()->slug)=='SuperSU' || (Sentinel::getUser()->roles()->first()->slug)=='Tipo 1' )
+                    @if((Sentinel::getUser()->roles()->first()->slug)=='1' || (Sentinel::getUser()->roles()->first()->slug)=='3' )
                     <li><a href="#"  ><i class="fa fa-fw fa-male"></i> Empleados<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li><a href="{{ url('admin/empleados') }}"> Personal </a></li>
@@ -186,7 +187,7 @@
                     <!-- FIN EMPLEADOS -->
 
                     <!--  MATENIMIENTO -->
-                    @if((Sentinel::getUser()->roles()->first()->slug)=='SuperSU' || (Sentinel::getUser()->roles()->first()->slug)=='Admin')
+                    @if((Sentinel::getUser()->roles()->first()->slug)=='1' || (Sentinel::getUser()->roles()->first()->slug)=='2')
                     <li><a href="#"><i class="fa fa-fw fa-wrench"></i> Mantenimiento<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li><a href="{{ url('admin/usuarios') }}">Usuarios</a></li>

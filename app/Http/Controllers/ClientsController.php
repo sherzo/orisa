@@ -36,7 +36,7 @@ class ClientsController extends Controller
 
         if($exist)
         {
-            Flash::warning('<strong> Alerta </strong> busqueda con número de cédula <strong>'. $dni_cedula .'</strong> se encuentra en la base de datos.');
+            Flash::warning('<strong> Alerta </strong> el número de cédula ya se encuentra registrado <strong>'. $dni_cedula .'</strong> se encuentra en la base de datos.');
 
             return redirect()->back();
 

@@ -13,16 +13,30 @@
 
 </head>
 
-<body id="page-top" class="index">
+<body id="portafolio" class="index">
 
-    @include('login')
+    @include('navigationLogin') 
 
-<section id="login">
+<section class="bg-light-gray">
     <div class="container">
         <div class="row">
             <div class="col-lg-12 text-center">
-                <h2 class="section-heading">INICIAR SESIÓN</h2>
+                <h2 class="section-heading subheading">INICIAR SESIÓN</h2>
                 <h3 class="section-subheading text-muted">Crea una cuenta o inicia sesión en <strong>Restaurant Sefardí</strong>. Reserva tu mesa, comparte con familiares y amigos.</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 col-md-offset-4">
+                @if (count($errors) > 0)
+                <div class="alert alert-danger">
+                    <strong>Whoops!</strong> Hay algunos problemas con su entrada.<br><br>
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+                @endif
             </div>
         </div>
         <div class="row">

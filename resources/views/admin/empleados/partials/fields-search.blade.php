@@ -7,10 +7,10 @@
 						<option value="E">E</option>
 					</select>           
 
-					{!! Form::text('cedula', null, ['class' => 'form-control', 'title' => 'Ingrese el número de cédula del empleado.', 'placeholder' => '25607932', 'id' => 'document_em', 'required']) !!}
+					{!! Form::text('cedula', null, ['class' => 'form-control', 'title' => 'Ingrese el número de cédula del empleado.', 'placeholder' => 'Ej. 25607932', 'id' => 'document_em', 'required']) !!}
 
 					<span class="input-group-btn">
-						<button type="submit" class="btn btn-default" id="buscar" title="Buscar">
+						<button type="submit" class="btn btn-default" id="buscar" title="Buscar" data-toggle="tooltip">
 							<span class="glyphicon glyphicon-search"></span>
 						</button>
 					</span>

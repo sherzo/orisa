@@ -20,6 +20,9 @@ class ClientsTableSeeder extends Seeder
 			    'dni_cedula' => $faker->randomElement($array = array ('V', 'E')).'-'.$faker->numberBetween($min = 200000000, $max = 25000000),
 			    'nombre'    => $faker->firstName.' '.$faker->lastName,
 			    'direccion'  => $faker->address,
+                'ciudad' => $faker->cityPrefix,
+                'calle' => $faker->streetName,
+                'habaitacion' => $faker->buildingNumber,
                 'operadora'  => $faker->buildingNumber,
 			    'telefono'   => $faker->ean8,
             ));

@@ -16,6 +16,7 @@ class CreateClientsTable extends Migration
             $table->increments('id');
             $table->string('dni_cedula', 15)->unique();
             $table->string('nombre');
+            $table->string('correo');
             $table->text('direccion');
             $table->integer('operadora');
             $table->string('telefono', 10);

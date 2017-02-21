@@ -2,8 +2,25 @@ $(document).ready(function(){
 
   $('#cliente').submit( function(){
 
+
+    var inputs = $('.requerido');
+    console.log(inputs);
     
-    return false;
+    var contador = 0;
+
+    $.each(inputs, function(index, input){
+      console.log(input);
+      var valor = $(input).val();
+      if (valor.length == 0 || valor.length <=3) {
+
+        desplegarMensaje(input, mensajes.requerido, true);
+        $contador++;
+      }
+    });
+   
+    if(contador > 0){
+      return false;
+    }
   });
 
   var mensajes = {

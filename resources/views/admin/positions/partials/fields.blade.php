@@ -1,3 +1,6 @@
+<div class="col-md-12 text-center">
+    <small class="text-center"><strong>Nota:</strong> Los campos marcados con (<span class="text-danger">*</span>) son obligatorios</small>
+</div>
 <div class="col-lg-4">
     <div class="form-group{{ $errors->has('codigo') ? ' has-error' : '' }}">
         {!! Form::label('codigo', 'Codigo') !!} <small class="text-danger">*</small>

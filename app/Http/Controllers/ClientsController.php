@@ -107,8 +107,9 @@ class ClientsController extends Controller
             return view('admin.comandas.invoice-client', compact('comanda', 'platos', 'tragos', 'bebidas', 'jugos', 'date', 'subtotal', 'iva', 'servicio', 'total', 'mesa', 'fecha', 'client'));
 
         }else{
+            
             $client = new Client($request->all());
-
+            $client->direccion = $request->cuidad . ' ' . $request->calle . ' ' . $request->habitacion;
             $client->save();
 
             bitacora('Registro el cliente', $client->nombre, $client->id);

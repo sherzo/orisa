@@ -7,7 +7,7 @@
 		<h1 class="page-header"></h1>
 		<ol class="breadcrumb">
 			<li><a href="{{ url('admin') }}"><span class="glyphicon glyphicon-home"></span></a></li>
-			<li><a href="{{ url('admin/proveedores') }}">Clientes</a></li>
+			<li><a href="{{ url('admin/clientes') }}">Clientes</a></li>
 			<li class="active">Edit</li>
 		</ol>
 	</div>

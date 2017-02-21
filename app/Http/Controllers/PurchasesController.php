@@ -42,6 +42,13 @@ class PurchasesController extends Controller
         $request->proveedor ? $ingredients = Provider::find($request->proveedor)->ingredients()->get() : $ingredients = false;
         $request->proveedor ? $liqueurs = Provider::find($request->proveedor)->liqueurs()->get() : $liqueurs = false;
         $request->proveedor ? $drinks = Provider::find($request->proveedor)->drinks()->get() : $drinks = false;
+
+        if($request->proveedor AND $liqueur = '[]' AND $drinks == '[]' AND $ingredients == '[]')
+        {
+            Flash::warning('<strong> Alerta </strong> El proveedor no tiene productos asociados!');
+
+        }
+        
         $request->proveedor ? $id_proveedor = $request->proveedor : $id_proveedor = false;
         
         if(isset($request->add_ingredients) || isset($request->add_liqueurs) || isset($request->add_drinks)){

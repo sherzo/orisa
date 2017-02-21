@@ -1,3 +1,6 @@
+<div class="col-md-12 text-center">
+    <small><strong>Nota:</strong> Los campos marcados con (<span class="text-danger">*</span>) son obligatorios</small>
+</div>
 @if($dni_cedula)
     <div class="col-lg-4">
         <div class="form-group{{ $errors->has('dni_cedula') ? ' has-error' : '' }}">
@@ -42,15 +45,20 @@
         @endif
     </div>
     
-    <div class="form-group{{ $errors->has('telefono') ? ' has-error' : '' }}">
-        {!! Form::label('phone_em', 'Teléfono') !!} <small class="text-danger">*</small>
-        {!! Form::text('telefono', null, ['class' => 'form-control', 'placeholder' => '+58412 2411757']) !!}
+    <div class="form-group has-feedback">
+        {!! Form::label('telefono', 'Teléfono') !!} <small class="text-danger">*</small>
+        <div class="form-inline has-feedback form-group">
+            {!! Form::select('operadora', array('0412' => '0412', '0424' => '0424', '0416' => '0416', '0414' => '0414', '0426' => '0426'), null, ['class' => 'form-control']) !!}
 
-        @if ($errors->has('telefono'))
-            <span class="help-block">
-                <small>{{ $errors->first('telefono') }}</small>
-            </span>
-        @endif
+            {!! Form::text('telefono', null, [ 'maxlength' => '7', 'class' => 'form-control telefono awesome requerido', 'placeholder' => 'Ej. 4968557', 'size' => '11', 'title' => 'Introduzca su número de teléfono']) !!}
+
+
+                <span class="help-block">
+                    <em><small></small></em>
+                </span>
+
+
+        </div>
     </div>
 
     <div class="form-group{{ $errors->has('direccion') ? ' has-error' : '' }}">
@@ -226,7 +234,7 @@
             {!! Form::label('code_em', 'Código') !!} <small class="text-danger">*</small>
             {!! Form::text('codigo', null, ['class' => 'form-control', 'placeholder' => 'EM-0004256']) !!}
 
-            @if ($errors->has('codigo'))
+            @if ($errors->has('codigo del empleado'))
                 <span class="help-block">
                     <small>{{ $errors->first('codigo') }}</small>
                 </span>
@@ -234,7 +242,7 @@
         </div>
 
         <div class="form-group{{ $errors->has('contrato') ? ' has-error' : '' }}">
-            {!! Form::label('contract_status', 'Contrato') !!} <small class="text-danger">*</small>
+            {!! Form::label('contract_status', 'Tipo de contrato') !!} <small class="text-danger">*</small>
             {!! Form::select('contrato', array('' => 'Seleccione', 'Determinado' => 'Determinado', 'Indeterminado' => 'Indeterminado'), null, ['class' => 'form-control', 'id' => 'contrato']) !!}
 
             @if ($errors->has('contrato'))

@@ -21,7 +21,7 @@
 	<div class="col-lg-6 col-lg-offset-3">
 		<div class="panel panel-default">
 			<div class="panel-heading">
-	            <em>Registro Único de Información Fiscal</em>
+	            <em>Rif del proveedor</em>
 	        </div>
 	        <div class="panel-body">
 	            @include('admin.providers.partials.fields-search')

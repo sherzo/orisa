@@ -2,16 +2,27 @@
     height: 50px;
     border: 0;
 }
-.navbar .logo {
-    width: 50px;
+
+.logo {
+	 padding-left: 0px; 
+	 padding-right: 0px;
+	 height: 60px;
+	 width: 149px;
 }
-.heading {
-    margin:0;
-    display: inline-block;
-}
+
 .navbar-brand {
     margin-top: 10px;
     padding: 0;
     width: 370px;
     display: inline-block;
 }
+
+/* EXAMPLE 5 - Logo with Text*/
+.example5 .navbar-brand {
+  display: flex;
+  align-items: center;
+}
+.example5 .navbar-brand>img {
+  padding: 7px 14px;
+}
+

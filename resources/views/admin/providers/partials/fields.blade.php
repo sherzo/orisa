@@ -1,3 +1,6 @@
+<div class="col-md-12 text-center">
+	<small><strong>Nota:</strong> Los campos marcados con (<span class="text-danger">*</span>) son obligatorios</small>
+</div>
 <div class="col-lg-6">
 	@if($rif)
 		<div class="form-group{{ $errors->has('rif') ? ' has-error' : '' }}">
@@ -30,7 +33,7 @@
 <div class="col-lg-12">
 	<div class="form-group{{ $errors->has('razon_social') ? ' has-error' : '' }}">
 		{!! Form::label('razon_social', 'Nombre') !!} 
-		{!! Form::text('razon_social', null, ['class' => 'form-control', 'placeholder' => 'Alimentos Polar Comercial, C.A', 'title' => 'Introduzca su nombre o razón social']) !!}
+		{!! Form::text('razon_social', null, ['class' => 'form-control', 'placeholder' => 'Ej. Alimentos Polar Comercial, C.A', 'title' => 'Introduzca su nombre o razón social']) !!}
 
 		@if ($errors->has('razon_social'))
             <span class="help-block">
@@ -42,7 +45,7 @@
 		{!! Form::label('telefono', 'Teléfono') !!}
 		<div class="form-inline{{ $errors->has('telefono') ? ' has-error' : '' }}">	
 			{!! Form::select('operadora', array('0412' => '0412', '0424' => '0424', '0416' => '0416', '0414' => '0414', '0426' => '0426'), null, ['class' => 'form-control']) !!}
-			{!! Form::text('telefono', null, ['class' => 'form-control awesome', 'placeholder' => '4968557', 'size' => '53', 'title' => 'Introduzca su número de teléfono']) !!}
+			{!! Form::text('telefono', null, ['class' => 'form-control awesome', 'placeholder' => 'Ej. 4968557', 'size' => '53', 'title' => 'Introduzca su número de teléfono']) !!}
 		
 			@if ($errors->has('telefono'))
 	            <span class="help-block">
@@ -52,25 +55,52 @@
 
         </div>			
 	</div>
-	<div class="form-group{{ $errors->has('correo') ? ' has-error' : '' }}"> 
+	<div class="form-group has-feedback"> 
 		{!! Form::label('correo', 'E-mail') !!}
-		{!! Form::text('correo', null, ['class' => 'form-control', 'placeholder' => 'ejemplo@gmail.com', 'title' => 'Introduzca su correo electrónico']) !!}
+		{!! Form::text('correo', null, ['class' => 'form-control correo', 'placeholder' => 'Ej. ejemplo@mail.com', 'title' => 'Introduzca su correo electrónico']) !!}
 
-		@if ($errors->has('correo'))
+		
             <span class="help-block">
-                <em><small>{{ $errors->first('correo') }}</small></em>
+                <em><small></small></em>
            	</span>
-        @endif
+       
 	</div>
-	<div class="form-group{{ $errors->has('direccion') ? ' has-error' : '' }}">
-		{!! Form::label('direccion', 'Dirección') !!} 
-		{!! Form::textarea('direccion', null, ['class' => 'form-control', 'rows' => '5', 'placeholder' => '6362 Bahringer Fork South Asa, WY 42384', 'title' => 'Dirección fiscal']) !!}
+	<p><strong>Datos de dirección</strong><hr></p>
+	<div class="form-group has-feedback ">
 
-		@if ($errors->has('direccion'))
+		
+		{!! Form::label('cuidad', 'Cuidad') !!} 
+		{!! Form::text('cuidad', null, ['class' => 'form-control requerido', 'placeholder' => 'Ej. Cagua', 'title' => 'Introduzca la cuidad']) !!}
+
+		
             <span class="help-block">
-                <em><small>{{ $errors->first('direccion') }}</small></em>
+                <em><small></small></em>
            	</span>
-        @endif
+        
+	</div>
+	<div class="form-group has-feedback ">
+		
+		{!! Form::label('Av. C/', 'calle') !!} 
+		{!! Form::text('calle', null, ['class' => 'form-control requerido', 'placeholder' => 'Ej. Calle 5 de marzo', 'title' => 'Introduzca la calle o avenida']) !!}
+
+		
+            <span class="help-block">
+                <em><small></small></em>
+           	</span>
+        
+	</div>
+
+	<div class="form-group has-feedback ">
+		
+		{!! Form::label('habitacion', 'Numero de oficina, parcela o galpón') !!}
+
+		{!! Form::text('habitacion', null, ['class' => 'form-control requerido', 'placeholder' => 'Ej. 08-04', 'title' => 'Introduzca el numero de habitación']) !!}
+
+		
+            <span class="help-block">
+                <em><small></small></em>
+           	</span>
+        
 	</div>
 	<br>
 	<div class="form-group tooltip-demo text-center">

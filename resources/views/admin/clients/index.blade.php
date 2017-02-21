@@ -14,7 +14,7 @@
 <div class="row">
     <div class="col-lg-4">
         <a href="{{ url('admin/clientes/search') }}">
-            <button type="button" class="btn btn-primary"><span class="fa fa-plus"></span></button>
+            <button type="button" class="btn btn-primary" data-toggle="tooltip" title="Nuevo"><span class="fa fa-plus"></span></button>
         </a>
     </div>
 </div>

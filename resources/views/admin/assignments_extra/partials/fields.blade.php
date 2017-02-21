@@ -1,7 +1,10 @@
+<div class="col-md-12 text-center">
+	<small class="text-center"><strong>Nota:</strong> Los campos marcados con (<span class="text-danger">*</span>) son obligatorios
+</div>
 <div class="col-lg-12">
 	<div class="form-group{{ $errors->has('nombre') ? ' has-error' : '' }}">
 		{!! Form::label('nombre', 'Nombre') !!} 
-		{!! Form::text('nombre', null, ['class' => 'form-control', 'placeholder' => 'Bono', 'title' => 'Introduzca el nombre de la asignación']) !!}
+		{!! Form::text('nombre', null, ['class' => 'form-control', 'placeholder' => 'Ej. Bono de puntualidad', 'title' => 'Introduzca el nombre de la asignación']) !!}
 
 		@if ($errors->has('nombre'))
             <span class="help-block">
@@ -11,7 +14,7 @@
 	</div>
 	<div class="form-group{{ $errors->has('valor') ? ' has-error' : '' }}">
 		{!! Form::label('valor', 'Valor') !!} 
-		{!! Form::text('valor', null, ['class' => 'form-control', 'placeholder' => '300.00', 'title' => 'Introduzca el valor de la asignación en Bs.F']) !!}
+		{!! Form::text('valor', null, ['class' => 'form-control', 'placeholder' => 'Ej. 300.00', 'title' => 'Introduzca el valor de la asignación en Bs.F']) !!}
 
 		@if ($errors->has('valor'))
             <span class="help-block">

@@ -25,17 +25,15 @@
 <body>
 <div id="wrapper">
     <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
-        <div class="navbar-header">
+        <div class="navbar-header example5">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="{{ url('/') }}">
-              <img alt="Brand" src="{{ asset('img/logo/isologo2.png') }}" width="110" height="35" class="logo">
-              <span class="heading">Restaurant & Spor Bar</span>
-            </a>
+            <a class="navbar-brand" href="{{ url('/') }}" style="font-size: 13px;"><img style="" src="{{ asset('img/logo/isologo2.png') }}" alt="Dispute Bills" class="logo">Restaurant & Spor Bar - J-34545656-6
+        </a>
 
         </div>
         <ul class="nav navbar-top-links navbar-right">
@@ -66,19 +64,35 @@
                     -->
 
                     <li><a href="{{ url('admin') }}"><i class="fa fa-fw fa-home"></i> Inicio</a></li>
+                    <li><a href="#" ><i class="fa fa-fw fa-plus"></i> Registros<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li><a href="{{ url('admin/clientes') }}">Clientes</a></li>
+                            <li><a href="#"> Empleados<span class="fa arrow"></span></a>
+                            <ul class="nav nav-third-level">
+                                <li><a href="{{ url('admin/empleados') }}"> Personal </a></li>
+                                <li><a href="{{ url('admin/cargos') }}"> Cargos </a></li>
+                                <li><a href="{{ url('admin/deducciones') }}"> Deducción </a></li>
+                                <li><a href="{{ url('admin/asignaciones') }}"> Asignación </a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#"> Inventario<span class="fa arrow"></span></a>
+                                  <ul class="nav nav-third-level">
+                                        <li><a href="{{ url('admin/proveedores')}}">Proveedores</a></li>
+                                        <li><a href="#"> Categorías </a></li>
+                                        <li><a href="{{ url('admin/ingredientes') }}">Ingredientes</a></li>
+                                        <li><a href="{{ url('admin/licores') }}">Licores</a></li>
+                                        <li><a href="{{ url('admin/bebidas') }}">Bebidas</a></li>
+                                  
+                                </ul>
+                            
+                        </ul>
+                    </li>
                     <!-- COMPRA -->
                     @if((Sentinel::getUser()->roles()->first()->slug)=='1' || (Sentinel::getUser()->roles()->first()->slug)=='3')
                       <li><a href="#" ><i class="fa fa-fw fa-shopping-cart"></i> Compra<span class="fa arrow"></span></a>
                           <ul class="nav nav-second-level">
                               <li><a href="{{ url('admin/compra') }}">Orden de Compra</a></li>
-                              <li><a href="{{ url('admin/proveedores')}}">Proveedores</a></li>
-                              <li><a href="#"> Inventario<span class="fa arrow"></span></a>
-                                  <ul class="nav nav-third-level">
-                                      <li><a href="{{ url('admin/ingredientes') }}">Ingredientes</a></li>
-                                      <li><a href="{{ url('admin/licores') }}">Licores</a></li>
-                                      <li><a href="{{ url('admin/bebidas') }}">Bebidas</a></li>
-                                  </ul>
-                              </li>
+                              
                           </ul>
                       </li>
                     @endif
@@ -106,7 +120,6 @@
                                 </ul>
                             </li>
                             @if((Sentinel::getUser()->roles()->first()->slug)=='1' || (Sentinel::getUser()->roles()->first()->slug)=='2' || (Sentinel::getUser()->roles()->first()->slug)=='4' || (Sentinel::getUser()->roles()->first()->slug)=='3')
-                            <li><a href="{{ url('admin/clientes') }}">Clientes</a></li>
                             @endif
                             <li><a href="{{ url('admin/reservaciones') }}">Reservaciones</a></li>
                             <li><a href="{{ url('admin/platos-del-dia') }}">Plato del día</a></li>
@@ -117,10 +130,8 @@
 
                     <!-- EMPLEADOS -->
                     @if((Sentinel::getUser()->roles()->first()->slug)=='1' || (Sentinel::getUser()->roles()->first()->slug)=='3' )
-                    <li><a href="#"  ><i class="fa fa-fw fa-male"></i> Empleados<span class="fa arrow"></span></a>
+                    <li><a href="#"  ><i class="fa fa-fw fa-male"></i> Nónima<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
-                            <li><a href="{{ url('admin/empleados') }}"> Personal </a></li>
-                            <li><a href="{{ url('admin/cargos') }}"> Cargo </a></li>
                             <li><a href="{{ url ('admin/asistencias') }}"> Asistencia </a></li>
                             <li><a href="#"> Planificaciones<span class="fa arrow"></span></a>
                                 <ul class="nav nav-third-level">
@@ -132,8 +143,7 @@
                             <li><a href="#"> Prenóminas<span class="fa arrow"></span></a>
                                 <ul class="nav nav-third-level">
                                     <li><a href="{{ url('admin/nomina') }}"> Cálculo</a></li>
-                                    <li><a href="{{ url('admin/deducciones') }}"> Deducción </a></li>
-                                    <li><a href="{{ url('admin/asignaciones') }}"> Asignación </a></li>
+
                                 </ul>
                             </li>
                         </ul>
@@ -157,17 +167,37 @@
          </div>
     </nav>
   </div>
-    <!-- <footer class="footer">
-      <div class="container">
-        <p class="text-muted">Diseñado y programado por <a> Saul Florez</a>, <a>Jesus Matute</a> y <a>Oliver Linares </a> </p>
-      </div>
-    </footer>
--->
+  <!-- Modal de Bienvenida -->
+    <div class="modal fade bienvenido" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+            <h1 class="text-center">Bienvenido a <strong>Orisa</strong></h1>
+            </div>
+        </div>
+    </div>
+    <!-- Fin modal  -->
+
+     
+
     <div id="page-wrapper" style="min-height: 365px;">
         <div class="row">
             @yield('contenido')
+           <!--  <div class="col-md-12 bg-success">
+                       <p class="text-muted">Diseñado y programado por <a> Saul Florez</a>, <a>Jesus Matute</a> y <a>Oliver Linares </a> </p>
+
+            </div> -->
         </div>
+
     </div>
+    <!-- <div class="page-wrapper">
+        <div class="row">
+    <footer>
+      <div class="container text-center">
+        <p class="text-muted">Diseñado y programado por <a> Saul Florez</a>, <a>Jesus Matute</a> y <a>Oliver Linares </a> </p>
+      </div>
+    </footer>
+    </div>
+    </div> -->
 
     <script src="{{ asset('bower_components/jquery/dist/jquery.js') }}"></script>
     <script src="{{ asset('bower_components/bootstrap/dist/js/bootstrap.js') }}"></script>
@@ -180,7 +210,15 @@
     <script src="{{ asset('chosen/chosen.jquery.min.js') }}"></script>
 
         @yield('js')
-
+    
+    
+        <!-- <script>
+            $(document).ready(function(){
+                $('.bienvenido').modal('show');
+                setTimeout(function() { $('.bienvenido').modal('hide'); }, 2000);
+            });
+        </script> -->
+   
     <script>
         $('div.alert').not('.alert-important').delay(5000).fadeOut(350);
     </script>

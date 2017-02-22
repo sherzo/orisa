@@ -26,7 +26,6 @@ class PlanningRequest extends Request
         return [
             'fecha_inicio' => 'required|unique:plannings',
             'fecha_final'  => 'required|unique:plannings',
-            'estatus'      => 'required',
         ];
     }
 }

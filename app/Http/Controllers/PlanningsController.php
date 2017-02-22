@@ -23,26 +23,42 @@ class PlanningsController extends Controller
 		return view('admin.planificaciones.create');  
 	}
 
-	public function store(PlanningRequest $request)
+	public function store(Request $request)
 	{
+		
+		$start = explode('-', $request->fecha_inicio);
+		$end = explode('-', $request->fecha_final);
 
 		if($request->fecha_inicio == $request->fecha_final)
 		{
 
-			Flash::warning('<strong> Error </strong> las fechas de las planificaciones no pueden ser iguales.');
+			Flash::warning('<strong> Disculpe </strong> las fechas de las planificaciones no pueden ser iguales.');
 
 			return redirect('admin/planificaciones/create');
 
 		}else{
 
-			$fechas = $request->fecha_inicio . ' - ' . $request->fecha_final;
-			$planificaciones = Planning::create($request->all());
-			$planificaciones->fechas = $fechas;
-			$planificaciones->save();
+			$searchStart = Planning::whereDate('fecha_inicio', '>=', $request->fecha_inicio)->exists();
+			$searchEnd = Planning::WhereDate('fecha_final', '>=', $request->fecha_inicio)->exists();
 
-			Flash::success('<strong> Éxito </strong> se ha creado un nuevo registro de planificaciones.');
+			if($searchStart OR $searchEnd) {
 
-			return redirect('admin/planificaciones');
+				Flash::warning('<strong> Disculpe </strong> estas fechas para la planificación ya han sido tomadas.');
+
+				return redirect()->back();
+
+			} else {
+
+				$planificaciones = Planning::create($request->all());
+				$planificaciones->estatus = 'Creada';
+				$planificaciones->save();
+				
+				Flash::success('<strong> Éxito </strong> se ha creado un nuevo registro de planificaciones.');
+
+				return redirect('admin/planificaciones');
+
+			}
+
 		}
 		
 	}

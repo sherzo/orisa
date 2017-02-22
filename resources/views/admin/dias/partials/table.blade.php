@@ -2,7 +2,6 @@
     <thead>
         <tr>
             <th>#</th>
-            <th>Fecha</th>
             <th>Creada</th>
             <th>Día</th>
             <th>Estatus</th>
@@ -13,29 +12,16 @@
         @foreach($dias as $dia)
 	    <tr>
             <td> 
-                <a href="{{ route('admin.planificaciones.administrar.dias.edit', [$dia->id]) }}">
-                    {{ $dia->id }} 
-                </a>
+                {{ $dia->id }} 
             </td>
             <td> 
-                <a href="{{ route('admin.planificaciones.administrar.dias.edit', [$dia->id]) }}">
-                    {{ $dia->planif->fechas }} 
-                </a>
+                {{ $dia->planif->created_at }} 
             </td>
             <td> 
-                <a href="{{ route('admin.planificaciones.administrar.dias.edit', [$dia->id]) }}">
-                    {{ $dia->planif->created_at }} 
-                </a>
+                {{ $dia->dia }}
             </td>
             <td> 
-                <a href="{{ route('admin.planificaciones.administrar.dias.edit', [$dia->id]) }}">
-                    {{ $dia->dia }}
-                </a>
-            </td>
-            <td> 
-                <a href="{{ route('admin.planificaciones.administrar.dias.edit', [$dia->id]) }}">
-                    {{ $dia->estatus }}
-                </a>
+                {{ $dia->estatus }}
             </td>
             <td class="text-center tooltip-demo">                     
                 <a class="btn btn-default btn-xs" href="{{ route('admin.planificaciones.administrar.dias.edit', $dia->id) }}" type="button" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Editar"><span class="glyphicon glyphicon-pencil fa-2x"></span></a>
@@ -43,14 +29,4 @@
 	   </tr>
         @endforeach           
     </tbody>
-    <thead>
-        <tr>
-            <th>#</th>
-            <th>Fecha</th>
-            <th>Creada</th>
-            <th>Día</th>
-            <th>Estatus</th>
-            <th>Acción</th>
-        </tr>
-    </thead>
 </table>

@@ -1,8 +1,3 @@
-{{-- */$k=0;/* --}}
-{{-- */$n=0;/* --}}
-{{-- */$count_employees=count($empleados);/* --}}
-{{-- */$empleado_id = array();/* --}}
-
 <table class="table table-striped table-bordered table-hover">
 	<tr>
 		<td class="text-center">

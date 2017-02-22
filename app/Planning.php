@@ -22,7 +22,7 @@ class Planning extends Model
 
 	public function getFullDatesAttribute()
 	{
-		return $this->fecha_inicio . ' - ' . $this->fecha_final;
+		return $this->fecha_inicio . ' al ' . $this->fecha_final;
 	}
 
 }

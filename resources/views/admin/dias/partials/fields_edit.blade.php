@@ -2,7 +2,7 @@
 <div class="col-lg-6">
 	<div class="form-group">
 		{!! Form::label('estatus', 'Estatus') !!}
-        {!! Form::select('estatus', array('Hábil' => 'Hábil', 'Inhábil' => 'Inhábil'), null, ['class' => 'form-control', 'title' => 'Seleccioné la clase de día que corresponde a esta fecha.']) !!}
+        {!! Form::select('estatus', array('Laborable' => 'Laborable', 'No laborable' => 'No laborable'), null, ['class' => 'form-control', 'title' => 'Seleccioné la clase de día que corresponde a esta fecha.']) !!}
 	</div>
 </div>
 <div class="col-lg-6">

@@ -18,9 +18,9 @@
     @include('flash::message')
 </div>
 <div class="col-lg-12">
-	<p> Fecha: {{ $planificacion->fechas }}</p>
-	<p> Estatus: {{ $planificacion->estatus }}</p>
-	<p> Creada: {{ $planificacion->created_at }}</p>
+	<p> FECHA: {{ $planificacion->full_dates }}</p>
+	<p> ESTATUS: {{ $planificacion->estatus }}</p>
+	<p> CREADA: {{ $planificacion->created_at }}</p>
 </div> 
 <div class="col-lg-12">
 {!! Form::open(['route' => 'admin.planificaciones.administrar.dias.turnos.store', 'method' => 'POST', 'name' => 'form']) !!}

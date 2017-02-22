@@ -1,7 +1,7 @@
 <div class="col-lg-6">
     <div class="form-group{{ $errors->has('fecha_inicio') ? ' has-error' : '' }}">
         {!! Form::label('inicio', 'Inicio') !!} <small class="text-danger">*</small>
-        {!! Form::date('fecha_inicio', null,['class' => 'form-control', 'title' => 'Fecha inicio de la planificacíon']) !!}
+        {!! Form::date('fecha_inicio', null,['class' => 'form-control', 'title' => 'Fecha inicio de la planificacíon', 'id' => 'datepicker']) !!}
 
         @if($errors->has('fecha_inicio'))
             <span class="help-block">
@@ -20,8 +20,6 @@
                 <em>{{ $errors->first('fecha_final') }}</em>
             </span>
         @endif
-
-        {!! Form::hidden('estatus', 'Creada') !!}
     </div>
 </div>
 <div class="col-lg-12">

@@ -4,10 +4,10 @@
 {{-- */$b=0;/* --}}
 
 
-@for($j=$planificacion->fecha_inicio; $j<=$planificacion->fecha_final ; $j = date('Y-m-d', strtotime($j ."+ 1 days")))
+    @for($j=$planificacion->fecha_inicio; $j<=$planificacion->fecha_final ; $j = date('Y-m-d', strtotime($j ."+ 1 days")))
         {{-- */$a[] = $j;/* --}}
         {{-- */$b++;/* --}}
-@endfor
+    @endfor
 
 <div class="panel-body">              
     <table class="table table-bordered table-hover table-responsive table-striped col-lg-12">
@@ -19,24 +19,20 @@
     <?php
         do{
             
-
             mostrar($k,$n,$a,$planificacion);
 
             $impresos+=7;
             $quedan= $cuantos - $impresos;
-            // echo $impresos.":".$quedan;
+            //echo $impresos.":".$quedan;
             if($quedan>7){
                
-            $n=$n+7;
-            $k=$k+7;
+                $n=$n+7;
+                $k=$k+7;
 
             }else{
                  
                 $n=$k;
                 $k=$k+$quedan;
-
-              
-
             }
 
             
@@ -45,7 +41,6 @@
 
 
     ?>
-
 
     </table>  
     <div class="col-lg-12">
@@ -96,10 +91,9 @@
             <tr>
                 @for($i=$n;$i<$k;$i++)
                     <td>  
-                        {!! Form::select('estatus[]', array('Hábil' => 'Hábil', 'Inhábil' => 'Inhábil'), null, ['class' => 'form-control']) !!} 
+                        {!! Form::select('estatus[]', array('Laborable' => 'Laborable', 'No laborable' => 'No laborable'), null, ['class' => 'form-control']) !!} 
                     </td>
                 @endfor
-
             </tr>
         </tbody>
 

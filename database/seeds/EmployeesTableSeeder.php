@@ -30,6 +30,18 @@ public function run()
         	'genero'           => $faker->randomElement($array = array('Masculino','Femenino')),
         ));
 
+        \DB::table('info_employees')->insert(array (
+            'empleado_id'       => $i+1,
+            'codigo'            => '00000'.$i,
+            'fecha_de_admision' => '2017-02-01',
+            'contrato'          => 'Determinado',
+            'duracion'          => '30',
+            'cestaticket'       => 'No',
+            'banco'             => 'Venezuela',
+            'cuenta_tipo'       => 'Ahorro',
+            'cuenta_numero'     => '0102-0146-23010006113'.$i,
+        ));
+
         }
 
     }

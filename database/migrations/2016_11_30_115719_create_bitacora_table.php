@@ -30,6 +30,6 @@ class CreateBitacoraTable extends Migration
      */
     public function down()
     {
-
+        Schema::drop('bitacora');
     }
 }

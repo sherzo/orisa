@@ -15,10 +15,10 @@
 </div>
 {!! Form::open(['route' => 'admin.planificaciones.administrar.dias.turnos.create', 'method' => 'GET']) !!}
 	<div class="row">
-	    <div class="col-lg-10 col-lg-offset-1">
+	    <div class="col-lg-12">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<em>Datos de la Planificación</em>	
+					<em>Busqueda para crear planificaciones</em>	
 				</div>
 				<div class="panel-body">
 					@include('admin.turnos.partials.list')

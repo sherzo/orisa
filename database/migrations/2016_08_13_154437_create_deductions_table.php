@@ -14,7 +14,6 @@ class CreateDeductionsTable extends Migration
     {
         Schema::create('deductions', function (Blueprint $table) {
             $table->increments('id');
-            $table->float('ISLR', 15,2);
             $table->float('SSO', 15,2);
             $table->float('RPE', 15,3);
             $table->float('RPVH', 15,2);

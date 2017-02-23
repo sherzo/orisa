@@ -29,19 +29,6 @@
            	</span>
         @endif
 	</div>
-	<h3><em>Horas Extras</em></h1>
-	<hr>
-	<div class="form-group{{ $errors->has('horas_extra') ? ' has-error' : '' }}">
-		{!! Form::label('valor_turno', 'Valor') !!} 
-		{!! Form::text('valor_turno', $turns->extraHours->valor_turno, ['class' => 'form-control', 'title' => 'Valor de horas extra correspondiente al turno']) !!}
-
-		@if ($errors->has('turno'))
-            <span class="help-block">
-                <em><small>{{ $errors->first('turno') }}</small></em>
-           	</span>
-        @endif
-	</div>
-	<br>
 	<div class="form-group tooltip-demo text-center">
 		<button class="btn btn-default btn-sm" type="submit" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Guardar"><span class="glyphicon glyphicon-floppy-saved fa-2x"></span></button>
 		<button class="btn btn-default btn-sm" type="reset" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Borrar"><span class="glyphicon glyphicon-floppy-remove fa-2x"></span></button>

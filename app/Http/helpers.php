@@ -37,4 +37,27 @@ use Carbon\Carbon;
 		return $fecha->format('g:i a');
 	}
 
-	/* - - - - - - - - NÓMINA  - - - - - - - - */
+	/* - - - - - - - - PLANIFICACIÓN  - - - - - - - - */
+
+	function dias($fechas)
+	{
+
+		$fechats = strtotime($fechas);
+        	switch (date('w', $fechats))
+        	{
+                case 0: return "DOMINGO";   break;
+                case 1: return "LUNES";     break;
+                case 2: return "MARTES";    break;
+                case 3: return "MIÉRCOLES"; break; 
+                case 4: return "JUEVES";    break;
+                case 5: return "VIERNES";   break; 
+                case 6: return "SÁBADO";    break;
+            }
+	}
+
+	function asignados($empleado, $dia, $planificacion)
+	{
+		$labora = \DB::table('employees_has_days')->where([['empleado_id', $empleado], ['dia_id', $dia], ['planificacion_id', $planificacion]])->exists();
+
+		return $labora;
+	}

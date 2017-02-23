@@ -148,6 +148,7 @@
 	|	Rutas resource controladores de nómina
 	|
 	*/
+	Route::resource('adicionales', 'AdditionalsController');
 	Route::resource('asistencias', 'AssistsController');
 	Route::resource('deducciones', 'DeductionsController');
 	Route::get('agregar_asignaciones/{year}/{mes}/{quincena}', function ($year,$mes,$quincena) {

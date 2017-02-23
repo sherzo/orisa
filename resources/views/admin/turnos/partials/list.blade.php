@@ -1,8 +1,13 @@
-@if(count($planificacion) > 1 OR count($planificacion) == 1)
+<div class="col-lg-4">
 <div class="form-group">
 	<div class="input-group">
 		<div class="form-group">
-			{!! Form::select('id', $planificacion, null, ['class' => 'form-control']) !!}
+			@foreach($planificaciones as $planificacion)
+				<select class="form-control" name="id" required="required">
+					<option value=""> SELECCIONE </option>
+					<option value="{{ $planificacion->id }}"> {{ $planificacion->full_dates }}</option>
+				</select>
+			@endforeach
 		</div>
      	<span class="input-group-btn">
         	<button type="submit" class="btn btn-default" type="button" id="buscar" title="Buscar productos">
@@ -11,8 +16,4 @@
         </span>
  	</div>
 </div>
-@else
-<div class="form-group">
-	<p class="text-danger text-center">No se encontraron resultados coincidentes</p>
 </div>
-@endif

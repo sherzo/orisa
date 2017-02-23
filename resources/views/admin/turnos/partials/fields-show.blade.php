@@ -1,57 +1,24 @@
-<div class="col-lg-18">
-    <table class="table table-striped table-bordered table-hover">
+<table class="table table-striped table-bordered table-hover table-responsive" id="dataTables-example">
+    <thead>
         <tr>
-            <td class="text-center">
-                
-            </td>
-            @foreach($planning as $key => $planning_r)
-                <td class="text-center"> 
-                    <span type="button" data-toggle="tooltip" data-placement="top" title="" data-original-title="{{ $planning_r->dia }}"><p class="text-info">Fecha</p></span>
-                </td>          
-
-                {{-- */$dias[$k] = $planning_r->id;/* --}}
-                {{-- */$k++;/* --}}
-            @endforeach
+            <th>#</th>
+            <th>Planificación</th>
+            <th>Acciones</th>
         </tr>
-
-        @if($holiday)
-                                
-            @foreach($empleados as $empleado)
-                <tr>
-                    <td> 
-                        {{ $empleado->full_name }}
-                    </td>
-                    {{-- */$empleado_id[$n] = $empleado->id;/* --}}
-                                            
-                    @for($m=0; $m<$k; $m++)
-
-                    <td class="text-center">
-
-                    {{-- */$j=0;/* --}}
-
-                        @for($y=0;$y<count($holiday);$y++)
-                            @if($holiday[$y]->empleado_id == $empleado_id[$n] AND $holiday[$y]->dia_id == $dias[$m])
-
-                                {{-- */$j= 1;/* --}}
-
-                                    <span class="fa fa-check"></span>
-                                                        
-                            @endif
-                        @endfor
-
-                        @if($j == 0)
-
-                            {!! Form::checkbox('empleado_id', 'value', false, ['class' => 'Form-control', 'disabled']) !!}
-
-                        @endif
-                    </td>
-                    @endfor
-                </tr>
-
-                {{-- */$n++;/* --}}
-
-            @endforeach
-
-        @endif
-    </table>
-</div>
+    </thead>
+    <tbody> 
+        @foreach($planificaciones as $key => $planificacion)
+            <tr>
+                <td style="width: 50px;" class="text-center">
+                    {{ $indice = $indice+1 }}
+                </td>
+                <td>
+                    {{ $planificacion->planning->full_dates }}
+                </td>
+                <td class="text-center tooltip-demo">
+                    <a class="btn btn-default btn-xs" href="{{ route('admin.planificaciones.administrar.dias.turnos.show', [$planificacion->planificacion_id]) }}" type="button" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Ver"><span class="glyphicon glyphicon-eye-open fa-2x"></span></a>
+                </td>
+            </tr>
+        @endforeach
+    </tbody>
+</table>  

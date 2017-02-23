@@ -9,6 +9,7 @@ use App\Holiday;
 use App\Days_planning;
 use Laracasts\Flash\Flash;
 use App\Http\Requests;
+use Datetime;
 
 class TurnsController extends Controller
 {
@@ -31,10 +32,9 @@ class TurnsController extends Controller
 
     public function select()
     {
-        $planificaciones = Planning::where('estatus', '=', 'Realizada');
-        $planificacion = $planificaciones->lists('fechas', 'id');
+        $planificaciones = Planning::where('estatus', '=', 'Realizada')->get();
 
-        return view('admin.turnos.select', compact('planificacion'));
+        return view('admin.turnos.select', compact('planificaciones'));
 
     }
 
@@ -44,11 +44,23 @@ class TurnsController extends Controller
         $planificacion = Planning::find($request->id);
         $empleados = Employee::all();
 
-        return view('admin.turnos.create', compact('planificacion','empleados'));
+        $start = new Datetime($planificacion->fecha_inicio);
+        $end = new Datetime($planificacion->fecha_final);
+
+        $diff = $start->diff($end);
+        $dias = $diff->days;
+
+        for($i = $planificacion->fecha_inicio; $i <= $planificacion->fecha_final; $i = date('Y-m-d', strtotime($i ."+ 1 days"))) {
+
+            $fechas[] = $i;
+        }
+        
+        return view('admin.turnos.create', compact('planificacion','empleados', 'dias', 'fechas'));
     }
 
     public function store(Request $request)
     {   
+
         if(isset($request->empleado_id)) 
         {
     
@@ -80,19 +92,13 @@ class TurnsController extends Controller
         }
     }
 
-    public function view(Request $request)
+    public function view()
     {
 
-        $planificaciones = Planning::where('estatus', '=', 'Procesada');
-        $planificacion = $planificaciones->lists('fechas', 'id');
-        $empleados = Employee::all();
+        $planificaciones = Holiday::groupBy('planificacion_id')->get();
+        $indice = 0;
 
-        $request->planificacion ? $planning = Planning::find($request->planificacion)->dias()->get() : $planning = false;
-        $request->planificacion ? $holiday = Holiday::where('planificacion_id', $request->planificacion)->get() : $holiday = false; 
-        $id = $request->planificacion;
-
-        return view('admin.turnos.show', compact('planificacion', 'planning', 'holiday', 'empleados', 'id'));
-
+        return view('admin.turnos.show', compact('planificaciones', 'indice'));
     }
 
     public function edit($id)
@@ -102,6 +108,25 @@ class TurnsController extends Controller
         $empleados = Employee::all();
 
         return view('admin.turnos.edit', compact('dias', 'planificacion', 'empleados', 'id'));
+    }
+
+    public function show($id)
+    {
+        $planificacion = Planning::find($id);
+        $empleados = $planificacion->pldays()->groupBy('empleado_id')->get();
+
+        $start = new Datetime($planificacion->fecha_inicio);
+        $end = new Datetime($planificacion->fecha_final);
+
+        $diff = $start->diff($end);
+        $dias = $diff->days;
+
+        for($i = $planificacion->fecha_inicio; $i <= $planificacion->fecha_final; $i = date('Y-m-d', strtotime($i ."+ 1 days"))) {
+
+            $fechas[] = $i;
+        }
+
+        return view('admin.turnos.plannings.show', compact('planificacion', 'dias', 'fechas', 'empleados'));
     }
 
     public function update(Request $request)
@@ -140,5 +165,17 @@ class TurnsController extends Controller
             return redirect()->back();
 
         }
+    }
+
+    public function destroy(Request $request)
+    {
+        $planning = Planning::find($request->id);
+
+        $empleado = \DB::table('employees_has_days')->where([['planificacion_id', $request->id], ['empleado_id', $request->idem]])->delete();
+
+        Flash::success('<strong> Éxito </strong> se ha eliminado el empleado de la planificación '.$planning->full_dates.'.');
+
+        return redirect()->back();
+
     }
 }

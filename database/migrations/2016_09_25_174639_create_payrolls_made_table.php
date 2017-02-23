@@ -14,8 +14,6 @@ class CreatePayrollsMadeTable extends Migration
     {
         Schema::create('payrolls_made', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('usuario_id')->unsigned();
-            $table->foreign('usuario_id')->references('id')->on('users');
             $table->string('cedula', 20);
             $table->string('nombre_completo', 50);
             $table->string('cargo', 20);

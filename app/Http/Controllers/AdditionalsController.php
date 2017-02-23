@@ -3,14 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
-use App\Http\Requests;
-use App\Turn;
-use App\Assignment;
-use App\Employee;
 use Laracasts\Flash\Flash;
 
-class AssignmentsController extends Controller
+use App\Http\Requests;
+
+use App\Additional;
+
+class AdditionalsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,9 +18,10 @@ class AssignmentsController extends Controller
      */
     public function index()
     {
-        $turns = Turn::all();
+        $adicionales = Additional::all();
+        $indice = 0;
 
-        return view('admin.assignments.index', compact('turns'));
+        return view('admin.additionals.index', compact('adicionales', 'indice'));
     }
 
     /**
@@ -31,7 +31,7 @@ class AssignmentsController extends Controller
      */
     public function create()
     {
-        
+        return view('admin.additionals.create');
     }
 
     /**
@@ -42,7 +42,20 @@ class AssignmentsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $adicional = Additional::create($request->all())->save();
+        
+        if($request->tipo == 'A')
+        {
+            Flash::success('<strong> Éxito </strong> se ha creado una nueva asignación correctamente.');
+
+            return redirect('admin/adicionales');
+
+        } else {
+
+            Flash::success('<strong> Éxito </strong> se ha creado una nueva deducción correctamente.');
+
+            return redirect('admin/adicionales');
+        }
     }
 
     /**
@@ -64,9 +77,9 @@ class AssignmentsController extends Controller
      */
     public function edit($id)
     {
-        $turns = Turn::find($id);
+        $adicionales = Additional::find($id);
 
-        return view('admin.assignments.edit', compact('turns'));
+        return view('admin.additionals.edit', compact('adicionales'));
     }
 
     /**
@@ -78,12 +91,14 @@ class AssignmentsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $turns = Turn::find($id);
-        $turns->fill($request->all())->save();
+        $adicionales = Additional::find($id);
 
-        Flash::success('<strong> Éxito </strong> se ha actualizado el turno <em>'.$turns->turno.'</em> correctamente.');
+        $newAdicionales = $adicionales->fill($request->all());
+        $newAdicionales->save();
 
-        return redirect('admin/asignaciones');
+        Flash::success('<strong> Éxito </strong> se ha editado el adicional '.$newAdicionales->nombre.' correctamente.');
+
+        return redirect('admin/adicionales');
 
     }
 
@@ -96,15 +111,5 @@ class AssignmentsController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-    public function assignmentsExtras(Request $request)
-    {
-        $employees = Employee::all();
-        $others_assignments = Assignment::all();
-
-        
-        
-        return view('admin.payroll.news', compact('employees'));
     }
 }

@@ -17,6 +17,7 @@ class CreatePayrollsSavedTable extends Migration
             $table->string('mes', 20);
             $table->integer('quincena');
             $table->integer('year');
+            $table->boolean('est')->default(0);
             $table->timestamps();
         });
     }

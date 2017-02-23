@@ -71,9 +71,10 @@
                             <ul class="nav nav-third-level">
                                 <li><a href="{{ url('admin/empleados') }}"> Personal </a></li>
                                 <li><a href="{{ url('admin/cargos') }}"> Cargos </a></li>
-                                <li><a href="{{ url('admin/deducciones') }}"> Deducción </a></li>
-                                <li><a href="{{ url('admin/asignaciones') }}"> Asignación </a></li>
-                                </ul>
+                                <li><a href="{{ url('admin/asignaciones') }}"> Turnos </a></li>
+                                <li><a href="{{ url('admin/adicionales') }}"> Adicionales</a></li>
+                                <li><a href="{{ url('admin/deducciones') }}"> Deducciones</a></li>
+                            </ul>
                             </li>
                             <li><a href="#"> Inventario<span class="fa arrow"></span></a>
                                   <ul class="nav nav-third-level">
@@ -130,7 +131,7 @@
 
                     <!-- EMPLEADOS -->
                     @if((Sentinel::getUser()->roles()->first()->slug)=='1' || (Sentinel::getUser()->roles()->first()->slug)=='3' )
-                    <li><a href="#"  ><i class="fa fa-fw fa-male"></i> Nónima<span class="fa arrow"></span></a>
+                    <li><a href="#"  ><i class="fa fa-fw fa-male"></i> Nómina<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li><a href="{{ url ('admin/asistencias') }}"> Asistencia </a></li>
                             <li><a href="#"> Planificaciones<span class="fa arrow"></span></a>
@@ -240,10 +241,11 @@
         {
             if(checks[i].checked)
             {
-
                 hora_entrada[i].disabled = false;
                 hora_salida[i].disabled = false;
+
             }else{
+                
                 hora_entrada[i].disabled = true;
                 hora_salida[i].disabled = true;
             }
@@ -281,6 +283,55 @@
       reader.readAsDataURL(input.files[0]);
       }
       }
+    </script>
+    <script type="text/javascript">
+
+        $("#modo").change(function () {
+
+            var id = $("#modo").val();
+
+            if(id == 'D')
+            {
+                $('.dia').css('display', '');
+                $('#valor').attr('required', true);
+                $('#valor').removeAttr('disabled', '');
+
+            }else {
+
+                $('.dia').css('display', 'none');
+                $('#valor').attr('required', false);
+                $('#valor').attr('disabled', true);
+            }
+
+            if(id == 'P')
+            {
+                $('.porcentaje').css('display', '');
+                $('#valor2').attr('required', true);
+                $('#valor2').removeAttr('disabled', '');
+
+            }else {
+
+                $('.porcentaje').css('display', 'none');
+                $('#valor2').attr('required', false);
+                $('#valor2').attr('disabled', true);
+
+            }
+
+            if(id == 'V')
+            {
+                $('.valor').css('display', '');
+                $('#valor3').attr('required', true);
+                $('#valor3').removeAttr('disabled', '');
+
+            }else {
+
+                $('.valor').css('display', 'none');
+                $('#valor3').attr('required', false);
+                $('#valor3').attr('disabled', true);
+
+            }
+        });
+
     </script>
 </body>
 </html>

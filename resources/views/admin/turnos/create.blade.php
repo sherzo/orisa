@@ -14,27 +14,16 @@
         </ol>
     </div>
 </div>
-<div class="col-lg-18">
+<br>
     @include('flash::message')
-</div>
-<div class="col-lg-12">
-	<p> FECHA: {{ $planificacion->full_dates }}</p>
-	<p> ESTATUS: {{ $planificacion->estatus }}</p>
-	<p> CREADA: {{ $planificacion->created_at }}</p>
-</div> 
+
 <div class="col-lg-12">
 {!! Form::open(['route' => 'admin.planificaciones.administrar.dias.turnos.store', 'method' => 'POST', 'name' => 'form']) !!}
+    {{ csrf_field() }}
     <div class="row">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <span><i class="fa fa-calendar-o"></i></span>
-                <!-- <div class="pull-right">
-                    <div class="btn-group tooltip-demo">
-                        <button type="submit" class="btn btn-default btn-xs" aria-expanded="false">
-                            Guardar
-                        </button>
-                    </div>
-                </div> -->
+                FECHAS DE PLANIFICACIÓN DESDE: {{ $planificacion->full_dates }}
             </div>
             <div class="panel-body">   
                 <div class="row">

@@ -16,8 +16,8 @@ class CreatePayrollsTable extends Migration
             $table->increments('id');
             $table->integer('nominasaved_id')->unsigned();
             $table->foreign('nominasaved_id')->references('id')->on('payrolls_saved');
-            $table->integer('nominamade_id')->unsigned();
-            $table->foreign('nominamade_id')->references('id')->on('payrolls_made');
+            $table->integer('empleado_id')->unsigned();
+            $table->foreign('empleado_id')->references('id')->on('employees');
         });
     }
 

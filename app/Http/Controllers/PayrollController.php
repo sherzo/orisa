@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Laracasts\Flash\Flash;
 
-use App\Http\Requests;
 use App\Http\Requests\PayrollRequest;
+use App\Http\Requests;
+
 use Carbon\Carbon;
 use App\Deduction;
 use App\Employee;
@@ -20,7 +22,6 @@ use App\Assignment;
 use App\DeductionExtra;
 use App\Days_planning;
 use App\Day_attendance;
-use Laracasts\Flash\Flash;
 use Sentinel;
 
 class PayrollController extends Controller
@@ -60,27 +61,19 @@ class PayrollController extends Controller
         $year = $request->año;
         $quincena = $request->quincena;
 
-        $totalAllassignments = 0;
-        $totalAllpayments = 0;
+        $payroll = Payroll::where([['year', $request->año],['mes', $request->mes],['quincena', $request->quincena], ['est', 1]])->exists();
 
         $employees = Employee::all();
-        $deductions = Deduction::all();
-        $assignments = Assignment::all();
-        $deductions_extra = DeductionExtra::all();
+        $deductions = Deduction::first();
         $cestaticket = Cestaticket::all();
 
-        $count = count($employees);
+        if($payroll){
 
-        $payroll = Payroll::where([['year', $request->año],['mes', $request->mes],['quincena', $request->quincena]])->exists();
-
-        if($payroll)
-        {
-            Flash::warning('<strong> Error </strong> la prenómina de esta quincena correspondientes al mes de <em>'.$request->mes.'</em> ya fueron creados, debe tomar una quincena diferente.');
+            Flash::warning('<strong> Disculpe </strong> la prenómina seleccionada se encuentra registrada.');
 
             return redirect()->back();
 
-        }else{
-
+        } else {
 
             if($request->quincena == 1)
             {
@@ -126,221 +119,7 @@ class PayrollController extends Controller
                 }
             }
 
-            foreach ($employees as $employee)
-            {
-                foreach ($assistances as $assistance)
-                {
-                    $worked[$employee->id][] = Assistance::where([['empleado_id', $employee->id],['asistencia_id', $assistance->id],['motivo', 'Asistio']])->count();
-                    $extraHours[$employee->id][] = Assistance::where([['empleado_id', $employee->id],['asistencia_id', $assistance->id],['motivo', 'Asistio']])->get();
-                    $not_worked[$employee->id][] = Assistance::where([['empleado_id', $employee->id],['asistencia_id', $assistance->id],['motivo', 'No Asistio']])->count();
-                }
-            }
-
-            if(!empty($not_worked))
-            {
-                $n = 0;
-
-            foreach ($not_worked as $not_worke)
-            {
-                $n = 0;
-
-                foreach ($not_worke as $not_worke)
-                {
-                    $n += $not_worke;
-
-                }
-
-                $no_laborados[] = $n;
-
-                }
-            }
-
-            if (!empty($worked))
-            {
-
-                foreach ($worked as $worked)
-                {
-                    $l = 0;
-
-                    foreach ($worked as $worked_days)
-                    {
-                        $l += $worked_days;
-                    }
-
-                    $laborados[] = $l+4;
-
-                }
-
-                $t = 0;
-
-                    foreach ($extraHours as $extraHour)
-                    {
-
-                        foreach ($extraHour as $extraHourArray)
-                        {
-
-                            foreach ($extraHourArray as $extraHourArrayCount)
-                            {
-                                $dt = Carbon::parse($extraHourArrayCount->hora_entrada);
-                                $dt2 = Carbon::parse($extraHourArrayCount->hora_salida);
-
-                                $time = Carbon::createFromTime($dt->hour, $dt->minute, $dt->second);
-                                $time2 = Carbon::createFromTime($dt2->hour, $dt2->minute, $dt2->second);
-
-                                $timeForExtraCoding = $dt->diffInHours($dt2, false);
-                                //$minutesForExtraCoding = $dt->diffInMinutes($dt2, false);
-
-                                if($timeForExtraCoding > '8')
-                                {
-                                    $extraHourEmployee[$t][] = $timeForExtraCoding-8;
-
-                                } else {
-
-                                    $extraHourEmployee[$t][] = 0;
-                                }
-                            }
-
-
-                        }
-
-                         $t++;
-                    }
-
-
-                    foreach ($extraHourEmployee as $extraHourEmployee)
-                    {
-                        $e = 0;
-
-
-                        foreach ($extraHourEmployee as $extraHourEmployeeCount)
-                        {
-                            $e += $extraHourEmployeeCount;
-                        }
-
-                        $hoursExtras[] = $e;
-
-                    }
-
-                    foreach ($employees as $key => $employee)
-                    {
-                        $k = 0;
-
-                        foreach ($hoursExtras as $hoursCalculate)
-                        {
-                            $horasExtras[] = $employee->turno->extraHours->valor_turno * $hoursCalculate;
-                        }
-
-                        $assignmentsTotal[] = $employee->cargo->salario/30 * $laborados[$key] + $horasExtras[$key];
-
-                        $fx = Carbon::parse($i);
-                        $fx2 = Carbon::parse($f);
-
-                        $dx = Carbon::create($fx->year, $fx->month, $fx->day);
-                        $dx2 = Carbon::create($fx2->year, $fx2->month, $fx2->day);
-
-                        $daysForExtraCoding = $dx->diffInDaysFiltered(function(Carbon $date)
-                        {
-
-                            return $date->isMonday();
-
-                        }, $dx2);
-
-                        if($employee->info->cestaticket == 'Si')
-                        {
-                            $calculo_ces = ($cestaticket[0]->unidad_tributaria * $cestaticket[0]->cantidad);
-                            $cestaticket_em[] = $calculo_ces * $laborados[$key];
-
-                        }else{
-
-                            $cestaticket_em[] = '0.00';
-                        }
-
-                        foreach ($cestaticket_em as $cestaticket_em2) 
-                        {
-                            $deductionCestaticket = ($cestaticket_em2 / 15);
-
-                            $cestaticket_des[] = $deductionCestaticket * $no_laborados[$key];
-                        }
-                        
-
-                        $islr[] = 0.00;
-
-                        $fdx = ($employee->cargo->salario * 12/52);
-                        $fdt = ($assignmentsTotal[$key] * $deductions[0]->RPE);
-                        $fdy = $assignmentsTotal[$key];
-
-                        $sso[] = $fdx * $deductions[0]->SSO * $daysForExtraCoding;
-                        $rpe[] = $fdt * $daysForExtraCoding;
-                        $rpvh[] = $fdy * $deductions[0]->RPVH;
-
-                        $deductionsTotal[] = $sso[$key] + $rpe[$key] + $rpvh[$key];
-
-                        $others_assignments_pivot = Employee::find($employee->id);
-
-                        foreach ($others_assignments_pivot->assignmentsTemporary as $others_assignments_pivot)
-                        {
-                            $others_assignments[] = $others_assignments_pivot->pivot;
-                            $others_assignments_dx[] = $others_assignments_pivot;
-                        }
-
-                        $others_deductions_pivot = Employee::find($employee->id);
-
-                        foreach ($others_deductions_pivot->deductionsTemporary as $others_deductions_pivot)
-                        {
-                            $others_deductions[] = $others_deductions_pivot->pivot;
-                            $others_deductions_dx[] = $others_deductions_pivot;
-                        }
-
-                        if(!empty($others_assignments))
-                        {
-
-                            foreach ($others_assignments as $xd => $others_assignments_dy)
-                            {
-                                if($others_assignments_dy->empleado_id == $employee->id)
-                                {
-                                    for ($m=0; $m < count($others_assignments_dx) ; $m++)
-                                    {
-                                        if($others_assignments_dy->estatus == 0)
-                                        {
-                                            $assignmentsTotal[$key] += $others_assignments_dx[$m]->valor;
-                                        }
-                                    }
-                                }
-                            }
-
-                        }
-
-                        if(!empty($others_deductions))
-                        {
-                            foreach ($others_deductions as $xi => $others_deductions_dy)
-                            {
-                                if($others_deductions_dy->empleado_id == $employee->id)
-                                {
-                                    for ($n=0; $n < count($others_deductions_dx) ; $n++)
-                                    {
-                                        if($others_deductions_dy->estatus == 0)
-                                        {
-                                            $deductionsTotal[$key] += $others_deductions_dx[$n]->valor;
-                                        }
-                                    }
-                                }
-                            }
-                        }
-
-                        $payments[] = $assignmentsTotal[$key] - $deductionsTotal[$key];
-                        $totalAllassignments += $assignmentsTotal[$key];
-                        $totalAllpayments += $payments[$key];
-
-                    }
-
-            return view('admin.payroll.create', compact('employees', 'assignments', 'totalAllpayments', 'totalAllassignments', 'deductions_extra', 'others_assignments', 'others_deductions', 'count', 'payments', 'mes', 'year', 'quincena', 'assignmentsTotal', 'deductionsTotal', 'sso', 'islr', 'rpe', 'rpvh', 'fechas', 'i', 'f', 'laborados', 'horasExtras', 'cestaticket', 'cestaticket_em', 'no_laborados','cestaticket_des'));
-
-            }else{
-
-                Flash::warning('<strong> Error </strong> no se encontraron resultados coincidentes.');
-
-                return redirect()->back();
-            }
+            return view('admin.payroll.create', compact('employees', 'cestaticket', 'mes', 'year', 'quincena', 'i', 'f', 'assistances', 'dates', 'deductions'));
         }
     }
 
@@ -384,8 +163,8 @@ class PayrollController extends Controller
 
         }
 
-        $delete_dx = \DB::table('temporary_assignments')->truncate();
-        $delete_dy = \DB::table('temporary_deductions')->truncate();
+        //$delete_dx = \DB::table('temporary_assignments')->truncate();
+        //$delete_dy = \DB::table('temporary_deductions')->truncate();
 
         Flash::success('<strong> Éxito </strong> se ha guardado la '.$request->quincena.' quincena del mes '.$request->mes.' del '.$request->year.' correctamente.');
 

@@ -61,3 +61,106 @@ use Carbon\Carbon;
 
 		return $labora;
 	}
+
+	/* - - - - - - - - NÓMINA  - - - - - - - - */
+
+	function laborados($empleado, $asistencias)
+	{
+		$newLaborados = 0;
+
+		foreach ($asistencias as $key => $asistencia) 
+		{
+			$laborados = App\Assistance::where([['empleado_id', $empleado], ['asistencia_id', $asistencia->id], ['motivo', 'Asistio']])->first();
+
+			if(!empty($laborados))
+			{
+				$newLaborados = $newLaborados+1;
+			}
+		}
+
+
+		return $newLaborados;
+	}
+
+	function horasExtras($empleado, $asistencias)
+	{
+
+		foreach ($asistencias as $key => $asistencia) 
+		{
+			$laborados = App\Assistance::where([['empleado_id', $empleado], ['asistencia_id', $asistencia->id], ['motivo', 'Asistio']])->first();
+
+			if(!empty($laborados))
+			{
+				$entrada = Carbon::parse($laborados->hora_entrada);
+				$salida = Carbon::parse($laborados->hora_salida);
+
+				$time = Carbon::createFromTime($entrada->hour, $entrada->minute, $entrada->second);
+	           	$time2 = Carbon::createFromTime($salida->hour, $salida->minute, $salida->second);
+
+				$timeForExtraCoding = $entrada->diffInHours($salida, false);
+				//dd($timeForExtraCoding);
+				if($timeForExtraCoding > '8')
+	            {
+	                $extraHourEmployee[] = $timeForExtraCoding-8;
+	            
+	            } else {
+
+	                $extraHourEmployee[] = 0;
+	            }
+			}
+		}
+
+		$i = 0;
+
+		foreach ($extraHourEmployee as $key => $extraHour) 
+		{
+			$i += $extraHour;
+		}
+
+		return $i;
+	}		
+
+	function sso($empleado, $sso, $i, $f)
+	{
+		$fx = Carbon::parse($i);
+        $fx2 = Carbon::parse($f);
+
+        $dx = Carbon::create($fx->year, $fx->month, $fx->day);
+        $dx2 = Carbon::create($fx2->year, $fx2->month, $fx2->day);
+
+        $daysForExtraCoding = $dx->diffInDaysFiltered(function(Carbon $date)
+        {
+            return $date->isMonday();
+        }, $dx2);
+
+
+		$salario = ($empleado->cargo->salario * 12/52);
+		
+		$seguroSO = $salario * $sso * $daysForExtraCoding;
+		
+		return number_format($seguroSO, 2, ',', ' ');
+	}
+
+	function rpe($empleado, $rpe, $i, $f)
+	{
+		$fx = Carbon::parse($i);
+        $fx2 = Carbon::parse($f);
+
+        $dx = Carbon::create($fx->year, $fx->month, $fx->day);
+        $dx2 = Carbon::create($fx2->year, $fx2->month, $fx2->day);
+
+        $daysForExtraCoding = $dx->diffInDaysFiltered(function(Carbon $date)
+        {
+            return $date->isMonday();
+        }, $dx2);
+
+		$salario = ($empleado->cargo->salario * 12/52);
+		$paroForzoso = $salario * $rpe * $daysForExtraCoding;
+		
+		return number_format($paroForzoso, 2, ',', ' ');
+	}
+
+	function rpvh($empelado, $rpe, $i, $f)
+	{
+		# code...
+	}

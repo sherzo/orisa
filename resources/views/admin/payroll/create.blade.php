@@ -21,7 +21,7 @@
 		<div class="col-lg-12">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-		            <em>Prenómina</em>
+		            Prenómina
 		        </div>
 		        <div class="panel-body">
 		            @include('admin.payroll.partials.fields')

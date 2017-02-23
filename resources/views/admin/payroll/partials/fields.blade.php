@@ -52,42 +52,38 @@
                             	<td>
                             		{{ $employee->fullname }} {!! Form::hidden('nombre_completo[]', $employee->fullname) !!}
                             	</td>
+                            	<td class="text-center">
+                            		{{ laborados($employee->id,$assistances) }}
+                            	</td>
+                            	<td class="text-center">
+                            		{{ horasExtras($employee->id,$assistances) }}
+                            	</td>
                             	<td>
-                            		{{ $laborados[$key] }} {!! Form::hidden('laborados[]', $laborados[$key]) !!}
+                    
+                            	</td>
+                            	<td>
+                            		{{ sso($employee,$deductions->SSO,$i,$f) }}
+                            	</td>
+                            	<td>
+                            		{{ rpe($employee,$deductions->RPE,$i,$f) }}
                             	</td>
 
                             	<td>
-                            		{{ number_format($horasExtras[$key], 2, ',', ' ') }}
-                            	</td>
-
-                            	<td>
-                            		{{ number_format($assignmentsTotal[$key], 2, ',', ' ') }}
-                            	</td>
-                                    {!! Form::hidden('islr[]', $islr[$key]) !!}
-                            	<td>
-                            		{{ number_format($sso[$key], 2, ',', ' ') }} {!! Form::hidden('sso[]', $sso[$key]) !!}
-                            	</td>
-
-                            	<td>
-                            		{{ number_format($rpe[$key], 2, ',', ' ') }} {!! Form::hidden('rpe[]', $rpe[$key]) !!}
-                            	</td>
-
-                            	<td>
-                            		{{ number_format($rpvh[$key], 2, ',', ' ') }} {!! Form::hidden('rpvh[]', $rpvh[$key]) !!}
+                            		
                             	</td>
                             	<td>
-                            		{{ number_format($deductionsTotal[$key], 2, ',', ' ') }}
+                            		
                             	</td>
                             	<td>
-                            		{{ number_format($payments[$key], 2, ',', ' ') }} {!! Form::hidden('salario_total[]', $payments[$key]) !!}
+                            		
                             	</td>
                         	</tr>
                         @endforeach
                         	<tr>
                         		<td colspan="4"></td>
-                        		<td>TOTAL: {{ number_format($totalAllassignments, 2, ',', ' ') }}</td>
+                        		<td>TOTAL: </td>
                         		<td colspan="4"></td>
-                        		<td> TOTAL: {{ number_format($totalAllpayments, 2, ',', ' ') }}</td>
+                        		<td> TOTAL: </td>
                         	</tr>
                     </tbody>
                 </table>
@@ -106,7 +102,7 @@
             <table class="table table-striped table-bordered table-hover">
                 <thead>
                     <tr>
-                        <th colspan="{{ $count+1 }}" class="text-center">
+                        <th colspan="" class="text-center">
                             ASIGNACIONES EXTRAS
                         </th>
                     </tr>
@@ -122,26 +118,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($assignments as $assignment)
-                        <tr>
-                            <td>
-                                {{ $assignment->nombre }}
-                            </td>
-                            @for($i=0; $i<$count; $i++)
-                                <td class="text-center">
-                                    @if(!empty($others_assignments))
-                                        @for($j=0; $j<count($others_assignments); $j++)
-
-                                               @if($others_assignments[$j]->empleado_id == $employees[$i]->id AND $others_assignments[$j]->asignacion_id == $assignment->id)
-                                                    <span class="fa fa-check"></span>
-                                                @endif
-
-                                        @endfor
-                                    @endif
-                                </td>
-                            @endfor
-                        </tr>
-                    @endforeach
+                    
                 </tbody>
             </table>
         </div>
@@ -151,7 +128,7 @@
             <table class="table table-striped table-bordered table-hover">
                 <thead>
                     <tr>
-                        <th colspan="{{ $count+1 }}" class="text-center">
+                        <th colspan="" class="text-center">
                             DEDUCCIONES EXTRAS
                         </th>
                     </tr>
@@ -167,25 +144,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($deductions_extra as $deductions_extra)
-                        <tr>
-                            <td>
-                                {{ $deductions_extra->nombre }}
-                            </td>
-                            @for($i=0; $i<$count; $i++)
-                                <td class="text-center">
-                                    @if(!empty($others_deductions))
-                                        @for($b=0; $b<count($others_deductions); $b++)
-
-                                            @if($others_deductions[$b]->empleado_id == $employees[$i]->id AND $others_deductions[$b]->deduccion_id == $deductions_extra->id)
-                                                <span class="fa fa-check"></span>
-                                            @endif
-                                        @endfor
-                                    @endif
-                                </td>
-                            @endfor
-                        </tr>
-                    @endforeach
+                    
                 </tbody>
             </table>
         </div>
@@ -202,22 +161,7 @@
                       </tr>
                   </thead>
                   <tbody>
-                      @foreach($employees as $key => $employee)
-                          <tr>
-                              <td>
-                                  {{ $employee->fullname }} {!! Form::hidden('nombre_completo[]', $employee->fullname) !!}
-                              </td>
-                              <td>
-                                  {{ $employee->cargo->nombre }}
-                              </td>
-                              <td>
-                                  {{ number_format($employee->cargo->salario, 2, ',', ' ') }} {!! Form::hidden('salario_m[]', $employee->cargo->salario) !!} {!! Form::hidden('cargo[]', $employee->cargo->nombre) !!}
-                              </td>
-                              <td>
-                                  {{ number_format($employee->cargo->salario/30, 2, ',', ' ') }} {!! Form::hidden('salario_d[]', $employee->cargo->salario/30) !!}
-                              </td>
-                          </tr>
-                      @endforeach
+                      
                   </tbody>
             </table>
         </div>
@@ -235,25 +179,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($employees as $key => $employee)
-                        <tr>
-                            <td>
-                                {{ $employee->full_name }}
-                            </td>
-                            <td>
-                                {{ number_format($cestaticket[0]->unidad_tributaria, 2, ',', ' ') }}
-                            </td>
-                            <td>
-                                {{ number_format($cestaticket_em[$key], 2, ',', ' ') }} {!! Form::hidden('cestaticket[]', $cestaticket_em[$key]) !!}
-                            </td>
-                            <td>
-                                {{ $no_laborados[$key] }} {!! Form::hidden('no_laborados[]', $no_laborados[$key]) !!}
-                            </td>
-                            <td>
-                                {{ number_format($cestaticket_des[$key], 2, ',', ' ') }} {!! Form::hidden('cestaticket_des[]', $cestaticket_des[$key]) !!}
-                            </td>
-                        </tr>
-                    @endforeach
+                    
                 </tbody>
             </table>
         </div>

@@ -58,9 +58,9 @@
                             	<td class="text-center">
                             		{{ horasExtras($employee->id,$assistances) }}
                             	</td>
-                            	<td>
-                    
-                            	</td>
+                            	<td class="text-center">
+                                    {{ totalAsignacion(horasExtras($employee->id,$assistances), $employee) }}
+                                </td>
                             	<td>
                             		{{ sso($employee,$deductions->SSO,$i,$f) }}
                             	</td>

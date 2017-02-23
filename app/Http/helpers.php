@@ -120,6 +120,31 @@ use Carbon\Carbon;
 		return $i;
 	}		
 
+	function totalAsignacion($horasExtras, $empleado)
+	{
+		$salario = ($empleado->cargo->salario * 12/52);
+		$salarioDiario = $empleado->cargo->salario/30;
+
+		if($empleado->turno->turno == 'Mañana')
+		{
+			$valor = ($salarioDiario / 8);	
+			$salarioxHora = $valor * 1.5;
+
+			$total = $salarioxHora * $horasExtras;
+
+		} else {
+
+			$valor = ($salarioDiario / 8);	
+			$salarioxHora = $valor * 1.8;
+
+			$total = $salarioxHora * $horasExtras;
+		}
+
+		
+
+		return number_format($total, 2, ',', ' ');
+	}
+
 	function sso($empleado, $sso, $i, $f)
 	{
 		$fx = Carbon::parse($i);
@@ -160,7 +185,7 @@ use Carbon\Carbon;
 		return number_format($paroForzoso, 2, ',', ' ');
 	}
 
-	function rpvh($empelado, $rpe, $i, $f)
+	function rpvh($asignacion, $empelado, $rpe, $i, $f)
 	{
 		# code...
 	}

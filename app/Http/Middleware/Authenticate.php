@@ -19,7 +19,8 @@ class Authenticate
     {
 
         if (Sentinel::guest()) {
-            if ($request->ajax() || $request->wantsJson()) {
+            if ($request->ajax() || $request->wantsJson()) 
+            {
 
                 return response('Unauthorized.', 401);
 

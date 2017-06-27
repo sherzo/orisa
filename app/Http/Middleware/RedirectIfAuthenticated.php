@@ -18,8 +18,16 @@ class RedirectIfAuthenticated
     public function handle($request, Closure $next, $guard = null)
     {
     
-        if (Sentinel::check()) {
-            return redirect('/admin');
+        if (Sentinel::check()) 
+        {
+            if(Sentinel::getUser()->roles()->first()->slug === '7')
+            {
+                return redirect('/client');
+                
+            } else {
+                
+                return redirect('/admin');
+            }
         }
 
         return $next($request);

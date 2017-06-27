@@ -28,7 +28,7 @@ class Client extends Model
 
     public function user()
     {
-        return $this->belongsToMany('App\User', 'users_vip');
+        return $this->belongsTo('App\User', 'email');
     }
 
     public function scopeCedula($query, $cedula)

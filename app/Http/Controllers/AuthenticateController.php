@@ -13,6 +13,8 @@ use App\Http\Requests;
 
 use App\Portal;
 use App\User;
+use App\Client;
+use App\Reservation;
 use Sentinel;
 use Auth;
 use View;
@@ -21,21 +23,7 @@ class AuthenticateController extends Controller
 {
     public function index()
     {
-    	$portal = Portal::where('estatus', true)->first();
-
-		$platos = $portal->plates()->get();
-
-		if(!Sentinel::guest() AND (Sentinel::getUser()->roles()->first()->slug) == '7')
-		{
-			$cliente = Sentinel::getUser()->client[0]->id;
-			$reservaciones = App\Reservation::where('client_id', $cliente)->get();
-
-		}else{
-
-			$reservaciones = 0;
-		}
-
-		return View::make('welcome', compact('platos', 'reservaciones'));
+		return View::make('welcome');
     }
 
     public function postLogin(Request $request)
@@ -54,7 +42,7 @@ class AuthenticateController extends Controller
             
             
             if($user->status != 0){
-
+            
             	$slug = Sentinel::getUser()->roles()->first()->slug;
 
             if($slug == '7') {
@@ -125,6 +113,25 @@ class AuthenticateController extends Controller
             return redirect()->back()->withErrors(["errors" => "Se ha producido una actividad sospechosa y se le ha denegado el acceso, porfavor verifique su correo electrónico para activar su cuenta."]);
 
         }
+    }
+
+    public function clientLogin()
+    {
+
+        $user = Sentinel::getUser();
+        $client = Client::where('correo', $user->email)->first();
+
+        $reservaciones = Reservation::where('client_id', $client->id)->get();
+
+
+        return View::make('welcome', compact('platos', 'reservaciones'));
+    }
+
+    public function clientLogout()
+    {
+        Sentinel::logout();
+
+        return redirect('/');
     }
 
     protected function validateLogin(Request $request)

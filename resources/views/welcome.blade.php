@@ -27,9 +27,12 @@
     @include('header')
 
     <!-- Secciones -->
-    @if(!Auth::guest() AND (Auth::user()->roles_id)=='7')
-        @include('reservations')
-    @endif
+        @if(!Sentinel::guest() AND (Sentinel::getUser()->roles()->first()->slug) == '7')
+
+            @include('reservations')
+
+        @endif
+        
         @include('section-services')
 
         @include('section-platos-del-dia')

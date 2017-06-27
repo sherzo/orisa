@@ -31,11 +31,12 @@
 		Route::post('iniciarsesion', 'AuthenticateController@postLogin');
 		Route::post('recuperarclave', 'ForgotPasswordController@postForgotPassword');
 
-		//Route::get('iniciar-sesion', 'AuthController@getLogin');
-		//Route::post('iniciar-sesion', 'AuthController@login');
-		//Route::get('registrar', 'AuthController@showRegistrationForm');
-	    //Route::post('registrar', 'AuthController@register');
+	});
 
+	Route::group(['prefix' => '/client', 'middleware' => 'auth'], function() 
+	{
+		Route::get('/', 'AuthenticateController@clientLogin');
+		Route::get('/exit/{id}/', 'AuthenticateController@clientLogout');
 	});
 
 	Route::group(['middleware' => 'auth'], function () {
@@ -51,8 +52,8 @@
 	});
 	Route::resource('reservaciones', 'ReservationsController');
 	Route::get('reservaciones/{id}/destroy', [
-	'uses' => 'ReservationsController@destroy',
-	'as' => 'reservaciones.destroy'
+		'uses' => 'ReservationsController@destroy',
+		'as' => 'reservaciones.destroy'
 	]);
 
 	Route::get('/solicitud-reservacion/{fecha}/{hora}', function($fecha, $hora){

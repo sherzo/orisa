@@ -29,9 +29,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        if(Sentinel::getUser()->roles()->first()->slug == 'Tipo 5'){
-          return redirect('/');
-        }
+        
 
         $date = Carbon::now()->format('Y-m-d');
         $reservaciones = Reservation::where('fecha_reservacion', $date)->get();

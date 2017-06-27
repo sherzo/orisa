@@ -28,13 +28,24 @@ class UsersTableSeeder extends Seeder
         }*/
 
         \DB::table('users')->insert(array (
-            'email'      => 'sherzo-b@hotmail.com',
+            'email'      => 'andy.malave@hotmail.com',
             'password'   => \Hash::make('root'),
-            'first_name' => 'SAUL EFRAIN',
-            'last_name'  => 'FLOREZ HERNANDEZ',
+            'first_name' => 'ANDY',
+            'last_name'  => 'MALAVE',
         ));
 
-        \DB::table('users')->insert(array (
+        \DB::table('role_users')->insert([
+            'user_id' => 1,
+            'role_id' => 1
+        ]);
+        
+        \DB::table('activations')->insert([
+            'user_id'   => 1,
+            'code'      => 'FMslNOp94SjdZ167mNqHRngR1Ex87a4V',
+            'completed' => 1
+        ]);
+
+        /*\DB::table('users')->insert(array (
             'email'      => 'mtr_1101@hotmail.com',
             'password'   => \Hash::make('root'),
             'first_name' => 'JESUS EDUARDO',
@@ -92,12 +103,6 @@ class UsersTableSeeder extends Seeder
             'role_id' => 1
         ]);
 
-        \DB::table('activations')->insert([
-            'user_id'   => 1,
-            'code'      => 'FMslNOp94SjdZ167mNqHRngR1Ex87a4V',
-            'completed' => 1
-        ]);
-
         \DB::table('role_users')->insert([
             'user_id' => 2,
             'role_id' => 1
@@ -107,7 +112,7 @@ class UsersTableSeeder extends Seeder
             'user_id'   => 2,
             'code'      => 'FMslNOp94SfdZ167mNqHRngR1Ex87a4V',
             'completed' => 1
-        ]);
+        ]);*/
 
     }
 }

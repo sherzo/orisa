@@ -15,7 +15,7 @@
                     <li class="hidden">
                         <a href="#page-top"></a>
                     </li>
-                    @if(!Sentinel::guest() AND (Sentinel::user()->roles()->first()->slug) == '7')
+                    @if(!Sentinel::guest() AND (Sentinel::getUser()->roles()->first()->slug) == '7')
                     <li>
                         <a class="page-scroll" href="#reservations">Reservaciones</a>
                     </li>
@@ -32,30 +32,26 @@
                     <li>
                         <a class="page-scroll" href="#team">Equipo</a>
                     </li>
-                    @if(Auth::guest())
-                    <li>
-                        <a class="page-scroll login" href="{{ url('iniciarsesion') }}">Iniciar sesión</a>
-                    </li>
-
-                    @endif
-                    @if(!Auth::guest())
-                    @if(!Auth::user()->roles_id) == '7')
-                    <li>
-                        <a class="page-scroll" href="{{ url('/admin') }}" title="Entrar">
-                        <span class="fa fa-sign-out"></span> {{ Auth::user()->name }}
-
-                        </a>
-
-                    </li>
+                    @if(Sentinel::guest())
+                        <li>
+                            <a class="page-scroll login" href="{{ url('iniciarsesion') }}">Iniciar sesión</a>
+                        </li>
                     @endif
 
-                    <li>
-                        <a class="page-scroll" href="{{ url('/admin/salir') }}" title="Entrar">
-                        <span class="fa fa-power-off"></span> Salir
+                    @if(!Sentinel::guest())
+                        @if((!Sentinel::getUser()->roles()->first()->slug) == '7')
+                        <li>
+                            <a class="page-scroll" href="{{ url('/admin') }}" title="Entrar">
+                            <span class="fa fa-sign-out"></span> {{ Auth::user()->name }}
 
-                        </a>
+                            </a>
 
-                    </li>
+                        </li>
+                        @endif
+
+                        <li>
+                            <a class="page-scroll" href="{{ url('client/exit') }}/{{Sentinel::getUser()->id}}" title="Entrar">Salir</a>
+                        </li>
 
                     @endif
                 </ul>

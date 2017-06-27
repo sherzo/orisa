@@ -5,10 +5,13 @@ namespace App\Http\Controllers;
 use App\Http\Requests;
 use App\Reservation;
 use App\User;
+use App\Client;
 use Carbon\Carbon;
 use Laracasts\Flash\Flash;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+
+use Sentinel;
 
 class ReservationsController extends Controller
 {
@@ -42,27 +45,30 @@ class ReservationsController extends Controller
      */
     public function store(Request $request)
     {
-       foreach ($request->mesas_reservadas as $key => $mesa) {
-            $cliente = Auth::user()->client[0]->id;
+       foreach ($request->mesas_reservadas as $key => $mesa) 
+       {
+            $user = Sentinel::getUser();
+            $cliente = Client::where('correo', $user->email)->first();
+ 
             $reservation = new Reservation($request->all());
             $date = Carbon::now()->format('d-m-Y');
             $reservation->fecha_solicitud = $date;
-            $reservation->client_id = $cliente;
+            $reservation->client_id = $cliente->id;
             $reservation->table_id = $mesa;
 
             $reservation->save();
          }
          $dias = array(1 => 'Domingo',2 => 'Lunes', 3 => 'Martes', 4 => 'Miercoles', 5 => 'Jueves', 6=> 'Viernes', 7 => 'Sabado');
          $dia_r = new Carbon($reservation->fecha_reservacion);
-         foreach ($dias as $key => $value) {
-           if($key == $dia_r->dayOfWeek){
-             $dia = $value;
-           }
-         }
-         Flash::success('<h4><strong>Perfecto realizo un resrevacion para el día: '. fecha($reservation->fecha_reservacion).' ingrese a su correo para confirmar.</h5>');
+            foreach ($dias as $key => $value) {
+                if($key == $dia_r->dayOfWeek){
+                    $dia = $value;
+                }
+            }
 
-         return redirect()->back();
+        Flash::success('<h4><strong>Perfecto realizo un reservación para el día: '. fecha($reservation->fecha_reservacion).' ingrese a su correo para confirmar.</h5>');
 
+        return redirect()->back();
     }
 
 

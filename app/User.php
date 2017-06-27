@@ -22,6 +22,11 @@ class User extends EloquentUser
 		'password', 'remember_token',
 	];
 
+	public function client()
+	{
+		return $this->hasOne('App\Client', 'correo', 'email');
+	}
+
 	/*public function employee()
 	{
 	  return $this->belongsToMany('App\Employee');
@@ -33,10 +38,6 @@ class User extends EloquentUser
 		$this->hasMany('App\Rol', 'roles_id');
 	}
 
-	public function client()
-	{
-		return $this->belongsToMany('App\Client', 'users_vip');
-	}
 
 	public function bitacoras()
 	{

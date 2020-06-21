@@ -16,8 +16,8 @@ Automatiza el flujo de un restaurante, desde el momento en que llega el cliente 
     $ git clone https://github.com/sherzo/orisa.git
 
     $ composer install
-	
-	  $ php artisan serve
+    
+    $ php artisan serve
 
 
 ## License
